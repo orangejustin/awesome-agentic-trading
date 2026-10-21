@@ -6,3 +6,7 @@ __pycache__/
 .env
 .env.*
 *.key
+
+# local only: fetched source text, run ledgers, and the machine-specific key config
+data/
+tools/extract/local.toml
