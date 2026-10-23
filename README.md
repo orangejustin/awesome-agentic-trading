@@ -27,8 +27,8 @@ Find a project for the part of the trading workflow you want to build. A small, 
 ### TradingAgents
 
 [Open repository][tradingagents] · For developers studying multi-agent analysis, bull/bear debate and risk-aware decisions.<br>
-**Mode:** analysis/backtesting · **License:** [Apache-2.0][tradingagents-license] · **Commit:** [2026-10-16][tradingagents-commit]<br>
-**Main caveat:** its reproducibility notes warn that news/social inputs can change even for historical dates; historical-input fidelity has not been audited here. Requires a configured model provider or local model. [Source][tradingagents-source].
+**Mode:** analysis/decision evaluation · **License:** [Apache-2.0][tradingagents-license] · **Commit:** [2026-10-16][tradingagents-commit]<br>
+**Main caveat:** evaluates decisions without order fills or a cash ledger. News/social inputs can change for historical dates; historical-input fidelity has not been audited here. Requires a model provider or local model. [README][tradingagents-source] · [Evaluation code][tradingagents-evaluation].
 
 ### AI Hedge Fund
 
@@ -73,6 +73,7 @@ Descriptions are original summaries of the linked upstream sources. Each project
 [finrobot-commit]: https://github.com/AI4Finance-Foundation/FinRobot/commit/2717499b8e30f242640af08c4ad9afd1113c2d45
 [tradingagents]: https://github.com/TauricResearch/TradingAgents
 [tradingagents-source]: https://github.com/TauricResearch/TradingAgents/blob/e8f5503e9b86d5c2710b0c76b1f686703968c9df/README.md
+[tradingagents-evaluation]: https://github.com/TauricResearch/TradingAgents/blob/e8f5503e9b86d5c2710b0c76b1f686703968c9df/tradingagents/backtest.py
 [tradingagents-license]: https://github.com/TauricResearch/TradingAgents/blob/e8f5503e9b86d5c2710b0c76b1f686703968c9df/LICENSE
 [tradingagents-commit]: https://github.com/TauricResearch/TradingAgents/commit/e8f5503e9b86d5c2710b0c76b1f686703968c9df
 [ai-hedge-fund]: https://github.com/virattt/ai-hedge-fund
