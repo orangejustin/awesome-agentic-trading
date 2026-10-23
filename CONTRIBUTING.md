@@ -1,42 +1,23 @@
 # Contributing
 
-Corrections are the most useful contribution. In rough order of value: a link that moved or died, a finding that a later paper version or commit has fixed, a project we graded wrongly, a project that belongs in the catalog.
+Two things help most: telling us about a project that belongs here, and correcting something we got wrong.
 
-## Reporting an error
+## Suggest a project or report an error
 
-Open an issue with the page, the line, and a source we can check (an arXiv version, a commit hash, a table number). A claim without a source cannot be added to the [claim audit](docs/05-claim-audit.md); a claim with one will be, with a date.
+Open an issue on this repository with a link and one sentence. That is enough; we read the project, grade it and add it. For an error, add a source we can check (a commit, an arXiv version, a table number).
 
-## Adding or changing a catalog entry
+## Add a project yourself
 
-The source of truth is `catalog/papers.toml` and `catalog/projects.toml`. Do not edit the files under `docs/catalog/` or `docs/cards/`; they are generated.
+1. Copy an existing `[[project]]` entry in `catalog/projects.toml` and fill in what you know: name, repository, license, last commit date, and a one-sentence summary that the project's own README supports. If you are unsure about the grades, leave `evidence = "L0"`, `repro = "unverified"` and `read = "readme"`; we will review them.
+2. Add three short lines for the home page in `catalog/briefs.toml` (what it does, who it suits, its key limit), in English and Chinese. Keep them short and add no facts the project does not state.
+3. Run `python tools/atlas.py tables` to regenerate the tables, and open a pull request. CI runs the remaining checks.
 
-1. Add the entry. A paper needs its arXiv id, title, first author, the v1 and latest dates (arXiv UTC), one layer, a kind, a read depth and a one-sentence summary. A project needs the fields in the existing entries: repository, license, stars with the date they were read, last commit date and short hash, evidence rung, repro grade, read depth and summary. Use the [evidence ladder](docs/02-evidence-ladder.md) for the rung, and label a README skim as `readme`.
-2. Say how you know. The summary must be something the source says. If you only read the abstract, set `read = "abstract"`; the page will label it so.
-3. Regenerate and check:
+Do not edit `docs/catalog/` or `docs/cards/` by hand; they are generated.
 
-```bash
-python tools/atlas.py check
-python tools/atlas.py tables
-python tools/make_assets.py          # figures show counts from the catalog
-python -m unittest discover -s tests -t .
-python tools/verify.py all           # needs network: re-resolves every id and repository
-```
+## Writing a deep dive or an audit item
 
-A repository that two or more of the [source lists](docs/03-lists-compared.md) link has to be in `projects.toml` or, with a reason, in `catalog/excluded.toml`. See the [inclusion rule](docs/07-methodology.md#inclusion-rule).
-
-## Writing a teardown or an audit item
-
-- Name the version of the paper (arXiv v-number and date) and the commit of the repository you read.
-- Separate what you quote, what you read in code and what you infer, as the existing teardowns do in their "what we checked" tables.
-- State findings neutrally. A discrepancy is not an accusation, and many of these papers are candid about their limits.
-- Do not rerun a system and report the result as an audit finding unless the run, its configuration and its cost are described well enough to repeat.
-
-## Style
-
-- Plain sentences, numbers with their units and their window, and a date for anything that changes.
-- Code is standard library only unless a tool needs a dependency, in which case the dependency is declared next to that tool and imported lazily.
-- Tests that check a formula should compare it to a simulation, not to the formula's own output.
+Name the paper version and the commit you read, separate what you quote from what you infer, and state findings neutrally. The existing [deep dives](docs/teardowns/) show the format. More detail on grades is in the [evidence ladder](docs/02-evidence-ladder.md) and the [methodology](docs/07-methodology.md).
 
 ## Never commit
 
-API keys or tokens, credentials, personal paths, account identifiers, or text copied wholesale from a paper. `tools/privacy_lint.py` runs in CI and catches the common patterns; it is a backstop, not a substitute for looking.
+API keys, tokens, credentials, personal paths or account identifiers, or text copied wholesale from a paper. `tools/privacy_lint.py` runs in CI as a backstop.

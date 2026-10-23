@@ -44,16 +44,35 @@ ARXIV = re.compile(r"^\d{4}\.\d{4,5}$")
 DATE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 
 
+BRIEF_FIELDS = ("tagline", "audience", "limit", "tagline_zh", "audience_zh", "limit_zh")
+SNAPSHOT = "2026-10-21"
+
+
 def load() -> tuple[list[dict], list[dict]]:
     with open(CATALOG / "papers.toml", "rb") as f:
         papers = tomllib.load(f)["paper"]
     with open(CATALOG / "projects.toml", "rb") as f:
         projects = tomllib.load(f)["project"]
+    briefs_path = CATALOG / "briefs.toml"
+    briefs = tomllib.loads(briefs_path.read_text()) if briefs_path.exists() else {}
+    for p in projects:
+        if p["id"] in briefs:
+            p["brief"] = briefs[p["id"]]
     return papers, projects
 
 
 def check(papers: list[dict], projects: list[dict]) -> list[str]:
     errs: list[str] = []
+    for p in projects:
+        if p["kind"] == "list":
+            continue
+        b = p.get("brief")
+        if not b:
+            errs.append(f"{p['id']}: no entry in catalog/briefs.toml")
+            continue
+        for f in BRIEF_FIELDS:
+            if not str(b.get(f, "")).strip():
+                errs.append(f"{p['id']}: briefs.toml field {f} is empty")
     seen: set[str] = set()
     for p in papers:
         i = p.get("arxiv", "?")
@@ -223,12 +242,53 @@ def render_headline_zh(papers: list[dict], projects: list[dict]) -> str:
     return f"{len(papers)} 篇论文、{len(rows)} 个项目、{teardowns} 个深度拆解"
 
 
+def activity(last_commit: str, zh: bool = False) -> str:
+    from datetime import date
+    days = (date.fromisoformat(SNAPSHOT) - date.fromisoformat(last_commit)).days
+    if days <= 90:
+        return "活跃" if zh else "active"
+    if days <= 365:
+        return "放缓" if zh else "slowing"
+    return "停更" if zh else "dormant"
+
+
+def render_directory(projects: list[dict], zh: bool = False) -> str:
+    """The home-page project directory: one table per category, short lines from catalog/briefs.toml."""
+    sfx = "_zh" if zh else ""
+    head = ("| 项目 | 做什么 | 适合谁 | 维护 | 许可证 | 关键限制 |" if zh
+            else "| Project | What it does | Suits | Maintained | License | Key limit |")
+    titles_zh = {"decision": "决策架构（多智能体、单智能体）", "perception": "感知（文本和数字变信号）", "alpha": "因子与研究自动化",
+                 "portfolio": "组合、风控与强化学习", "data": "数据与时点访问", "execution": "执行与基础设施",
+                 "evaluation": "评测、基准与偏差控制", "simulation": "模拟"}
+    out: list[str] = []
+    done: set[str] = set()
+    for lay in PROJECT_LAYER_ORDER:
+        rows = [p for p in non_list(projects) if p["id"] not in done and p["layers"] and p["layers"][0] == lay]
+        if not rows:
+            continue
+        rows.sort(key=lambda p: -float(p["stars"].rstrip("k")) * (1000 if p["stars"].endswith("k") else 1))
+        out += [f"### {titles_zh[lay] if zh else LAYERS[lay]}", "", head, "|---|---|---|---|---|---|"]
+        for p in rows:
+            done.add(p["id"])
+            b = p["brief"]
+            name = f"[{esc(p['name'])}](https://github.com/{p['repo']})"
+            if p["read"] == "teardown":
+                name += f" · [{'拆解' if zh else 'deep dive'}](docs/teardowns/{p['id']}.md)"
+            lic = esc(p["license"] or ("未找到" if zh else "none found"))
+            out.append(f"| {name} | {esc(b['tagline' + sfx])} | {esc(b['audience' + sfx])} | "
+                       f"{activity(p['last_commit'], zh)} | {lic} | {esc(b['limit' + sfx])} |")
+        out.append("")
+    return "\n".join(out).rstrip("\n")
+
+
 # (file relative to ROOT, block name, renderer(papers, projects))
 INJECTIONS = [
     ("docs/02-evidence-ladder.md", "ladder-summary", lambda pa, pr: render_ladder_summary(pr)),
     ("docs/01-domain-map.md", "layer-counts", render_layer_counts),
     ("README.md", "headline", lambda pa, pr: render_headline(pa, pr)),
     ("README.zh-CN.md", "headline-zh", lambda pa, pr: render_headline_zh(pa, pr)),
+    ("README.md", "directory", lambda pa, pr: render_directory(pr)),
+    ("README.zh-CN.md", "directory-zh", lambda pa, pr: render_directory(pr, zh=True)),
 ]
 
 

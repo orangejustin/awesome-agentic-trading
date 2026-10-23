@@ -99,7 +99,8 @@ class Keys(unittest.TestCase):
 
     def test_key_command_and_no_stderr_leak(self):
         with tempfile.TemporaryDirectory() as d, mock.patch.dict(os.environ, {}, clear=False):
-            os.environ.pop("ANTHROPIC_API_KEY", None)
+            for name in cl.KEY_ENVS:
+                os.environ.pop(name, None)
             ok = Path(d) / "ok.toml"
             ok.write_text('key_command = ["python3", "-c", "print(\'k-from-command\')"]\n')
             with mock.patch.object(cl, "LOCAL", ok):
@@ -112,7 +113,8 @@ class Keys(unittest.TestCase):
 
     def test_missing_key_message_names_no_service(self):
         with mock.patch.dict(os.environ, {}, clear=False), mock.patch.object(cl, "LOCAL", Path("/nonexistent/local.toml")):
-            os.environ.pop("ANTHROPIC_API_KEY", None)
+            for name in cl.KEY_ENVS:
+                os.environ.pop(name, None)
             with self.assertRaises(RuntimeError):
                 cl.get_api_key()
 

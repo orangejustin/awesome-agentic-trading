@@ -1,0 +1,103 @@
+{
+ "arxiv": "2602.18481",
+ "title": "AlphaForgeBench: Benchmarking End-to-End Trading Strategy Design with Large Language Models",
+ "published": "2026-02-10",
+ "updated": "2026-05-27",
+ "source": {
+  "kind": "html",
+  "url": "https://arxiv.org/html/2602.18481",
+  "chars": 303869,
+  "truncated": false,
+  "sha256": "582f85db81c480fc729747a445280244e2f776a2eace10c741d9dbb02dc8413a",
+  "fetched": "2026-10-21"
+ },
+ "extraction": {
+  "model": "claude-opus-5-5",
+  "effort": "medium",
+  "date": "2026-10-23",
+  "input_tokens": 127432,
+  "output_tokens": 3324,
+  "cost_usd": 0.5762
+ },
+ "fields": {
+  "task": {
+   "status": "stated",
+   "value": "Benchmarking LLMs as quantitative researchers that generate executable alpha factors and factor-based trading strategy code, rather than emitting buy/hold/sell actions directly.",
+   "quote": "Rather than requiring models to emit discrete trading actions, AlphaForgeBench tasks LLMs with generating executable alpha factors and composing factor-based trading strategies grounded in financial domain knowledge."
+  },
+  "architecture": {
+   "status": "stated",
+   "value": "A generate-and-backtest pipeline. A standardized prompt combines a system instruction, the strategy query and a factor library. The LLM returns a Python generate_signal function, which a deterministic backtest engine executes. Queries come from real-world extraction (via gemini-3-flash-preview) plus LLM-augmented 3x3 difficulty queries.",
+   "quote": "The model must return a self-contained Python function (generate_signal) that consumes a dataframe of OHLCV columns and precomputed indicator factors and produces a trading-signal series dictating position actions (e.g., invest versus hold cash)."
+  },
+  "data": {
+   "status": "stated",
+   "value": "Daily OHLCV with precomputed technical indicators for 7 assets: BTCUSDT and ETHUSDT from Binance; AAPL, GOOGL, MSFT, NVDA and TSLA from Yahoo Finance. Queries: 633 real-world single-asset queries plus 270 structured queries.",
+   "quote": "Each generated strategy is executed within the unified backtest engine across 7 assets spanning two distinct market regimes: 2 cryptocurrencies (BTCUSDT, ETHUSDT; sourced from Binance) and 5 US equities (AAPL, GOOGL, MSFT, NVDA, TSLA; sourced from Yahoo Finance)."
+  },
+  "window": {
+   "status": "stated",
+   "value": "5-year evaluation window from 2021-01-01 to 2026-01-01, with a 300-day lookback; no train/validation split is described. A separate direct-trading instability study used BTC over 01/01/2025–01/01/2026.",
+   "quote": "The evaluation window spans 5 years (2021-01-01 to 2026-01-01), deliberately selected to cover heterogeneous market conditions including bull rallies, bear corrections, AI-driven recoveries, and prolonged consolidation phases"
+  },
+  "models": {
+   "status": "stated",
+   "value": "claude-sonnet-4.5, deepseek-v3.2, gemini-3-flash-preview, gemini-3-pro-preview, gpt-5.2 and grok-4.1-fast, all via official APIs. gemini-3-flash-preview was used for extraction and gpt-5.2 for query generation.",
+   "quote": "We benchmark six frontier LLMs spanning five providers: claude-sonnet-4.5, deepseek-v3.2, gemini-3-flash-preview, gemini-3-pro-preview, gpt-5.2, and grok-4.1-fast."
+  },
+  "baselines": {
+   "status": "stated",
+   "value": "The LLMs are compared against each other, and the code-generation paradigm is compared against direct-trading (action-emitting) LLM setups.",
+   "quote": "The results confirm that AlphaForgeBench offers a significantly more stable and discriminatory assessment of financial capabilities compared to direct-trading baselines."
+  },
+  "headline_result": {
+   "status": "stated",
+   "value": "On real-world queries over 2021–2026, gemini-3-pro-preview is best: SR 0.449±0.262, ARR 0.171±0.123, MDD 0.174, CR 1.411, SoR 0.767, VOL 0.237. On structured queries it reaches SR 0.628 at T=0.",
+   "quote": "| gemini-3-pro-preview | 0.449 \\pm 0.262 | 0.171 \\pm 0.123 | 0.174 \\pm 0.119 | 1.411 \\pm 1.165 | 0.767 \\pm 0.493 | 0.237 \\pm 0.162"
+  },
+  "costs": {
+   "status": "stated",
+   "value": "Main text uses a fixed one-way transaction cost of 10^{-3} with no slippage or liquidity modeling. Appendix Table 9 instead lists a transaction cost of 0 (frictionless), so the paper is inconsistent. Inference cost is not quantified.",
+   "quote": "and a fixed one-way transaction cost of 10^{-3} , thereby isolating intrinsic signal quality from confounding portfolio-construction effects."
+  },
+  "uncertainty": {
+   "status": "stated",
+   "value": "k=5 independent generations per query, with metrics reported as mean ± std. A temperature ablation compares τ=0 and τ=0.7. Intra-query std is reported as an order of magnitude below inter-query std, and figures show 25th–75th percentile bands.",
+   "quote": "Every experiment runs k{=}5 independent generations per query to quantify run-to-run variability."
+  },
+  "leakage_controls": {
+   "status": "stated",
+   "value": "Only for the direct-trading instability study, the most recent window (2025–2026) was chosen to minimize training-data leakage. No contamination control is described for the main 2021–2026 benchmark.",
+   "quote": "Notably, we choose the window 01/01/2025–01/01/2026 to minimize data leakage. Some models may have been trained on market data from earlier periods, which would introduce leakage risk; we therefore use the most recent available span."
+  },
+  "limitations": {
+   "status": "stated",
+   "value": "Scope is limited to single-asset, long-only strategies with a fixed cost and no slippage or liquidity modeling. Results measure strategy design quality, not deployable performance. Stage 2 queries are augmentations rather than broad ecological coverage.",
+   "quote": "The current evaluation targets single asset long only strategy design under a standardized backtesting environment with a fixed transaction cost of 10^{-3} and without explicit slippage or liquidity modeling."
+  },
+  "release": {
+   "status": "stated",
+   "value": "Code and data (query set, pipeline, backtest engine, scripts) are promised publicly upon acceptance. A webpage is at https://finbrain-lab-hkustgz.github.io/AlphaForgeBench.",
+   "quote": "All code and data will be publicly available upon acceptance of this paper, including the benchmark query set, evaluation pipeline, backtest engine, and supplementary scripts for reproducing the reported results."
+  }
+ },
+ "verification": {
+  "verified": 12,
+  "failed": 0,
+  "not_found": 0,
+  "detail": {
+   "task": "exact",
+   "architecture": "exact",
+   "data": "exact",
+   "window": "exact",
+   "models": "exact",
+   "baselines": "exact",
+   "headline_result": "exact",
+   "costs": "exact",
+   "uncertainty": "exact",
+   "leakage_controls": "exact",
+   "limitations": "exact",
+   "release": "exact"
+  }
+ }
+}

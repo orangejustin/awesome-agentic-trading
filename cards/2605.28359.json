@@ -1,0 +1,103 @@
+{
+ "arxiv": "2605.28359",
+ "title": "From Knowing to Doing: A Memory-Controlled Benchmark for LLM Trading Agents on Stock Markets",
+ "published": "2026-05-27",
+ "updated": "2026-05-27",
+ "source": {
+  "kind": "html",
+  "url": "https://arxiv.org/html/2605.28359",
+  "chars": 55200,
+  "truncated": false,
+  "sha256": "bc737b6a7330e1746571bf6ecfe7ea1d76c3cac85e981051408e17e7b14f73d0",
+  "fetched": "2026-10-21"
+ },
+ "extraction": {
+  "model": "claude-opus-5-5",
+  "effort": "medium",
+  "date": "2026-10-23",
+  "input_tokens": 24464,
+  "output_tokens": 2007,
+  "cost_usd": 0.138
+ },
+ "fields": {
+  "task": {
+   "status": "stated",
+   "value": "Benchmarking LLM agents on end-to-end daily portfolio construction over CSI300 stocks while controlling pretraining-memory leakage and attributing returns to market, style, and selection alpha.",
+   "quote": "The task is daily portfolio construction over the CSI300 constituent universe."
+  },
+  "architecture": {
+   "status": "stated",
+   "value": "Qlib-based execution engine; four-level data-side masking (bright, stock-blind, date-blind, blinded); three decision modes (memory-only, fixed-candidate, open-research); ReAct-style research-then-submission loop with six read-only tools; ten-dimensional metric panel; Barra-style attribution.",
+   "quote": "It has four interlocking components—a four-level masking protocol (§3.3), three decision modes (§3.2), a Qlib-based execution engine (§3.1), and a ten-dimensional metric panel (§3.6)—each described below."
+  },
+  "data": {
+   "status": "stated",
+   "value": "Chinese A-share CSI300 constituents, daily price-only data: OHLCV histories and derived technical features; no news, filings, or fundamentals.",
+   "quote": "Observations are price-only: OHLCV histories and derived technical features. The benchmark contains no news, analyst reports, regulatory filings, or fundamentals"
+  },
+  "window": {
+   "status": "stated",
+   "value": "Long window 2024-01-01 to 2026-04-10 (548 trading days) for headline; ten ~43-trading-day regime windows W1–W10 for anchor analysis. Baselines trained 2008–2022, validated 2023 (intro elsewhere says 2015–2022).",
+   "quote": "We evaluate on ten regime-stratified short windows of \\sim 43 trading days each (W1–W10, Table 2) plus one contiguous long window from 2024-01-01 to 2026-04-10 (548 trading days)."
+  },
+  "models": {
+   "status": "stated",
+   "value": "Anchor Step-3.5-Flash; ten LLMs: qwen3.6-plus, gpt-5.5, doubao-seed-2.0, claude-opus-4-7, minimax-m2.7, step-3.5-flash, gemini-3.1-pro, deepseek-v4-pro, glm-5.1, kimi-k2.6; temperature 0.0.",
+   "quote": "one model each from Step, OpenAI, Anthropic, Google, ByteDance, DeepSeek, Alibaba, MiniMax, Zhipu, and Moonshot (full identifiers in Table 4)"
+  },
+  "baselines": {
+   "status": "stated",
+   "value": "Eighteen Qlib factor models on nine Alpha9 features (e.g., SFM, DoubleEnsemble, CatBoost, LightGBM, Transformer, LSTM, MLP, Linear) plus CSI300 buy-and-hold.",
+   "quote": "We benchmark the ten LLM agents against eighteen trained Qlib factor models on the long window."
+  },
+  "headline_result": {
+   "status": "stated",
+   "value": "On 2024-01-01 to 2026-04-10, best LLM qwen3.6-plus +85.29% total return (Sharpe 1.13) vs CSI300 +36.92% and SFM +86.58%; only Claude Opus 4.7 has non-negative selection alpha (+0.2%).",
+   "quote": "| qwen3.6-plus | +85.29\\% | +48.37\\% | 1.13 | -24.49\\% | +0.48 | 31.88 | 0.005 | 0.367 | 2"
+  },
+  "costs": {
+   "status": "stated",
+   "value": "5 bps buy cost, 15 bps sell cost, CNY 5 minimum per order, next-day open execution, T+1, price-limit filtering; inference: 6–12 h wall-clock per LLM on long window with three seeds.",
+   "quote": "long-only positions starting from CNY 1,000,000; T+1 sell availability; CNY 5 minimum cost per order; 5 bps buy cost and 15 bps sell cost. Orders execute at the next-day open price."
+  },
+  "uncertainty": {
+   "status": "stated",
+   "value": "Multiple seeds per model (5 for anchor, 3 for long window); medians with IQR; Wilcoxon signed-rank tests at α=0.05; Wilson 95% CIs on probe.",
+   "quote": "Multi-seed cells report median total return with [Q_{1},Q_{3}] as IQR; cross-condition contrasts use Wilcoxon signed-rank tests on paired (window, seed) medians at \\alpha=0.05 ."
+  },
+  "leakage_controls": {
+   "status": "stated",
+   "value": "Data-side masking anonymizing tickers, dates and tool-return timestamps, aliases shuffled across episodes; ten-attacker de-anonymization probe (top-1 ticker ≤3.0%, joint ≤1.5%); W10 post-cutoff for anchor; tools see only prior-day data.",
+   "quote": "an independent ten-attacker probe (Section 4.3) certifies the mask, with top-1 ticker recovery at most 3.0\\% and a strict joint (ticker top-5 and date within \\pm 7 trading days) rate at most 1.5\\% ."
+  },
+  "limitations": {
+   "status": "stated",
+   "value": "Only CSI300 with price-only inputs; no US/HK equities or news/filings/macro; full mask×mode×window grid run only on Step-3.5-Flash, others only blinded×open-research due to compute.",
+   "quote": "The current implementation focuses on the CSI300 A-share universe with a price-only observation channel (open, high, low, close, volume, and derived technical factors); it does not cover US or Hong Kong equities, nor multimodal inputs such as archived news, filings, or macroeconomic series."
+  },
+  "release": {
+   "status": "stated",
+   "value": "Authors state public release of environment, scripts, masking and probe protocols, and full evaluation dataset; no location given.",
+   "quote": "(3) Public release of environment, scripts, masking and probe protocols, and the full evaluation dataset."
+  }
+ },
+ "verification": {
+  "verified": 12,
+  "failed": 0,
+  "not_found": 0,
+  "detail": {
+   "task": "exact",
+   "architecture": "exact",
+   "data": "exact",
+   "window": "exact",
+   "models": "exact",
+   "baselines": "exact",
+   "headline_result": "exact",
+   "costs": "exact",
+   "uncertainty": "exact",
+   "leakage_controls": "exact",
+   "limitations": "exact",
+   "release": "exact"
+  }
+ }
+}

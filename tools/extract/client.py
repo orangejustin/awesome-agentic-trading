@@ -1,7 +1,7 @@
 """Claude API access for the extraction run: key lookup, one call, spend accounting.
 
 The key is never printed, logged, written to a card or put in an exception message. It comes from the
-ANTHROPIC_API_KEY environment variable, or from the output of a command named in the git-ignored
+ANTHROPIC_API_KEY (or ATLAS_ANTHROPIC_API_KEY) environment variable, or from the output of a command named in the git-ignored
 tools/extract/local.toml (for example a lookup in the operating system's secret store). See tools/extract/README.md.
 """
 from __future__ import annotations
@@ -40,10 +40,15 @@ def cost(input_tokens: int, output_tokens: int) -> float:
     return input_tokens * PRICE_IN + output_tokens * PRICE_OUT
 
 
+KEY_ENVS = ("ANTHROPIC_API_KEY", "ATLAS_ANTHROPIC_API_KEY")
+WORKSPACE_ENV = "ATLAS_ANTHROPIC_WORKSPACE"  # optional: sent as the anthropic-workspace-id header
+
+
 def get_api_key() -> str:
-    key = os.environ.get("ANTHROPIC_API_KEY", "").strip()
-    if key:
-        return key
+    for name in KEY_ENVS:
+        key = os.environ.get(name, "").strip()
+        if key:
+            return key
     if LOCAL.exists():
         cmd = tomllib.loads(LOCAL.read_text()).get("key_command")
         if cmd:
@@ -60,7 +65,11 @@ def make_client():
         import anthropic
     except ImportError as e:
         raise SystemExit("the anthropic package is required for `plan --exact` and `run`: pip install -r tools/extract/requirements.txt") from e
-    return anthropic.Anthropic(api_key=get_api_key(), max_retries=4, timeout=600.0)
+    headers = {}
+    workspace = os.environ.get(WORKSPACE_ENV, "").strip()
+    if workspace:
+        headers["anthropic-workspace-id"] = workspace
+    return anthropic.Anthropic(api_key=get_api_key(), max_retries=4, timeout=600.0, default_headers=headers or None)
 
 
 @dataclass

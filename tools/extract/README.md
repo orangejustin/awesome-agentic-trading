@@ -25,7 +25,7 @@ python tools/atlas.py tables               # regenerate the catalog tables
 
 The key is never written to a file in this repository, printed, logged or stored in a card. Provide it one of two ways:
 
-1. Set `ANTHROPIC_API_KEY` in the environment of the process that runs the command.
+1. Set `ANTHROPIC_API_KEY` (or `ATLAS_ANTHROPIC_API_KEY`) in the environment of the process that runs the command. If your key belongs to a workspace that needs the `anthropic-workspace-id` header, also set `ATLAS_ANTHROPIC_WORKSPACE`.
 2. Copy `local.example.toml` to `tools/extract/local.toml` (git-ignored) and give it a `key_command` that prints the key, for example a lookup in your operating system's secret store. The command's output is read in memory only, and its error output is not shown.
 
 Tests use a fake local server and a fake key (`python -m unittest tests.test_extract`).

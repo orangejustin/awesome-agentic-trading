@@ -64,6 +64,12 @@ Three design choices decide what a card is worth:
 
 The cards store short quotes, hashes of the source text and the token counts of the run; the source text itself is not stored or redistributed.
 
+The first run (2026-10-23, PT) covered 49 papers in 49 calls: 1.63 million input and 77 thousand output tokens, $8.08. 46 cards passed and their papers moved from `abstract` to `card`; the three that did not are surveys, for which most of the twelve fields (window, baselines, headline result) do not apply.
+
+## Home-page lines
+
+The short lines in the README directory (what a project does, who it suits, its key limit, in English and Chinese) are in [`catalog/briefs.toml`](../catalog/briefs.toml). They were drafted by [`tools/extract/briefs.py`](../tools/extract/briefs.py), one Claude API call per project that sees only the catalog entry and is told to add no facts, and then reviewed by hand; twelve of the limit lines were rewritten. The maintenance label is computed from the last commit date.
+
 ## Statistics
 
 The numbers in [reading a backtest](06-reading-a-backtest.md) come from [`tools/evalkit`](../tools/evalkit/). The closed forms assume independent, roughly normal returns and are lower bounds on the data you need; the tests check them against simulation (standard-error formulas, the Sharpe-difference variance, the bootstrap) rather than against the formulas' own output.

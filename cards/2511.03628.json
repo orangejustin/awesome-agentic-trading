@@ -1,0 +1,103 @@
+{
+ "arxiv": "2511.03628",
+ "title": "LiveTradeBench: Seeking Real-World Alpha with Large Language Models",
+ "published": "2025-11-05",
+ "updated": "2025-11-05",
+ "source": {
+  "kind": "html",
+  "url": "https://arxiv.org/html/2511.03628",
+  "chars": 70637,
+  "truncated": false,
+  "sha256": "9aa99479ec99adae09ba809be42e4257001f1f65425a8867d0c8fea1248cea4b",
+  "fetched": "2026-10-21"
+ },
+ "extraction": {
+  "model": "claude-opus-5-5",
+  "effort": "medium",
+  "date": "2026-10-23",
+  "input_tokens": 29632,
+  "output_tokens": 1637,
+  "cost_usd": 0.1513
+ },
+ "fields": {
+  "task": {
+   "status": "stated",
+   "value": "A live trading benchmark evaluating LLM agents on multi-asset portfolio allocation in real-time U.S. stock and Polymarket prediction markets.",
+   "quote": "To address this, we introduce LiveTradeBench, a live trading environment for evaluating LLM agents in realistic and evolving markets."
+  },
+  "architecture": {
+   "status": "stated",
+   "value": "ReAct-style single agent with tool use (feature extraction from prices/news), fixed-horizon memory of past observations, and reasoning; outputs JSON allocation vectors summing to 1 including cash, long-only.",
+   "quote": "To provide a controlled yet extensible setup, we adopt a React-style (Yao et al., 2022) framework equipped with tool use and memory as our agent configuration."
+  },
+  "data": {
+   "status": "stated",
+   "value": "15 U.S. equities (AAPL, MSFT, NVDA, META, JPM, V, XOM, CAT, TSLA, PG, KO, AMZN, WMT, JNJ, UNH) plus cash via yfinance daily bars; 10 Polymarket binary markets via CLOB endpoints; news from Google News (and Reddit).",
+   "quote": "Prices come from a public finance API (equities) and Polymarket CLOB endpoints (prediction markets); context comes from Google News and Reddit."
+  },
+  "window": {
+   "status": "stated",
+   "value": "Live evaluation from August 18, 2025 to October 24, 2025, 50 trading days; no training split.",
+   "quote": "live trading conducted from August 18, 2025, to October 24, 2025—a total of 50 trading days—across trading agents built on 21 unique LLM backbones."
+  },
+  "models": {
+   "status": "stated",
+   "value": "21 LLMs: GPT-5, GPT-4.1, GPT-4o, GPT-o3; Claude-Opus-4.1, Opus-4, Sonnet-4, Sonnet-3.7; Gemini-2.5-Pro/Flash; Grok-4/3; Llama4-Maverick/Scout, Llama3.3-70B; Qwen3-235B-A22B Instruct/Thinking, Qwen2.5-72B; DeepSeek-R1/V3.1; Kimi-K2-Instruct. Temperature 0.3.",
+   "quote": "| OpenAI | GPT-5, GPT-4.1, GPT-4o, GPT-o3"
+  },
+  "baselines": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "headline_result": {
+   "status": "stated",
+   "value": "GPT-4.1 achieved the highest stock cumulative return 6.25% (Sharpe 2.64) over the 50 days, but -33.69% on Polymarket; LMArena-vs-return Spearman correlation 0.054 (stocks) and -0.38 (Polymarket).",
+   "quote": "| GPT-4.1 | 6.25 | 2.64 | 1.92 | 65.31 | 10.51 | -33.69 | -1.74 | 37.98 | 40.82 | 95.27"
+  },
+  "costs": {
+   "status": "stated",
+   "value": "No transaction fees, bid-ask spreads, liquidity constraints or other frictions are modeled.",
+   "quote": "Our current environment and evaluation do not account for transaction fees, bid–ask spreads, liquidity constraints, or other real-world trading frictions."
+  },
+  "uncertainty": {
+   "status": "stated",
+   "value": "Single live run per model; rolling-k delta analysis reports mean across 21 models with 25–75% band. No seeds or significance tests reported.",
+   "quote": "The black line denotes the mean performance across 21 models, and the shaded gray region indicates the 25–75% confidence interval."
+  },
+  "leakage_controls": {
+   "status": "stated",
+   "value": "Live streaming evaluation avoids backtest leakage; news queried over [t-3, t-1] and price history uses 10-day lookback ending at t-1 to reduce same-day leakage.",
+   "quote": "For a trading day t , we query Google News over a short window [t{-}3,t{-}1] to reduce same-day leakage while preserving timeliness."
+  },
+  "limitations": {
+   "status": "stated",
+   "value": "No transaction costs/frictions; limited observation and action spaces due to context length (few markets, truncated news); simplified ReAct agent design without multi-agent or RL.",
+   "quote": "Ignoring these factors may overestimate achievable returns, especially for strategies that rely on frequent rebalancing."
+  },
+  "release": {
+   "status": "stated",
+   "value": "Open-source Python package live-trade-bench on PyPI, GitHub repo github.com/ulab-uiuc/live-trade-bench, and live web app trade-bench.live.",
+   "quote": "To democratize research on LLM-based trading agents, we release an open-source Python package, live-trade-bench22 2 https://pypi.org/project/live-trade-bench/ , which provides simple APIs for data collection, environment setup, and agent construction."
+  }
+ },
+ "verification": {
+  "verified": 11,
+  "failed": 0,
+  "not_found": 1,
+  "detail": {
+   "task": "exact",
+   "architecture": "exact",
+   "data": "exact",
+   "window": "exact",
+   "models": "exact",
+   "baselines": "not_found",
+   "headline_result": "exact",
+   "costs": "exact",
+   "uncertainty": "exact",
+   "leakage_controls": "exact",
+   "limitations": "exact",
+   "release": "exact"
+  }
+ }
+}

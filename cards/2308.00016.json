@@ -1,0 +1,103 @@
+{
+ "arxiv": "2308.00016",
+ "title": "Alpha-GPT: Human-AI Interactive Alpha Mining for Quantitative Investment",
+ "published": "2023-07-31",
+ "updated": "2025-09-20",
+ "source": {
+  "kind": "html",
+  "url": "https://arxiv.org/html/2308.00016",
+  "chars": 29905,
+  "truncated": false,
+  "sha256": "042c41f558dc21c02597f00a72633b21672b37aea692fd8d78f57e1d4a8e3007",
+  "fetched": "2026-10-21"
+ },
+ "extraction": {
+  "model": "claude-opus-5-5",
+  "effort": "medium",
+  "date": "2026-10-23",
+  "input_tokens": 12845,
+  "output_tokens": 1258,
+  "cost_usd": 0.0765
+ },
+ "fields": {
+  "task": {
+   "status": "stated",
+   "value": "Mining formulaic alphas (trading signals/factors) via human-AI interaction, using LLMs to translate researchers' trading ideas into alpha expressions and refine them.",
+   "quote": "In this work, we propose a new alpha mining paradigm by introducing human-AI interaction, and a novel prompt engineering algorithmic framework to implement this paradigm by leveraging the power of large language models."
+  },
+  "architecture": {
+   "status": "stated",
+   "value": "Agentic workflow of ideation (Trading Idea Polisher with database), implementation (Quant Developer LLM generates seed alphas, genetic programming enhances them), and review (Analyst agent with backtest engine); WebUI, AlphaBot LLM agent with RAG, algorithmic mining and acceleration layers.",
+   "quote": "It is a multi-layered framework composed of a user-facing interface, a core LLM agent, an algorithmic mining engine, and a computation acceleration layer."
+  },
+  "data": {
+   "status": "stated",
+   "value": "Intraday volume-price data of Chinese and US stocks: OHLCV, VWAP, and sector data; WorldQuant IQC platform with over 5,000 data fields.",
+   "quote": "We use intraday volume-price data of Chinese and US stocks. The data include the basic candlestick chart data (OHLCV), volume-weighted average price (VWAP), and sector data."
+  },
+  "window": {
+   "status": "stated",
+   "value": "WorldQuant IQC 2024 evaluated in real time during the official competition period; Stage 2 results by June 25th, 2024. No other dates for in-sample/out-of-sample splits given.",
+   "quote": "Table 2: WorldQuant International Quant Championship 2024 Stage 2 Results (by June 25th, 2024)"
+  },
+  "models": {
+   "status": "stated",
+   "value": "Llama3 70B as chat model and BGE-M3 as embedding model; GPT-4 used as evaluator and simulated human user.",
+   "quote": "We used Llama3 70B Grattafiori et al. (2024) as the chat model and BGE-M3 Chen et al. (2024) as the embedding model."
+  },
+  "baselines": {
+   "status": "stated",
+   "value": "Junior human quant researchers (translation consistency); human leaderboards in a JoinQuant high-frequency alpha competition; worldwide and regional top participants in WorldQuant IQC 2024.",
+   "quote": "Specifically, we incorporated self-improving mechanism Wang et al. (2024) to generate factors and compared the result with human leaderboards, as shown in Table 5."
+  },
+  "headline_result": {
+   "status": "stated",
+   "value": "In WorldQuant IQC 2024 Stage 2, Alpha-GPT generated 81 qualified alphas, total score 48866, in-sample 65505, out-of-sample 43319, ranking top-10 worldwide among over 41000 teams.",
+   "quote": "| Alpha-GPT | 81 | 48866 | 65505 | 43319"
+  },
+  "costs": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "uncertainty": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "leakage_controls": {
+   "status": "stated",
+   "value": "WorldQuant evaluation was conducted in real time during the official competition period to avoid future information leakage.",
+   "quote": "Importantly, our evaluation was conducted in real time during the official competition period, ensuring that no future information leakage occurred."
+  },
+  "limitations": {
+   "status": "stated",
+   "value": "Machine learning alphas are not discussed; authors note human domain expertise and intuition often surpass current LLM capabilities.",
+   "quote": "This approach is predicated on the recognition that human domain expertise and intuition in trading and investment often surpass the current capabilities of LLMs."
+  },
+  "release": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  }
+ },
+ "verification": {
+  "verified": 9,
+  "failed": 0,
+  "not_found": 3,
+  "detail": {
+   "task": "exact",
+   "architecture": "exact",
+   "data": "exact",
+   "window": "exact",
+   "models": "exact",
+   "baselines": "exact",
+   "headline_result": "exact",
+   "costs": "not_found",
+   "uncertainty": "not_found",
+   "leakage_controls": "exact",
+   "limitations": "exact",
+   "release": "not_found"
+  }
+ }
+}

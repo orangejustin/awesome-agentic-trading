@@ -1,0 +1,103 @@
+{
+ "arxiv": "2309.03736",
+ "title": "TradingGPT: Multi-Agent System with Layered Memory and Distinct Characters for Enhanced Financial Trading Performance",
+ "published": "2023-09-07",
+ "updated": "2023-09-07",
+ "source": {
+  "kind": "html",
+  "url": "https://arxiv.org/html/2309.03736",
+  "chars": 23975,
+  "truncated": false,
+  "sha256": "9bb24cb5579ba5a3a660ef194e2649fcb88bcbf635178133cb520c3f4158b335",
+  "fetched": "2026-10-21"
+ },
+ "extraction": {
+  "model": "claude-opus-5-5",
+  "effort": "medium",
+  "date": "2026-10-23",
+  "input_tokens": 10524,
+  "output_tokens": 1088,
+  "cost_usd": 0.0639
+ },
+ "fields": {
+  "task": {
+   "status": "stated",
+   "value": "An LLM-powered multi-agent framework with layered memory and distinct trader characters for stock and fund trading decisions.",
+   "quote": "We assert that this framework is well-suited for stock and fund trading, where the extraction of highly relevant insights from hierarchical financial data is imperative to inform trading decisions."
+  },
+  "architecture": {
+   "status": "stated",
+   "value": "Multiple LLM agents, each with short/middle/long-term memory layers ranked by recency, relevancy and importance; daily immediate and extended reflections; risk-preference characters; inter-agent debate on shared stocks; FAISS vector store.",
+   "quote": "This represents a pioneering multi-agent trading system that integrates memory streams and debate mechanisms, anchored on LLMs. Building on Park et al.’s weighted memory mechanisms, our system innovatively categorizes the agent’s memories into short-term, middle-term, and long-term layers"
+  },
+  "data": {
+   "status": "stated",
+   "value": "Multi-modal financial data Aug 15, 2020 to Aug 15, 2023: Databento stock prices, Alpaca News API, ARK daily holdings records, ARK Invest video transcriptions via Whisper.",
+   "quote": "These datasets were sourced from financial databases and APIs, exemplified by the Databento Stock Price Database, Alpaca News API, publicly available daily holdings history records from ARK, etc."
+  },
+  "window": {
+   "status": "stated",
+   "value": "Planned: training Aug 15, 2020 to Feb 15, 2023; testing until Aug 15, 2023.",
+   "quote": "The training phase will utilize data spanning from August 15, 2020, to February 15, 2023, while the testing phase will extend until August 15, 2023."
+  },
+  "models": {
+   "status": "stated",
+   "value": "GPT3.5 turbo used as backbone for prompt design; CodeLlama 34B planned for comparison.",
+   "quote": "We’ve crafted efficient LLM prompts using GPT3.5 turbo as the backbone."
+  },
+  "baselines": {
+   "status": "stated",
+   "value": "Planned comparisons: GPT3.5 turbo versus CodeLlama 34B backbones, and multi-agent reinforcement learning.",
+   "quote": "This will involve comparisons within LLMs, such as GPT3.5 turbo versus CodeLlama 34B, and against models like multi-agent reinforcement learning."
+  },
+  "headline_result": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "costs": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "uncertainty": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "leakage_controls": {
+   "status": "stated",
+   "value": "During testing, agents do not use the fund firm's trading records, relying only on daily stock prices as market facts.",
+   "quote": "During testing, agents operate without the guidance of trading records from the representative fund firm, relying solely on daily stock prices as market facts."
+  },
+  "limitations": {
+   "status": "stated",
+   "value": "Work is at an early stage: only prompt design done; ablation studies and performance evaluation are future work.",
+   "quote": "With our established prompt template, we’re poised to undertake ablation studies to assess the trading efficacy of agent systems based on various backbone models."
+  },
+  "release": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  }
+ },
+ "verification": {
+  "verified": 8,
+  "failed": 0,
+  "not_found": 4,
+  "detail": {
+   "task": "exact",
+   "architecture": "exact",
+   "data": "exact",
+   "window": "exact",
+   "models": "exact",
+   "baselines": "exact",
+   "headline_result": "not_found",
+   "costs": "not_found",
+   "uncertainty": "not_found",
+   "leakage_controls": "exact",
+   "limitations": "exact",
+   "release": "not_found"
+  }
+ }
+}

@@ -1,0 +1,103 @@
+{
+ "arxiv": "2503.21422",
+ "title": "From Deep Learning to LLMs: A survey of AI in Quantitative Investment",
+ "published": "2025-03-27",
+ "updated": "2025-03-27",
+ "source": {
+  "kind": "html",
+  "url": "https://arxiv.org/html/2503.21422",
+  "chars": 104281,
+  "truncated": false,
+  "sha256": "73a067bab508f03ab6bbd677ac8dcd4bbcb4dbd1cca7e2a0b253b67893d7e680",
+  "fetched": "2026-10-21"
+ },
+ "extraction": {
+  "model": "claude-opus-5-5",
+  "effort": "medium",
+  "date": "2026-10-23",
+  "input_tokens": 35265,
+  "output_tokens": 477,
+  "cost_usd": 0.1506
+ },
+ "fields": {
+  "task": {
+   "status": "stated",
+   "value": "A survey of how deep learning and LLMs contribute to the quantitative investment (alpha strategy) pipeline, from data processing to order execution.",
+   "quote": "In this survey, taking alpha strategy as a representative example, we explore how AI contributes to the quantitative investment pipeline."
+  },
+  "architecture": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "data": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "window": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "models": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "baselines": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "headline_result": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "costs": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "uncertainty": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "leakage_controls": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "limitations": {
+   "status": "stated",
+   "value": "Authors identify field limitations: LLM agents' weak numerical reasoning, underdeveloped portfolio optimization, neglect of transaction costs and perfect-liquidity assumptions, and latency in real-time decisions.",
+   "quote": "This limitation is exacerbated by the widespread neglect of transaction cost modeling, with most systems assuming frictionless markets."
+  },
+  "release": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  }
+ },
+ "verification": {
+  "verified": 2,
+  "failed": 0,
+  "not_found": 10,
+  "detail": {
+   "task": "exact",
+   "architecture": "not_found",
+   "data": "not_found",
+   "window": "not_found",
+   "models": "not_found",
+   "baselines": "not_found",
+   "headline_result": "not_found",
+   "costs": "not_found",
+   "uncertainty": "not_found",
+   "leakage_controls": "not_found",
+   "limitations": "exact",
+   "release": "not_found"
+  }
+ }
+}

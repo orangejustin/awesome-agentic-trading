@@ -1,0 +1,103 @@
+{
+ "arxiv": "2502.08127",
+ "title": "Fino1: On the Transferability of Reasoning-Enhanced LLMs and Reinforcement Learning to Finance",
+ "published": "2025-02-12",
+ "updated": "2025-06-14",
+ "source": {
+  "kind": "html",
+  "url": "https://arxiv.org/html/2502.08127",
+  "chars": 55618,
+  "truncated": false,
+  "sha256": "e42d66eaa1ce4d084b8383f0c2a51a351d4cfb1ed9ffb453f12fce7dbd28c33f",
+  "fetched": "2026-10-21"
+ },
+ "extraction": {
+  "model": "claude-opus-5-5",
+  "effort": "medium",
+  "date": "2026-10-23",
+  "input_tokens": 23189,
+  "output_tokens": 1598,
+  "cost_usd": 0.1247
+ },
+ "fields": {
+  "task": {
+   "status": "stated",
+   "value": "Improving and evaluating LLMs' financial reasoning (numerical QA over financial texts, tables, long documents and equations) via a CoT corpus, SFT+RL-trained models, and a benchmark.",
+   "quote": "To address these gaps, we introduce FinCoT, the first open high-fidelity CoT corpus for finance, distilled from seven QA datasets by a novel three-stage pipeline that incorporates domain supervision, iterative LLM refinement, and difficulty-aware filtering."
+  },
+  "architecture": {
+   "status": "stated",
+   "value": "Three-stage CoT construction (GPT-4o synthesis with domain guidance, GPT-4o generator/verifier iterative refinement, Llama3.1-8B difficulty filtering), then two-stage training of Qwen3: SFT on FinCoT_SFT then RL (PPO, DPO, GRPO) with GPT-4o-judged multi-part reward.",
+   "quote": "Following previous studies [1, 8], a two-stage training approach, supervised fine-tuning and RL, is adopted to develop the model. FinCoT is divided into two parts FinCoT_SFT (7686) and FinCoT_RL (1,500) to support the training."
+  },
+  "data": {
+   "status": "stated",
+   "value": "FinCoT: 9,186 CoT-annotated QA pairs from FinQA, ConvFinQA, DocFinQA, TATQA, Econ_Logic, DocMath-Eval, BizBench-QA; evaluated on FinReason (FinQA 1,100, DM-Simplong 100, DM-Complong 300, XBRL-Math 90) from financial reports and XBRL filings.",
+   "quote": "Building our raw data collection, we further curate the first dataset containing 9,186 chain-of-thought annotated QA pairs, specifically designed to support SFT and RL for financial reasoning models"
+  },
+  "window": {
+   "status": "stated",
+   "value": "No dated period; FinCoT split into 7,686 SFT and 1,500 RL examples; evaluation on separate FinReason benchmark datasets.",
+   "quote": "FinCoT is divided into two parts FinCoT_SFT (7686) and FinCoT_RL (1,500) to support the training."
+  },
+  "models": {
+   "status": "stated",
+   "value": "Backbones Qwen3-8B and Qwen3-14B (Fin-o1-8B, Fin-o1-14B); GPT-4o used for CoT generation, verification and reward judging; Llama3.1-8B-Instruct for difficulty filtering.",
+   "quote": "Qwen3 are selected as backbone models, given their strong performance among small and mid-sized LLMs (shown in Table 3)."
+  },
+  "baselines": {
+   "status": "stated",
+   "value": "29 LLMs including GPT-4o, GPT-o1-preview, GPT-o3-mini, GPT-4.5, DeepSeek-V3/R1, Llama and Qwen families, R1-distills, S1-32B, Limo, FinR1-7B, Dianjin-R1-7B; plus ablations with PPO, DPO, no-CoT SFT.",
+   "quote": "we select a diverse set of 29 LLMs from the GPT, LLaMA, DeepSeek, and Qwen families, along with other reasoning models including both general domain and financial specific models."
+  },
+  "headline_result": {
+   "status": "stated",
+   "value": "Fin-o1-14B average accuracy 61.07 across four FinReason datasets, second only to DeepSeek-V3 (61.30); Fin-o1-8B averages 59.95.",
+   "quote": "| Fino1-14B | 74.18 | 55.00 | 87.78 | 27.33 | 61.07"
+  },
+  "costs": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "uncertainty": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "leakage_controls": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "limitations": {
+   "status": "stated",
+   "value": "Limited model scale, restricted evaluation scope, reliance on a single dataset (FinQA) for reasoning path construction, and a single path-generation method (GPT-4o); not suitable for real-world financial use.",
+   "quote": "Fourth, our reasoning path construction approach is simplified, as we generate paths using a single method (GPT-4o), whereas exploring multiple reasoning path generation strategies—such as ensemble approaches or human-annotated paths—could lead to more robust financial reasoning capabilities."
+  },
+  "release": {
+   "status": "stated",
+   "value": "Datasets, models and code released on Hugging Face (TheFinAI/FinCoT, Fin-o1-8B, Fin-o1-14B) and GitHub (The-FinAI/Fino1).",
+   "quote": "Code: https://github.com/The-FinAI/Fino1"
+  }
+ },
+ "verification": {
+  "verified": 9,
+  "failed": 0,
+  "not_found": 3,
+  "detail": {
+   "task": "exact",
+   "architecture": "exact",
+   "data": "exact",
+   "window": "exact",
+   "models": "exact",
+   "baselines": "exact",
+   "headline_result": "exact",
+   "costs": "not_found",
+   "uncertainty": "not_found",
+   "leakage_controls": "not_found",
+   "limitations": "exact",
+   "release": "exact"
+  }
+ }
+}
