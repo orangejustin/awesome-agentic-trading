@@ -1,6 +1,8 @@
 # Optional reading
 
-[Back to the project guide](README.md)
+[English guide](README.md) · [中文项目指南](README.zh-CN.md)
+
+This optional supporting page is maintained in English.
 
 Read these after choosing a project. Papers explain designs and experiments; current setup instructions belong in the upstream repositories.
 

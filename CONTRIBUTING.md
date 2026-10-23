@@ -8,15 +8,21 @@ Suggest a useful project, correct a fact, or remove a stale entry. No dependenci
 
 ## Edit an entry
 
-Edit only [README.md](README.md), using an existing entry as your template. Include:
+Edit [README.md](README.md) or [README.zh-CN.md](README.zh-CN.md), using an existing entry as your template. You may submit in either language; maintainers will synchronize the other version before merging. Include:
 
 - A public upstream repository and one sentence explaining what it does and who it suits.
-- Its documented mode: research, analysis, backtesting, paper trading or live-capable tooling. Label connectors clearly.
+- Its documented mode: research, analysis, decision evaluation, backtesting, paper trading or live-capable tooling. Label connectors clearly; distinguish decision scoring from portfolio simulation.
 - A link to the actual root license and a dated commit from the default branch.
 - One concrete caveat: setup requirements, missing data, platform limits, simulation-only behavior or order permissions.
 - A README/documentation source at the same commit and the UTC date you checked it. If it differs from the list-wide date, add “Checked: YYYY-MM-DD” to that entry.
 
 Use GitHub's browser editor or your preferred editor and submit a pull request. Refresh the list-wide check date only after rechecking every entry; no test command is required.
+
+## Keep the two guides aligned
+
+Before merging, maintainers check both READMEs for the same projects and order, capabilities, limitations, verification dates, licenses, default-branch commit dates and SHAs, and source links. Translate naturally while preserving those facts. If a source is uncertain, mark the same uncertainty in both versions. Check the language switch and all project anchors in each GitHub preview.
+
+Supporting pages such as this guide and [Optional reading](READING.md) are maintained in English. They do not need duplicate translations for a project entry to be accepted.
 
 ## Before submitting
 

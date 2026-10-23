@@ -1,71 +1,80 @@
 # Awesome Agentic Trading
 
-Find a project for the part of the trading workflow you want to build. A small, curated guide to open-source agents and their tools.
+**English** · [简体中文](README.zh-CN.md)
 
-中文：按用途选项目 → 看运行模式与限制 → 打开上游仓库。阅读和贡献都无需安装依赖。
+Find the right open-source project for the trading workflow you want to build.
 
 ## Choose in 60 seconds
 
-| I want to… | Start with |
-| --- | --- |
-| Research a company and produce a report | [FinRobot](#finrobot) |
-| Study how analysts, researchers and risk agents reach a decision | [TradingAgents](#tradingagents) |
-| Try a simulated AI fund over market days or historical data | [AI Hedge Fund](#ai-hedge-fund) |
-| Automate factor and model research | [RD-Agent](#rd-agent) |
-| Give an existing assistant access to market data and order tools | [Alpaca MCP Server](#alpaca-mcp-server) |
-
-**Checked: 2026-10-23 (UTC).** Capabilities below are documented upstream, not run-tested here. “Commit” is the latest default-branch commit observed, not a quality score or support guarantee. All listed repositories were unarchived when checked.
+- **Company reports** → [FinRobot](#finrobot)
+- **Multi-agent decisions** → [TradingAgents](#tradingagents)
+- **Paper portfolios** → [AI Hedge Fund](#ai-hedge-fund)
+- **Quant research automation** → [RD-Agent](#rd-agent)
+- **Broker and market-data tools** → [Alpaca MCP Server](#alpaca-mcp-server)
 
 ## Compare the projects
 
-### FinRobot
+Checked **2026-10-23 (UTC)** against upstream documentation and code. No project was run-tested here.
 
-[Open repository][finrobot] · For analysts building company research, valuation and report workflows.<br>
-**Mode:** research/reporting · **License:** [Apache-2.0][finrobot-license] · **Commit:** [2026-09-28][finrobot-commit]<br>
-**Main caveat:** choose the right codebase: desktop V2, web V1 or educational V0. `pip install finrobot` installs V0, not the desktop system. [Source][finrobot-source].
+### [FinRobot][finrobot]
 
-### TradingAgents
+**Mode:** research / reporting · **License:** [Apache-2.0][finrobot-license] · **Last commit:** [2026-09-28][finrobot-commit]
 
-[Open repository][tradingagents] · For developers studying multi-agent analysis, bull/bear debate and risk-aware decisions.<br>
-**Mode:** analysis/decision evaluation · **License:** [Apache-2.0][tradingagents-license] · **Commit:** [2026-10-16][tradingagents-commit]<br>
-**Main caveat:** evaluates decisions without order fills or a cash ledger. News/social inputs can change for historical dates; historical-input fidelity has not been audited here. Requires a model provider or local model. [README][tradingagents-source] · [Evaluation code][tradingagents-evaluation].
+For analysts building company research, valuation and report workflows.
 
-### AI Hedge Fund
+**Before choosing:** select the right codebase: desktop V2, web V1 or educational V0. `pip install finrobot` installs V0, not the desktop system. [FinRobot documentation][finrobot-source].
 
-[Open repository][ai-hedge-fund] · For learners experimenting with investor agents through a simulated fund and historical replay.<br>
-**Mode:** paper trading/backtesting · **License:** [MIT][ai-hedge-fund-license] · **Commit:** [2026-10-19][ai-hedge-fund-commit]<br>
-**Main caveat:** requires Financial Datasets and model API keys. It is an educational simulation; the project explicitly says it does not make real trades. [Source][ai-hedge-fund-source].
+### [TradingAgents][tradingagents]
 
-### RD-Agent
+**Mode:** analysis / decision evaluation · **License:** [Apache-2.0][tradingagents-license] · **Last commit:** [2026-10-16][tradingagents-commit]
 
-[Open repository][rd-agent] · For quant developers automating factor proposals, code generation and factor/model experiments with Qlib.<br>
-**Mode:** research/backtesting · **License:** [MIT][rd-agent-license] · **Commit:** [2026-09-23][rd-agent-commit]<br>
-**Main caveat:** upstream supports Linux and requires Docker for most scenarios, plus chat and embedding model configuration. Setup is heavier than a single-agent demo. [Source][rd-agent-source].
+For developers studying multi-agent analysis, bull/bear debate and risk-aware decisions.
 
-### Alpaca MCP Server
+**Before choosing:** evaluates decisions without order fills or a cash ledger. News/social inputs can change for historical dates; historical-input fidelity has not been audited here. Requires a model provider or local model. [TradingAgents documentation][tradingagents-source] · [Decision evaluation code][tradingagents-evaluation].
 
-[Open repository][alpaca-mcp] · For developers connecting an existing MCP-compatible assistant to Alpaca data, accounts and order operations.<br>
-**Mode:** connector; paper/live capable · **License:** [MIT][alpaca-mcp-license] · **Commit:** [2026-10-12][alpaca-mcp-commit]<br>
-**Main caveat:** supplies tools, not a trading strategy. Requires Alpaca credentials; live configuration can place real orders. Start with paper mode and review the enabled toolsets. [Source][alpaca-mcp-source].
+### [AI Hedge Fund][ai-hedge-fund]
 
-## How to use this list
+**Mode:** paper trading / backtesting · **License:** [MIT][ai-hedge-fund-license] · **Last commit:** [2026-10-19][ai-hedge-fund-commit]
 
-Pick by the output you need: a report, a decision, a simulated portfolio, research code or a broker connection. Model and data services may have separate costs and terms; an open-source license does not make those services free.
+For learners experimenting with investor agents through a simulated fund and historical replay.
 
-Inclusion means the repository has a distinct use, readable setup guidance and a verifiable license. It does not establish profitability or production readiness. Published backtests are authors’ results, not independently verified investment returns.
+**Before choosing:** requires Financial Datasets and model API keys. It is an educational simulation; the project explicitly says it does not make real trades. [AI Hedge Fund documentation][ai-hedge-fund-source].
 
-[Optional papers and deeper reading](READING.md) · [Suggest or fix an entry](CONTRIBUTING.md)
+### [RD-Agent][rd-agent]
+
+**Mode:** research / backtesting · **License:** [MIT][rd-agent-license] · **Last commit:** [2026-09-23][rd-agent-commit]
+
+For quant developers automating factor proposals, code generation and factor/model experiments with Qlib.
+
+**Before choosing:** upstream supports Linux and requires Docker for most scenarios, plus chat and embedding model configuration. [RD-Agent documentation][rd-agent-source].
+
+### [Alpaca MCP Server][alpaca-mcp]
+
+**Mode:** connector / paper and live capable · **License:** [MIT][alpaca-mcp-license] · **Last commit:** [2026-10-12][alpaca-mcp-commit]
+
+For developers connecting an existing MCP-compatible assistant to Alpaca data, accounts and order operations.
+
+**Before choosing:** supplies tools, not a trading strategy. Requires Alpaca credentials; live configuration can place real orders. Start with paper mode and review the enabled toolsets. [Alpaca MCP Server documentation][alpaca-mcp-source].
+
+## About this list
+
+Projects earn a place through a distinct use, readable setup guidance and a verifiable license. Inclusion does not establish profitability or production readiness. Model and data services may have separate costs and terms; an open-source license does not make them free.
 
 <details>
-<summary>What was verified?</summary>
+<summary>Sources, maintenance and verification limits</summary>
 
-The repository, README, root license, archive flag and latest default-branch commit were checked through GitHub on the date above. Each entry links its README and license at that exact commit. Maintenance uses the commit's UTC committer date, not repository `updated_at`, `pushed_at` or stars.
-
-No project was installed or executed. API availability, installation success, data completeness, paper/live execution and performance remain untested. FinRobot's cited commit edits documentation; a recent commit alone does not show current code health.
-
-Descriptions are original summaries of the linked upstream sources. Each project retains its own license; this guide's [MIT license](LICENSE) covers only this guide.
+- README, root license, archive status and the latest default-branch commit were checked on the date above. All listed repositories were unarchived. Documentation and license links are pinned to the cited commits.
+- “Last commit” is the observed default-branch commit's UTC committer date. It is a maintenance signal, not a support guarantee or quality score. FinRobot's cited commit edits documentation. Repository update/push dates and stars are not used as substitutes.
+- No project was installed or executed. Installation, model/data API availability, data completeness, historical-input fidelity, paper/live execution and performance remain untested. Published backtests are authors' results, not independently verified investment returns.
+- Descriptions are original summaries of upstream sources. Projects retain their own licenses; this guide's [MIT license](LICENSE) covers only this guide.
 
 </details>
+
+## Contribute or read more
+
+[Suggest a project or correct an entry](CONTRIBUTING.md). A repository URL, use case and limitation are enough to open an issue. No installation or test command is required; contributions in either language are welcome.
+
+[Optional papers and deeper reading](READING.md) explain the designs behind the projects.
 
 [finrobot]: https://github.com/AI4Finance-Foundation/FinRobot
 [finrobot-source]: https://github.com/AI4Finance-Foundation/FinRobot/blob/2717499b8e30f242640af08c4ad9afd1113c2d45/README.md
