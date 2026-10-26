@@ -1,6 +1,6 @@
 # Contributing
 
-Thank you for helping. Three things help most: a project, paper or post that belongs here; a correction; and the removal of something stale. Contributions in English or Chinese are both welcome (欢迎用中文提交).
+Thank you for helping. Three things help most: a project, paper or post that belongs here; a correction; and the removal of something stale.
 
 **The shortest path:** [open an issue](https://github.com/orangejustin/awesome-agentic-trading/issues/new/choose) with a link and one sentence on what it is for. Maintainers do the rest: verify, grade, translate and place it.
 
@@ -37,13 +37,13 @@ Stars, return claims and follower counts are never a reason to include something
 
 1. Public repository with **released code** (not only a README or a paper link). Announced-but-empty repositories go on the layer page's watchlist instead.
 2. A README that says how to set it up.
-3. A **root license file**, read as text, not inferred from a badge. A missing file is allowed but is shown as such.
+3. A **license, read as text** from the root license file, not inferred from a badge. A repository without one is allowed but is marked ❓ (license unclear), and the home page counts it separately from open-source entries.
 4. A **distinct use**: not a near-duplicate of an entry already listed. Forks are listed only when the original is abandoned; otherwise the fork is named in the original's limit line.
 5. One **concrete limit**: setup needs, data or API keys, simulation-only behaviour, order authority, an unusual license, unverified claims.
 
 Disclose any affiliation with a project you suggest.
 
-**Entry template.** Add a block to [`catalog/projects.toml`](catalog/projects.toml) and three short lines in both languages to [`catalog/briefs.toml`](catalog/briefs.toml). Layers and categories are listed in [`catalog/layers.toml`](catalog/layers.toml).
+**Entry template.** Add a block to [`catalog/projects.toml`](catalog/projects.toml) and three short lines in both languages to [`catalog/briefs.toml`](catalog/briefs.toml). Layers and categories are listed in [`catalog/layers.toml`](catalog/layers.toml). Read the repository at one commit and record that commit: every fact in the entry is about it.
 
 ```toml
 [[project]]
@@ -54,18 +54,28 @@ kind = "framework"            # framework | platform | library | model | tool | 
 layer = "harness"             # data | agent | execution | harness | application
 category = "harness-bench"    # one of that layer's categories
 also = ["execution"]          # optional: other layers it ships working code for
-orders = "paper"              # optional: live | paper | none, only if the README states it
+orders = "paper"              # required: live | paper | none (see below)
 general = true                # optional: general-purpose tool used for this job
-license = "MIT"               # from the LICENSE file text; "" if there is none
-last_commit = "2026-10-26"    # committer date of HEAD on the default branch
-last_sha = "abcdef1"
-checked = "2026-10-26"        # the day you checked the facts above
+maintenance = "unmaintained"  # optional, only when upstream says so: archived | deprecated | unmaintained
+license = "MIT"               # the license name, from the license file's text
+license_status = "open"       # open | mixed | restricted | declared | none (see below)
+license_file = "LICENSE"      # root path of the file you read; "" if there is none
+last_commit = "2026-10-26"    # committer date of that commit (US Pacific)
+last_sha = "0123456789abcdef0123456789abcdef01234567"   # the full 40-character commit you read
+checked = "2026-10-26"        # the day you read it
 evidence = "n/a"              # see docs/02-evidence-ladder.md; leave "L0" if unsure
 repro = "unverified"
 read = "readme"
 summary = "One or two sentences the README supports."
 caveat = "The limit that would change a reader's decision."
+sources = [                   # links to the lines that support orders, license and maintenance claims, at last_sha
+  { what = "orders", url = "https://github.com/owner/name/blob/0123456789abcdef0123456789abcdef01234567/README.md?plain=1#L40-L52" },
+]
 ```
+
+- **`orders`** describes what the code can do, not what the README recommends. `live`: it can send orders to a real venue, even if that path is off or paper by default. `paper`: forward-running simulated orders on live data, with no path to a real venue. `none`: no order path, or only historical backtests and simulated markets. A read-only or DEMO mode is not paper trading. `live` and `paper` need an `orders` source; search the code as well as the README (`git grep -n "submit_order\|place_order\|create_order"`), because a README can understate it.
+- **`license_status`**: `open` (an open-source license file at the root), `mixed` (open core with parts under a non-open license), `restricted` (noncommercial, conflicting or otherwise non-open terms), `declared` (an open license is stated in a README, badge or manifest but there is no license file; add a `license` source), `none`.
+- **Sources** are permalinks to a commit, never to a branch: on GitHub open the file, press `y` to switch to the commit URL, add `?plain=1` for Markdown and select the lines. CI rejects a source that is not pinned to `last_sha`.
 
 ```toml
 [short-id]
@@ -137,8 +147,8 @@ Open an issue with the page, the line and a source we can check (a commit, a fil
 
 ## Maintenance
 
-- **Weekly:** `tools/verify.py` re-resolves every arXiv id and repository and reports moved or missing ones.
-- **Each refresh:** update `last_commit`, `last_sha` and `checked` for the entries you re-checked. Status (🟢 🟡 ⚪) is computed from those dates, so it never needs editing by hand.
+- **Weekly:** the [verify-sources](.github/workflows/verify.yml) workflow runs `python tools/verify.py all --report report` and publishes the report in the job summary and as an artifact: failures (unreachable or newly archived repositories, changed license files, retitled papers, dead links) turn the job red; repositories whose HEAD moved are listed with both commits and a diff link for re-checking.
+- **Each refresh:** for an entry whose HEAD moved, re-read the README and code for order authority, license and maintenance at the new commit, then update `last_commit`, `last_sha`, `checked` and the `sources` together. Activity (🟢 🟡 ⚪) is computed from those dates, so it never needs editing by hand, but it is only as fresh as the check date shown next to it.
 - **Neutral wording.** State what a source says and what you checked; separate quotation from inference; do not grade people.
 
 ## Never commit

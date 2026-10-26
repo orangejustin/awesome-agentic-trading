@@ -7,8 +7,12 @@
 
 The READMEs are views of the catalog: the directory, milestones and counts between
 `<!-- gen:NAME -->` markers are written here, in English and Chinese from the same entries,
-so the two languages cannot drift. Layer pages (layers/*.md) and the flat catalog
-(docs/catalog/*.md) are generated whole.
+so the two languages cannot drift. Layer pages (layers/*.md), the component matrix
+(docs/components.md) and the flat catalog (docs/catalog/*.md) are generated whole.
+
+Every repository entry is pinned to the commit it was checked at (`last_sha`), and every
+claim that decides whether to use it (order authority, an unclear or restricted license, a
+maintenance declaration) links to the lines at that commit that support it.
 
 Standard library only (needs Python 3.11+ for tomllib).
 """
@@ -26,28 +30,42 @@ CATALOG = ROOT / "catalog"
 OUT = ROOT / "docs" / "catalog"
 LAYER_DIR = ROOT / "layers"
 
-SNAPSHOT = "2026-10-21"  # default check date for entries without their own `checked`
 EVIDENCE = {"L0", "L1", "L2", "L3", "L4", "bench", "n/a"}
 REPRO = {"full", "partial", "none", "unverified", "n/a"}
 READ_PAPER = {"full", "partial", "abstract", "card"}
 READ_PROJECT = {"teardown", "readme", "card"}
 ORDERS = {"live", "paper", "none"}
+LICENSE_STATUS = {"open", "mixed", "restricted", "declared", "none"}
+MAINTENANCE = {"archived", "deprecated", "unmaintained"}
+OFF_DIRECTORY = {"archived", "deprecated"}  # shown in the layer page's archive section, not in the directory
+SOURCE_WHAT = {"orders", "license", "maintenance", "limit", "data", "runtime", "install", "io", "keys"}
 PROJECT_KINDS = {
     "framework", "platform", "infrastructure", "library", "model", "benchmark", "simulator",
     "backtester", "data", "execution", "experiment", "list", "tool",
 }
 LIST_CATEGORIES = {"related", "style-reference"}  # kind = "list" entries live outside the five layers
 ARTICLE_SOURCES = {"x", "blog", "docs", "news", "newsletter", "podcast", "talk", "paper", "tool-page"}
+INTERFACES = {"python-lib", "cli", "mcp", "rest-api", "web-ui", "docker-service", "desktop", "typescript-lib", "hosted"}
+VERIFICATION = {"docs", "install", "run"}
+RECIPE_STATUS = {"design", "upstream", "run"}
 ARXIV = re.compile(r"^\d{4}\.\d{4,5}$")
 DATE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 DATE_OR_MONTH = re.compile(r"^\d{4}-\d{2}(-\d{2})?$")
+SHA = re.compile(r"^[0-9a-f]{40}$")
 BRIEF_FIELDS = ("tagline", "audience", "limit", "tagline_zh", "audience_zh", "limit_zh")
 
-STATUS = {"active": "🟢", "slowing": "🟡", "dormant": "⚪"}
-STATUS_ZH = {"active": "活跃", "slowing": "放缓", "dormant": "停更"}
+ACTIVITY = {"active": "🟢", "slowing": "🟡", "dormant": "⚪"}
+MAINT_ICON = {"archived": "🗄️", "deprecated": "⛔", "unmaintained": "💤"}
+MAINT_ZH = {"archived": "已归档", "deprecated": "已弃用", "unmaintained": "作者声明不再维护"}
+LICENSE_MARK = {"open": "", "mixed": "🧩 ", "restricted": "🔒 ", "declared": "❓ ", "none": "❓ "}
 SOURCE_ICON = {"x": "𝕏", "blog": "📝", "docs": "📘", "news": "📰", "newsletter": "📰", "podcast": "🎧",
                "talk": "🎤", "paper": "📄", "tool-page": "🔧"}
 READ_ICON = {"full": "📖", "partial": "📖", "card": "🗂️", "abstract": "🔖"}
+READ_LABEL = {"full": "read in full", "partial": "read in part", "card": "method card", "abstract": "abstract only"}
+READ_LABEL_ZH = {"full": "全文精读", "partial": "部分精读", "card": "方法卡片", "abstract": "仅读摘要"}
+VERIFY_LABEL = {"docs": "📄 docs at the pinned commit", "install": "📦 installed", "run": "▶️ example run"}
+RECIPE_LABEL = {"design": "🧭 design reference (not run)", "upstream": "🔗 pairing documented upstream (not run by us)",
+                "run": "✅ run end to end by us"}
 
 
 # ---------------------------------------------------------------- loading
@@ -68,6 +86,7 @@ def load() -> tuple[list[dict], list[dict]]:
     briefs = _toml("briefs.toml")
     for p in projects:
         p.setdefault("also", [])
+        p.setdefault("sources", [])
         if p["id"] in briefs:
             p["brief"] = briefs[p["id"]]
     return papers, projects
@@ -75,16 +94,24 @@ def load() -> tuple[list[dict], list[dict]]:
 
 def load_all() -> dict:
     papers, projects = load()
+    comp = _toml("components.toml")
     return {
         "layers": load_layers(),
         "papers": papers,
         "projects": projects,
         "articles": _toml("articles.toml").get("article", []),
         "milestones": _toml("milestones.toml").get("milestone", []),
+        "components": comp.get("component", []),
+        "recipes": comp.get("recipe", []),
     }
 
 
 # ---------------------------------------------------------------- checks
+
+def pinned(p: dict, url: str) -> bool:
+    """A source must point at the checked commit of the project's own repository."""
+    return url.startswith(f"https://github.com/{p['repo']}/blob/{p['last_sha']}/")
+
 
 def check_all(c: dict) -> list[str]:
     errs = check(c["papers"], c["projects"], c["layers"])
@@ -95,7 +122,7 @@ def check_all(c: dict) -> list[str]:
         if u in seen:
             errs.append(f"article {u}: duplicate")
         seen.add(u)
-        for k in ("title", "author", "url", "source", "date", "layer", "why", "checked"):
+        for k in ("title", "author", "url", "source", "layer", "why", "checked"):
             if not a.get(k):
                 errs.append(f"article {u}: missing {k}")
         if a.get("source") not in ARTICLE_SOURCES:
@@ -104,6 +131,8 @@ def check_all(c: dict) -> list[str]:
             errs.append(f"article {u}: unknown layer {a.get('layer')!r}")
         if a.get("date") and not DATE_OR_MONTH.match(a["date"]):
             errs.append(f"article {u}: bad date {a['date']!r}")
+        if a.get("checked") and not DATE.match(a["checked"]):
+            errs.append(f"article {u}: bad checked date")
         if a.get("featured") and not a.get("why_zh"):
             errs.append(f"article {u}: featured articles need why_zh for the Chinese README")
         if not str(u).startswith("https://"):
@@ -119,6 +148,51 @@ def check_all(c: dict) -> list[str]:
     dates = [m["date"] for m in c["milestones"]]
     if dates != sorted(dates):
         errs.append("milestones.toml: entries must be in date order")
+    errs += check_components(c)
+    return errs
+
+
+def check_components(c: dict) -> list[str]:
+    errs: list[str] = []
+    by_id = {p["id"]: p for p in c["projects"]}
+    seen: set[str] = set()
+    for m in c["components"]:
+        i = m.get("id", "?")
+        p = by_id.get(i)
+        if not p:
+            errs.append(f"component {i}: not a catalogued project")
+            continue
+        if i in seen:
+            errs.append(f"component {i}: duplicate")
+        seen.add(i)
+        for k in ("language", "runtime", "install", "interface", "inputs", "outputs", "keys_cost", "verification"):
+            if not m.get(k):
+                errs.append(f"component {i}: missing {k}")
+        for f in m.get("interface", []):
+            if f not in INTERFACES:
+                errs.append(f"component {i}: unknown interface {f!r}")
+        if m.get("verification") not in VERIFICATION:
+            errs.append(f"component {i}: unknown verification {m.get('verification')!r}")
+        if m.get("verification") in ("install", "run") and not (m.get("verify_cmd") and m.get("verify_date")):
+            errs.append(f"component {i}: install/run verification needs verify_cmd and verify_date")
+        for s in m.get("sources", []):
+            if s.get("what") not in SOURCE_WHAT or not pinned(p, s.get("url", "")):
+                errs.append(f"component {i}: source {s.get('url')!r} must be pinned to the project's last_sha")
+        for g in m.get("integrations", []):
+            if g.get("with") not in by_id:
+                errs.append(f"component {i}: integration with unknown project {g.get('with')!r}")
+    for r in c["recipes"]:
+        i = r.get("id", "?")
+        for k in ("title", "status", "steps", "why", "gaps"):
+            if not r.get(k):
+                errs.append(f"recipe {i}: missing {k}")
+        if r.get("status") not in RECIPE_STATUS:
+            errs.append(f"recipe {i}: unknown status {r.get('status')!r}")
+        if r.get("status") == "upstream" and not r.get("links"):
+            errs.append(f"recipe {i}: an upstream-documented pairing needs links to that documentation")
+        for st in r.get("steps", []):
+            if st.get("component") not in by_id:
+                errs.append(f"recipe {i}: step uses unknown project {st.get('component')!r}")
     return errs
 
 
@@ -175,11 +249,14 @@ def check(papers: list[dict], projects: list[dict], layers: list[dict] | None = 
         if r in repos:
             errs.append(f"project {i}: repository {r} is already catalogued")
         repos.add(r)
-        for k in ("name", "repo", "kind", "license", "last_commit", "last_sha", "evidence", "repro", "read", "summary"):
+        for k in ("name", "repo", "kind", "license", "license_file", "last_commit", "last_sha", "checked",
+                  "evidence", "repro", "read", "summary"):
             if k not in p:
                 errs.append(f"project {i}: missing {k}")
         if "/" not in p.get("repo", ""):
             errs.append(f"project {i}: repo must be owner/name")
+        if not SHA.match(p.get("last_sha", "")):
+            errs.append(f"project {i}: last_sha must be the full 40-character commit hash")
         if p.get("evidence") not in EVIDENCE:
             errs.append(f"project {i}: unknown evidence {p.get('evidence')!r}")
         if p.get("repro") not in REPRO:
@@ -188,6 +265,12 @@ def check(papers: list[dict], projects: list[dict], layers: list[dict] | None = 
             errs.append(f"project {i}: unknown read level {p.get('read')!r}")
         if p.get("kind") not in PROJECT_KINDS:
             errs.append(f"project {i}: unknown kind {p.get('kind')!r}")
+        whats = {s.get("what") for s in p.get("sources", [])}
+        for s in p.get("sources", []):
+            if s.get("what") not in SOURCE_WHAT:
+                errs.append(f"project {i}: unknown source kind {s.get('what')!r}")
+            if not pinned(p, s.get("url", "")):
+                errs.append(f"project {i}: source {s.get('url')!r} is not pinned to last_sha")
         if p.get("kind") == "list":
             if p.get("category") not in LIST_CATEGORIES:
                 errs.append(f"project {i}: lists use category 'related' or 'style-reference'")
@@ -199,17 +282,38 @@ def check(papers: list[dict], projects: list[dict], layers: list[dict] | None = 
             for lay in p.get("also", []):
                 if lay not in layer_ids or lay == p.get("layer"):
                     errs.append(f"project {i}: bad cross-listed layer {lay!r}")
-        if p.get("orders", "none") not in ORDERS:
-            errs.append(f"project {i}: unknown orders {p.get('orders')!r}")
+            if p.get("orders") not in ORDERS:
+                errs.append(f"project {i}: orders must be one of live, paper, none (got {p.get('orders')!r})")
+            elif p["orders"] in ("live", "paper") and "orders" not in whats:
+                errs.append(f"project {i}: orders = {p['orders']} needs a pinned 'orders' source")
+            st = p.get("license_status")
+            if st not in LICENSE_STATUS:
+                errs.append(f"project {i}: unknown license_status {st!r}")
+            elif st == "open" and not p.get("license_file"):
+                errs.append(f"project {i}: an open license needs the license_file it was read from")
+            elif st == "declared" and "license" not in whats:
+                errs.append(f"project {i}: a declared-only license needs a pinned 'license' source")
+            elif st in ("mixed", "restricted") and "license" not in whats and not p.get("license_file"):
+                errs.append(f"project {i}: a {st} license needs its license file or a pinned 'license' source")
+            elif st == "none" and p.get("license_file"):
+                errs.append(f"project {i}: license_status = none but a license_file is recorded")
+            mt = p.get("maintenance")
+            if mt is not None and mt not in MAINTENANCE:
+                errs.append(f"project {i}: unknown maintenance {mt!r}")
+            if mt in ("deprecated", "unmaintained") and "maintenance" not in whats:
+                errs.append(f"project {i}: maintenance = {mt} needs a pinned 'maintenance' source")
+            if mt in OFF_DIRECTORY and not p.get("caveat"):
+                errs.append(f"project {i}: {mt} entries need a caveat saying since when and what replaces them")
+            if mt and p.get("watch"):
+                errs.append(f"project {i}: an entry is either on the watchlist or has a maintenance state, not both")
         if p.get("paper") and p["paper"] not in seen:
             errs.append(f"project {i}: paper {p['paper']} not in papers.toml")
         for k in ("last_commit", "stars_asof", "checked"):
             if p.get(k) and not DATE.match(p[k]):
                 errs.append(f"project {i}: bad date in {k}")
-        if p.get("archived") and p.get("watch"):
-            errs.append(f"project {i}: an entry is either archived or on the watchlist, not both")
-        if p.get("archived") and not p.get("caveat"):
-            errs.append(f"project {i}: archived entries need a caveat saying since when and what replaces them")
+        if p.get("last_commit") and p.get("checked") and DATE.match(p["last_commit"]) and DATE.match(p["checked"]) \
+                and p["last_commit"] > p["checked"]:
+            errs.append(f"project {i}: last_commit is after the check date")
         if p.get("stars") and not p.get("stars_asof"):
             errs.append(f"project {i}: stars need stars_asof")
         if p.get("read") == "teardown":
@@ -236,8 +340,8 @@ def end_zh(s: str) -> str:
 
 
 def activity(p: dict) -> str:
-    checked = p.get("checked", SNAPSHOT)
-    days = (date.fromisoformat(checked) - date.fromisoformat(p["last_commit"])).days
+    """Commit activity as of the check date. It goes stale with the check, which is why the date is shown."""
+    days = (date.fromisoformat(p["checked"]) - date.fromisoformat(p["last_commit"])).days
     if days <= 90:
         return "active"
     if days <= 365:
@@ -258,11 +362,51 @@ def in_layers(projects: list[dict]) -> list[dict]:
 
 def listed(projects: list[dict]) -> list[dict]:
     """Projects shown in the directories: in a layer, with released code, not archived or deprecated."""
-    return [p for p in in_layers(projects) if not p.get("watch") and not p.get("archived")]
+    return [p for p in in_layers(projects) if not p.get("watch") and p.get("maintenance") not in OFF_DIRECTORY]
 
 
 def gh(p: dict) -> str:
     return f"https://github.com/{p['repo']}"
+
+
+def tree_url(p: dict) -> str:
+    return f"https://github.com/{p['repo']}/tree/{p['last_sha']}"
+
+
+def source(p: dict, what: str) -> str | None:
+    return next((s["url"] for s in p.get("sources", []) if s["what"] == what), None)
+
+
+def license_url(p: dict) -> str:
+    if p.get("license_file"):
+        return f"https://github.com/{p['repo']}/blob/{p['last_sha']}/{p['license_file']}"
+    return source(p, "license") or tree_url(p)
+
+
+def license_badge(p: dict, zh: bool) -> str:
+    st = p["license_status"]
+    if st == "none":
+        return f"❓ [{'无许可证' if zh else 'no license'}]({tree_url(p)})"
+    if st == "declared":
+        note = "仅声明，无许可证文件" if zh else "declared, no license file"
+        return f"❓ [`{p['license']}` {note}]({license_url(p)})"
+    return f"{LICENSE_MARK[st]}[`{p['license']}`]({license_url(p)})"
+
+
+def orders_badge(p: dict) -> str:
+    if p["orders"] == "live":
+        return f"[⚡]({source(p, 'orders')})"
+    if p["orders"] == "paper":
+        return f"[📝]({source(p, 'orders')})"
+    return ""
+
+
+def status_badge(p: dict) -> str:
+    mt = p.get("maintenance")
+    if mt:
+        url = source(p, "maintenance")
+        return f"[{MAINT_ICON[mt]}]({url})" if url else MAINT_ICON[mt]
+    return ACTIVITY[activity(p)]
 
 
 def authors(p: dict) -> str:
@@ -275,43 +419,43 @@ def counts(c: dict, layer: str) -> tuple[int, int, int]:
             sum(1 for a in c["articles"] if a["layer"] == layer))
 
 
-def badges(p: dict, zh: bool, base: str) -> str:
-    st = activity(p)
-    out = [STATUS[st]]
-    lic = p["license"] or ("未找到许可证" if zh else "no license file")
-    out.append(f"`{lic}`")
-    if p.get("orders") == "live":
-        out.append("⚡")
-    elif p.get("orders") == "paper":
-        out.append("📝")
-    if p.get("general"):
-        out.append("🧰")
-    if p["read"] == "teardown":
-        out.append(f"[🔬 {'拆解' if zh else 'deep dive'}]({base}docs/teardowns/{p['id']}.md)")
-    return " ".join(out)
+def license_groups(projects: list[dict]) -> tuple[int, int, int]:
+    rows = listed(projects)
+    return (sum(1 for p in rows if p["license_status"] == "open"),
+            sum(1 for p in rows if p["license_status"] in ("mixed", "restricted")),
+            sum(1 for p in rows if p["license_status"] in ("declared", "none")))
+
+
+def article_date(a: dict, zh: bool = False, month: bool = False) -> str:
+    if not a.get("date"):
+        return f"未注明日期（{a['checked']} 核验）" if zh else f"undated (checked {a['checked']})"
+    return a["date"][:7] if month else a["date"]
 
 
 # ---------------------------------------------------------------- README blocks
 
 def readme_entry(p: dict, zh: bool) -> str:
     b = p["brief"]
-    sfx = "_zh" if zh else ""
-    tag = end_zh(b["tagline" + sfx]) if zh else end(b["tagline"])
-    lim = end_zh(b["limit" + sfx]) if zh else end(b["limit"])
-    also = ""
-    return f"- [{p['name']}]({gh(p)}) — {tag} ⚠️ {lim} {badges(p, zh, '')}{also}"
+    tag = end_zh(b["tagline_zh"]) if zh else end(b["tagline"])
+    lim = end_zh(b["limit_zh"]) if zh else end(b["limit"])
+    parts = [status_badge(p), license_badge(p, zh), orders_badge(p), "🧰" if p.get("general") else ""]
+    if p["read"] == "teardown":
+        parts.append(f"[🔬 {'拆解' if zh else 'deep dive'}](docs/teardowns/{p['id']}.md)")
+    parts.append(f"[🔍 {p['checked']}]({tree_url(p)})")
+    return f"- [{p['name']}]({gh(p)}) — {tag} ⚠️ {lim} " + " ".join(x for x in parts if x)
 
 
 def readme_paper(p: dict, zh: bool) -> str:
     year = p["published"][:4]
     s = p["summary_zh"] if zh else p["summary"]
-    return f"- [{p['title']}](https://arxiv.org/abs/{p['arxiv']}) — {authors(p)}, {year}. {s}"
+    read = f"{READ_ICON[p['read']]} {(READ_LABEL_ZH if zh else READ_LABEL)[p['read']]}"
+    return f"- [{p['title']}](https://arxiv.org/abs/{p['arxiv']}) — {authors(p)}, {year} · {read}. {s}"
 
 
 def readme_article(a: dict, zh: bool) -> str:
     icon = SOURCE_ICON[a["source"]]
     why = a["why_zh"] if zh else a["why"]
-    return f"- {icon} [{a['title']}]({a['url']}) — {a['author']}, {a['date'][:7]}. {why}"
+    return f"- {icon} [{a['title']}]({a['url']}) — {a['author']}, {article_date(a, zh, month=True)}. {why}"
 
 
 def render_directory(c: dict, zh: bool = False) -> str:
@@ -336,7 +480,8 @@ def render_directory(c: dict, zh: bool = False) -> str:
             out += [readme_entry(p, zh) for p in rows]
             out.append("")
         ess = sorted((p for p in c["papers"] if p["layer"] == lid and p.get("essential")), key=lambda p: p["published"])
-        feat = sorted((a for a in c["articles"] if a["layer"] == lid and a.get("featured")), key=lambda a: a["date"])
+        feat = sorted((a for a in c["articles"] if a["layer"] == lid and a.get("featured")),
+                      key=lambda a: a.get("date") or a["checked"])
         if ess or feat:
             out += [f"### {'必读' if zh else 'Essential reading'}", ""]
             out += [readme_paper(p, zh) for p in ess]
@@ -350,7 +495,8 @@ def render_surveys(c: dict, zh: bool = False) -> str:
     out = []
     for p in rows:
         s = p.get("summary_zh") if zh and p.get("summary_zh") else p["summary"]
-        out.append(f"- [{p['title']}](https://arxiv.org/abs/{p['arxiv']}) — {authors(p)}, {p['published'][:4]}. {s}")
+        read = f"{READ_ICON[p['read']]} {(READ_LABEL_ZH if zh else READ_LABEL)[p['read']]}"
+        out.append(f"- [{p['title']}](https://arxiv.org/abs/{p['arxiv']}) — {authors(p)}, {p['published'][:4]} · {read}. {s}")
     return "\n".join(out)
 
 
@@ -387,15 +533,49 @@ def render_stack(c: dict, zh: bool = False) -> str:
 
 def headline(c: dict, zh: bool = False) -> str:
     nr = len(listed(c["projects"]))
+    op, rs, un = license_groups(c["projects"])
     np_ = len(c["papers"])
     na = len(c["articles"])
     nt = sum(1 for p in c["projects"] if p["read"] == "teardown")
     if zh:
-        return f"{nr} 个开源仓库 · {np_} 篇论文 · {na} 篇文章与帖子 · {nt} 个深度拆解"
-    return f"{nr} open-source repos · {np_} papers · {na} articles and posts · {nt} deep dives"
+        return (f"{nr} 个仓库（{op} 个开源 · {rs} 个混合或受限许可 · {un} 个许可待确认）· "
+                f"{np_} 篇论文 · {na} 篇文章与帖子 · {nt} 个深度拆解")
+    return (f"{nr} repositories ({op} open source · {rs} mixed or restricted license · {un} license unclear) · "
+            f"{np_} papers · {na} articles and posts · {nt} deep dives")
 
 
 # ---------------------------------------------------------------- layer pages
+
+LEGEND = ("Legend: 🟢 active · 🟡 slowing · ⚪ dormant (last commit within 90 days, within a year, or older, counted from "
+          "the check date) · 💤 declared unmaintained · ⚡ can place real orders · 📝 paper trading only · "
+          "🧩 open core with proprietary parts · 🔒 source-available, restricted · ❓ license unclear · "
+          "🧰 general-purpose tool applied here · 📖 read in full · 🗂️ machine-extracted "
+          "[method card](../docs/cards/index.md) · 🔖 abstract only. Marks on a row link to the lines that support them, "
+          "at the commit we checked.")
+
+
+def activity_cell(p: dict) -> str:
+    mt = p.get("maintenance")
+    a = f"{ACTIVITY[activity(p)]} {activity(p)}, last commit {p['last_commit']}"
+    if mt:
+        url = source(p, "maintenance")
+        label = f"{MAINT_ICON[mt]} {mt}" + (f" ([source]({url}))" if url else "")
+        return f"{label}; {a}"
+    return a
+
+
+def orders_cell(p: dict) -> str:
+    if p["orders"] == "none":
+        return "none"
+    links = [s["url"] for s in p["sources"] if s["what"] == "orders"]
+    refs = " ".join(f"[{n}]({u})" for n, u in enumerate(links, 1))
+    return f"{'⚡ live' if p['orders'] == 'live' else '📝 paper'} {refs}"
+
+
+def license_cell(p: dict) -> str:
+    word = {"open": "", "mixed": " (mixed)", "restricted": " (restricted)", "declared": "", "none": ""}[p["license_status"]]
+    return esc(license_badge(p, zh=False)) + word
+
 
 def render_layer_page(c: dict, lay: dict) -> str:
     lid = lay["id"]
@@ -403,7 +583,7 @@ def render_layer_page(c: dict, lay: dict) -> str:
     rows_all = [p for p in in_layers(c["projects"]) if p["layer"] == lid]
     cross = [p for p in listed(c["projects"]) if lid in p.get("also", [])]
     papers = [p for p in c["papers"] if p["layer"] == lid]
-    arts = sorted((a for a in c["articles"] if a["layer"] == lid), key=lambda a: a["date"], reverse=True)
+    arts = sorted((a for a in c["articles"] if a["layer"] == lid), key=lambda a: a.get("date") or a["checked"], reverse=True)
     nav = " · ".join(f"**{l['title']}**" if l["id"] == lid else f"[{l['title']}]({l['id']}.md)" for l in c["layers"])
     L = [
         "<!-- generated by tools/build.py from catalog/*.toml; do not edit by hand -->",
@@ -419,10 +599,7 @@ def render_layer_page(c: dict, lay: dict) -> str:
         "",
         f"**Open gap.** {lay['gaps']}",
         "",
-        f"{nr} repos · {np_} papers · {na} articles and posts. "
-        "Legend: 🟢 active (last commit within 90 days of the check) · 🟡 slowing (within a year) · ⚪ dormant · "
-        "⚡ can place real orders · 📝 paper trading · 🧰 general-purpose tool applied here · "
-        "📖 read in full · 🗂️ machine-extracted [method card](../docs/cards/index.md) · 🔖 abstract only.",
+        f"{nr} repos · {np_} papers · {na} articles and posts. " + LEGEND,
         "",
         "## Contents",
         "",
@@ -432,33 +609,28 @@ def render_layer_page(c: dict, lay: dict) -> str:
         L.append("- [Also relevant from other layers](#also-relevant-from-other-layers)")
     if any(p.get("watch") for p in rows_all):
         L.append("- [Watchlist: announced, code not released](#watchlist-announced-code-not-released)")
-    if any(p.get("archived") for p in rows_all):
+    if any(p.get("maintenance") in OFF_DIRECTORY for p in rows_all):
         L.append("- [Archived and deprecated](#archived-and-deprecated)")
     L += ["- [Papers](#papers)", "- [Articles and posts](#articles-and-posts)", "- [Builder notes](#builder-notes)", "",
           "## Repositories", ""]
     for cat in lay["category"]:
-        rows = [p for p in rows_all if p["category"] == cat["id"] and not p.get("watch") and not p.get("archived")]
+        rows = [p for p in listed(rows_all) if p["category"] == cat["id"]]
         if not rows:
             continue
         rows.sort(key=lambda p: (-stars_num(p), p["name"].lower()))
         L += [f"### {cat['title']}", "",
-              "| Project | What it does | Suits | Status | License | Last commit | Key limit |",
-              "|---|---|---|---|---|---|---|"]
+              "| Project | What it does | Suits | Activity | License | Orders | Checked | Key limit |",
+              "|---|---|---|---|---|---|---|---|"]
         for p in rows:
             b = p["brief"]
             name = f"[{esc(p['name'])}]({gh(p)})"
+            if p.get("general"):
+                name += " 🧰"
             if p["read"] == "teardown":
                 name += f" · [🔬 deep dive](../docs/teardowns/{p['id']}.md)"
-            flags = ""
-            if p.get("orders") == "live":
-                flags = " ⚡"
-            elif p.get("orders") == "paper":
-                flags = " 📝"
-            if p.get("general"):
-                flags += " 🧰"
-            lic = esc(p["license"] or "no license file")
-            L.append(f"| {name}{flags} | {esc(b['tagline'])} | {esc(b['audience'])} | {STATUS[activity(p)]} {activity(p)} | "
-                     f"{lic} | {p['last_commit']} | {esc(b['limit'])} |")
+            checked = f"[{p['checked']} @ `{p['last_sha'][:7]}`]({tree_url(p)})"
+            L.append(f"| {name} | {esc(b['tagline'])} | {esc(b['audience'])} | {activity_cell(p)} | {license_cell(p)} | "
+                     f"{orders_cell(p)} | {checked} | {esc(b['limit'])} |")
         L.append("")
     if cross:
         L += ["## Also relevant from other layers", "",
@@ -473,14 +645,16 @@ def render_layer_page(c: dict, lay: dict) -> str:
               "Repositories that exist and are often cited but do not yet hold the system's code. "
               "They move into the directory when code is released.", ""]
         for p in watch:
-            L.append(f"- [{p['name']}]({gh(p)}) — {end(p['brief']['tagline'])} ⚠️ {end(p['brief']['limit'])}")
+            L.append(f"- [{p['name']}]({gh(p)}) — {end(p['brief']['tagline'])} ⚠️ {end(p['brief']['limit'])} "
+                     f"[🔍 {p['checked']}]({tree_url(p)})")
         L.append("")
-    archived = [p for p in rows_all if p.get("archived")]
+    archived = [p for p in rows_all if p.get("maintenance") in OFF_DIRECTORY]
     if archived:
         L += ["## Archived and deprecated", "",
               "Kept for reference because they are cited or show a useful design; their authors no longer maintain them.", ""]
         for p in archived:
-            L.append(f"- [{p['name']}]({gh(p)}) — {end(p['brief']['tagline'])} ⚠️ {end(p['caveat'])}")
+            L.append(f"- {MAINT_ICON[p['maintenance']]} [{p['name']}]({gh(p)}) — {end(p['brief']['tagline'])} "
+                     f"⚠️ {end(p['caveat'])} {orders_badge(p)} [🔍 {p['checked']}]({tree_url(p)})".rstrip())
         L.append("")
     L += ["## Papers", ""]
     if not papers:
@@ -500,10 +674,12 @@ def render_layer_page(c: dict, lay: dict) -> str:
         L.append("")
     L += ["## Articles and posts", ""]
     if arts:
-        L += ["Newest first. Icons: 𝕏 post · 📝 blog · 📘 docs · 📰 news · 🎧 podcast · 📄 paper or report. "
-              "A post is listed for the idea it carries; its own performance claims are not verified here.", ""]
+        L += ["Newest first. Icons: 𝕏 post · 📝 blog · 📘 docs · 📰 news · 🎧 podcast · 🎤 talk · 📄 paper or report. "
+              "A post is listed for the idea it carries; its own performance claims are not verified here. "
+              "Undated pages show the date we checked them.", ""]
         for a in arts:
-            L.append(f"- {SOURCE_ICON[a['source']]} [{a['title']}]({a['url']}) — {a['author']}, {a['date']}. {a['why']}")
+            note = f" ({a['date_note']})" if a.get("date_note") else ""
+            L.append(f"- {SOURCE_ICON[a['source']]} [{a['title']}]({a['url']}) — {a['author']}, {article_date(a)}{note}. {a['why']}")
         L.append("")
     else:
         L += ["None yet. [Suggest an article or thread](../CONTRIBUTING.md#articles-and-posts).", ""]
@@ -520,7 +696,7 @@ def render_stack_page(c: dict) -> str:
         "<!-- generated by tools/build.py from catalog/layers.toml; do not edit by hand -->",
         "# The agentic trading stack",
         "",
-        "[← Home](../README.md)",
+        "[← Home](../README.md) · [Component matrix](../docs/components.md)",
         "",
         "Every agentic trading system, however it is marketed, is some arrangement of five layers. "
         "A map by layer shows which jobs a project does, which it leaves to you, and which nobody does well yet. "
@@ -546,6 +722,79 @@ def render_stack_page(c: dict) -> str:
           "made (Agent) or *what job* it does for a user (Application).",
           "- Surveys that span the stack are listed on the [home page](../README.md#surveys).",
           ""]
+    return "\n".join(L)
+
+
+# ---------------------------------------------------------------- component matrix
+
+def render_components(c: dict) -> str:
+    by_id = {p["id"]: p for p in c["projects"]}
+    order = {l["id"]: l["num"] for l in c["layers"]}
+    comps = sorted(c["components"], key=lambda m: (order[by_id[m["id"]]["layer"]], m["id"]))
+    L = [
+        "<!-- generated by tools/build.py from catalog/components.toml; do not edit by hand -->",
+        "# Component matrix",
+        "",
+        "[← Home](../README.md) · [The stack](../layers/README.md)",
+        "",
+        f"The {len(comps)} components builders reach for most, side by side, so an agent (or a person) can pick parts "
+        "that fit together. Every cell comes from the project's own README and manifests at the commit we checked; "
+        "the **Verified** column says how far we went. Nothing here was installed or run by us unless that column says "
+        "so, and a green CI on this list says nothing about whether two projects work together.",
+        "",
+        "**Verified:** 📄 docs at the pinned commit · 📦 installed and imported · ▶️ a documented example run.",
+        "",
+        "## At a glance",
+        "",
+        "| Component | Layer | Language | Interface | Orders | License | Keys and cost | Verified |",
+        "|---|---|---|---|---|---|---|---|",
+    ]
+    for m in comps:
+        p = by_id[m["id"]]
+        lay = next(l for l in c["layers"] if l["id"] == p["layer"])
+        L.append(f"| [{esc(p['name'])}](#{m['id']}) | [{lay['title'].split()[0]}](../layers/{lay['id']}.md) | "
+                 f"{esc(m['language'])} | {', '.join(m['interface'])} | {orders_cell(p)} | "
+                 f"{license_cell(p)} | {esc(m['keys_cost'])} | {VERIFY_LABEL[m['verification']].split()[0]} |")
+    L += ["", "## Details", ""]
+    for m in comps:
+        p = by_id[m["id"]]
+        L += [f"### {p['name']}", "",
+              f"<a id=\"{m['id']}\"></a>[Repository]({gh(p)}) · [checked {p['checked']} at `{p['last_sha'][:7]}`]({tree_url(p)})", "",
+              "| | |", "|---|---|",
+              f"| Runtime | {esc(m['runtime'])} |",
+              f"| Install | `{esc(m['install'])}` |",
+              f"| Interface | {', '.join(m['interface'])} |",
+              f"| In → out | {esc(m['inputs'])} → {esc(m['outputs'])} |",
+              f"| Keys and cost | {esc(m['keys_cost'])} |",
+              f"| Orders | {orders_cell(p)} |",
+              f"| License | {license_cell(p)} |"]
+        if m.get("integrations"):
+            ints = "; ".join(f"[{by_id[g['with']]['name']}]({g['url']}): {esc(g['note'])}" if g.get("url")
+                             else f"{by_id[g['with']]['name']}: {esc(g['note'])}" for g in m["integrations"])
+            L.append(f"| Documented integrations | {ints} |")
+        ver = VERIFY_LABEL[m["verification"]]
+        if m["verification"] != "docs":
+            ver += f": `{esc(m['verify_cmd'])}` on {m.get('verify_env', '')} ({m['verify_date']}): {esc(m.get('verify_result', ''))}"
+        L.append(f"| Verified | {ver} |")
+        if m.get("sources"):
+            L.append("| Sources | " + " · ".join(f"[{s['what']}]({s['url']})" for s in m["sources"]) + " |")
+        if m.get("notes"):
+            L.append(f"| Notes | {esc(m['notes'])} |")
+        L.append("")
+    if c["recipes"]:
+        L += ["## Cross-layer recipes", "",
+              "Ways to combine components across layers. The status says what kind of claim each is: "
+              + " · ".join(RECIPE_LABEL[k] for k in ("design", "upstream", "run")) + ". "
+              "A design reference is a starting point for your own integration test, not evidence that the parts work together.", ""]
+        for r in c["recipes"]:
+            L += [f"### {r['title']}", "", f"**Status:** {RECIPE_LABEL[r['status']]}", "", r["why"], ""]
+            for n, st in enumerate(r["steps"], 1):
+                p = by_id[st["component"]]
+                lay = next(l for l in c["layers"] if l["id"] == st["layer"])
+                L.append(f"{n}. **{lay['title']}** — [{p['name']}]({gh(p)}): {st['role']}")
+            L += ["", f"**What you still have to build or check:** {r['gaps']}", ""]
+            if r.get("links"):
+                L += ["**Upstream documentation:** " + " · ".join(f"[{x['label']}]({x['url']})" for x in r["links"]), ""]
     return "\n".join(L)
 
 
@@ -585,8 +834,9 @@ def render_projects(projects: list[dict], layers: list[dict] | None = None) -> s
         "# Projects",
         "",
         f"{len(in_layers(projects))} repositories in the five layers, plus the curated lists this one was built from. "
-        "Stars are as displayed on GitHub on the date given and are context, not a quality score. License and last commit "
-        "come from a shallow clone on the check date. **Evidence** is the highest rung of the "
+        "Each was checked at the commit linked under **Checked** (default-branch HEAD on that date): license file read "
+        "as text, README and code read for order authority. Stars are as displayed on GitHub on the date given and are "
+        "context, not a quality score. **Evidence** is the highest rung of the "
         "[evidence ladder](../02-evidence-ladder.md) a third party can inspect for the project's headline "
         "performance claim (`bench` = it evaluates other systems; `n/a` = infrastructure or no performance claim). "
         "**Repro** says whether the headline numbers can be regenerated from the repo.",
@@ -597,22 +847,23 @@ def render_projects(projects: list[dict], layers: list[dict] | None = None) -> s
         if not rows:
             continue
         lines += [f"## {lay['num']}. {lay['title']}", "",
-                  "| Project | Stars | Last commit | Checked | License | Evidence | Repro | What it is |",
-                  "|---|---|---|---|---|---|---|---|"]
+                  "| Project | Stars | Last commit | Checked | License | Orders | Evidence | Repro | What it is |",
+                  "|---|---|---|---|---|---|---|---|---|"]
         for p in sorted(rows, key=lambda p: -stars_num(p)):
             link = f"[{esc(p['name'])}]({gh(p)})"
             if p["read"] == "teardown":
                 link += f" ([teardown](../teardowns/{p['id']}.md))"
             if p.get("watch"):
                 link += " (watchlist: code not released)"
-            if p.get("archived"):
-                link += " (archived or deprecated)"
+            if p.get("maintenance"):
+                link += f" ({p['maintenance']})"
             summ = esc(p["summary"])
             if p.get("caveat"):
                 summ += f" **Note:** {esc(p['caveat'])}"
             stars = f"{p['stars']} ({p['stars_asof']})" if p.get("stars") else "–"
-            lines.append(f"| {link} | {stars} | {p['last_commit']} | {p.get('checked', SNAPSHOT)} | "
-                         f"{esc(p['license'] or 'none found')} | {p['evidence']} | {p['repro']} | {summ} |")
+            checked = f"[{p['checked']}]({tree_url(p)})"
+            lines.append(f"| {link} | {stars} | {p['last_commit']} | {checked} | {license_cell(p)} | {orders_cell(p)} | "
+                         f"{p['evidence']} | {p['repro']} | {summ} |")
         lines.append("")
     lists = [p for p in projects if p["kind"] == "list"]
     if lists:
@@ -702,6 +953,8 @@ def generated_pages(c: dict) -> dict[Path, str]:
         OUT / "projects.md": render_projects(c["projects"], c["layers"]),
         LAYER_DIR / "README.md": render_stack_page(c),
     }
+    if c["components"]:
+        pages[ROOT / "docs" / "components.md"] = render_components(c)
     for lay in c["layers"]:
         pages[LAYER_DIR / f"{lay['id']}.md"] = render_layer_page(c, lay)
     return pages
@@ -730,8 +983,8 @@ def main(argv: list[str] | None = None) -> int:
         print("\n".join(f"error: {e}" for e in errs), file=sys.stderr)
         return 1
     if args.cmd == "check":
-        print(f"ok: {len(listed(c['projects']))} repos, {len(c['papers'])} papers, "
-              f"{len(c['articles'])} articles, {len(c['milestones'])} milestones")
+        print(f"ok: {len(listed(c['projects']))} repos, {len(c['papers'])} papers, {len(c['articles'])} articles, "
+              f"{len(c['milestones'])} milestones, {len(c['components'])} components")
         return 0
     ok = True
     for path, text in generated_pages(c).items():

@@ -1,7 +1,10 @@
 name: verify-sources
 
-# Re-resolves every arXiv id and repository in the catalog, so drift is caught instead of inherited.
-# Not part of ci.yml: it needs the network and a moved repository is a warning to review, not a broken change.
+# Weekly check of every source the catalog cites: arXiv metadata, repositories (reachable, HEAD moved,
+# license file changed, archived upstream), article and milestone links, and every pinned evidence link.
+# Not part of ci.yml: it needs the network. The job fails only on real problems (unreachable or newly
+# archived repositories, changed license files, retitled papers, dead links); a moved HEAD is listed for
+# re-checking in the report, which is written to the job summary and kept as an artifact either way.
 on:
   schedule:
     - cron: "17 9 * * 1"
@@ -18,5 +21,20 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Papers (title and first-version date) and projects (still reachable)
-        run: python tools/verify.py all
+      - name: Check papers, repositories and links
+        env:
+          GITHUB_TOKEN: ${{ github.token }}  # read-only: archive status and GitHub's license detection
+        run: python tools/verify.py all --report report
+      - name: Publish the report to the job summary
+        if: always()
+        run: |
+          if [ -f report/report.md ]; then cat report/report.md >> "$GITHUB_STEP_SUMMARY"
+          else echo "The check stopped before writing a report; see the log above." >> "$GITHUB_STEP_SUMMARY"; fi
+      - name: Keep the report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: source-check-${{ github.run_id }}
+          path: report/
+          if-no-files-found: warn
+          retention-days: 90

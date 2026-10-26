@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        A link and one sentence are enough; maintainers verify and fill in the rest. 中文也可以。
+        A link and one sentence are enough; maintainers verify and fill in the rest.
         Admission rules: [CONTRIBUTING.md](https://github.com/orangejustin/awesome-agentic-trading/blob/main/CONTRIBUTING.md#repositories).
   - type: input
     id: url

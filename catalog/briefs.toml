@@ -44,10 +44,10 @@ limit_zh = "RL 配置仅略胜等权，无择时时均不及 QQQ"
 [finrl]
 tagline = "Deep reinforcement learning library and tutorials for stock trading environments"
 audience = "Researchers applying deep RL to portfolio trading simulations"
-limit = "Teaching-oriented RL environments; no headline result checked here"
+limit = "Teaching-oriented RL environments with basic Alpaca live trading; FinRL-X is the production successor"
 tagline_zh = "面向股票交易环境的深度强化学习库与教程"
 audience_zh = "将深度强化学习用于组合交易模拟的研究者"
-limit_zh = "偏教学的 RL 环境，未核对其头条结果"
+limit_zh = "偏教学的强化学习环境，带基础的 Alpaca 实盘支持；生产用途请用 FinRL-X"
 
 [fingpt]
 tagline = "Open financial LLM project with data pipelines and LoRA fine-tuning recipes"
@@ -58,12 +58,12 @@ audience_zh = "为金融NLP任务微调LLM的研究者"
 limit_zh = "模型与数据项目，未核对交易表现"
 
 [ai-hedge-fund]
-tagline = "LLM investor agents run a fund mandate with historical backtest replay"
+tagline = "LLM investor agents run paper funds on real market days, with historical backtest replay"
 audience = "Learners exploring multi-agent LLM investment decision workflows"
-limit = "Educational only per author's disclaimer; places no trades, results not rerun"
-tagline_zh = "LLM投资者智能体执行基金策略并回测历史"
+limit = "Educational per its own disclaimer; paper funds only, no real orders; results not rerun"
+tagline_zh = "LLM 投资者智能体在真实交易日上运行模拟基金，并支持历史回测回放"
 audience_zh = "探索多智能体LLM投资决策的学习者"
-limit_zh = "作者声明仅供教育用途，不下单交易，结果未经复现"
+limit_zh = "作者声明仅供教学；只有模拟基金，不下真实订单；结果未经复现"
 
 [qlib]
 tagline = "Quant research platform with data layer, ML model zoo and backtest tooling"
@@ -116,10 +116,10 @@ limit_zh = "代码未发布，仓库仅含许可证和README"
 [deepfund]
 tagline = "Live arena benchmarking LLM fund managers on post-cutoff market data"
 audience = "Researchers who evaluate LLM trading agents"
-limit = "Arena results depend on a short live window"
+limit = "Does not trade (decisions are scored on live data); results depend on a short live window"
 tagline_zh = "在截止日后数据上评测LLM基金经理的实时竞技场"
 audience_zh = "评估LLM交易智能体的研究者"
-limit_zh = "竞技场结果取决于较短的实盘窗口"
+limit_zh = "不进行交易（在实时数据上为决策打分）；结果依赖较短的实时窗口"
 
 [live-trade-bench]
 tagline = "FastAPI platform running and monitoring LLM trading agents live on stocks and Polymarket"
@@ -196,10 +196,10 @@ limit_zh = "混合许可：应用层仅源码可见，并非开源"
 [llm-trading-lab]
 tagline = "Logged six-month live experiment of ChatGPT managing a real-money micro-cap portfolio"
 audience = "Researchers who study live LLM portfolio management behavior"
-limit = "Single six-month run with author-run evaluation; too short to prove skill"
+limit = "One six-month run, author-evaluated; no broker integration in the code; no license file"
 tagline_zh = "ChatGPT管理真实资金微盘股组合的六个月实盘记录"
 audience_zh = "研究LLM实盘组合管理行为的研究者"
-limit_zh = "仅六个月单次运行且由作者自评，不足以证明能力"
+limit_zh = "仅一次六个月运行且由作者自评；代码无券商接口；无许可证文件"
 
 [polymarket-paper-trader]
 tagline = "Paper-trading gym for agents on live Polymarket order books with MCP server"
@@ -228,10 +228,10 @@ limit_zh = "属研究合集而非交易系统，各子项目文档与许可证�
 [polymarket-mcp-server]
 tagline = "MCP server exposing 45 tools for Polymarket discovery, trading and monitoring"
 audience = "Developers connecting LLM clients to Polymarket trading"
-limit = "Grants an LLM client order authority over real funds; test on paper first"
+limit = "Full mode trades real funds from a wallet; DEMO mode is read-only; Polymarket has no paper account"
 tagline_zh = "提供45个Polymarket交易与监控工具的MCP服务器"
 audience_zh = "将LLM客户端接入Polymarket交易的开发者"
-limit_zh = "LLM客户端可动用真实资金下单，应先用模拟账户测试"
+limit_zh = "完整模式用钱包真实资金交易；DEMO 模式只读；Polymarket 没有模拟盘账户"
 
 [financial-datasets-mcp]
 tagline = "MCP server exposing Financial Datasets API financials, prices and company news"
@@ -252,26 +252,26 @@ limit_zh = "作者标注为实验性，且需要 API 密钥"
 [kalshi-trading-bot-cli]
 tagline = "CLI that estimates Kalshi market probabilities and sizes trades with fractional Kelly"
 audience = "Developers building LLM-driven prediction market trading tools"
-limit = "No performance record published; estimates may rely on the vendor's research API"
+limit = "Places real Kalshi orders; start with its paper ledger or Kalshi's demo environment; no performance record"
 tagline_zh = "估算Kalshi市场概率并以分数Kelly定仓的CLI"
 audience_zh = "构建LLM预测市场交易工具的开发者"
-limit_zh = "未公布业绩记录；概率估算可能依赖供应商研究API"
+limit_zh = "会在 Kalshi 下真实订单；先用自带模拟账本或 Kalshi 演示环境；未公布业绩记录"
 
 [agentic-trading-lab]
 tagline = "Research platform to build, backtest and paper-trade LLM trading agents"
 audience = "Researchers who build and inspect LLM trading agents"
-limit = "Uses the uncommon OpenMDW-1.0 license; read it before reuse"
+limit = "Real-money Robinhood path ships switched off; uncommon OpenMDW-1.0 license"
 tagline_zh = "构建、回测与模拟交易LLM交易智能体的研究平台"
 audience_zh = "构建并分析LLM交易智能体的研究者"
-limit_zh = "采用不常见的OpenMDW-1.0许可证，复用前需阅读"
+limit_zh = "自带的 Robinhood 实盘通道默认关闭；采用不常见的 OpenMDW-1.0 许可证"
 
 [quantaalpha]
 tagline = "LLM-driven evolutionary factor mining from research direction to backtested factors"
 audience = "Researchers exploring automated alpha factor discovery with LLMs"
-limit = "No LICENSE file; MIT appears only on a README badge"
+limit = "No LICENSE file; MIT appears only on a README badge and a pyproject classifier"
 tagline_zh = "LLM驱动的进化式因子挖掘框架"
 audience_zh = "研究LLM自动挖掘alpha因子的研究者"
-limit_zh = "仓库无LICENSE文件，MIT仅见于README徽章"
+limit_zh = "无 LICENSE 文件；MIT 仅见于 README 徽章与 pyproject 分类器"
 
 [alphagen]
 tagline = "RL agent generating formulaic alpha factor sets on Qlib, with LLM module"
@@ -492,10 +492,10 @@ limit_zh = "非官方；审批后即对真实账户下单；需申请 Schwab 开
 [finrl-meta]
 tagline = "Gym-style market environments and benchmarks for financial reinforcement learning"
 audience = "Researchers who want standard market environments to train or test policies"
-limit = "Built for RL, not LLM agents: bring your own adapter"
+limit = "Built for RL, not LLM agents; paper-trading envs hit Alpaca's paper endpoint by default"
 tagline_zh = "面向金融强化学习的 Gym 式市场环境与基准"
 audience_zh = "需要标准市场环境来训练或测试策略的研究者"
-limit_zh = "为强化学习而建，非 LLM 智能体：需自行适配"
+limit_zh = "为强化学习而建，非 LLM 智能体；模拟盘环境默认连接 Alpaca 模拟接口"
 
 [dexter]
 tagline = "Autonomous research agent that plans, calls financial-data tools, checks its own work and iterates"
@@ -520,11 +520,3 @@ limit = "Archived 2026-10-06; could place real crypto orders"
 tagline_zh = "让智能体驱动 Hummingbot 的 MCP 服务：账户、订单与做市机器人"
 audience_zh = "研究交易机器人框架如何向智能体开放下单的读者"
 limit_zh = "已于 2026-10-06 归档；可下真实加密订单"
-
-[quantconnect-mcp]
-tagline = "Official MCP server to manage, backtest and deploy QuantConnect (LEAN) strategies"
-audience = "Readers using QuantConnect who want to see the tool surface an agent gets"
-limit = "Deprecated for the MCP inside QuantConnect's VS Code extension"
-tagline_zh = "管理、回测并部署 QuantConnect（LEAN）策略的官方 MCP 服务"
-audience_zh = "使用 QuantConnect、想了解智能体可用工具面的读者"
-limit_zh = "已弃用，官方改为 VS Code 扩展内置的 MCP"
