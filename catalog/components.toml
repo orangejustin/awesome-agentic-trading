@@ -1,0 +1,600 @@
+# Component matrix: the components builders reach for most, for docs/components.md.
+# Every fact comes from the project's own README, manifests or code at the commit the catalog checked
+# (projects.toml last_sha); `sources` link to those lines. Nothing was installed or run unless
+# `verification` says so:  docs = read at the pinned commit | install = installed and imported (verify_cmd,
+# verify_env, verify_date, verify_result) | run = a documented example ran.
+# `orders` must match the catalog entry; `integrations` are only pairings an upstream file documents.
+
+[[component]]
+id = "openbb"
+language = "Python (platform and CLI); Rust and TypeScript for the Tauri desktop app"
+runtime = "Python 3.10 to 3.14 per README (pyproject allows >=3.10,<4); desktop app binaries for macOS and Windows"
+install = "pip install openbb"
+interface = ["python-lib", "cli", "rest-api", "mcp", "desktop"]
+inputs = "A command and its parameters, such as a ticker for obb.equity.price.historical, optionally naming the data provider"
+outputs = "Typed results convertible to pandas DataFrames; the same commands served as a FastAPI REST API (port 6900) and as MCP tools"
+keys_cost = "Many providers need no key (Cboe, SEC, ECB); FRED, BLS, EIA, Congress.gov and CFTC need their own keys; Workspace UI needs a sign-in"
+orders = "none"
+integrations = [
+  { with = "vibe-trading", note = "Vibe-Trading's optional openbb extra registers it as an OpenBB Workspace custom agent; documented on the Vibe-Trading side", url = "https://github.com/HKUDS/Vibe-Trading/blob/3cbb167e9d7afab1682934685437efb96faacd43/README.md?plain=1#L1679" },
+]
+sources = [
+  { what = "language", url = "https://github.com/OpenBB-finance/OpenBB/blob/7df7d0c5592bf25be88e87e130a05c71e243d2d8/openbb_platform/pyproject.toml?plain=1#L1-L8" },
+  { what = "language", url = "https://github.com/OpenBB-finance/OpenBB/blob/7df7d0c5592bf25be88e87e130a05c71e243d2d8/desktop/README.md?plain=1#L22" },
+  { what = "runtime", url = "https://github.com/OpenBB-finance/OpenBB/blob/7df7d0c5592bf25be88e87e130a05c71e243d2d8/README.md?plain=1#L61" },
+  { what = "runtime", url = "https://github.com/OpenBB-finance/OpenBB/blob/7df7d0c5592bf25be88e87e130a05c71e243d2d8/openbb_platform/pyproject.toml?plain=1#L8" },
+  { what = "runtime", url = "https://github.com/OpenBB-finance/OpenBB/blob/7df7d0c5592bf25be88e87e130a05c71e243d2d8/desktop/README.md?plain=1#L8" },
+  { what = "install", url = "https://github.com/OpenBB-finance/OpenBB/blob/7df7d0c5592bf25be88e87e130a05c71e243d2d8/README.md?plain=1#L28" },
+  { what = "install", url = "https://github.com/OpenBB-finance/OpenBB/blob/7df7d0c5592bf25be88e87e130a05c71e243d2d8/README.md?plain=1#L115" },
+  { what = "interface", url = "https://github.com/OpenBB-finance/OpenBB/blob/7df7d0c5592bf25be88e87e130a05c71e243d2d8/README.md?plain=1#L20" },
+  { what = "interface", url = "https://github.com/OpenBB-finance/OpenBB/blob/7df7d0c5592bf25be88e87e130a05c71e243d2d8/README.md?plain=1#L71-L77" },
+  { what = "interface", url = "https://github.com/OpenBB-finance/OpenBB/blob/7df7d0c5592bf25be88e87e130a05c71e243d2d8/README.md?plain=1#L121-L125" },
+  { what = "interface", url = "https://github.com/OpenBB-finance/OpenBB/blob/7df7d0c5592bf25be88e87e130a05c71e243d2d8/openbb_platform/extensions/mcp_server/README.md?plain=1#L19-L23" },
+  { what = "interface", url = "https://github.com/OpenBB-finance/OpenBB/blob/7df7d0c5592bf25be88e87e130a05c71e243d2d8/desktop/README.md?plain=1#L1-L8" },
+  { what = "io", url = "https://github.com/OpenBB-finance/OpenBB/blob/7df7d0c5592bf25be88e87e130a05c71e243d2d8/README.md?plain=1#L28-L34" },
+  { what = "io", url = "https://github.com/OpenBB-finance/OpenBB/blob/7df7d0c5592bf25be88e87e130a05c71e243d2d8/openbb_platform/README.md?plain=1#L98-L102" },
+  { what = "keys", url = "https://github.com/OpenBB-finance/OpenBB/blob/7df7d0c5592bf25be88e87e130a05c71e243d2d8/openbb_platform/README.md?plain=1#L56-L74" },
+  { what = "keys", url = "https://github.com/OpenBB-finance/OpenBB/blob/7df7d0c5592bf25be88e87e130a05c71e243d2d8/openbb_platform/README.md?plain=1#L105-L120" },
+  { what = "keys", url = "https://github.com/OpenBB-finance/OpenBB/blob/7df7d0c5592bf25be88e87e130a05c71e243d2d8/README.md?plain=1#L83" },
+  { what = "orders", url = "https://github.com/OpenBB-finance/OpenBB/blob/7df7d0c5592bf25be88e87e130a05c71e243d2d8/README.md?plain=1#L18-L20" },
+  { what = "notes", url = "https://github.com/OpenBB-finance/OpenBB/blob/7df7d0c5592bf25be88e87e130a05c71e243d2d8/README.md?plain=1#L81-L93" },
+]
+notes = "OpenBB Workspace (pro.openbb.co) is a separate hosted UI that connects to the local openbb-api backend; it is not in this repo."
+verification = "docs"
+
+[[component]]
+id = "akshare"
+language = "Python"
+runtime = "64-bit Python 3.11 or newer; optional Docker image with Jupyter"
+install = "pip install akshare --upgrade"
+interface = ["python-lib"]
+inputs = "An interface function with parameters such as symbol, period, start and end date and price adjustment; or keywords for ak.search"
+outputs = "pandas DataFrames, e.g. daily A-share bars with Chinese column names; interface metadata from an offline registry"
+keys_cost = "Not stated; the README examples call public-site interfaces with no key or account"
+orders = "none"
+integrations = [
+  { with = "vibe-trading", note = "Vibe-Trading depends on akshare as a free fallback source for A-shares, futures, funds, macro and forex; documented on the Vibe-Trading side", url = "https://github.com/HKUDS/Vibe-Trading/blob/3cbb167e9d7afab1682934685437efb96faacd43/README.md?plain=1#L612" },
+]
+sources = [
+  { what = "language", url = "https://github.com/akfamily/akshare/blob/2ea08ff44512a9b0c008cd4ff77463b940959c7e/pyproject.toml?plain=1#L5-L10" },
+  { what = "runtime", url = "https://github.com/akfamily/akshare/blob/2ea08ff44512a9b0c008cd4ff77463b940959c7e/README.md?plain=1#L28-L29" },
+  { what = "runtime", url = "https://github.com/akfamily/akshare/blob/2ea08ff44512a9b0c008cd4ff77463b940959c7e/pyproject.toml?plain=1#L10" },
+  { what = "runtime", url = "https://github.com/akfamily/akshare/blob/2ea08ff44512a9b0c008cd4ff77463b940959c7e/README.md?plain=1#L49-L61" },
+  { what = "install", url = "https://github.com/akfamily/akshare/blob/2ea08ff44512a9b0c008cd4ff77463b940959c7e/README.md?plain=1#L37-L41" },
+  { what = "interface", url = "https://github.com/akfamily/akshare/blob/2ea08ff44512a9b0c008cd4ff77463b940959c7e/README.md?plain=1#L77-L82" },
+  { what = "interface", url = "https://github.com/akfamily/akshare/blob/2ea08ff44512a9b0c008cd4ff77463b940959c7e/README.md?plain=1#L192" },
+  { what = "interface", url = "https://github.com/akfamily/akshare/blob/2ea08ff44512a9b0c008cd4ff77463b940959c7e/Dockerfile?plain=1#L8-L16" },
+  { what = "io", url = "https://github.com/akfamily/akshare/blob/2ea08ff44512a9b0c008cd4ff77463b940959c7e/README.md?plain=1#L75-L99" },
+  { what = "io", url = "https://github.com/akfamily/akshare/blob/2ea08ff44512a9b0c008cd4ff77463b940959c7e/README.md?plain=1#L104-L119" },
+  { what = "keys", url = "https://github.com/akfamily/akshare/blob/2ea08ff44512a9b0c008cd4ff77463b940959c7e/README.md?plain=1#L77-L82" },
+  { what = "orders", url = "https://github.com/akfamily/akshare/blob/2ea08ff44512a9b0c008cd4ff77463b940959c7e/pyproject.toml?plain=1#L8" },
+  { what = "orders", url = "https://github.com/akfamily/akshare/blob/2ea08ff44512a9b0c008cd4ff77463b940959c7e/README.md?plain=1#L28-L29" },
+]
+notes = "HTTP API comes from the separate AKTools package; the repo Dockerfile runs it with gunicorn on port 8080. No MCP server in the repo."
+verification = "docs"
+
+[[component]]
+id = "edgartools"
+language = "Python"
+runtime = "Python 3.11+; uv/uvx for the documented MCP client config"
+install = "pip install edgartools (or uv add edgartools); the ai extra adds the MCP server"
+interface = ["python-lib", "mcp"]
+inputs = "Ticker, CIK or accession number, form type, dates or a full-text query, after setting an SEC contact identity once"
+outputs = "Typed filing objects, standardized multi-year statements as DataFrames, 10-K/10-Q section text, whole-filing Markdown, search hits"
+keys_cost = "No API key; SEC needs a contact email on every request and allows 10 requests a second; hosted edgar.tools is the paid option"
+orders = "none"
+integrations = [
+  { with = "finrobot", note = "FinRobot V2 desktop depends on edgartools for its SEC EDGAR data provider; documented on the FinRobot side", url = "https://github.com/AI4Finance-Foundation/FinRobot/blob/63e1884a42ea7b729551a5424b4bd6a65af636e0/finrobot_desktop/pyproject.toml?plain=1#L40" },
+]
+sources = [
+  { what = "language", url = "https://github.com/dgunning/edgartools/blob/3931b22077eee1e0d2b77a8c5a61ab415d51ae0b/pyproject.toml?plain=1#L5-L9" },
+  { what = "runtime", url = "https://github.com/dgunning/edgartools/blob/3931b22077eee1e0d2b77a8c5a61ab415d51ae0b/README.md?plain=1#L24" },
+  { what = "runtime", url = "https://github.com/dgunning/edgartools/blob/3931b22077eee1e0d2b77a8c5a61ab415d51ae0b/pyproject.toml?plain=1#L9" },
+  { what = "runtime", url = "https://github.com/dgunning/edgartools/blob/3931b22077eee1e0d2b77a8c5a61ab415d51ae0b/README.md?plain=1#L212" },
+  { what = "install", url = "https://github.com/dgunning/edgartools/blob/3931b22077eee1e0d2b77a8c5a61ab415d51ae0b/README.md?plain=1#L24-L28" },
+  { what = "install", url = "https://github.com/dgunning/edgartools/blob/3931b22077eee1e0d2b77a8c5a61ab415d51ae0b/README.md?plain=1#L189-L193" },
+  { what = "interface", url = "https://github.com/dgunning/edgartools/blob/3931b22077eee1e0d2b77a8c5a61ab415d51ae0b/README.md?plain=1#L187-L212" },
+  { what = "interface", url = "https://github.com/dgunning/edgartools/blob/3931b22077eee1e0d2b77a8c5a61ab415d51ae0b/pyproject.toml?plain=1#L137-L139" },
+  { what = "interface", url = "https://github.com/dgunning/edgartools/blob/3931b22077eee1e0d2b77a8c5a61ab415d51ae0b/edgar/_cli.py?plain=1#L1-L10" },
+  { what = "io", url = "https://github.com/dgunning/edgartools/blob/3931b22077eee1e0d2b77a8c5a61ab415d51ae0b/README.md?plain=1#L38-L53" },
+  { what = "keys", url = "https://github.com/dgunning/edgartools/blob/3931b22077eee1e0d2b77a8c5a61ab415d51ae0b/README.md?plain=1#L30" },
+  { what = "keys", url = "https://github.com/dgunning/edgartools/blob/3931b22077eee1e0d2b77a8c5a61ab415d51ae0b/README.md?plain=1#L55" },
+  { what = "keys", url = "https://github.com/dgunning/edgartools/blob/3931b22077eee1e0d2b77a8c5a61ab415d51ae0b/README.md?plain=1#L174-L182" },
+  { what = "keys", url = "https://github.com/dgunning/edgartools/blob/3931b22077eee1e0d2b77a8c5a61ab415d51ae0b/server.json?plain=1#L4" },
+  { what = "orders", url = "https://github.com/dgunning/edgartools/blob/3931b22077eee1e0d2b77a8c5a61ab415d51ae0b/README.md?plain=1#L16" },
+  { what = "notes", url = "https://github.com/dgunning/edgartools/blob/3931b22077eee1e0d2b77a8c5a61ab415d51ae0b/README.md?plain=1#L189-L193" },
+]
+notes = "The edgartools console script only launches the MCP server (edgartools mcp). The ai extra also installs an agent skill."
+verification = "docs"
+
+[[component]]
+id = "yahoo-finance-mcp"
+language = "Python"
+runtime = "Python 3.14.6 or newer with uv/uvx; Dockerfile provided"
+install = "uvx --from git+https://github.com/Alex2Yang97/yahoo-finance-mcp yahoo-finance-mcp"
+interface = ["mcp"]
+inputs = "MCP tool calls with a ticker plus period and interval, statement or holder type, or option expiry date and side"
+outputs = "Yahoo Finance OHLCV history, company info, financial statements, holders, option chains, news, dividends and splits, analyst recommendations"
+keys_cost = "Not stated; the documented client config passes no key or environment variable"
+orders = "none"
+integrations = []
+sources = [
+  { what = "language", url = "https://github.com/Alex2Yang97/yahoo-finance-mcp/blob/b9c176547d3797b2196adeba0210ae67861ac589/pyproject.toml?plain=1#L5-L14" },
+  { what = "runtime", url = "https://github.com/Alex2Yang97/yahoo-finance-mcp/blob/b9c176547d3797b2196adeba0210ae67861ac589/README.md?plain=1#L76-L84" },
+  { what = "runtime", url = "https://github.com/Alex2Yang97/yahoo-finance-mcp/blob/b9c176547d3797b2196adeba0210ae67861ac589/pyproject.toml?plain=1#L10" },
+  { what = "runtime", url = "https://github.com/Alex2Yang97/yahoo-finance-mcp/blob/b9c176547d3797b2196adeba0210ae67861ac589/Dockerfile?plain=1#L1-L2" },
+  { what = "install", url = "https://github.com/Alex2Yang97/yahoo-finance-mcp/blob/b9c176547d3797b2196adeba0210ae67861ac589/README.md?plain=1#L88-L94" },
+  { what = "interface", url = "https://github.com/Alex2Yang97/yahoo-finance-mcp/blob/b9c176547d3797b2196adeba0210ae67861ac589/README.md?plain=1#L7" },
+  { what = "interface", url = "https://github.com/Alex2Yang97/yahoo-finance-mcp/blob/b9c176547d3797b2196adeba0210ae67861ac589/README.md?plain=1#L15-L17" },
+  { what = "io", url = "https://github.com/Alex2Yang97/yahoo-finance-mcp/blob/b9c176547d3797b2196adeba0210ae67861ac589/README.md?plain=1#L19-L46" },
+  { what = "keys", url = "https://github.com/Alex2Yang97/yahoo-finance-mcp/blob/b9c176547d3797b2196adeba0210ae67861ac589/README.md?plain=1#L144-L160" },
+  { what = "orders", url = "https://github.com/Alex2Yang97/yahoo-finance-mcp/blob/b9c176547d3797b2196adeba0210ae67861ac589/README.md?plain=1#L7" },
+  { what = "notes", url = "https://github.com/Alex2Yang97/yahoo-finance-mcp/blob/b9c176547d3797b2196adeba0210ae67861ac589/pyproject.toml?plain=1#L6-L14" },
+]
+notes = "Thin wrapper over yfinance (its only data dependency); version 0.1.1."
+verification = "docs"
+
+[[component]]
+id = "tradingagents"
+language = "Python (LangGraph)"
+runtime = "Python 3.11+ (examples use 3.13); optional Docker Compose, with an Ollama profile for local models"
+install = "git clone the repo, then pip install . (no PyPI command documented)"
+interface = ["python-lib", "cli"]
+inputs = "Ticker and analysis date, optionally a portfolio of cash and positions, plus LLM provider, models and debate rounds"
+outputs = "Final decision on a five-tier scale (Buy, Overweight, Hold, Underweight, Sell) with analyst, debate and risk reports, including one HTML page"
+keys_cost = "One LLM provider key, a ChatGPT Plus/Pro sign-in, or a keyless local server (Ollama, vLLM); FRED and TypeSafe optional; Alpha Vantage key listed"
+orders = "none"
+integrations = []
+sources = [
+  { what = "language", url = "https://github.com/TauricResearch/TradingAgents/blob/e8f5503e9b86d5c2710b0c76b1f686703968c9df/pyproject.toml?plain=1#L5-L31" },
+  { what = "language", url = "https://github.com/TauricResearch/TradingAgents/blob/e8f5503e9b86d5c2710b0c76b1f686703968c9df/README.md?plain=1#L251" },
+  { what = "runtime", url = "https://github.com/TauricResearch/TradingAgents/blob/e8f5503e9b86d5c2710b0c76b1f686703968c9df/README.md?plain=1#L125-L135" },
+  { what = "runtime", url = "https://github.com/TauricResearch/TradingAgents/blob/e8f5503e9b86d5c2710b0c76b1f686703968c9df/pyproject.toml?plain=1#L10" },
+  { what = "runtime", url = "https://github.com/TauricResearch/TradingAgents/blob/e8f5503e9b86d5c2710b0c76b1f686703968c9df/README.md?plain=1#L142-L157" },
+  { what = "install", url = "https://github.com/TauricResearch/TradingAgents/blob/e8f5503e9b86d5c2710b0c76b1f686703968c9df/README.md?plain=1#L117-L140" },
+  { what = "interface", url = "https://github.com/TauricResearch/TradingAgents/blob/e8f5503e9b86d5c2710b0c76b1f686703968c9df/README.md?plain=1#L202-L216" },
+  { what = "interface", url = "https://github.com/TauricResearch/TradingAgents/blob/e8f5503e9b86d5c2710b0c76b1f686703968c9df/README.md?plain=1#L253-L269" },
+  { what = "io", url = "https://github.com/TauricResearch/TradingAgents/blob/e8f5503e9b86d5c2710b0c76b1f686703968c9df/README.md?plain=1#L253-L269" },
+  { what = "io", url = "https://github.com/TauricResearch/TradingAgents/blob/e8f5503e9b86d5c2710b0c76b1f686703968c9df/tradingagents/agents/rating.py?plain=1#L1-L24" },
+  { what = "io", url = "https://github.com/TauricResearch/TradingAgents/blob/e8f5503e9b86d5c2710b0c76b1f686703968c9df/README.md?plain=1#L221" },
+  { what = "keys", url = "https://github.com/TauricResearch/TradingAgents/blob/e8f5503e9b86d5c2710b0c76b1f686703968c9df/README.md?plain=1#L159-L195" },
+  { what = "orders", url = "https://github.com/TauricResearch/TradingAgents/blob/e8f5503e9b86d5c2710b0c76b1f686703968c9df/tradingagents/backtest.py?plain=1#L9-L14" },
+  { what = "orders", url = "https://github.com/TauricResearch/TradingAgents/blob/e8f5503e9b86d5c2710b0c76b1f686703968c9df/README.md?plain=1#L109" },
+]
+notes = "README says approved orders go to a simulated exchange, but tradingagents/backtest.py says the system has no quantity, fill price or cash ledger."
+verification = "docs"
+
+[[component]]
+id = "alpaca-mcp-server"
+language = "Python (FastMCP, tools generated from Alpaca OpenAPI specs)"
+runtime = "Python 3.10+ and uv, plus an MCP client; optional Docker image; streamable HTTP transport optional"
+install = "uvx alpaca-mcp-server, set in the MCP client config with ALPACA_API_KEY and ALPACA_SECRET_KEY"
+interface = ["mcp"]
+inputs = "Natural-language requests from an MCP client, mapped to tool calls with symbols, order type, side, quantity, prices or option contracts"
+outputs = "Orders placed, replaced or cancelled; positions closed; account and portfolio history; stock, crypto and options data; news; docs lookups"
+keys_cost = "Alpaca API key and secret required (free paper account); latest 15-minute market data needs the paid Algo Trader Plus plan"
+orders = "live"
+integrations = []
+sources = [
+  { what = "language", url = "https://github.com/alpacahq/alpaca-mcp-server/blob/d8dac43f3e17594e8879bac3b5b333196ea69aac/pyproject.toml?plain=1#L5-L38" },
+  { what = "language", url = "https://github.com/alpacahq/alpaca-mcp-server/blob/d8dac43f3e17594e8879bac3b5b333196ea69aac/README.md?plain=1#L21" },
+  { what = "runtime", url = "https://github.com/alpacahq/alpaca-mcp-server/blob/d8dac43f3e17594e8879bac3b5b333196ea69aac/README.md?plain=1#L80-L85" },
+  { what = "runtime", url = "https://github.com/alpacahq/alpaca-mcp-server/blob/d8dac43f3e17594e8879bac3b5b333196ea69aac/pyproject.toml?plain=1#L10" },
+  { what = "runtime", url = "https://github.com/alpacahq/alpaca-mcp-server/blob/d8dac43f3e17594e8879bac3b5b333196ea69aac/README.md?plain=1#L209-L234" },
+  { what = "install", url = "https://github.com/alpacahq/alpaca-mcp-server/blob/d8dac43f3e17594e8879bac3b5b333196ea69aac/README.md?plain=1#L95-L114" },
+  { what = "interface", url = "https://github.com/alpacahq/alpaca-mcp-server/blob/d8dac43f3e17594e8879bac3b5b333196ea69aac/README.md?plain=1#L17-L19" },
+  { what = "interface", url = "https://github.com/alpacahq/alpaca-mcp-server/blob/d8dac43f3e17594e8879bac3b5b333196ea69aac/README.md?plain=1#L616" },
+  { what = "io", url = "https://github.com/alpacahq/alpaca-mcp-server/blob/d8dac43f3e17594e8879bac3b5b333196ea69aac/README.md?plain=1#L301-L312" },
+  { what = "io", url = "https://github.com/alpacahq/alpaca-mcp-server/blob/d8dac43f3e17594e8879bac3b5b333196ea69aac/README.md?plain=1#L399-L421" },
+  { what = "keys", url = "https://github.com/alpacahq/alpaca-mcp-server/blob/d8dac43f3e17594e8879bac3b5b333196ea69aac/README.md?plain=1#L80-L91" },
+  { what = "keys", url = "https://github.com/alpacahq/alpaca-mcp-server/blob/d8dac43f3e17594e8879bac3b5b333196ea69aac/README.md?plain=1#L241-L246" },
+  { what = "keys", url = "https://github.com/alpacahq/alpaca-mcp-server/blob/d8dac43f3e17594e8879bac3b5b333196ea69aac/README.md?plain=1#L349" },
+  { what = "orders", url = "https://github.com/alpacahq/alpaca-mcp-server/blob/d8dac43f3e17594e8879bac3b5b333196ea69aac/README.md?plain=1#L241-L261" },
+  { what = "orders", url = "https://github.com/alpacahq/alpaca-mcp-server/blob/d8dac43f3e17594e8879bac3b5b333196ea69aac/README.md?plain=1#L614" },
+  { what = "notes", url = "https://github.com/alpacahq/alpaca-mcp-server/blob/d8dac43f3e17594e8879bac3b5b333196ea69aac/README.md?plain=1#L263-L265" },
+  { what = "notes", url = "https://github.com/alpacahq/alpaca-mcp-server/blob/d8dac43f3e17594e8879bac3b5b333196ea69aac/README.md?plain=1#L40-L42" },
+]
+notes = "Paper trading is the default; ALPACA_PAPER_TRADE=false switches to live. All toolsets on unless ALPACA_TOOLSETS restricts them. V2 drops every V1 tool."
+verification = "docs"
+
+[[component]]
+id = "ccxt"
+language = "TypeScript source, transpiled to JavaScript, Python, PHP, C#, Go, Java and Rust"
+runtime = "Node 18+, Python 3.10+ (pyproject), PHP 8.1+, .NET netstandard2.0/2.1, Go 1.20+, Java 21+; ccxt-mcp needs Node 18+"
+install = "pip install ccxt (or npm install ccxt); MCP server via npx -y ccxt-mcp"
+interface = ["python-lib", "cli", "mcp"]
+inputs = "Exchange id, unified symbol and method arguments (order type, side, amount, price); exchange API keys for private calls"
+outputs = "Unified tickers, order books, trades, OHLCV, balances and order objects; orders sent to the exchange; the same through CLI and MCP tools"
+keys_cost = "Public market data needs no key; trading needs exchange API keys; an optional 1 bps builder fee applies on some exchanges"
+orders = "live"
+integrations = [
+  { with = "vibe-trading", note = "Vibe-Trading depends on ccxt for crypto history across 100+ exchanges in its crypto fallback chain; documented on the Vibe-Trading side", url = "https://github.com/HKUDS/Vibe-Trading/blob/3cbb167e9d7afab1682934685437efb96faacd43/README.md?plain=1#L622" },
+]
+sources = [
+  { what = "language", url = "https://github.com/ccxt/ccxt/blob/133fd945e5dabea9b08a3d6b1012cefe1ef9713b/README.md?plain=1#L5" },
+  { what = "language", url = "https://github.com/ccxt/ccxt/blob/133fd945e5dabea9b08a3d6b1012cefe1ef9713b/README.md?plain=1#L221-L229" },
+  { what = "runtime", url = "https://github.com/ccxt/ccxt/blob/133fd945e5dabea9b08a3d6b1012cefe1ef9713b/README.md?plain=1#L25" },
+  { what = "runtime", url = "https://github.com/ccxt/ccxt/blob/133fd945e5dabea9b08a3d6b1012cefe1ef9713b/pyproject.toml?plain=1#L14" },
+  { what = "runtime", url = "https://github.com/ccxt/ccxt/blob/133fd945e5dabea9b08a3d6b1012cefe1ef9713b/package.json?plain=1#L20-L22" },
+  { what = "runtime", url = "https://github.com/ccxt/ccxt/blob/133fd945e5dabea9b08a3d6b1012cefe1ef9713b/mcp/README.md?plain=1#L26" },
+  { what = "install", url = "https://github.com/ccxt/ccxt/blob/133fd945e5dabea9b08a3d6b1012cefe1ef9713b/README.md?plain=1#L281-L287" },
+  { what = "install", url = "https://github.com/ccxt/ccxt/blob/133fd945e5dabea9b08a3d6b1012cefe1ef9713b/README.md?plain=1#L241-L249" },
+  { what = "install", url = "https://github.com/ccxt/ccxt/blob/133fd945e5dabea9b08a3d6b1012cefe1ef9713b/README.md?plain=1#L1105-L1113" },
+  { what = "interface", url = "https://github.com/ccxt/ccxt/blob/133fd945e5dabea9b08a3d6b1012cefe1ef9713b/README.md?plain=1#L1058-L1070" },
+  { what = "interface", url = "https://github.com/ccxt/ccxt/blob/133fd945e5dabea9b08a3d6b1012cefe1ef9713b/README.md?plain=1#L1105-L1119" },
+  { what = "io", url = "https://github.com/ccxt/ccxt/blob/133fd945e5dabea9b08a3d6b1012cefe1ef9713b/README.md?plain=1#L486-L511" },
+  { what = "io", url = "https://github.com/ccxt/ccxt/blob/133fd945e5dabea9b08a3d6b1012cefe1ef9713b/README.md?plain=1#L585-L631" },
+  { what = "keys", url = "https://github.com/ccxt/ccxt/blob/133fd945e5dabea9b08a3d6b1012cefe1ef9713b/README.md?plain=1#L486" },
+  { what = "keys", url = "https://github.com/ccxt/ccxt/blob/133fd945e5dabea9b08a3d6b1012cefe1ef9713b/README.md?plain=1#L499" },
+  { what = "keys", url = "https://github.com/ccxt/ccxt/blob/133fd945e5dabea9b08a3d6b1012cefe1ef9713b/README.md?plain=1#L205" },
+  { what = "orders", url = "https://github.com/ccxt/ccxt/blob/133fd945e5dabea9b08a3d6b1012cefe1ef9713b/README.md?plain=1#L499-L505" },
+  { what = "orders", url = "https://github.com/ccxt/ccxt/blob/133fd945e5dabea9b08a3d6b1012cefe1ef9713b/README.md?plain=1#L1079" },
+  { what = "orders", url = "https://github.com/ccxt/ccxt/blob/133fd945e5dabea9b08a3d6b1012cefe1ef9713b/mcp/README.md?plain=1#L125-L135" },
+  { what = "notes", url = "https://github.com/ccxt/ccxt/blob/133fd945e5dabea9b08a3d6b1012cefe1ef9713b/README.md?plain=1#L172-L174" },
+  { what = "notes", url = "https://github.com/ccxt/ccxt/blob/133fd945e5dabea9b08a3d6b1012cefe1ef9713b/README.md?plain=1#L213-L214" },
+  { what = "notes", url = "https://github.com/ccxt/ccxt/blob/133fd945e5dabea9b08a3d6b1012cefe1ef9713b/mcp/package.json?plain=1#L3" },
+]
+notes = "Also covers prediction markets. README install notes say Node 7.6+ and Python 3.7+, older than the manifests (Node >=18, Python >=3.10). ccxt-mcp is v0.1.3."
+verification = "docs"
+
+[[component]]
+id = "nautilus-trader"
+language = "Rust core with Python bindings (PyO3); strategies in Python or Rust"
+runtime = "Python 3.13-3.14 on Linux x86_64/ARM64, macOS ARM64, Windows x86_64; Linux wheels need glibc 2.35+; Rust only for source builds"
+install = "pip install -U nautilus_trader --pre"
+interface = ["python-lib"]
+inputs = "Strategy code plus historical quote and trade ticks, bars or order-book data for backtests, or venue adapter configs for live trading"
+outputs = "Backtest fills, positions and optional tearsheets; in live mode, orders and positions on connected venues"
+keys_cost = "Engine is free (LGPL-3.0); each venue or data adapter uses that provider's credentials, e.g. BINANCE_API_KEY; Databento cost depends on schema, symbols and range"
+orders = "live"
+integrations = []
+sources = [
+  { what = "language", url = "https://github.com/nautechsystems/nautilus_trader/blob/04f766b4d434d67fc8672026fefa25135bdc01be/README.md?plain=1#L30-L39" },
+  { what = "language", url = "https://github.com/nautechsystems/nautilus_trader/blob/04f766b4d434d67fc8672026fefa25135bdc01be/Cargo.toml?plain=1#L51-L56" },
+  { what = "runtime", url = "https://github.com/nautechsystems/nautilus_trader/blob/04f766b4d434d67fc8672026fefa25135bdc01be/README.md?plain=1#L17-L22" },
+  { what = "runtime", url = "https://github.com/nautechsystems/nautilus_trader/blob/04f766b4d434d67fc8672026fefa25135bdc01be/README.md?plain=1#L85-L88" },
+  { what = "runtime", url = "https://github.com/nautechsystems/nautilus_trader/blob/04f766b4d434d67fc8672026fefa25135bdc01be/README.md?plain=1#L364-L366" },
+  { what = "runtime", url = "https://github.com/nautechsystems/nautilus_trader/blob/04f766b4d434d67fc8672026fefa25135bdc01be/python/pyproject.toml?plain=1#L24" },
+  { what = "install", url = "https://github.com/nautechsystems/nautilus_trader/blob/04f766b4d434d67fc8672026fefa25135bdc01be/README.md?plain=1#L269-L288" },
+  { what = "interface", url = "https://github.com/nautechsystems/nautilus_trader/blob/04f766b4d434d67fc8672026fefa25135bdc01be/README.md?plain=1#L33-L35" },
+  { what = "interface", url = "https://github.com/nautechsystems/nautilus_trader/blob/04f766b4d434d67fc8672026fefa25135bdc01be/README.md?plain=1#L552-L557" },
+  { what = "io", url = "https://github.com/nautechsystems/nautilus_trader/blob/04f766b4d434d67fc8672026fefa25135bdc01be/README.md?plain=1#L52-L62" },
+  { what = "io", url = "https://github.com/nautechsystems/nautilus_trader/blob/04f766b4d434d67fc8672026fefa25135bdc01be/README.md?plain=1#L100-L105" },
+  { what = "io", url = "https://github.com/nautechsystems/nautilus_trader/blob/04f766b4d434d67fc8672026fefa25135bdc01be/README.md?plain=1#L290-L294" },
+  { what = "keys", url = "https://github.com/nautechsystems/nautilus_trader/blob/04f766b4d434d67fc8672026fefa25135bdc01be/docs/integrations/binance.md?plain=1#L1435-L1442" },
+  { what = "keys", url = "https://github.com/nautechsystems/nautilus_trader/blob/04f766b4d434d67fc8672026fefa25135bdc01be/docs/integrations/databento.md?plain=1#L219-L221" },
+  { what = "orders", url = "https://github.com/nautechsystems/nautilus_trader/blob/04f766b4d434d67fc8672026fefa25135bdc01be/README.md?plain=1#L41-L44" },
+  { what = "orders", url = "https://github.com/nautechsystems/nautilus_trader/blob/04f766b4d434d67fc8672026fefa25135bdc01be/README.md?plain=1#L278-L280" },
+  { what = "notes", url = "https://github.com/nautechsystems/nautilus_trader/blob/04f766b4d434d67fc8672026fefa25135bdc01be/README.md?plain=1#L282-L288" },
+  { what = "notes", url = "https://github.com/nautechsystems/nautilus_trader/blob/04f766b4d434d67fc8672026fefa25135bdc01be/README.md?plain=1#L517-L519" },
+  { what = "notes", url = "https://github.com/nautechsystems/nautilus_trader/blob/04f766b4d434d67fc8672026fefa25135bdc01be/docs/integrations/databento.md?plain=1#L5-L8" },
+]
+notes = "v2 is a release candidate: plain pip install gets v1, whose API differs from the docs. Redis optional. A sandbox adapter gives simulated execution."
+verification = "docs"
+
+[[component]]
+id = "lean"
+language = "C# (.NET) engine; algorithms in C# or Python"
+runtime = ".NET 10 SDK to build and run from source; the LEAN CLI runs research, backtests, optimization and live trading in Docker"
+install = "pip install lean (installs the LEAN CLI)"
+interface = ["cli"]
+inputs = "An algorithm project in C# or Python, a config environment such as backtesting or live-paper, and market or alternative data"
+outputs = "Backtest and optimization results, Jupyter research sessions, or live orders through a configured brokerage"
+keys_cost = "Brokerage and data-vendor credentials go in Launcher/config.json, which also has a QuantConnect API token field; costs not stated"
+orders = "live"
+integrations = []
+sources = [
+  { what = "language", url = "https://github.com/QuantConnect/Lean/blob/22404ea28b8d3f3c9eb74d6ed9f0444426f8e417/readme.md?plain=1#L160-L171" },
+  { what = "language", url = "https://github.com/QuantConnect/Lean/blob/22404ea28b8d3f3c9eb74d6ed9f0444426f8e417/readme.md?plain=1#L180-L182" },
+  { what = "language", url = "https://github.com/QuantConnect/Lean/blob/22404ea28b8d3f3c9eb74d6ed9f0444426f8e417/Dockerfile?plain=1#L27" },
+  { what = "runtime", url = "https://github.com/QuantConnect/Lean/blob/22404ea28b8d3f3c9eb74d6ed9f0444426f8e417/readme.md?plain=1#L138-L171" },
+  { what = "runtime", url = "https://github.com/QuantConnect/Lean/blob/22404ea28b8d3f3c9eb74d6ed9f0444426f8e417/readme.md?plain=1#L79-L101" },
+  { what = "install", url = "https://github.com/QuantConnect/Lean/blob/22404ea28b8d3f3c9eb74d6ed9f0444426f8e417/readme.md?plain=1#L64-L68" },
+  { what = "interface", url = "https://github.com/QuantConnect/Lean/blob/22404ea28b8d3f3c9eb74d6ed9f0444426f8e417/readme.md?plain=1#L62-L101" },
+  { what = "io", url = "https://github.com/QuantConnect/Lean/blob/22404ea28b8d3f3c9eb74d6ed9f0444426f8e417/readme.md?plain=1#L62" },
+  { what = "io", url = "https://github.com/QuantConnect/Lean/blob/22404ea28b8d3f3c9eb74d6ed9f0444426f8e417/Launcher/config.json?plain=1#L9-L12" },
+  { what = "keys", url = "https://github.com/QuantConnect/Lean/blob/22404ea28b8d3f3c9eb74d6ed9f0444426f8e417/Launcher/config.json?plain=1#L85-L88" },
+  { what = "keys", url = "https://github.com/QuantConnect/Lean/blob/22404ea28b8d3f3c9eb74d6ed9f0444426f8e417/Launcher/config.json?plain=1#L98-L106" },
+  { what = "keys", url = "https://github.com/QuantConnect/Lean/blob/22404ea28b8d3f3c9eb74d6ed9f0444426f8e417/Launcher/config.json?plain=1#L255-L259" },
+  { what = "orders", url = "https://github.com/QuantConnect/Lean/blob/22404ea28b8d3f3c9eb74d6ed9f0444426f8e417/readme.md?plain=1#L22" },
+  { what = "orders", url = "https://github.com/QuantConnect/Lean/blob/22404ea28b8d3f3c9eb74d6ed9f0444426f8e417/readme.md?plain=1#L97-L101" },
+  { what = "orders", url = "https://github.com/QuantConnect/Lean/blob/22404ea28b8d3f3c9eb74d6ed9f0444426f8e417/Launcher/config.json?plain=1#L384-L397" },
+  { what = "notes", url = "https://github.com/QuantConnect/Lean/blob/22404ea28b8d3f3c9eb74d6ed9f0444426f8e417/readme.md?plain=1#L125" },
+]
+notes = "README recommends the LEAN CLI for most users. The engine picks backtest, paper or live brokerage through environments in Launcher/config.json."
+verification = "docs"
+
+[[component]]
+id = "qlib"
+language = "Python, with Cython compiled during source installs"
+runtime = "Python 3.8-3.12 on Linux, Windows or macOS; conda suggested; optional Docker image; run_all_model.py is Linux-only"
+install = "pip install pyqlib"
+interface = ["python-lib", "cli"]
+inputs = "Qlib-format market data (e.g. China daily or 1-minute bars) and a YAML workflow config for qrun, or Python workflow code"
+outputs = "Trained forecast models, signals and backtest reports (IC, annualized return, information ratio, max drawdown), plus analysis charts"
+keys_cost = "No key mentioned; the official dataset is temporarily disabled and the README points to a community dataset or a Yahoo collector"
+orders = "none"
+integrations = [
+  { with = "rd-agent", note = "Qlib README features R&D-Agent-Quant, which applies RD-Agent to Qlib for automated factor and model research", url = "https://github.com/microsoft/qlib/blob/54355232463878d2eebb91fe0ee5fa7fa1f5976c/README.md?plain=1#L67" },
+]
+sources = [
+  { what = "language", url = "https://github.com/microsoft/qlib/blob/54355232463878d2eebb91fe0ee5fa7fa1f5976c/pyproject.toml?plain=1#L1-L3" },
+  { what = "language", url = "https://github.com/microsoft/qlib/blob/54355232463878d2eebb91fe0ee5fa7fa1f5976c/README.md?plain=1#L215-L220" },
+  { what = "runtime", url = "https://github.com/microsoft/qlib/blob/54355232463878d2eebb91fe0ee5fa7fa1f5976c/README.md?plain=1#L188-L201" },
+  { what = "runtime", url = "https://github.com/microsoft/qlib/blob/54355232463878d2eebb91fe0ee5fa7fa1f5976c/pyproject.toml?plain=1#L6-L9" },
+  { what = "runtime", url = "https://github.com/microsoft/qlib/blob/54355232463878d2eebb91fe0ee5fa7fa1f5976c/pyproject.toml?plain=1#L23" },
+  { what = "runtime", url = "https://github.com/microsoft/qlib/blob/54355232463878d2eebb91fe0ee5fa7fa1f5976c/README.md?plain=1#L489" },
+  { what = "install", url = "https://github.com/microsoft/qlib/blob/54355232463878d2eebb91fe0ee5fa7fa1f5976c/README.md?plain=1#L203-L208" },
+  { what = "interface", url = "https://github.com/microsoft/qlib/blob/54355232463878d2eebb91fe0ee5fa7fa1f5976c/README.md?plain=1#L372-L379" },
+  { what = "interface", url = "https://github.com/microsoft/qlib/blob/54355232463878d2eebb91fe0ee5fa7fa1f5976c/pyproject.toml?plain=1#L127-L128" },
+  { what = "interface", url = "https://github.com/microsoft/qlib/blob/54355232463878d2eebb91fe0ee5fa7fa1f5976c/README.md?plain=1#L433-L434" },
+  { what = "io", url = "https://github.com/microsoft/qlib/blob/54355232463878d2eebb91fe0ee5fa7fa1f5976c/README.md?plain=1#L232-L240" },
+  { what = "io", url = "https://github.com/microsoft/qlib/blob/54355232463878d2eebb91fe0ee5fa7fa1f5976c/README.md?plain=1#L372-L402" },
+  { what = "keys", url = "https://github.com/microsoft/qlib/blob/54355232463878d2eebb91fe0ee5fa7fa1f5976c/README.md?plain=1#L232-L242" },
+  { what = "keys", url = "https://github.com/microsoft/qlib/blob/54355232463878d2eebb91fe0ee5fa7fa1f5976c/README.md?plain=1#L270-L275" },
+  { what = "orders", url = "https://github.com/microsoft/qlib/blob/54355232463878d2eebb91fe0ee5fa7fa1f5976c/qlib/backtest/exchange.py?plain=1#L38-L60" },
+  { what = "orders", url = "https://github.com/microsoft/qlib/blob/54355232463878d2eebb91fe0ee5fa7fa1f5976c/README.md?plain=1#L175" },
+  { what = "integrations", url = "https://github.com/microsoft/qlib/blob/54355232463878d2eebb91fe0ee5fa7fa1f5976c/README.md?plain=1#L35-L50" },
+  { what = "notes", url = "https://github.com/microsoft/qlib/blob/54355232463878d2eebb91fe0ee5fa7fa1f5976c/README.md?plain=1#L10-L17" },
+]
+notes = "The backtest exchange is simulated with configurable costs; no broker connector. An unreleased source change restricts artifact loading unless trusted=True."
+verification = "docs"
+
+[[component]]
+id = "promptfoo"
+language = "TypeScript (Node.js)"
+runtime = "Node.js 22.22+; also via Homebrew, pip or npx; Docker image for a self-hosted server"
+install = "npm install -g promptfoo (or run npx promptfoo@latest without installing)"
+interface = ["cli", "web-ui", "mcp", "docker-service"]
+inputs = "A config of prompts, model providers and test assertions, or a red-team target definition, plus provider API keys"
+outputs = "Side-by-side eval results in the CLI and web viewer, pass/fail metrics, red-team vulnerability reports, CI checks"
+keys_cost = "Most LLM providers need an API key (e.g. OPENAI_API_KEY); evals run locally"
+orders = "none"
+integrations = [
+  { with = "langfuse", note = "Resolves langfuse:// prompt references and can fetch Langfuse traces during evals", url = "https://github.com/promptfoo/promptfoo/blob/e48ed85e08ff8a1ca74fa7d0e41daf47cf155efb/site/docs/integrations/langfuse.md?plain=1#L6-L38" },
+]
+sources = [
+  { what = "language", url = "https://github.com/promptfoo/promptfoo/blob/e48ed85e08ff8a1ca74fa7d0e41daf47cf155efb/package.json?plain=1#L1-L12" },
+  { what = "runtime", url = "https://github.com/promptfoo/promptfoo/blob/e48ed85e08ff8a1ca74fa7d0e41daf47cf155efb/package.json?plain=1#L49-L51" },
+  { what = "runtime", url = "https://github.com/promptfoo/promptfoo/blob/e48ed85e08ff8a1ca74fa7d0e41daf47cf155efb/README.md?plain=1#L32" },
+  { what = "runtime", url = "https://github.com/promptfoo/promptfoo/blob/e48ed85e08ff8a1ca74fa7d0e41daf47cf155efb/Dockerfile?plain=1#L87-L103" },
+  { what = "install", url = "https://github.com/promptfoo/promptfoo/blob/e48ed85e08ff8a1ca74fa7d0e41daf47cf155efb/README.md?plain=1#L25-L32" },
+  { what = "interface", url = "https://github.com/promptfoo/promptfoo/blob/e48ed85e08ff8a1ca74fa7d0e41daf47cf155efb/README.md?plain=1#L12" },
+  { what = "interface", url = "https://github.com/promptfoo/promptfoo/blob/e48ed85e08ff8a1ca74fa7d0e41daf47cf155efb/README.md?plain=1#L40-L46" },
+  { what = "interface", url = "https://github.com/promptfoo/promptfoo/blob/e48ed85e08ff8a1ca74fa7d0e41daf47cf155efb/src/commands/mcp/index.ts?plain=1#L8-L13" },
+  { what = "interface", url = "https://github.com/promptfoo/promptfoo/blob/e48ed85e08ff8a1ca74fa7d0e41daf47cf155efb/Dockerfile?plain=1#L87-L103" },
+  { what = "io", url = "https://github.com/promptfoo/promptfoo/blob/e48ed85e08ff8a1ca74fa7d0e41daf47cf155efb/README.md?plain=1#L50-L57" },
+  { what = "io", url = "https://github.com/promptfoo/promptfoo/blob/e48ed85e08ff8a1ca74fa7d0e41daf47cf155efb/README.md?plain=1#L67" },
+  { what = "keys", url = "https://github.com/promptfoo/promptfoo/blob/e48ed85e08ff8a1ca74fa7d0e41daf47cf155efb/README.md?plain=1#L34-L38" },
+  { what = "keys", url = "https://github.com/promptfoo/promptfoo/blob/e48ed85e08ff8a1ca74fa7d0e41daf47cf155efb/README.md?plain=1#L74" },
+  { what = "orders", url = "https://github.com/promptfoo/promptfoo/blob/e48ed85e08ff8a1ca74fa7d0e41daf47cf155efb/README.md?plain=1#L12" },
+  { what = "notes", url = "https://github.com/promptfoo/promptfoo/blob/e48ed85e08ff8a1ca74fa7d0e41daf47cf155efb/README.md?plain=1#L23" },
+  { what = "notes", url = "https://github.com/promptfoo/promptfoo/blob/e48ed85e08ff8a1ca74fa7d0e41daf47cf155efb/README.md?plain=1#L86" },
+]
+notes = "Also a Node.js library, not a Python one. The README says Promptfoo is now part of OpenAI and remains MIT-licensed."
+verification = "docs"
+
+[[component]]
+id = "langfuse"
+language = "TypeScript (Next.js web app and worker); a Rust AI gateway subproject"
+runtime = "Self-host with Docker Compose (web, worker, Postgres, ClickHouse, Redis, MinIO), Kubernetes Helm or Terraform; or Langfuse Cloud"
+install = "git clone --depth=1 https://github.com/langfuse/langfuse.git && cd langfuse && docker compose up"
+interface = ["web-ui", "rest-api", "mcp", "docker-service", "python-lib"]
+inputs = "Traces from instrumented LLM apps via SDKs, framework integrations or the public API; prompts, datasets and evaluator setups"
+outputs = "Trace and session views, versioned prompts, evaluation scores, dataset run results and playground output, through UI, API and MCP"
+keys_cost = "Project public and secret API keys; Cloud has a free tier; self-hosting is free; ee/ directories fall under a separate license"
+orders = "none"
+integrations = [
+  { with = "promptfoo", note = "Langfuse README lists Promptfoo as an integrated tool and as a project using Langfuse", url = "https://github.com/langfuse/langfuse/blob/165b621fdf8fc7d34232df8d5a74a5ab36d3fc83/README.md?plain=1#L166" },
+]
+sources = [
+  { what = "language", url = "https://github.com/langfuse/langfuse/blob/165b621fdf8fc7d34232df8d5a74a5ab36d3fc83/web/package.json?plain=1#L142" },
+  { what = "language", url = "https://github.com/langfuse/langfuse/blob/165b621fdf8fc7d34232df8d5a74a5ab36d3fc83/ai-gateway/Cargo.toml?plain=1#L1-L6" },
+  { what = "language", url = "https://github.com/langfuse/langfuse/blob/165b621fdf8fc7d34232df8d5a74a5ab36d3fc83/README.md?plain=1#L258" },
+  { what = "runtime", url = "https://github.com/langfuse/langfuse/blob/165b621fdf8fc7d34232df8d5a74a5ab36d3fc83/README.md?plain=1#L104-L121" },
+  { what = "runtime", url = "https://github.com/langfuse/langfuse/blob/165b621fdf8fc7d34232df8d5a74a5ab36d3fc83/docker-compose.yml?plain=1#L7-L207" },
+  { what = "runtime", url = "https://github.com/langfuse/langfuse/blob/165b621fdf8fc7d34232df8d5a74a5ab36d3fc83/package.json?plain=1#L7-L10" },
+  { what = "install", url = "https://github.com/langfuse/langfuse/blob/165b621fdf8fc7d34232df8d5a74a5ab36d3fc83/README.md?plain=1#L108-L117" },
+  { what = "interface", url = "https://github.com/langfuse/langfuse/blob/165b621fdf8fc7d34232df8d5a74a5ab36d3fc83/README.md?plain=1#L78-L88" },
+  { what = "interface", url = "https://github.com/langfuse/langfuse/blob/165b621fdf8fc7d34232df8d5a74a5ab36d3fc83/README.md?plain=1#L150" },
+  { what = "interface", url = "https://github.com/langfuse/langfuse/blob/165b621fdf8fc7d34232df8d5a74a5ab36d3fc83/web/src/features/mcp/README.md?plain=1#L1-L3" },
+  { what = "interface", url = "https://github.com/langfuse/langfuse/blob/165b621fdf8fc7d34232df8d5a74a5ab36d3fc83/README.md?plain=1#L185-L219" },
+  { what = "io", url = "https://github.com/langfuse/langfuse/blob/165b621fdf8fc7d34232df8d5a74a5ab36d3fc83/README.md?plain=1#L78-L86" },
+  { what = "keys", url = "https://github.com/langfuse/langfuse/blob/165b621fdf8fc7d34232df8d5a74a5ab36d3fc83/README.md?plain=1#L179-L201" },
+  { what = "keys", url = "https://github.com/langfuse/langfuse/blob/165b621fdf8fc7d34232df8d5a74a5ab36d3fc83/README.md?plain=1#L94-L96" },
+  { what = "keys", url = "https://github.com/langfuse/langfuse/blob/165b621fdf8fc7d34232df8d5a74a5ab36d3fc83/LICENSE?plain=1#L3-L7" },
+  { what = "orders", url = "https://github.com/langfuse/langfuse/blob/165b621fdf8fc7d34232df8d5a74a5ab36d3fc83/README.md?plain=1#L64-L65" },
+  { what = "notes", url = "https://github.com/langfuse/langfuse/blob/165b621fdf8fc7d34232df8d5a74a5ab36d3fc83/README.md?plain=1#L69" },
+]
+notes = "Python and JS/TS SDKs are separate packages (pip install langfuse). The MCP server is built into the web app. README says Langfuse joined ClickHouse in January 2026."
+verification = "docs"
+
+[[component]]
+id = "ai-hedge-fund"
+language = "Python"
+runtime = "Python 3.11+ (Poetry); runs as a terminal app"
+install = "pipx install aihf (or uv tool install aihf, or pip install aihf)"
+interface = ["cli"]
+inputs = "Fund definitions (strategies, capital, cadence, tickers) or a backtest universe, plus Financial Datasets and LLM API keys"
+outputs = "Paper-trading sessions on a hash-chained ledger with a NAV track record; backtest equity curves against a benchmark, saved locally"
+keys_cost = "A Financial Datasets API key for prices, fundamentals and earnings plus one LLM provider key; pricing not stated"
+orders = "paper"
+integrations = []
+sources = [
+  { what = "language", url = "https://github.com/virattt/ai-hedge-fund/blob/29b32f71861480e9bfd48b82cf0d3ca3e5680955/pyproject.toml?plain=1#L1-L20" },
+  { what = "runtime", url = "https://github.com/virattt/ai-hedge-fund/blob/29b32f71861480e9bfd48b82cf0d3ca3e5680955/pyproject.toml?plain=1#L20" },
+  { what = "runtime", url = "https://github.com/virattt/ai-hedge-fund/blob/29b32f71861480e9bfd48b82cf0d3ca3e5680955/pyproject.toml?plain=1#L35-L38" },
+  { what = "install", url = "https://github.com/virattt/ai-hedge-fund/blob/29b32f71861480e9bfd48b82cf0d3ca3e5680955/README.md?plain=1#L24-L36" },
+  { what = "interface", url = "https://github.com/virattt/ai-hedge-fund/blob/29b32f71861480e9bfd48b82cf0d3ca3e5680955/README.md?plain=1#L47-L58" },
+  { what = "interface", url = "https://github.com/virattt/ai-hedge-fund/blob/29b32f71861480e9bfd48b82cf0d3ca3e5680955/pyproject.toml?plain=1#L37-L38" },
+  { what = "io", url = "https://github.com/virattt/ai-hedge-fund/blob/29b32f71861480e9bfd48b82cf0d3ca3e5680955/README.md?plain=1#L55-L58" },
+  { what = "keys", url = "https://github.com/virattt/ai-hedge-fund/blob/29b32f71861480e9bfd48b82cf0d3ca3e5680955/README.md?plain=1#L38-L45" },
+  { what = "orders", url = "https://github.com/virattt/ai-hedge-fund/blob/29b32f71861480e9bfd48b82cf0d3ca3e5680955/README.md?plain=1#L55-L57" },
+  { what = "orders", url = "https://github.com/virattt/ai-hedge-fund/blob/29b32f71861480e9bfd48b82cf0d3ca3e5680955/README.md?plain=1#L8" },
+  { what = "notes", url = "https://github.com/virattt/ai-hedge-fund/blob/29b32f71861480e9bfd48b82cf0d3ca3e5680955/pyproject.toml?plain=1#L2-L3" },
+]
+notes = "Paper mode trades fake money after an approval step; the README still says the system makes no real trades. Package is aihf 2.6.1."
+verification = "docs"
+
+[[component]]
+id = "rd-agent"
+language = "Python; web UI frontend built with npm"
+runtime = "Linux only; Docker runnable without sudo for most scenarios; Python 3.10 or 3.11 tested (pyproject >=3.10)"
+install = "pip install rdagent"
+interface = ["cli", "web-ui"]
+inputs = "A scenario command (rdagent fin_quant, fin_factor, fin_model, or fin_factor_report with report files) plus chat and embedding model settings"
+outputs = "Iteratively proposed and implemented factors and models, evaluated in Qlib loops; run logs and traces in a Streamlit or web UI"
+keys_cost = "Chat and embedding endpoints via LiteLLM (OpenAI, Azure, DeepSeek, SiliconFlow); Kaggle token for Kaggle scenarios; README cites under $10 for RD-Agent(Q)"
+orders = "none"
+integrations = [
+  { with = "qlib", note = "fin_quant, fin_factor, fin_model and fin_factor_report run Qlib factor and model proposal loops", url = "https://github.com/microsoft/RD-Agent/blob/484776c211e4fbbeef03e0ec00d6bbee7362a4f4/README.md?plain=1#L271-L286" },
+]
+sources = [
+  { what = "language", url = "https://github.com/microsoft/RD-Agent/blob/484776c211e4fbbeef03e0ec00d6bbee7362a4f4/pyproject.toml?plain=1#L8-L35" },
+  { what = "language", url = "https://github.com/microsoft/RD-Agent/blob/484776c211e4fbbeef03e0ec00d6bbee7362a4f4/README.md?plain=1#L374-L383" },
+  { what = "runtime", url = "https://github.com/microsoft/RD-Agent/blob/484776c211e4fbbeef03e0ec00d6bbee7362a4f4/README.md?plain=1#L131-L145" },
+  { what = "runtime", url = "https://github.com/microsoft/RD-Agent/blob/484776c211e4fbbeef03e0ec00d6bbee7362a4f4/pyproject.toml?plain=1#L32" },
+  { what = "install", url = "https://github.com/microsoft/RD-Agent/blob/484776c211e4fbbeef03e0ec00d6bbee7362a4f4/README.md?plain=1#L151-L157" },
+  { what = "interface", url = "https://github.com/microsoft/RD-Agent/blob/484776c211e4fbbeef03e0ec00d6bbee7362a4f4/README.md?plain=1#L267-L284" },
+  { what = "interface", url = "https://github.com/microsoft/RD-Agent/blob/484776c211e4fbbeef03e0ec00d6bbee7362a4f4/pyproject.toml?plain=1#L34-L35" },
+  { what = "interface", url = "https://github.com/microsoft/RD-Agent/blob/484776c211e4fbbeef03e0ec00d6bbee7362a4f4/README.md?plain=1#L363-L401" },
+  { what = "io", url = "https://github.com/microsoft/RD-Agent/blob/484776c211e4fbbeef03e0ec00d6bbee7362a4f4/README.md?plain=1#L267-L295" },
+  { what = "io", url = "https://github.com/microsoft/RD-Agent/blob/484776c211e4fbbeef03e0ec00d6bbee7362a4f4/README.md?plain=1#L86-L94" },
+  { what = "keys", url = "https://github.com/microsoft/RD-Agent/blob/484776c211e4fbbeef03e0ec00d6bbee7362a4f4/README.md?plain=1#L178-L257" },
+  { what = "keys", url = "https://github.com/microsoft/RD-Agent/blob/484776c211e4fbbeef03e0ec00d6bbee7362a4f4/README.md?plain=1#L331-L338" },
+  { what = "keys", url = "https://github.com/microsoft/RD-Agent/blob/484776c211e4fbbeef03e0ec00d6bbee7362a4f4/README.md?plain=1#L92" },
+  { what = "orders", url = "https://github.com/microsoft/RD-Agent/blob/484776c211e4fbbeef03e0ec00d6bbee7362a4f4/README.md?plain=1#L668" },
+  { what = "orders", url = "https://github.com/microsoft/RD-Agent/blob/484776c211e4fbbeef03e0ec00d6bbee7362a4f4/README.md?plain=1#L271-L284" },
+]
+notes = "Quant scenarios are research loops scored by Qlib backtests; the legal disclaimer says it is not ready-to-use for financial investment."
+verification = "docs"
+
+[[component]]
+id = "finrobot"
+language = "Python backend; React/TypeScript frontend with a Rust Tauri shell (V2)"
+runtime = "V2 desktop app: macOS Apple Silicon only; browser or CLI mode: Python 3.11+, uv, Node 20+; V0: Python 3.10-3.11"
+install = "V2: cd finrobot_desktop && uv sync (or download the macOS .dmg); pip install finrobot installs only V0"
+interface = ["desktop", "web-ui", "cli", "rest-api", "python-lib", "docker-service"]
+inputs = "A ticker, optionally peers or a question, through commands such as finrobot research, dcf, comps, ic-memo or ask"
+outputs = "13-chapter research report with a 12-month target range, code-computed DCF, DDM, LBO and comps valuations, IC memos, Q&A answers"
+keys_cost = "Your own LLM key (DeepSeek, OpenAI or Anthropic) in the OS keychain; data from yfinance and SEC EDGAR, FMP optional; V1 needs FMP and OpenAI keys"
+orders = "none"
+integrations = [
+  { with = "edgartools", note = "FinRobot V2 depends on edgartools; its SEC EDGAR data provider is an EdgarTools adapter", url = "https://github.com/AI4Finance-Foundation/FinRobot/blob/63e1884a42ea7b729551a5424b4bd6a65af636e0/finrobot_desktop/pyproject.toml?plain=1#L40" },
+]
+sources = [
+  { what = "language", url = "https://github.com/AI4Finance-Foundation/FinRobot/blob/63e1884a42ea7b729551a5424b4bd6a65af636e0/README.md?plain=1#L129-L137" },
+  { what = "runtime", url = "https://github.com/AI4Finance-Foundation/FinRobot/blob/63e1884a42ea7b729551a5424b4bd6a65af636e0/README.md?plain=1#L101-L103" },
+  { what = "runtime", url = "https://github.com/AI4Finance-Foundation/FinRobot/blob/63e1884a42ea7b729551a5424b4bd6a65af636e0/finrobot_desktop/README.md?plain=1#L176-L180" },
+  { what = "runtime", url = "https://github.com/AI4Finance-Foundation/FinRobot/blob/63e1884a42ea7b729551a5424b4bd6a65af636e0/README.md?plain=1#L210-L212" },
+  { what = "runtime", url = "https://github.com/AI4Finance-Foundation/FinRobot/blob/63e1884a42ea7b729551a5424b4bd6a65af636e0/setup.py?plain=1#L48" },
+  { what = "install", url = "https://github.com/AI4Finance-Foundation/FinRobot/blob/63e1884a42ea7b729551a5424b4bd6a65af636e0/README.md?plain=1#L151-L159" },
+  { what = "install", url = "https://github.com/AI4Finance-Foundation/FinRobot/blob/63e1884a42ea7b729551a5424b4bd6a65af636e0/README.md?plain=1#L41" },
+  { what = "interface", url = "https://github.com/AI4Finance-Foundation/FinRobot/blob/63e1884a42ea7b729551a5424b4bd6a65af636e0/README.md?plain=1#L143-L173" },
+  { what = "interface", url = "https://github.com/AI4Finance-Foundation/FinRobot/blob/63e1884a42ea7b729551a5424b4bd6a65af636e0/README.md?plain=1#L175-L183" },
+  { what = "interface", url = "https://github.com/AI4Finance-Foundation/FinRobot/blob/63e1884a42ea7b729551a5424b4bd6a65af636e0/finrobot_desktop/README.md?plain=1#L214" },
+  { what = "interface", url = "https://github.com/AI4Finance-Foundation/FinRobot/blob/63e1884a42ea7b729551a5424b4bd6a65af636e0/Dockerfile?plain=1#L24-L26" },
+  { what = "io", url = "https://github.com/AI4Finance-Foundation/FinRobot/blob/63e1884a42ea7b729551a5424b4bd6a65af636e0/README.md?plain=1#L163-L171" },
+  { what = "io", url = "https://github.com/AI4Finance-Foundation/FinRobot/blob/63e1884a42ea7b729551a5424b4bd6a65af636e0/README.md?plain=1#L84-L93" },
+  { what = "keys", url = "https://github.com/AI4Finance-Foundation/FinRobot/blob/63e1884a42ea7b729551a5424b4bd6a65af636e0/finrobot_desktop/README.md?plain=1#L151-L153" },
+  { what = "keys", url = "https://github.com/AI4Finance-Foundation/FinRobot/blob/63e1884a42ea7b729551a5424b4bd6a65af636e0/README.md?plain=1#L177-L179" },
+  { what = "keys", url = "https://github.com/AI4Finance-Foundation/FinRobot/blob/63e1884a42ea7b729551a5424b4bd6a65af636e0/README.md?plain=1#L227-L233" },
+  { what = "orders", url = "https://github.com/AI4Finance-Foundation/FinRobot/blob/63e1884a42ea7b729551a5424b4bd6a65af636e0/README.md?plain=1#L414" },
+  { what = "orders", url = "https://github.com/AI4Finance-Foundation/FinRobot/blob/63e1884a42ea7b729551a5424b4bd6a65af636e0/finrobot_desktop/README.md?plain=1#L168" },
+  { what = "orders", url = "https://github.com/AI4Finance-Foundation/FinRobot/blob/63e1884a42ea7b729551a5424b4bd6a65af636e0/finrobot_desktop/pyproject.toml?plain=1#L44-L45" },
+  { what = "integrations", url = "https://github.com/AI4Finance-Foundation/FinRobot/blob/63e1884a42ea7b729551a5424b4bd6a65af636e0/finrobot_desktop/finrobot/engine/data/providers/edgar_provider.py?plain=1#L1" },
+  { what = "notes", url = "https://github.com/AI4Finance-Foundation/FinRobot/blob/63e1884a42ea7b729551a5424b4bd6a65af636e0/README.md?plain=1#L35-L39" },
+]
+notes = "Three generations in one repo: V0 AutoGen (educational), V1 equity web app, V2 PydanticAI desktop (production). Backtests run on backtrader only."
+verification = "docs"
+
+[[component]]
+id = "vibe-trading"
+language = "Python (FastAPI backend) with a React 19 frontend; Electron desktop shell"
+runtime = "Python 3.11+; Docker for the one-command path; Node 22.22+ for frontend development; local Ollama optional"
+install = "pip install vibe-trading-ai"
+interface = ["cli", "web-ui", "rest-api", "mcp", "docker-service", "desktop"]
+inputs = "Natural-language research or backtest prompts, strategy configs, uploaded documents or broker journals, and broker connector profiles"
+outputs = "Research reports, strategy code, backtest metrics with run cards and validation, Shadow Account reports, TradingView/TDX/MT5 exports, broker orders"
+keys_cost = "An LLM key, or Ollama, a Claude Code login, Copilot or ChatGPT OAuth; market data free by default; optional keyed or paid sources; live-runner LLM calls are billed"
+orders = "live"
+integrations = [
+  { with = "akshare", note = "akshare is a dependency and a free fallback source for A-shares, futures, funds, macro and forex", url = "https://github.com/HKUDS/Vibe-Trading/blob/3cbb167e9d7afab1682934685437efb96faacd43/README.md?plain=1#L612" },
+  { with = "ccxt", note = "ccxt is a dependency used for crypto history across 100+ exchanges in the crypto fallback chain", url = "https://github.com/HKUDS/Vibe-Trading/blob/3cbb167e9d7afab1682934685437efb96faacd43/README.md?plain=1#L622" },
+  { with = "openbb", note = "Optional openbb extra (openbb-ai) registers an OpenBB Workspace custom-agent bridge; Workspace, not the ODP library", url = "https://github.com/HKUDS/Vibe-Trading/blob/3cbb167e9d7afab1682934685437efb96faacd43/README.md?plain=1#L1679" },
+]
+sources = [
+  { what = "language", url = "https://github.com/HKUDS/Vibe-Trading/blob/3cbb167e9d7afab1682934685437efb96faacd43/pyproject.toml?plain=1#L1-L7" },
+  { what = "language", url = "https://github.com/HKUDS/Vibe-Trading/blob/3cbb167e9d7afab1682934685437efb96faacd43/README.md?plain=1#L20-L22" },
+  { what = "language", url = "https://github.com/HKUDS/Vibe-Trading/blob/3cbb167e9d7afab1682934685437efb96faacd43/desktop/electron/README.md?plain=1#L1-L4" },
+  { what = "runtime", url = "https://github.com/HKUDS/Vibe-Trading/blob/3cbb167e9d7afab1682934685437efb96faacd43/README.md?plain=1#L1047-L1054" },
+  { what = "runtime", url = "https://github.com/HKUDS/Vibe-Trading/blob/3cbb167e9d7afab1682934685437efb96faacd43/pyproject.toml?plain=1#L5" },
+  { what = "runtime", url = "https://github.com/HKUDS/Vibe-Trading/blob/3cbb167e9d7afab1682934685437efb96faacd43/README.md?plain=1#L1175" },
+  { what = "install", url = "https://github.com/HKUDS/Vibe-Trading/blob/3cbb167e9d7afab1682934685437efb96faacd43/README.md?plain=1#L1004-L1008" },
+  { what = "interface", url = "https://github.com/HKUDS/Vibe-Trading/blob/3cbb167e9d7afab1682934685437efb96faacd43/README.md?plain=1#L1023-L1036" },
+  { what = "interface", url = "https://github.com/HKUDS/Vibe-Trading/blob/3cbb167e9d7afab1682934685437efb96faacd43/README.md?plain=1#L1636-L1640" },
+  { what = "interface", url = "https://github.com/HKUDS/Vibe-Trading/blob/3cbb167e9d7afab1682934685437efb96faacd43/README.md?plain=1#L1117-L1127" },
+  { what = "interface", url = "https://github.com/HKUDS/Vibe-Trading/blob/3cbb167e9d7afab1682934685437efb96faacd43/README.md?plain=1#L1800-L1802" },
+  { what = "interface", url = "https://github.com/HKUDS/Vibe-Trading/blob/3cbb167e9d7afab1682934685437efb96faacd43/desktop/electron/README.md?plain=1#L1-L4" },
+  { what = "io", url = "https://github.com/HKUDS/Vibe-Trading/blob/3cbb167e9d7afab1682934685437efb96faacd43/README.md?plain=1#L396-L410" },
+  { what = "keys", url = "https://github.com/HKUDS/Vibe-Trading/blob/3cbb167e9d7afab1682934685437efb96faacd43/README.md?plain=1#L1047-L1056" },
+  { what = "keys", url = "https://github.com/HKUDS/Vibe-Trading/blob/3cbb167e9d7afab1682934685437efb96faacd43/README.md?plain=1#L1060" },
+  { what = "keys", url = "https://github.com/HKUDS/Vibe-Trading/blob/3cbb167e9d7afab1682934685437efb96faacd43/README.md?plain=1#L686" },
+  { what = "keys", url = "https://github.com/HKUDS/Vibe-Trading/blob/3cbb167e9d7afab1682934685437efb96faacd43/README.md?plain=1#L2135-L2141" },
+  { what = "orders", url = "https://github.com/HKUDS/Vibe-Trading/blob/3cbb167e9d7afab1682934685437efb96faacd43/README.md?plain=1#L772-L793" },
+  { what = "orders", url = "https://github.com/HKUDS/Vibe-Trading/blob/3cbb167e9d7afab1682934685437efb96faacd43/README.md?plain=1#L2702" },
+  { what = "integrations", url = "https://github.com/HKUDS/Vibe-Trading/blob/3cbb167e9d7afab1682934685437efb96faacd43/pyproject.toml?plain=1#L49-L50" },
+  { what = "integrations", url = "https://github.com/HKUDS/Vibe-Trading/blob/3cbb167e9d7afab1682934685437efb96faacd43/pyproject.toml?plain=1#L173-L178" },
+  { what = "notes", url = "https://github.com/HKUDS/Vibe-Trading/blob/3cbb167e9d7afab1682934685437efb96faacd43/README.md?plain=1#L835" },
+  { what = "notes", url = "https://github.com/microsoft/qlib/blob/54355232463878d2eebb91fe0ee5fa7fa1f5976c/LICENSE?plain=1#L1" },
+]
+notes = "Live broker trading is experimental and unverified against a real account. Desktop build is unofficial. Alpha Zoo ports Qlib Alpha158 formulas, labelled Apache-2.0 though Qlib is MIT."
+verification = "docs"
+
+# ---------------------------------------------------------------- cross-layer recipes
+# status: design = our proposal, not run end to end | upstream = the pairing is documented by its authors (links) |
+#         run = we ran it end to end (none yet). A recipe is a starting point for your own integration test.
+
+[[recipe]]
+id = "factor-research-loop"
+title = "Factor research loop: RD-Agent on Qlib"
+status = "upstream"
+why = "The one cross-layer pairing here that its authors document and ship: RD-Agent's quant scenarios run their factor and model proposals through Qlib's data and backtest."
+steps = [
+  { layer = "harness", component = "qlib", role = "data store, factor evaluation and backtest" },
+  { layer = "application", component = "rd-agent", role = "proposes factors and models, writes the code, reads the results and iterates" },
+]
+gaps = "Every automatically proposed factor is another trial: count them and deflate the result (tools/evalkit), keep a held-out period the loop never sees, and add costs before believing a backtest. Upstream documents Linux and Docker for most scenarios."
+links = [
+  { label = "RD-Agent README: the Qlib scenarios", url = "https://github.com/microsoft/RD-Agent/blob/484776c211e4fbbeef03e0ec00d6bbee7362a4f4/README.md?plain=1#L271-L286" },
+]
+
+[[recipe]]
+id = "auditable-research-desk"
+title = "Research desk whose numbers you can audit"
+status = "design"
+why = "Primary filings in, a written view out, and every prompt change regression-tested and traced. Two of the joins are documented upstream: FinRobot V2's SEC EDGAR provider is built on edgartools, and promptfoo can pull prompts and traces from Langfuse."
+steps = [
+  { layer = "data", component = "edgartools", role = "pulls filings and XBRL financials as typed objects" },
+  { layer = "application", component = "finrobot", role = "computes the figures with code and lets the model write around them" },
+  { layer = "harness", component = "promptfoo", role = "regression tests for the research prompts, including prompt injection through filing text" },
+  { layer = "harness", component = "langfuse", role = "traces every run with its inputs, tool calls and cost" },
+]
+gaps = "Not run end to end by us. Feeding FinRobot's runs into promptfoo tests and Langfuse traces is your work: neither project documents it. Record each filing's acceptance time, not the fetch time, and check the generated text against the computed numbers."
+links = [
+  { label = "FinRobot V2 depends on edgartools", url = "https://github.com/AI4Finance-Foundation/FinRobot/blob/63e1884a42ea7b729551a5424b4bd6a65af636e0/finrobot_desktop/pyproject.toml?plain=1#L40" },
+  { label = "promptfoo's Langfuse integration", url = "https://github.com/promptfoo/promptfoo/blob/e48ed85e08ff8a1ca74fa7d0e41daf47cf155efb/site/docs/integrations/langfuse.md?plain=1#L6-L38" },
+]
+
+[[recipe]]
+id = "paper-trading-agent"
+title = "Paper-trading agent with guardrails"
+status = "design"
+why = "A decision framework that stops at a rating, an order tool that defaults to paper, and the ledger in between that neither ships."
+steps = [
+  { layer = "data", component = "openbb", role = "market and fundamental data for the analysts" },
+  { layer = "agent", component = "tradingagents", role = "analyst debate that ends in a five-tier rating" },
+  { layer = "execution", component = "alpaca-mcp-server", role = "paper orders, with ALPACA_TOOLSETS restricted to the tools the agent needs" },
+  { layer = "harness", component = "langfuse", role = "a trace of each decision, tool call and order" },
+]
+gaps = "Not run end to end by us. TradingAgents emits ratings, not orders: position sizing, order-value and exposure limits in code, and reconciliation of intended against filled orders are yours to build. Paper fills are kinder than live ones, and one environment flag switches Alpaca to real money."

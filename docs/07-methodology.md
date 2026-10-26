@@ -21,14 +21,19 @@ How the catalog was built, what each label means, what is checked by a program a
 
 | Field | Where it comes from |
 |---|---|
-| Paper title, first author, v1 and latest dates | arXiv API, re-checked by `tools/verify.py papers` |
-| Repository stars | The GitHub page, read by hand on the snapshot date |
-| License, last commit date and hash | A shallow clone on the snapshot date; `tools/verify.py projects` reports when HEAD has moved |
+| Paper title, first author, v1 and latest dates | arXiv API, re-checked weekly by `tools/verify.py papers` |
+| Repository stars | The GitHub page, read by hand on the date in `stars_asof` |
+| Checked commit (`last_sha`), its date and `checked` | A blob-less clone of the default branch on the check date; the full 40-character hash is recorded and every other repository fact is about that commit |
+| License and license status | The root license file read as text (`license_file`), classified `open`, `mixed`, `restricted`, `declared` (stated in a README, badge or manifest with no license file) or `none`; anything other than `open` links to its source lines |
+| Order authority (`orders`) | The README **and the code** at the checked commit, searched for broker and exchange order calls: `live`, `paper` or `none`, with links to the lines for `live` and `paper`. A read-only or DEMO mode is not paper trading |
+| Maintenance | Only what upstream declares (`archived`, `deprecated`, `unmaintained`), with a link to the declaration; commit activity is computed separately from `last_commit` and `checked` |
 | Layer | Working code for the job, not a README mention ([how we tag layers](01-domain-map.md#how-we-tag-layers)) |
 | Evidence rung and repro | [The evidence ladder](02-evidence-ladder.md): the highest rung a third party can inspect for the headline claim |
-| Read depth | What we actually read: `teardown` (paper in full plus code at a named commit), `readme` (the README skimmed, plus the license file and the commit log), `card` (a [method card](#method-cards)); for papers `full`, `partial`, `abstract` or `card` |
+| Read depth | What we actually read: `teardown` (paper in full plus code at a named commit), `readme` (README, license file and commit log, plus a code search for order paths), `card` (a [method card](#method-cards)); for papers `full`, `partial`, `abstract` or `card` |
 
-Stars and activity are context, not evidence. They are dated because they go stale in weeks.
+Stars and activity are context, not evidence. They are dated because they go stale in weeks; the activity mark is computed from the last commit as of the check date, so an old check shows as old rather than as current.
+
+The 2026-10-26 re-check of every repository found labels the first pass had wrong, which is why the code is now searched as well as the README: a Kalshi CLI with real buy, sell and cancel commands was unmarked; a Polymarket server's read-only DEMO mode had been described as paper trading; FinRL, FinRL-Meta and a research lab with a switched-off Robinhood path can send real orders; DeepFund states that it does not trade; one repository recorded as MIT has no license file; and QuantConnect's MCP repository had been reduced to a README for a hosted service.
 
 ## How a teardown was done
 
@@ -44,12 +49,14 @@ Each teardown carries a "what we checked" table so that a reader can see which s
 
 | Check | Command | Runs |
 |---|---|---|
-| Schema and cross-references in the catalog | `python tools/build.py check` | every push |
-| Generated tables and counts in the docs are current | `python tools/build.py tables --check` | every push |
-| Statistics code against simulation | `python -m unittest discover -s tests -t .` | every push |
-| arXiv titles and dates, repository reachability | `python tools/verify.py all` | on a schedule |
+| Schema and cross-references in the catalog, including that every evidence link is pinned to the checked commit | `python tools/build.py check` | every push |
+| Generated pages, both READMEs and the figures are current | `python tools/build.py tables --check`, `python tools/make_assets.py --check` | every push |
+| Statistics code against simulation; the source checker's decisions against recorded observations | `python -m unittest discover -s tests -t .` | every push |
+| arXiv titles and dates; repositories reachable, HEAD moved, license file changed, archived upstream; articles, milestones and every pinned evidence link alive | `python tools/verify.py all --report DIR` | weekly, with the report in the job summary and as an artifact |
 | Catalog against the inclusion rule | `python tools/list_audit.py --src DIR --catalog` | by hand (needs the four clones) |
 | Method cards' quotes against the paper text | `python -m tools.extract verify` | by hand |
+
+A green weekly run means nothing changed in a way a program can see. It does not mean that every source still says what the catalog says, and it never means that two listed projects work together: the [component matrix](components.md) says, per component, whether anything was installed or run.
 
 Numbers in the prose that come from the catalog (counts by rung, by layer) are generated into the documents between `<!-- gen:... -->` markers (including the directory sections of both READMEs) and fail the check when stale. Numbers that come from papers are quoted with the table or section they come from.
 

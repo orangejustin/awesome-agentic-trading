@@ -11,7 +11,7 @@
 
 **Open gap.** Architecture comparisons rarely control for spend: a design that makes eleven model calls per decision is usually compared with rule-based baselines, not with one call to the same model at the same budget.
 
-8 repos · 22 papers · 3 articles and posts. Legend: 🟢 active (last commit within 90 days of the check) · 🟡 slowing (within a year) · ⚪ dormant · ⚡ can place real orders · 📝 paper trading · 🧰 general-purpose tool applied here · 📖 read in full · 🗂️ machine-extracted [method card](../docs/cards/index.md) · 🔖 abstract only.
+8 repos · 22 papers · 3 articles and posts. Legend: 🟢 active · 🟡 slowing · ⚪ dormant (last commit within 90 days, within a year, or older, counted from the check date) · 💤 declared unmaintained · ⚡ can place real orders · 📝 paper trading only · 🧩 open core with proprietary parts · 🔒 source-available, restricted · ❓ license unclear · 🧰 general-purpose tool applied here · 📖 read in full · 🗂️ machine-extracted [method card](../docs/cards/index.md) · 🔖 abstract only. Marks on a row link to the lines that support them, at the commit we checked.
 
 ## Contents
 
@@ -26,31 +26,31 @@
 
 ### Finance LLMs and reasoning models
 
-| Project | What it does | Suits | Status | License | Last commit | Key limit |
-|---|---|---|---|---|---|---|
-| [FinGPT](https://github.com/AI4Finance-Foundation/FinGPT) | Open financial LLM project with data pipelines and LoRA fine-tuning recipes | Researchers fine-tuning LLMs for finance NLP tasks | 🟢 active | MIT | 2026-09-22 | A model and data project; no trading-performance claim checked |
-| [Qwen DianJin](https://github.com/aliyun/qwen-dianjin) | Alibaba Cloud hub for finance reasoning models, datasets and benchmarks | Researchers evaluating or building LLMs for financial tasks | 🟢 active | MIT (sub-projects under Apache-2.0 in LICENSES/) | 2026-10-16 | A research hub, not a trading system; sub-projects have separate READMEs and licenses |
-| [Kronos](https://github.com/shiyu-coder/Kronos) | Foundation model for candlestick (OHLCV) sequences, with released checkpoints and fine-tuning scripts | Researchers testing time-series foundation models as a forecasting tool an agent can call | 🟡 slowing | MIT | 2026-04-13 | Research-grade forecasts; compare out of sample against simple baselines and a random walk before use |
+| Project | What it does | Suits | Activity | License | Orders | Checked | Key limit |
+|---|---|---|---|---|---|---|---|
+| [FinGPT](https://github.com/AI4Finance-Foundation/FinGPT) | Open financial LLM project with data pipelines and LoRA fine-tuning recipes | Researchers fine-tuning LLMs for finance NLP tasks | 🟢 active, last commit 2026-10-25 | [`MIT`](https://github.com/AI4Finance-Foundation/FinGPT/blob/ac5c5443fbeeafad801e7a3c188e4f24cfaad4d8/LICENSE) | none | [2026-10-26 @ `ac5c544`](https://github.com/AI4Finance-Foundation/FinGPT/tree/ac5c5443fbeeafad801e7a3c188e4f24cfaad4d8) | A model and data project; no trading-performance claim checked |
+| [Qwen DianJin](https://github.com/aliyun/qwen-dianjin) | Alibaba Cloud hub for finance reasoning models, datasets and benchmarks | Researchers evaluating or building LLMs for financial tasks | 🟢 active, last commit 2026-10-16 | [`MIT + Apache-2.0 sub-projects`](https://github.com/aliyun/qwen-dianjin/blob/e109a7d2da9899de597b81bea015fbf1b056a74a/LICENSE) | none | [2026-10-26 @ `e109a7d`](https://github.com/aliyun/qwen-dianjin/tree/e109a7d2da9899de597b81bea015fbf1b056a74a) | A research hub, not a trading system; sub-projects have separate READMEs and licenses |
+| [Kronos](https://github.com/shiyu-coder/Kronos) | Foundation model for candlestick (OHLCV) sequences, with released checkpoints and fine-tuning scripts | Researchers testing time-series foundation models as a forecasting tool an agent can call | 🟡 slowing, last commit 2026-04-13 | [`MIT`](https://github.com/shiyu-coder/Kronos/blob/67b630e67f6a18c9e9be918d9b4337c960db1e9a/LICENSE) | none | [2026-10-26 @ `67b630e`](https://github.com/shiyu-coder/Kronos/tree/67b630e67f6a18c9e9be918d9b4337c960db1e9a) | Research-grade forecasts; compare out of sample against simple baselines and a random walk before use |
 
 ### Multi-agent decision architectures
 
-| Project | What it does | Suits | Status | License | Last commit | Key limit |
-|---|---|---|---|---|---|---|
-| [TradingAgents](https://github.com/TauricResearch/TradingAgents) · [🔬 deep dive](../docs/teardowns/tradingagents.md) | LangGraph multi-agent trading firm whose analyst and risk debates yield five-tier ratings | Developers building multi-agent LLM trading decision pipelines | 🟢 active | Apache-2.0 | 2026-10-16 | Evaluates decision quality only; no portfolio simulator, Sharpe code or paper harness |
-| [QuantAgent / QuantHarness](https://github.com/Y-Research-SBU/QuantAgent) | LangGraph multi-agent technical-analysis system for short-horizon trading with web UI | Developers building multi-agent technical-analysis trading systems | 🟢 active | MIT | 2026-08-18 | Paper backtest not rerun; short-horizon results need long records |
-| [ContestTrade](https://github.com/FinStep-AI/ContestTrade) · [🔬 deep dive](../docs/teardowns/contesttrade.md) | Multi-agent framework where competing teams build text factors and trades, weighted by predicted Sharpe | Researchers studying competitive multi-agent trading decision systems | 🟡 slowing | Apache-2.0 | 2025-12-22 | Repo lacks backtest code, so the paper's Table 1 cannot be regenerated |
+| Project | What it does | Suits | Activity | License | Orders | Checked | Key limit |
+|---|---|---|---|---|---|---|---|
+| [TradingAgents](https://github.com/TauricResearch/TradingAgents) · [🔬 deep dive](../docs/teardowns/tradingagents.md) | LangGraph multi-agent trading firm whose analyst and risk debates yield five-tier ratings | Developers building multi-agent LLM trading decision pipelines | 🟢 active, last commit 2026-10-16 | [`Apache-2.0`](https://github.com/TauricResearch/TradingAgents/blob/e8f5503e9b86d5c2710b0c76b1f686703968c9df/LICENSE) | none | [2026-10-26 @ `e8f5503`](https://github.com/TauricResearch/TradingAgents/tree/e8f5503e9b86d5c2710b0c76b1f686703968c9df) | Evaluates decision quality only; no portfolio simulator, Sharpe code or paper harness |
+| [QuantAgent / QuantHarness](https://github.com/Y-Research-SBU/QuantAgent) | LangGraph multi-agent technical-analysis system for short-horizon trading with web UI | Developers building multi-agent technical-analysis trading systems | 🟢 active, last commit 2026-08-18 | [`MIT`](https://github.com/Y-Research-SBU/QuantAgent/blob/2e64c7befa75a88d254a426f5f29fa61b0b56732/LICENSE) | none | [2026-10-26 @ `2e64c7b`](https://github.com/Y-Research-SBU/QuantAgent/tree/2e64c7befa75a88d254a426f5f29fa61b0b56732) | Paper backtest not rerun; short-horizon results need long records |
+| [ContestTrade](https://github.com/FinStep-AI/ContestTrade) · [🔬 deep dive](../docs/teardowns/contesttrade.md) | Multi-agent framework where competing teams build text factors and trades, weighted by predicted Sharpe | Researchers studying competitive multi-agent trading decision systems | 🟡 slowing, last commit 2025-12-22 | [`Apache-2.0`](https://github.com/FinStep-AI/ContestTrade/blob/22432f9bbba5f1d6862d3b6b5508d4d882b40b94/LICENSE) | none | [2026-10-26 @ `22432f9`](https://github.com/FinStep-AI/ContestTrade/tree/22432f9bbba5f1d6862d3b6b5508d4d882b40b94) | Repo lacks backtest code, so the paper's Table 1 cannot be regenerated |
 
 ### Single agents, memory and reflection
 
-| Project | What it does | Suits | Status | License | Last commit | Key limit |
-|---|---|---|---|---|---|---|
-| [FinMem](https://github.com/pipiku915/FinMem-LLM-StockTrading) · [🔬 deep dive](../docs/teardowns/finmem.md) | Single LLM trading agent with risk persona and three-layer decaying memory | Researchers studying memory design for LLM trading agents | ⚪ dormant | MIT | 2024-08-17 | Repo ships no market data, only placeholders and a fake sample zip |
+| Project | What it does | Suits | Activity | License | Orders | Checked | Key limit |
+|---|---|---|---|---|---|---|---|
+| [FinMem](https://github.com/pipiku915/FinMem-LLM-StockTrading) · [🔬 deep dive](../docs/teardowns/finmem.md) | Single LLM trading agent with risk persona and three-layer decaying memory | Researchers studying memory design for LLM trading agents | ⚪ dormant, last commit 2024-08-17 | [`MIT`](https://github.com/pipiku915/FinMem-LLM-StockTrading/blob/be814aa47970de9bf2fdd6a1d5a60ae5cf361b46/LICENSE) | none | [2026-10-26 @ `be814aa`](https://github.com/pipiku915/FinMem-LLM-StockTrading/tree/be814aa47970de9bf2fdd6a1d5a60ae5cf361b46) | Repo ships no market data, only placeholders and a fake sample zip |
 
 ### Reinforcement learning and learned policies
 
-| Project | What it does | Suits | Status | License | Last commit | Key limit |
-|---|---|---|---|---|---|---|
-| [FinRL](https://github.com/AI4Finance-Foundation/FinRL) | Deep reinforcement learning library and tutorials for stock trading environments | Researchers applying deep RL to portfolio trading simulations | 🟢 active | MIT | 2026-10-20 | Teaching-oriented RL environments; no headline result checked here |
+| Project | What it does | Suits | Activity | License | Orders | Checked | Key limit |
+|---|---|---|---|---|---|---|---|
+| [FinRL](https://github.com/AI4Finance-Foundation/FinRL) | Deep reinforcement learning library and tutorials for stock trading environments | Researchers applying deep RL to portfolio trading simulations | 🟢 active, last commit 2026-10-25 | [`MIT`](https://github.com/AI4Finance-Foundation/FinRL/blob/7e98df461cbc7772f16a545a2f13b521e5d0b8f4/LICENSE) | ⚡ live [1](https://github.com/AI4Finance-Foundation/FinRL/blob/7e98df461cbc7772f16a545a2f13b521e5d0b8f4/README.md?plain=1#L55) | [2026-10-26 @ `7e98df4`](https://github.com/AI4Finance-Foundation/FinRL/tree/7e98df461cbc7772f16a545a2f13b521e5d0b8f4) | Teaching-oriented RL environments with basic Alpaca live trading; FinRL-X is the production successor |
 
 ## Also relevant from other layers
 
@@ -64,8 +64,8 @@ Listed in their primary layer; they also ship working code for this one.
 
 Repositories that exist and are often cited but do not yet hold the system's code. They move into the directory when code is released.
 
-- [FinCon](https://github.com/The-FinAI/FinCon) — Manager-analyst agent hierarchy with risk-control agent triggering self-critique. ⚠️ Code not released; repo holds only a license and README.
-- [Trading-R1](https://github.com/TauricResearch/Trading-R1) — Reasoning model trained with SFT and RL to produce investment theses. ⚠️ Repo holds only a two-line README; no model or code released.
+- [FinCon](https://github.com/The-FinAI/FinCon) — Manager-analyst agent hierarchy with risk-control agent triggering self-critique. ⚠️ Code not released; repo holds only a license and README. [🔍 2026-10-26](https://github.com/The-FinAI/FinCon/tree/3ee6854ad6e45a86d9a858a6d5306213dcfc2003)
+- [Trading-R1](https://github.com/TauricResearch/Trading-R1) — Reasoning model trained with SFT and RL to produce investment theses. ⚠️ Repo holds only a two-line README; no model or code released. [🔍 2026-10-26](https://github.com/TauricResearch/Trading-R1/tree/57810bfb4456ba1509a2a3c6d502d3085922bf83)
 
 ## Papers
 
@@ -113,7 +113,7 @@ Repositories that exist and are often cited but do not yet hold the system's cod
 
 ## Articles and posts
 
-Newest first. Icons: 𝕏 post · 📝 blog · 📘 docs · 📰 news · 🎧 podcast · 📄 paper or report. A post is listed for the idea it carries; its own performance claims are not verified here.
+Newest first. Icons: 𝕏 post · 📝 blog · 📘 docs · 📰 news · 🎧 podcast · 🎤 talk · 📄 paper or report. A post is listed for the idea it carries; its own performance claims are not verified here. Undated pages show the date we checked them.
 
 - 🎤 [How Bridgewater's AIA Labs Built PAT: The AI Pocket Analyst Tool](https://www.bridgewater.com/aia-labs/how-bridgewaters-aia-labs-built-pat-the-ai-pocket-analyst-tool) — Brendan McManus, Michael Ran, Santi Weight (Bridgewater AIA Labs), 2026-05-19. A rare engineering talk from a large macro fund on combining codified investment knowledge with agentic LLM workflows and investor feedback loops.
 - 𝕏 [Wrapping LLMs in an evolutionary framework to search trading policies](https://x.com/togelius/status/1995942724374331507) — Julian Togelius (@togelius), 2025-12-02. A researcher's case that LLMs write code well but optimize policies poorly, so Nof1 wraps them in evolutionary search to generate trading policies. A design idea for the agent's outer loop.
