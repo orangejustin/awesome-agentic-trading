@@ -1,0 +1,115 @@
+# Key moments in agentic trading, in date order. Kept short on purpose: an entry needs a primary or clearly
+# labelled source (`link`) and must say why it matters (what changed after it), in English and Chinese.
+# Proposing one: say in the pull request what it changed, not only that it happened.
+
+[[milestone]]
+date = "2020-11-19"
+title = "FinRL: deep reinforcement learning library for trading"
+title_zh = "FinRL：面向交易的深度强化学习库"
+why = "Made trading environments and RL agents reusable open source; its successors (FinRL-Meta, FinRL-X) carry the line from simulation to a broker."
+why_zh = "把交易环境与强化学习智能体做成可复用的开源组件；后续的 FinRL-Meta、FinRL-X 把这条线从模拟延伸到券商。"
+link = "https://arxiv.org/abs/2011.09607"
+
+[[milestone]]
+date = "2023-03-30"
+title = "BloombergGPT"
+title_zh = "BloombergGPT"
+why = "A large language model trained for finance from a major data firm; open finance LLMs (FinGPT, FinMA) followed within months."
+why_zh = "大型金融数据公司训练的金融专用大模型；数月内即出现开源金融大模型（FinGPT、FinMA）。"
+link = "https://arxiv.org/abs/2303.17564"
+
+[[milestone]]
+date = "2023-04-15"
+title = "\"Can ChatGPT Forecast Stock Price Movements?\""
+title_zh = "《ChatGPT 能预测股价走势吗？》"
+why = "First widely cited evidence that LLM-read headlines predict next-day returns on news after the model's cutoff, which put look-ahead bias at the centre of how later work is judged."
+why_zh = "首个被广泛引用的证据：在模型截止日之后的新闻上，LLM 读标题能预测次日收益；此后评判相关研究都绕不开“前视偏差”这一问题。"
+link = "https://arxiv.org/abs/2304.07619"
+
+[[milestone]]
+date = "2023-11-23"
+title = "FinMem: a trading agent with layered memory"
+title_zh = "FinMem：带分层记忆的交易智能体"
+why = "Moved from \"LLM as a sentiment scorer\" to \"LLM as an agent\" with memory, reflection and a risk persona, the design vocabulary later systems reuse."
+why_zh = "从“LLM 当情绪打分器”走向“LLM 当智能体”：记忆、反思与风险画像，成为后续系统沿用的设计语汇。"
+link = "https://arxiv.org/abs/2311.13743"
+
+[[milestone]]
+date = "2024-11-25"
+title = "Model Context Protocol released"
+title_zh = "Model Context Protocol（MCP）发布"
+why = "A standard way to hand an agent tools; brokers, exchanges and data vendors later used it to expose market data and orders to any compatible agent."
+why_zh = "为智能体提供工具的标准方式；此后券商、交易所与数据商都用它向任意兼容的智能体开放行情与下单。"
+link = "https://www.anthropic.com/news/model-context-protocol"
+
+[[milestone]]
+date = "2024-11-29"
+title = "AI Hedge Fund repository starts"
+title_zh = "AI Hedge Fund 仓库诞生"
+why = "Its investor-persona agents became a widely copied open-source template for multi-agent investing; its 2026 redesign moved trading decisions back to quant models."
+why_zh = "其“投资大师人设”智能体成为被广泛复制的开源多智能体投资模板；2026 年的重新设计又把交易决策交回量化模型。"
+link = "https://github.com/virattt/ai-hedge-fund/commit/0c595638f5e3e2c6de0bfe6ca06773d7384cc3ea"
+
+[[milestone]]
+date = "2024-12-28"
+title = "TradingAgents: a multi-agent trading firm"
+title_zh = "TradingAgents：多智能体“交易公司”"
+why = "The role-based firm (analysts, bull/bear debate, trader, risk team) became a common reference architecture; the only paper linked by all four popular lists we compared."
+why_zh = "按角色分工的“交易公司”（分析师、多空辩论、交易员、风控团队）成为常见的参考架构；也是我们对比的四个热门清单唯一共同收录的论文。"
+link = "https://arxiv.org/abs/2412.20138"
+
+[[milestone]]
+date = "2025-05-16"
+title = "\"Time Travel is Cheating\": live benchmarking on post-cutoff data"
+title_zh = "《时间旅行是作弊》：用截止日之后的数据做实时评测"
+why = "Made evaluation on data published after each model's cutoff the standard answer to look-ahead, and reported that strong models lose money once it is applied."
+why_zh = "让“只用模型截止日之后发布的数据评测”成为应对前视偏差的标准做法，并报告在此条件下强模型也会亏损。"
+link = "https://arxiv.org/abs/2505.11065"
+
+[[milestone]]
+date = "2025-05-21"
+title = "R&D-Agent-Quant: agents that run the factor research loop"
+title_zh = "R&D-Agent-Quant：让智能体跑完因子研究闭环"
+why = "Showed agents proposing, coding and evaluating factors and models end to end, shifting attention from agents that trade to agents that research."
+why_zh = "展示了智能体端到端地提出、编码并评估因子与模型，把关注点从“会交易的智能体”转向“会做研究的智能体”。"
+link = "https://arxiv.org/abs/2505.15155"
+
+[[milestone]]
+date = "2025-07-15"
+title = "Claude for Financial Services"
+title_zh = "Claude for Financial Services 发布"
+why = "A frontier lab packaged finance workflows on MCP connectors to major data vendors, making licensed data a tool call away for research agents."
+why_zh = "前沿实验室以连接主流数据商的 MCP 连接器打包金融工作流，让投研智能体一次工具调用就能拿到授权数据。"
+link = "https://www.anthropic.com/news/claude-for-financial-services"
+
+[[milestone]]
+date = "2025-10-17"
+title = "Alpha Arena: LLMs trade real money in public"
+title_zh = "Alpha Arena：大模型公开用真金白银交易"
+why = "Six models with $10K each traded crypto perpetuals autonomously in public; Qwen 3 MAX finished first on 2025-11-03. It made live records mainstream, and showed how short one run is."
+why_zh = "六个模型各持 1 万美元，公开自主交易加密永续合约；Qwen 3 MAX 于 2025-11-03 位列第一。它让实盘记录进入主流视野，也暴露了单次运行之短。"
+link = "https://x.com/jay_azhang/status/1979312946154033227"
+
+[[milestone]]
+date = "2025-12-09"
+title = "FINRA addresses AI agents in its oversight report"
+title_zh = "FINRA 监管报告首次专门讨论 AI 智能体"
+why = "A US regulator defined AI agents and listed the risks firms must supervise (autonomy, authority, auditability), turning harness design into a compliance question."
+why_zh = "美国监管机构定义了 AI 智能体并列出机构必须监督的风险（自主性、权限、可审计性），让 Harness 设计变成合规问题。"
+link = "https://www.finra.org/rules-guidance/guidance/reports/2026-finra-annual-regulatory-oversight-report/gen-ai"
+
+[[milestone]]
+date = "2026-05-27"
+title = "Robinhood opens live trading to agents"
+title_zh = "Robinhood 向智能体开放实盘交易"
+why = "A large retail broker gave third-party agents official order access through MCP, with a ring-fenced account, previews and kill switches: order authority became a product feature."
+why_zh = "大型零售券商通过 MCP 向第三方智能体开放官方下单通道，配以隔离账户、交易预览与紧急停止：下单权限成为产品功能。"
+link = "https://robinhood.com/newsroom/robinhood-is-now-open-to-agents/"
+
+[[milestone]]
+date = "2026-07-17"
+title = "Interactive Brokers opens its MCP server to any client"
+title_zh = "盈透证券向任意客户端开放 MCP 服务"
+why = "A global broker made its remote MCP server available to any compatible agent, with OAuth consent and revocation. Trade-press source."
+why_zh = "全球性券商向任意兼容智能体开放远程 MCP 服务，支持 OAuth 授权与撤销。来源为行业媒体报道。"
+link = "https://fxnewsgroup.com/forex-news/retail-forex/interactive-brokers-enables-traders-to-connect-their-accounts-to-any-mcp-compatible-ai-application/"
