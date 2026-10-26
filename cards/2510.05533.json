@@ -1,0 +1,103 @@
+{
+ "arxiv": "2510.05533",
+ "title": "The New Quant: A Survey of Large Language Models in Financial Prediction and Trading",
+ "published": "2025-10-07",
+ "updated": "2025-10-07",
+ "source": {
+  "kind": "html",
+  "url": "https://arxiv.org/html/2510.05533",
+  "chars": 53170,
+  "truncated": false,
+  "sha256": "510cf84cdaabe6554c1619df26e7b45d9dc53e654298e6fc22e4ea0f037d6a1e",
+  "fetched": "2026-10-21"
+ },
+ "extraction": {
+  "model": "claude-opus-5-5",
+  "effort": "medium",
+  "date": "2026-10-23",
+  "input_tokens": 20649,
+  "output_tokens": 407,
+  "cost_usd": 0.0907
+ },
+ "fields": {
+  "task": {
+   "status": "stated",
+   "value": "A survey synthesizing research on large language models for equity return prediction and trading, proposing a task-centered taxonomy and evaluation recommendations.",
+   "quote": "This survey synthesizes research with a focus on equity return prediction and trading, consolidating insights from domain surveys and more than fifty primary studies."
+  },
+  "architecture": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "data": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "window": {
+   "status": "stated",
+   "value": "Survey covers literature advances from 2023 to 2025.",
+   "quote": "We systematize advances from 2023 to 2025 through this lens"
+  },
+  "models": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "baselines": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "headline_result": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "costs": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "uncertainty": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "leakage_controls": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "limitations": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "release": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  }
+ },
+ "verification": {
+  "verified": 2,
+  "failed": 0,
+  "not_found": 10,
+  "detail": {
+   "task": "exact",
+   "architecture": "not_found",
+   "data": "not_found",
+   "window": "exact",
+   "models": "not_found",
+   "baselines": "not_found",
+   "headline_result": "not_found",
+   "costs": "not_found",
+   "uncertainty": "not_found",
+   "leakage_controls": "not_found",
+   "limitations": "not_found",
+   "release": "not_found"
+  }
+ }
+}

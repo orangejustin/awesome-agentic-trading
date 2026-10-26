@@ -1,0 +1,5 @@
+# Copy to tools/extract/local.toml (git-ignored) on the machine that runs the extraction.
+# Only needed when ANTHROPIC_API_KEY is not set in the environment. The command must print the key
+# and nothing else; its output is read in memory and never shown or stored.
+# Example for an item in the operating system's secret store: replace YOUR-SERVICE-NAME with the item's service name.
+key_command = ["security", "find-generic-password", "-s", "YOUR-SERVICE-NAME", "-w"]

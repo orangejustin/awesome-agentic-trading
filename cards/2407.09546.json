@@ -1,0 +1,103 @@
+{
+ "arxiv": "2407.09546",
+ "title": "A Reflective LLM-based Agent to Guide Zero-shot Cryptocurrency Trading",
+ "published": "2024-06-27",
+ "updated": "2026-08-17",
+ "source": {
+  "kind": "html",
+  "url": "https://arxiv.org/html/2407.09546",
+  "chars": 43441,
+  "truncated": false,
+  "sha256": "9e94d1030014ae7114eb173d5c0c0bf72cf0bc6d66b045c23c7663398da3f17a",
+  "fetched": "2026-10-21"
+ },
+ "extraction": {
+  "model": "claude-opus-5-5",
+  "effort": "medium",
+  "date": "2026-10-23",
+  "input_tokens": 19359,
+  "output_tokens": 1640,
+  "cost_usd": 0.1102
+ },
+ "fields": {
+  "task": {
+   "status": "stated",
+   "value": "Making daily zero-shot cryptocurrency trading decisions (buy/sell/hold proportions) for BTC, ETH and SOL using an LLM agent combining on-chain and off-chain data.",
+   "quote": "This work aims to bridge the gap by developing an LLM-based trading agent, CryptoTrade, which uniquely combines the analysis of on-chain and off-chain data."
+  },
+  "architecture": {
+   "status": "stated",
+   "value": "Data collection and statistics/news summarization (GPT-3.5-turbo), then market analyst, news analyst, trading agent and a reflection agent that reviews the previous week's prompts, decisions and returns to give feedback.",
+   "quote": "Finally, we enhance day-to-day decision-making with specialized analytical agents: market analyst agent evaluates market trends, news analyst agent interprets recent news impacts, and trading agent deliberates on investment actions. Concurrently, reflection agent reviews past performance"
+  },
+  "data": {
+   "status": "stated",
+   "value": "Daily CoinMarketCap prices/volume/market cap for BTC, ETH, SOL; Dune on-chain transaction statistics (transactions, active wallets, value transferred, gas); news via Gnews API from outlets like Bloomberg, Yahoo Finance, crypto.news.",
+   "quote": "We leverage historical data from CoinMarketCap55 5 https://coinmarketcap.com, which provides daily insights into prices, trading volumes, and market capitalization of various cryptocurrencies: BTC, ETH, SOL."
+  },
+  "window": {
+   "status": "stated",
+   "value": "Validation in early 2023 (e.g., BTC 2023-01-19 to 2023-03-13); tests in 2023: bearish 2023-04-12 to 2023-06-16, sideways (BTC 2023-06-17 to 2023-08-25, varies by coin), bullish 2023-10-01 to 2023-12-01.",
+   "quote": "| BTC | Validation | 2023-01-19 | 2023-03-13 | 20977.48 | 20628.03 | -1.67%"
+  },
+  "models": {
+   "status": "stated",
+   "value": "GPT-3.5-turbo for news summarization/analysts; trading experiments with GPT-4, GPT-4o (text) and tables report GPT-4 and GPT-3.5-turbo. No snapshot versions given.",
+   "quote": "Then, we conduct comprehensive experiments with CryptoTrade using GPT-422 2 https://platform.openai.com/docs/models/gpt-4, and GPT-4o33 3 https://platform.openai.com/docs/models/gpt-4o"
+  },
+  "baselines": {
+   "status": "stated",
+   "value": "Buy and Hold, SMA, SLMA, MACD, Bollinger Bands, LSTM, Informer, AutoFormer, TimesNet, PatchTST.",
+   "quote": "CryptoTrade significantly outperforms time-series baselines such as Informer Zhou et al. (2021) and PatchTST Nie et al. (2022), and achieves comparable performance to trading signals like Moving Average Convergence Divergence (MACD) Gencay (1996)"
+  },
+  "headline_result": {
+   "status": "stated",
+   "value": "ETH bullish test (2023-10-01 to 2023-12-01): Ours(GPT-4) total return 25.72% vs Buy and Hold 22.59%, Sharpe 0.17 vs 0.14.",
+   "quote": "| Ours(GPT-4) | 25.72 | 0.72 | -13.72 | 0.41 \\pm 2.45 | 0.03 \\pm 1.67 | -0.21 \\pm 2.02 | 0.17 | 0.02 | -0.10"
+  },
+  "costs": {
+   "status": "stated",
+   "value": "A transaction fee proportional to traded value is charged; rate not given.",
+   "quote": "When a trading decision is made, a transaction fee is charged in proportion to the traded value."
+  },
+  "uncertainty": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "leakage_controls": {
+   "status": "stated",
+   "value": "Test period chosen after September 2021, GPT-3.5's knowledge cutoff.",
+   "quote": "We carefully select the test period after September 2021, the GPT-3.5’s knowledge cutoff date, to prevent data leakage."
+  },
+  "limitations": {
+   "status": "stated",
+   "value": "Limited dataset; daily-only trading frequency; no fine-tuning on validation set possibly causing underperformance versus traditional signals.",
+   "quote": "One limitation of the current CryptoTrade framework is the reliance on a relatively limited dataset."
+  },
+  "release": {
+   "status": "stated",
+   "value": "Code and data released at an anonymous 4open.science link; dataset under CC BY-NC-SA; plan to host on GitHub.",
+   "quote": "Our code and data are available at https://anonymous.4open.science/r/CryptoTrade-Public-92FC/."
+  }
+ },
+ "verification": {
+  "verified": 11,
+  "failed": 0,
+  "not_found": 1,
+  "detail": {
+   "task": "exact",
+   "architecture": "exact",
+   "data": "exact",
+   "window": "exact",
+   "models": "exact",
+   "baselines": "exact",
+   "headline_result": "exact",
+   "costs": "exact",
+   "uncertainty": "not_found",
+   "leakage_controls": "exact",
+   "limitations": "exact",
+   "release": "exact"
+  }
+ }
+}

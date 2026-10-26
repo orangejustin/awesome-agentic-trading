@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 300" width="1280" height="300" role="img" aria-labelledby="t d" font-family="Inter, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif">
+<title id="t">Agentic Trading Atlas</title>
+<desc id="d">A verified, first-principles map of LLM and agentic trading.</desc>
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0B1220"/><stop offset="1" stop-color="#16294A"/></linearGradient></defs>
+<rect width="1280" height="300" rx="20" fill="url(#g)"/>
+<text x="64" y="118" font-size="58" font-weight="800" fill="#FFFFFF" text-anchor="start" >Agentic Trading Atlas</text>
+<text x="64" y="166" font-size="24" font-weight="400" fill="#B6C4D8" text-anchor="start" >A verified, first-principles map of LLM and agentic trading.</text>
+<text x="64" y="204" font-size="17" font-weight="600" fill="#7DD3FC" text-anchor="start" >Domain map  ·  method teardowns  ·  same-budget evaluation</text>
+<text x="64" y="252" font-size="15" font-weight="400" fill="#8EA2BD" text-anchor="start" >57 papers  ·  39 projects  ·  5 teardowns  ·  every link and number checked, dated, and graded</text>
+<polyline points="760,215 830,201 900,207 970,175 1040,183 1110,149 1180,157 1250,119" fill="none" stroke="#3B4F72" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="760" cy="215" r="11" fill="#0E7490" stroke="#0B1220" stroke-width="3"/>
+<circle cx="830" cy="201" r="11" fill="#0891B2" stroke="#0B1220" stroke-width="3"/>
+<circle cx="900" cy="207" r="11" fill="#4F46E5" stroke="#0B1220" stroke-width="3"/>
+<circle cx="970" cy="175" r="11" fill="#7C3AED" stroke="#0B1220" stroke-width="3"/>
+<circle cx="1040" cy="183" r="11" fill="#B45309" stroke="#0B1220" stroke-width="3"/>
+<circle cx="1110" cy="149" r="11" fill="#B91C1C" stroke="#0B1220" stroke-width="3"/>
+<circle cx="1180" cy="157" r="11" fill="#047857" stroke="#0B1220" stroke-width="3"/>
+<circle cx="1250" cy="119" r="11" fill="#475569" stroke="#0B1220" stroke-width="3"/>
+</svg>

@@ -1,0 +1,103 @@
+{
+ "arxiv": "2304.07619",
+ "title": "Can ChatGPT Forecast Stock Price Movements? Return Predictability and Large Language Models",
+ "published": "2023-04-15",
+ "updated": "2025-10-28",
+ "source": {
+  "kind": "html",
+  "url": "https://arxiv.org/html/2304.07619",
+  "chars": 289453,
+  "truncated": false,
+  "sha256": "d989c912fd226cbf0546dbd4d9a92f375b35369600cda0c0403b797301422589",
+  "fetched": "2026-10-21"
+ },
+ "extraction": {
+  "model": "claude-opus-5-5",
+  "effort": "medium",
+  "date": "2026-10-23",
+  "input_tokens": 125909,
+  "output_tokens": 1893,
+  "cost_usd": 0.5415
+ },
+ "fields": {
+  "task": {
+   "status": "stated",
+   "value": "Test whether off-the-shelf LLMs like ChatGPT can predict stock market reactions (initial reaction and subsequent drift) from firm news headlines.",
+   "quote": "We document the capability of large language models (LLMs) like ChatGPT to predict stock market reactions from news headlines without direct financial training."
+  },
+  "architecture": {
+   "status": "stated",
+   "value": "Zero-shot prompting: GPT-4 acts as a financial expert, answers YES/NO/UNKNOWN per headline (mapped to 1/-1/0), temperature 0; scores form daily-rebalanced equal-weighted long-short portfolios and regressions.",
+   "quote": "We transform it into a numerical ‘‘GPT-4 score,” where ‘‘YES” is mapped to 1, ‘‘UNKNOWN” to 0, and ‘‘NO” to -1."
+  },
+  "data": {
+   "status": "stated",
+   "value": "CRSP daily returns, web-scraped news headlines matched to RavenPack, and TAQ intraday data; 159,137 firm-headline-date observations covering 4,123 U.S. common stocks (NYSE, NASDAQ, AMEX); daily and intraday frequency.",
+   "quote": "our final sample comprises 159,137 firm-headline-date observations covering 4,123 unique companies from October 2021 to May 2024, representing about 85% of the 4,875 firms in CRSP during this period."
+  },
+  "window": {
+   "status": "stated",
+   "value": "October 2021 to May 2024, after the GPT-4 training cutoff (September 2021); no training for GPT-4. Embedding baselines use rolling 6-month training windows retrained monthly after a 9-month warm-up.",
+   "quote": "The sample period begins in October 2021 and ends in May 2024. This sample period ensures that our evaluation is out-of-sample as the training data of the ChatGPT models stops in September 2021"
+  },
+  "models": {
+   "status": "stated",
+   "value": "GPT-4 (gpt-4-0314) main; also GPT-3.5 (gpt-3.5-turbo-0301), GPT-1, GPT-2, BERT, BERT-Large, BART-Large, DistilBart-MNLI-12-1, FinBERT, Llama2 7B/13B/70B; embeddings text-embedding-ada-002 and all-MiniLM-L6-v2.",
+   "quote": "We use the ChatGPT model version ‘‘gpt-4-0314” whose training data stops in September 2021 to ensure that our analysis is an out-of-sample evaluation."
+  },
+  "baselines": {
+   "status": "stated",
+   "value": "Other LLMs of varying size, FinBERT, RavenPack sentiment scores, supervised embedding models (OpenAI, MiniLM) with logistic regression, and a value-weighted market portfolio.",
+   "quote": "We compare GPT-4 against three alternative approaches: (i) domain-specific models trained on financial text (FinBERT), (ii) supervised learning models trained on actual return outcomes (embeddings), and (iii) LLMs of varying complexity."
+  },
+  "headline_result": {
+   "status": "stated",
+   "value": "GPT-4 long-short: 93.3% (88.8%) hit rate on initial reaction for overnight (intraday) news; drift strategy 0.34% mean daily return, annualized Sharpe 2.97 (overnight) before costs, Oct 2021–May 2024.",
+   "quote": "These drift strategies achieve annualized pre-transaction-costs Sharpe ratios of 2.97 for overnight news and 2.63 for intraday news."
+  },
+  "costs": {
+   "status": "stated",
+   "value": "Fixed round-trip costs of 5, 10, 20 bps; cumulative return over 300% at 5 bps, above 100% at 10 bps, unprofitable at 20 bps. Sharpe falls to 1.29 at 10 bps (100% rebalancing).",
+   "quote": "Assuming a transaction cost of 5 bps round-trip, the strategy still earns a cumulative return of over 300% during our sample period. As we increase the transaction costs to 10 bps round-trip, the cumulative return is still above 100%. A transaction cost of 20 bps round-trip makes the strategy unprofitable."
+  },
+  "uncertainty": {
+   "status": "stated",
+   "value": "Regressions with firm and date fixed effects and standard errors double-clustered by date and firm (t-stats reported); 95% confidence intervals on event-time returns and yearly Sharpe ratios; temperature 0 for reproducibility.",
+   "quote": "Standard errors are double-clustered by date and firm."
+  },
+  "leakage_controls": {
+   "status": "stated",
+   "value": "Sample restricted to post-September 2021 knowledge cutoff; GPT-4 vs GPT-3.5 advantage over time checked (increases, inconsistent with memorization); Llama2 cutoff later noted as possible overstatement.",
+   "quote": "We further address potential lookahead bias concerns by comparing GPT-4 to GPT-3.5 performance over time in Online Appendix C. GPT-4 performs better in the latter part of the sample, inconsistent with the model having knowledge outside of its cutoff date."
+  },
+  "limitations": {
+   "status": "stated",
+   "value": "Exploitable only for low-cost traders; predictability concentrated in small stocks; GPT parameter counts unconfirmed; Llama2 results may be overstated; decline in Sharpe may reflect other factors; news sample skews larger firms.",
+   "quote": "However, exploiting these patterns in practice is only feasible for market participants whose transaction costs are sufficiently low, such as market makers."
+  },
+  "release": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  }
+ },
+ "verification": {
+  "verified": 11,
+  "failed": 0,
+  "not_found": 1,
+  "detail": {
+   "task": "exact",
+   "architecture": "exact",
+   "data": "exact",
+   "window": "exact",
+   "models": "exact",
+   "baselines": "exact",
+   "headline_result": "exact",
+   "costs": "exact",
+   "uncertainty": "exact",
+   "leakage_controls": "exact",
+   "limitations": "exact",
+   "release": "not_found"
+  }
+ }
+}

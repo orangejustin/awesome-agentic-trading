@@ -1,0 +1,103 @@
+{
+ "arxiv": "2602.14670",
+ "title": "FactorMiner: A Self-Evolving Agent with Skills and Experience Memory for Financial Alpha Discovery",
+ "published": "2026-02-16",
+ "updated": "2026-08-19",
+ "source": {
+  "kind": "html",
+  "url": "https://arxiv.org/html/2602.14670",
+  "chars": 69922,
+  "truncated": false,
+  "sha256": "c00b1cfc154b7179a90feb83e6bd50a59b90eb92af13c25a1164d06c7f9f9023",
+  "fetched": "2026-10-21"
+ },
+ "extraction": {
+  "model": "claude-opus-5-5",
+  "effort": "medium",
+  "date": "2026-10-23",
+  "input_tokens": 33207,
+  "output_tokens": 1628,
+  "cost_usd": 0.1654
+ },
+ "fields": {
+  "task": {
+   "status": "stated",
+   "value": "Automated discovery of interpretable, low-redundancy formulaic alpha factors for quantitative investment using a self-evolving LLM agent.",
+   "quote": "We propose FactorMiner, a lightweight and flexible self-evolving agent framework designed to navigate this complex landscape through continuous knowledge accumulation."
+  },
+  "architecture": {
+   "status": "stated",
+   "value": "LLM agent running a Ralph Loop (retrieve, generate, evaluate, distill). Its tools are a modular factor-mining skill (60+ GPU-accelerated operators, multi-stage IC/correlation validation pipeline) and an experience memory of successful and forbidden patterns. A factor library grows under correlation constraints with a replacement step.",
+   "quote": "FactorMiner combines a Modular Skill Architecture that encapsulates systematic financial evaluation into executable tools with a structured Experience Memory that distills historical mining trials into actionable insights (successful patterns and failure constraints)."
+  },
+  "data": {
+   "status": "stated",
+   "value": "Intraday 10-minute bars of CSI 500, CSI 1000 and CSI 300 constituents (A-shares), plus 10-minute bars of 64 major Binance crypto assets. Target is the next-step 10-minute return.",
+   "quote": "For A-share equities, we utilize intraday 10-minute bars of three index universes: the CSI 500 and CSI 1000 index constituents for mid-cap and broader small-/mid-cap coverage, and the CSI 300 index constituents for large-cap representation"
+  },
+  "window": {
+   "status": "stated",
+   "value": "Training 2024-Q1 to 2024-Q4, held-out test in 2025. Top-40 factors are selected on CSI500 2024. An extra robustness check on CSI500 runs through 2026-03.",
+   "quote": "All datasets cover a training period from 2024-Q1 to 2024-Q4 and a held-out test period in 2025."
+  },
+  "models": {
+   "status": "stated",
+   "value": "Gemini 3.0 Flash generates the factor proposals, with no fine-tuning. XGBoost and Lasso are used for downstream factor selection.",
+   "quote": "For methods that require LLM-based proposal generation, we use Gemini 3.0 Flash unless otherwise stated. We do not fine-tune or update the LLM weights"
+  },
+  "baselines": {
+   "status": "stated",
+   "value": "Alpha101 Classic, Alpha101 Adapted, Random Formula Exploration, GPLearn, AlphaForge, AlphaAgent and a No Memory ablation. End-to-end forecasters PatchTST, Chronos-2 and LightGBM are also compared.",
+   "quote": "We compare against six representative methods: (1) Alpha101 (Classic) (Kakushadze, 2016), a static library of hand-crafted formulas; (2) Alpha101 (Adapted), with parameters tuned for high-frequency data; (3) Random Formula Exploration (RF)"
+  },
+  "headline_result": {
+   "status": "stated",
+   "value": "Top-40 factor library on CSI500 in the 2025 out-of-sample period: IC 8.25%, ICIR 0.77. Equal-weight combination: IC 14.95, ICIR 1.29.",
+   "quote": "In the Factor Library setting, it achieves IC/ICIR of 8.25%/0.77 on CSI500, with similar competitive improvements on the other markets (see Table 1)."
+  },
+  "costs": {
+   "status": "stated",
+   "value": "No transaction costs are modeled; transaction-cost-aware backtesting is left for future work.",
+   "quote": "Our pipeline also targets predictive IC, ICIR, redundancy, and portfolio diagnostics, with transaction-cost-aware deployment left for future work."
+  },
+  "uncertainty": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "leakage_controls": {
+   "status": "stated",
+   "value": "Factors are selected once on 2024 data and frozen for 2025 evaluation. Combination weights and signs are also fixed on 2024. The held-out test period is 2025.",
+   "quote": "Table 1 reports 2025 out-of-sample results under a strict protocol: Top-40 factors are selected once on CSI500 (2024) and then frozen for evaluation on multiple datasets."
+  },
+  "limitations": {
+   "status": "stated",
+   "value": "End-to-end baselines were not exhaustively tuned. There is no transaction-cost-aware deployment. The factors could be misused in speculative or manipulative strategies.",
+   "quote": "Although we include comparisons with end-to-end models, these baselines are not exhaustively tuned and remain less interpretable than formulaic factors."
+  },
+  "release": {
+   "status": "stated",
+   "value": "The 110 A-share factor formulas are released and listed in the appendix. No code repository is given.",
+   "quote": "We provide 110 A-share equity factors with explicit formulaic expressions, validated on real market data."
+  }
+ },
+ "verification": {
+  "verified": 11,
+  "failed": 0,
+  "not_found": 1,
+  "detail": {
+   "task": "exact",
+   "architecture": "exact",
+   "data": "exact",
+   "window": "exact",
+   "models": "exact",
+   "baselines": "exact",
+   "headline_result": "exact",
+   "costs": "exact",
+   "uncertainty": "not_found",
+   "leakage_controls": "exact",
+   "limitations": "exact",
+   "release": "exact"
+  }
+ }
+}
