@@ -28,7 +28,7 @@ The rung describes the kind of evidence, not its quality. An L4 record of three 
 
 ## Where the catalog sits
 
-<!-- gen:ladder-summary -->Of the 66 repositories in the [catalog](catalog/projects.md): 4 at L0, 10 at L1, 8 at L2, 0 at L3, 2 at L4, 6 benchmarks or arenas that evaluate other systems, and 36 infrastructure, data or tooling projects with no performance claim. On repro, 0 are graded "full", 5 "partial", 2 "none", and 33 "unverified" (we read the README and code but did not rerun them).<!-- /gen:ladder-summary --> **None reaches L3 on its own headline claim.** The nearest thing to L3 in the field is a paper, not a project: [FINSABER](https://arxiv.org/abs/2505.07078) reran FinMem and FinAgent on FinMem's own window and on two decades of data and found the reported advantage did not survive (see the [claim audit](05-claim-audit.md)).
+<!-- gen:ladder-summary -->Of the 65 repositories in the [catalog](catalog/projects.md): 4 at L0, 10 at L1, 8 at L2, 0 at L3, 2 at L4, 6 benchmarks or arenas that evaluate other systems, and 35 infrastructure, data or tooling projects with no performance claim. On repro, 0 are graded "full", 5 "partial", 2 "none", and 33 "unverified" (we read the README and code but did not rerun them).<!-- /gen:ladder-summary --> **None reaches L3 on its own headline claim.** The nearest thing to L3 in the field is a paper, not a project: [FINSABER](https://arxiv.org/abs/2505.07078) reran FinMem and FinAgent on FinMem's own window and on two decades of data and found the reported advantage did not survive (see the [claim audit](05-claim-audit.md)).
 
 That is the state of the field in one sentence: plenty of code, a few disclosed backtests, almost no independent evidence.
 

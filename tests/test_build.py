@@ -27,8 +27,46 @@ class Catalog(unittest.TestCase):
         p = self.c["projects"][0]
         bad = [dict(p, evidence="L9", repro="maybe", layer="nowhere", orders="maybe")]
         errs = build.check(self.c["papers"], bad, self.c["layers"])
-        for needle in ("unknown evidence", "unknown repro", "unknown layer", "unknown orders"):
+        for needle in ("unknown evidence", "unknown repro", "unknown layer", "orders must be one of"):
             self.assertTrue(any(needle in e for e in errs), needle)
+
+    def entry(self, **kw):
+        p = next(p for p in self.c["projects"] if p["id"] == "alpaca-mcp-server")
+        return dict(p, **kw)
+
+    def errs(self, *projects):
+        return build.check(self.c["papers"], list(projects), self.c["layers"])
+
+    def test_order_authority_needs_pinned_evidence(self):
+        self.assertTrue(any("needs a pinned 'orders' source" in e for e in self.errs(self.entry(sources=[]))))
+        moved = [dict(s, url=s["url"].replace(self.entry()["last_sha"], "f" * 40)) for s in self.entry()["sources"]]
+        self.assertTrue(any("not pinned to last_sha" in e for e in self.errs(self.entry(sources=moved))))
+        self.assertTrue(any("orders must be one of" in e for e in self.errs(self.entry(orders=None))))
+
+    def test_commit_must_be_a_full_hash(self):
+        self.assertTrue(any("full 40-character" in e for e in self.errs(self.entry(last_sha="d8dac43"))))
+
+    def test_license_status_rules(self):
+        self.assertTrue(any("needs the license_file" in e for e in self.errs(self.entry(license_file=""))))
+        self.assertTrue(any("declared-only license needs" in e
+                            for e in self.errs(self.entry(license_status="declared"))))
+        self.assertTrue(any("unknown license_status" in e for e in self.errs(self.entry(license_status="maybe"))))
+
+    def test_declared_maintenance_needs_a_source(self):
+        self.assertTrue(any("needs a pinned 'maintenance' source" in e
+                            for e in self.errs(self.entry(maintenance="unmaintained"))))
+
+    def test_headline_license_groups_add_up(self):
+        listed = build.listed(self.c["projects"])
+        self.assertEqual(sum(build.license_groups(self.c["projects"])), len(listed))
+        self.assertIn(f"{len(listed)} repositories (", build.headline(self.c))
+
+    def test_live_and_paper_marks_link_to_evidence(self):
+        for p in build.listed(self.c["projects"]):
+            line = build.readme_entry(p, zh=False)
+            if p["orders"] in ("live", "paper"):
+                self.assertIn(f"]({build.source(p, 'orders')})", line, p["id"])
+            self.assertIn(build.tree_url(p), line)
 
     def test_category_must_belong_to_layer(self):
         p = next(p for p in self.c["projects"] if p.get("layer") == "data")

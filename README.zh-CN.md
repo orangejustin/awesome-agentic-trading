@@ -11,10 +11,10 @@
 
 > 一份经过核验的**开源智能体交易（Agentic Trading）**地图：开源仓库、论文、文章与帖子，按智能体交易系统的五层组织：**数据层 → Agent 层 → 执行层 → Harness 层 → 应用层**。
 
-<!-- gen:headline -->61 个开源仓库 · 59 篇论文 · 40 篇文章与帖子 · 5 个深度拆解<!-- /gen:headline -->。每个仓库条目都写明做什么、许可证、是否仍在维护，以及最关键的限制；每篇论文都标明我们实际读到了什么程度。
+<!-- gen:headline -->61 个仓库（49 个开源 · 4 个混合或受限许可 · 8 个许可待确认）· 59 篇论文 · 41 篇文章与帖子 · 5 个深度拆解<!-- /gen:headline -->。每个仓库条目都写明做什么、许可证、是否仍在维护，以及最关键的限制；每篇论文都标明我们实际读到了什么程度。
 
 > [!WARNING]
-> 仅供研究与学习，不构成任何投资建议。部分工具可以下真实订单（标记为 ⚡），请先在模拟账户上使用。被收录不代表项目能盈利或可直接用于生产。
+> 仅供研究与学习，不构成任何投资建议。部分工具可以下真实订单（标记为 ⚡，链接到支持该结论的原文行）；请先用只读模式，或在有模拟盘时先用模拟账户。被收录不代表项目能盈利或可直接用于生产。
 
 ## 目录
 
@@ -45,7 +45,7 @@
 |---|---|---|---|---|
 | [1. 数据层](layers/data.md) | 智能体知道什么？什么时候知道的？ | 13 | 5 | 6 |
 | [2. Agent 层](layers/agent.md) | 拿到信号之后，结论是什么？理由如何论证？ | 8 | 22 | 3 |
-| [3. 执行层](layers/execution.md) | 决策如何安全地变成成交？ | 10 | 1 | 6 |
+| [3. 执行层](layers/execution.md) | 决策如何安全地变成成交？ | 10 | 1 | 7 |
 | [4. Harness 层](layers/harness.md) | 结果是真的吗？如果它不再成立，我们能及时发现吗？ | 18 | 18 | 15 |
 | [5. 应用层](layers/application.md) | 它为用户端到端完成什么工作？ | 12 | 8 | 10 |
 <!-- /gen:stack -->
@@ -59,7 +59,8 @@
 | 在模拟基金里试验投资智能体 | [AI Hedge Fund](https://github.com/virattt/ai-hedge-fund) | 应用层 |
 | 自动化因子与模型研究 | 基于 [Qlib](https://github.com/microsoft/qlib) 的 [RD-Agent](https://github.com/microsoft/RD-Agent) | 应用层、Harness 层 |
 | 给智能体接入行情数据 | [OpenBB](https://github.com/OpenBB-finance/OpenBB)、[Yahoo Finance MCP](https://github.com/Alex2Yang97/yahoo-finance-mcp)、[Massive MCP Server](https://github.com/massive-com/mcp_massive) | 数据层 |
-| 让智能体下单（先用模拟盘） | [Alpaca MCP Server](https://github.com/alpacahq/alpaca-mcp-server)、[Polymarket MCP Server](https://github.com/caiovicentino/polymarket-mcp-server) | 执行层 |
+| 让智能体下单，先确保安全 | [Alpaca MCP Server](https://github.com/alpacahq/alpaca-mcp-server)（默认模拟盘）、[tastytrade MCP](https://github.com/tastytrade/tastytrade-mcp)（只读或沙箱模式）、[CCXT](https://github.com/ccxt/ccxt)（ccxt-mcp：交易权限默认关闭，需手动开启） | 执行层 |
+| 为自己的系统挑选能配合的组件 | [组件矩阵](docs/components.md)（英文）：语言、运行环境、接口、输入输出、密钥与费用、下单权限 | 全部 |
 | 用成熟引擎回测与实盘 | [LEAN](https://github.com/QuantConnect/Lean)、[NautilusTrader](https://github.com/nautechsystems/nautilus_trader) | 执行层 |
 | 评测或压力测试交易智能体 | [DeepFund](https://github.com/HKUSTDial/DeepFund)、[Live Trade Bench](https://github.com/ulab-uiuc/live-trade-bench)、[TradeTrap](https://github.com/Yanlewen/TradeTrap) | Harness 层 |
 | 看真实的前向记录，无论好坏 | [Kalshi AI Trading Bot](https://github.com/ryanfrigo/kalshi-ai-trading-bot)（公开了自己“未测出优势”的结论）、[LLM Trading Lab](https://github.com/LuckyOne7777/LLM-Trading-Lab) | Harness 层 |
@@ -88,7 +89,7 @@
 | 2026-07 | [盈透证券向任意客户端开放 MCP 服务](https://fxnewsgroup.com/forex-news/retail-forex/interactive-brokers-enables-traders-to-connect-their-accounts-to-any-mcp-compatible-ai-application/) | 全球性券商向任意兼容智能体开放远程 MCP 服务，支持 OAuth 授权与撤销。来源为行业媒体报道。 |
 <!-- /gen:milestones -->
 
-**图例：** 🟢 活跃（核验时最近 90 天内有提交）· 🟡 放缓（一年内）· ⚪ 停更 · ⚡ 可下真实订单 · 📝 模拟交易 · 🧰 用于此环节的通用工具 · 🔬 我们的深度拆解。同一类别内按已记录的 GitHub Star 数排序：这是热度信号，不是质量评分。
+**图例：** 🟢 活跃 · 🟡 放缓 · ⚪ 停更：以核验日计，最近提交在 90 天内、一年内或更早 · 💤 作者声明不再维护 · ⚡ 可下真实订单 · 📝 仅模拟交易 · 🧩 开源核心含专有部分 · 🔒 源码可见但受限 · ❓ 许可待确认（仅声明而无许可证文件，或无许可证）· 🧰 用于此环节的通用工具 · 🔬 我们的深度拆解 · 🔍 我们核验的提交及日期。标记均链接到该提交中支持结论的原文行。同一类别内按已记录的 GitHub Star 数排序：这是热度信号，不是质量评分。
 
 <!-- gen:directory -->
 ## 1. 数据层：智能体看到什么
@@ -99,34 +100,34 @@
 
 ### 行情与基本面数据
 
-- [OpenBB](https://github.com/OpenBB-finance/OpenBB) — 面向Python与AI智能体的开放金融数据集成平台。 ⚠️ 只管取数，时点正确性需自己保证。 🟢 `Apache-2.0`
-- [AKShare](https://github.com/akfamily/akshare) — 把中国及全球公开行情、宏观与新闻数据取成 pandas，附面向 LLM 的 llms.txt。 ⚠️ 抓取型接口会随网站改版失效；为当前数据而非时点数据；自身无 MCP 服务。 🟢 `MIT` 🧰
-- [TradingView-API](https://github.com/Mathieu2301/TradingView-API) — 非官方的 TradingView TypeScript 客户端，可取 K 线、指标、选股器与回放数据，附防前视的回测模块。 ⚠️ 非官方，依赖未公开接口，存在条款风险；根目录无 LICENSE 文件（package.json 声明 ISC） 🟢 `未找到许可证`
+- [OpenBB](https://github.com/OpenBB-finance/OpenBB) — 面向Python与AI智能体的开放金融数据集成平台。 ⚠️ 只管取数，时点正确性需自己保证。 🟢 [`Apache-2.0`](https://github.com/OpenBB-finance/OpenBB/blob/7df7d0c5592bf25be88e87e130a05c71e243d2d8/LICENSE) [🔍 2026-10-26](https://github.com/OpenBB-finance/OpenBB/tree/7df7d0c5592bf25be88e87e130a05c71e243d2d8)
+- [AKShare](https://github.com/akfamily/akshare) — 把中国及全球公开行情、宏观与新闻数据取成 pandas，附面向 LLM 的 llms.txt。 ⚠️ 抓取型接口会随网站改版失效；为当前数据而非时点数据；自身无 MCP 服务。 🟢 [`MIT`](https://github.com/akfamily/akshare/blob/2ea08ff44512a9b0c008cd4ff77463b940959c7e/LICENSE) 🧰 [🔍 2026-10-26](https://github.com/akfamily/akshare/tree/2ea08ff44512a9b0c008cd4ff77463b940959c7e)
+- [TradingView-API](https://github.com/Mathieu2301/TradingView-API) — 非官方的 TradingView TypeScript 客户端，可取 K 线、指标、选股器与回放数据，附防前视的回测模块。 ⚠️ 非官方，依赖未公开接口，存在条款风险；根目录无 LICENSE 文件（package.json 声明 ISC） 🟢 ❓ [`ISC` 仅声明，无许可证文件](https://github.com/Mathieu2301/TradingView-API/blob/f04af705f24dfd883a730e92d18215222bdff272/package.json#L78) [🔍 2026-10-26](https://github.com/Mathieu2301/TradingView-API/tree/f04af705f24dfd883a730e92d18215222bdff272)
 
 ### 财报、新闻与文本
 
-- [edgartools](https://github.com/dgunning/edgartools) — 把 SEC EDGAR 公告转成 Python 对象与 DataFrame，并提供面向智能体的 MCP 服务。 ⚠️ 仅覆盖美国 SEC 申报主体；请求须带联系身份并遵守 SEC 限速。 🟢 `MIT`
-- [FNSPID](https://github.com/Zdong104/FNSPID_Financial_News_Dataset) — 4,775 家标普 500 公司在 1999–2023 年间按时间对齐的新闻与价格数据。 ⚠️ 数据止于 2023 年；许可证文件（CC BY-NC）与 README 说明冲突；已停止维护。 ⚪ `CC-BY-NC-4.0`
-- [Agent-Reach](https://github.com/Panniantong/Agent-Reach) — 让编程智能体读取 X、Reddit、小红书、雪球、视频字幕等平台的命令行工具。 ⚠️ 复用浏览器登录 Cookie（建议用小号）；有平台条款风险；健康检查通过不等于取数正确。 🟢 `MIT` 🧰
-- [OpenCLI](https://github.com/jackwener/OpenCLI) — 把网站变成 JSON 命令的浏览器自动化命令行，通过已登录的 Chrome 为智能体取数。 ⚠️ 以已登录账户的权限运行；网站改版会导致适配器失效；应只放行只读命令。 🟢 `Apache-2.0` 🧰
-- [Trafilatura](https://github.com/adbar/trafilatura) — 从新闻、公告网页中抽取正文与元数据（标题、作者、日期） ⚠️ 只负责抽取，不支持登录与 JavaScript 渲染；仍需遵守网站条款。 🟢 `Apache-2.0` 🧰
+- [edgartools](https://github.com/dgunning/edgartools) — 把 SEC EDGAR 公告转成 Python 对象与 DataFrame，并提供面向智能体的 MCP 服务。 ⚠️ 仅覆盖美国 SEC 申报主体；请求须带联系身份并遵守 SEC 限速。 🟢 [`MIT`](https://github.com/dgunning/edgartools/blob/3931b22077eee1e0d2b77a8c5a61ab415d51ae0b/LICENSE.txt) [🔍 2026-10-26](https://github.com/dgunning/edgartools/tree/3931b22077eee1e0d2b77a8c5a61ab415d51ae0b)
+- [FNSPID](https://github.com/Zdong104/FNSPID_Financial_News_Dataset) — 4,775 家标普 500 公司在 1999–2023 年间按时间对齐的新闻与价格数据。 ⚠️ 数据止于 2023 年；许可证文件（CC BY-NC）与 README 说明冲突；已停止维护。 [💤](https://github.com/Zdong104/FNSPID_Financial_News_Dataset/blob/4054842ec476953b30ee874d4b7e8eea786a21fa/README.md?plain=1#L3) 🔒 [`CC-BY-NC-4.0`](https://github.com/Zdong104/FNSPID_Financial_News_Dataset/blob/4054842ec476953b30ee874d4b7e8eea786a21fa/LICENSE) [🔍 2026-10-26](https://github.com/Zdong104/FNSPID_Financial_News_Dataset/tree/4054842ec476953b30ee874d4b7e8eea786a21fa)
+- [Agent-Reach](https://github.com/Panniantong/Agent-Reach) — 让编程智能体读取 X、Reddit、小红书、雪球、视频字幕等平台的命令行工具。 ⚠️ 复用浏览器登录 Cookie（建议用小号）；有平台条款风险；健康检查通过不等于取数正确。 🟢 [`MIT`](https://github.com/Panniantong/Agent-Reach/blob/14c213405669414492bda0f8d52cc6531d062c45/LICENSE) 🧰 [🔍 2026-10-26](https://github.com/Panniantong/Agent-Reach/tree/14c213405669414492bda0f8d52cc6531d062c45)
+- [OpenCLI](https://github.com/jackwener/OpenCLI) — 把网站变成 JSON 命令的浏览器自动化命令行，通过已登录的 Chrome 为智能体取数。 ⚠️ 以已登录账户的权限运行；网站改版会导致适配器失效；应只放行只读命令。 🟢 [`Apache-2.0`](https://github.com/jackwener/OpenCLI/blob/97dc0cd5214b9602bcda78d7422f231ee8a803e9/LICENSE) 🧰 [🔍 2026-10-26](https://github.com/jackwener/OpenCLI/tree/97dc0cd5214b9602bcda78d7422f231ee8a803e9)
+- [Trafilatura](https://github.com/adbar/trafilatura) — 从新闻、公告网页中抽取正文与元数据（标题、作者、日期） ⚠️ 只负责抽取，不支持登录与 JavaScript 渲染；仍需遵守网站条款。 🟢 [`Apache-2.0`](https://github.com/adbar/trafilatura/blob/399eeacb2856d383e119747f535faa943aab5201/LICENSE) 🧰 [🔍 2026-10-26](https://github.com/adbar/trafilatura/tree/399eeacb2856d383e119747f535faa943aab5201)
 
 ### 面向智能体的数据服务（MCP）
 
-- [Financial Datasets MCP Server](https://github.com/financial-datasets/mcp-server) — 提供 Financial Datasets API 财务、价格与新闻的 MCP 服务器。 ⚠️ 需要 Financial Datasets API 密钥；最后提交于 2025-06-05。 ⚪ `MIT`
-- [Massive MCP Server](https://github.com/massive-com/mcp_massive) — Massive（原 Polygon.io）行情 API 的官方 MCP 服务器。 ⚠️ 作者标注为实验性，且需要 API 密钥。 🟢 `MIT`
-- [Yahoo Finance MCP](https://github.com/Alex2Yang97/yahoo-finance-mcp) — 为LLM客户端提供Yahoo Finance数据的MCP服务器。 ⚠️ 基于yfinance当前数据而非时点存档，不适合回测。 🟢 `MIT`
-- [TradingView MCP (Desktop)](https://github.com/tradesdontlie/tradingview-mcp) — 让智能体读取并操作本地 TradingView 桌面版的 MCP 服务：图表、指标、Pine 脚本、告警。 ⚠️ 经未公开接口操控桌面应用（有条款风险）；先只开只读工具；活跃分支见 iliaal/tradingview-mcp。 🟢 `MIT`
+- [Financial Datasets MCP Server](https://github.com/financial-datasets/mcp-server) — 提供 Financial Datasets API 财务、价格与新闻的 MCP 服务器。 ⚠️ 需要 Financial Datasets API 密钥；最后提交于 2025-06-05。 ⚪ [`MIT`](https://github.com/financial-datasets/mcp-server/blob/08e7a3dbb949d3d99bbd6d6f3a22e5f02973ec58/LICENSE) [🔍 2026-10-26](https://github.com/financial-datasets/mcp-server/tree/08e7a3dbb949d3d99bbd6d6f3a22e5f02973ec58)
+- [Massive MCP Server](https://github.com/massive-com/mcp_massive) — Massive（原 Polygon.io）行情 API 的官方 MCP 服务器。 ⚠️ 作者标注为实验性，且需要 API 密钥。 🟢 [`MIT`](https://github.com/massive-com/mcp_massive/blob/1e161a8c50b69bd467b092e0721e30908ab94eb6/LICENSE) [🔍 2026-10-26](https://github.com/massive-com/mcp_massive/tree/1e161a8c50b69bd467b092e0721e30908ab94eb6)
+- [Yahoo Finance MCP](https://github.com/Alex2Yang97/yahoo-finance-mcp) — 为LLM客户端提供Yahoo Finance数据的MCP服务器。 ⚠️ 基于yfinance当前数据而非时点存档，不适合回测。 🟢 [`MIT`](https://github.com/Alex2Yang97/yahoo-finance-mcp/blob/b9c176547d3797b2196adeba0210ae67861ac589/LICENSE) [🔍 2026-10-26](https://github.com/Alex2Yang97/yahoo-finance-mcp/tree/b9c176547d3797b2196adeba0210ae67861ac589)
+- [TradingView MCP (Desktop)](https://github.com/tradesdontlie/tradingview-mcp) — 让智能体读取并操作本地 TradingView 桌面版的 MCP 服务：图表、指标、Pine 脚本、告警。 ⚠️ 经未公开接口操控桌面应用（有条款风险）；先只开只读工具；活跃分支见 iliaal/tradingview-mcp。 🟢 [`MIT`](https://github.com/tradesdontlie/tradingview-mcp/blob/c05b8f5755ed8e64ea242de88ddbf46aa24d56a4/LICENSE) [🔍 2026-10-26](https://github.com/tradesdontlie/tradingview-mcp/tree/c05b8f5755ed8e64ea242de88ddbf46aa24d56a4)
 
 ### 数据校验与证据记录
 
-- [pandera](https://github.com/unionai-oss/pandera) — 数据框的模式与统计校验：缺 K 线、类型错误、价格越界时立即失败。 ⚠️ 只检查结构与取值，无法单独发现前视偏差、幸存者偏差或数据过期。 🟢 `MIT` 🧰
+- [pandera](https://github.com/unionai-oss/pandera) — 数据框的模式与统计校验：缺 K 线、类型错误、价格越界时立即失败。 ⚠️ 只检查结构与取值，无法单独发现前视偏差、幸存者偏差或数据过期。 🟢 [`MIT`](https://github.com/unionai-oss/pandera/blob/d9474e1b1e4f9bf371c9d1df867b260774780b0e/LICENSE.txt) 🧰 [🔍 2026-10-26](https://github.com/unionai-oss/pandera/tree/d9474e1b1e4f9bf371c9d1df867b260774780b0e)
 
 ### 必读
 
-- [Can ChatGPT Forecast Stock Price Movements? Return Predictability and Large Language Models](https://arxiv.org/abs/2304.07619) — Alejandro Lopez-Lira et al., 2023. 用 ChatGPT/GPT-4 给新闻标题打分，并用模型截止日期之后的标题检验其对次日收益的预测力；预测力随 LLM 普及而减弱。
-- [FNSPID: A Comprehensive Financial News Dataset in Time Series](https://arxiv.org/abs/2402.06698) — Zihan Dong et al., 2024. FNSPID：与股价按时间对齐的金融新闻数据集，用于文本加数值的预测研究。
-- 📘 [TradingView MCP Server FAQ](https://www.tradingview.com/support/solutions/43000795700-mcp-server-faq/) — TradingView, 2026-10. 接入前必读：即使订阅实时行情，MCP 数据仍有延迟；测试版不支持 Pine 与指标告警；无人值守或服务器托管不在使用范围内。适合交互式研究，不适合作为无人值守的数据源。
+- [Can ChatGPT Forecast Stock Price Movements? Return Predictability and Large Language Models](https://arxiv.org/abs/2304.07619) — Alejandro Lopez-Lira et al., 2023 · 🗂️ 方法卡片. 用 ChatGPT/GPT-4 给新闻标题打分，并用模型截止日期之后的标题检验其对次日收益的预测力；预测力随 LLM 普及而减弱。
+- [FNSPID: A Comprehensive Financial News Dataset in Time Series](https://arxiv.org/abs/2402.06698) — Zihan Dong et al., 2024 · 🗂️ 方法卡片. FNSPID：与股价按时间对齐的金融新闻数据集，用于文本加数值的预测研究。
+- 📘 [TradingView MCP Server FAQ](https://www.tradingview.com/support/solutions/43000795700-mcp-server-faq/) — TradingView, 未注明日期（2026-10-26 核验）. 接入前必读：即使订阅实时行情，MCP 数据仍有延迟；测试版不支持 Pine 与指标告警；无人值守或服务器托管不在使用范围内。适合交互式研究，不适合作为无人值守的数据源。
 
 ## 2. Agent 层：智能体如何思考
 
@@ -136,59 +137,59 @@
 
 ### 金融大模型与推理模型
 
-- [FinGPT](https://github.com/AI4Finance-Foundation/FinGPT) — 开源金融LLM项目，含数据管道与LoRA微调方案。 ⚠️ 模型与数据项目，未核对交易表现。 🟢 `MIT`
-- [Qwen DianJin](https://github.com/aliyun/qwen-dianjin) — 阿里云金融推理模型、数据与基准合集。 ⚠️ 属研究合集而非交易系统，各子项目文档与许可证独立。 🟢 `MIT (sub-projects under Apache-2.0 in LICENSES/)`
-- [Kronos](https://github.com/shiyu-coder/Kronos) — 面向 K 线（OHLCV）序列的基础模型，已发布权重与微调脚本。 ⚠️ 研究级预测；使用前须在样本外与简单基线、随机游走对比。 🟡 `MIT`
+- [FinGPT](https://github.com/AI4Finance-Foundation/FinGPT) — 开源金融LLM项目，含数据管道与LoRA微调方案。 ⚠️ 模型与数据项目，未核对交易表现。 🟢 [`MIT`](https://github.com/AI4Finance-Foundation/FinGPT/blob/ac5c5443fbeeafad801e7a3c188e4f24cfaad4d8/LICENSE) [🔍 2026-10-26](https://github.com/AI4Finance-Foundation/FinGPT/tree/ac5c5443fbeeafad801e7a3c188e4f24cfaad4d8)
+- [Qwen DianJin](https://github.com/aliyun/qwen-dianjin) — 阿里云金融推理模型、数据与基准合集。 ⚠️ 属研究合集而非交易系统，各子项目文档与许可证独立。 🟢 [`MIT + Apache-2.0 sub-projects`](https://github.com/aliyun/qwen-dianjin/blob/e109a7d2da9899de597b81bea015fbf1b056a74a/LICENSE) [🔍 2026-10-26](https://github.com/aliyun/qwen-dianjin/tree/e109a7d2da9899de597b81bea015fbf1b056a74a)
+- [Kronos](https://github.com/shiyu-coder/Kronos) — 面向 K 线（OHLCV）序列的基础模型，已发布权重与微调脚本。 ⚠️ 研究级预测；使用前须在样本外与简单基线、随机游走对比。 🟡 [`MIT`](https://github.com/shiyu-coder/Kronos/blob/67b630e67f6a18c9e9be918d9b4337c960db1e9a/LICENSE) [🔍 2026-10-26](https://github.com/shiyu-coder/Kronos/tree/67b630e67f6a18c9e9be918d9b4337c960db1e9a)
 
 ### 多智能体决策架构
 
-- [TradingAgents](https://github.com/TauricResearch/TradingAgents) — 基于 LangGraph 的多智能体交易公司，输出五级评级。 ⚠️ 仅评估决策质量，无组合模拟、Sharpe 代码及论文评测框架。 🟢 `Apache-2.0` [🔬 拆解](docs/teardowns/tradingagents.md)
-- [QuantAgent / QuantHarness](https://github.com/Y-Research-SBU/QuantAgent) — LangGraph多智能体短线技术分析系统。 ⚠️ 论文回测未重跑，短周期结果需长记录验证。 🟢 `MIT`
-- [ContestTrade](https://github.com/FinStep-AI/ContestTrade) — 多智能体竞赛框架，按预测Sharpe分配权重。 ⚠️ 仓库无回测代码，无法复现论文Table 1结果。 🟡 `Apache-2.0` [🔬 拆解](docs/teardowns/contesttrade.md)
+- [TradingAgents](https://github.com/TauricResearch/TradingAgents) — 基于 LangGraph 的多智能体交易公司，输出五级评级。 ⚠️ 仅评估决策质量，无组合模拟、Sharpe 代码及论文评测框架。 🟢 [`Apache-2.0`](https://github.com/TauricResearch/TradingAgents/blob/e8f5503e9b86d5c2710b0c76b1f686703968c9df/LICENSE) [🔬 拆解](docs/teardowns/tradingagents.md) [🔍 2026-10-26](https://github.com/TauricResearch/TradingAgents/tree/e8f5503e9b86d5c2710b0c76b1f686703968c9df)
+- [QuantAgent / QuantHarness](https://github.com/Y-Research-SBU/QuantAgent) — LangGraph多智能体短线技术分析系统。 ⚠️ 论文回测未重跑，短周期结果需长记录验证。 🟢 [`MIT`](https://github.com/Y-Research-SBU/QuantAgent/blob/2e64c7befa75a88d254a426f5f29fa61b0b56732/LICENSE) [🔍 2026-10-26](https://github.com/Y-Research-SBU/QuantAgent/tree/2e64c7befa75a88d254a426f5f29fa61b0b56732)
+- [ContestTrade](https://github.com/FinStep-AI/ContestTrade) — 多智能体竞赛框架，按预测Sharpe分配权重。 ⚠️ 仓库无回测代码，无法复现论文Table 1结果。 🟡 [`Apache-2.0`](https://github.com/FinStep-AI/ContestTrade/blob/22432f9bbba5f1d6862d3b6b5508d4d882b40b94/LICENSE) [🔬 拆解](docs/teardowns/contesttrade.md) [🔍 2026-10-26](https://github.com/FinStep-AI/ContestTrade/tree/22432f9bbba5f1d6862d3b6b5508d4d882b40b94)
 
 ### 单智能体、记忆与反思
 
-- [FinMem](https://github.com/pipiku915/FinMem-LLM-StockTrading) — 带风险画像与三层衰减记忆的单一交易智能体。 ⚠️ 仓库不含市场数据，仅有占位文件和伪造样例压缩包。 ⚪ `MIT` [🔬 拆解](docs/teardowns/finmem.md)
+- [FinMem](https://github.com/pipiku915/FinMem-LLM-StockTrading) — 带风险画像与三层衰减记忆的单一交易智能体。 ⚠️ 仓库不含市场数据，仅有占位文件和伪造样例压缩包。 ⚪ [`MIT`](https://github.com/pipiku915/FinMem-LLM-StockTrading/blob/be814aa47970de9bf2fdd6a1d5a60ae5cf361b46/LICENSE) [🔬 拆解](docs/teardowns/finmem.md) [🔍 2026-10-26](https://github.com/pipiku915/FinMem-LLM-StockTrading/tree/be814aa47970de9bf2fdd6a1d5a60ae5cf361b46)
 
 ### 强化学习与学习型策略
 
-- [FinRL](https://github.com/AI4Finance-Foundation/FinRL) — 面向股票交易环境的深度强化学习库与教程。 ⚠️ 偏教学的 RL 环境，未核对其头条结果。 🟢 `MIT`
+- [FinRL](https://github.com/AI4Finance-Foundation/FinRL) — 面向股票交易环境的深度强化学习库与教程。 ⚠️ 偏教学的强化学习环境，带基础的 Alpaca 实盘支持；生产用途请用 FinRL-X。 🟢 [`MIT`](https://github.com/AI4Finance-Foundation/FinRL/blob/7e98df461cbc7772f16a545a2f13b521e5d0b8f4/LICENSE) [⚡](https://github.com/AI4Finance-Foundation/FinRL/blob/7e98df461cbc7772f16a545a2f13b521e5d0b8f4/README.md?plain=1#L55) [🔍 2026-10-26](https://github.com/AI4Finance-Foundation/FinRL/tree/7e98df461cbc7772f16a545a2f13b521e5d0b8f4)
 
 ### 必读
 
-- [FinMem: A Performance-Enhanced LLM Trading Agent with Layered Memory and Character Design](https://arxiv.org/abs/2311.13743) — Yangyang Yu et al., 2023. 单一交易智能体：新闻、10-Q、10-K 三层衰减记忆加风险画像提示词；在 5 只股票上测试约 6 个月。
-- [FinCon: A Synthesized LLM Multi-Agent System with Conceptual Verbal Reinforcement for Enhanced Financial Decision Making](https://arxiv.org/abs/2407.06567) — Yangyang Yu et al., 2024. 经理—分析师层级结构，加一个风控组件，把每轮自我批评作为“概念化语言强化”反馈回去。
-- [TradingAgents: Multi-Agents LLM Financial Trading Framework](https://arxiv.org/abs/2412.20138) — Yijia Xiao et al., 2024. 按角色组织的 LLM“交易公司”：分析师、多空辩论、交易员、风险辩论、组合经理；回测仅覆盖 2024 年 1–3 月的少数美股科技股。
+- [FinMem: A Performance-Enhanced LLM Trading Agent with Layered Memory and Character Design](https://arxiv.org/abs/2311.13743) — Yangyang Yu et al., 2023 · 📖 全文精读. 单一交易智能体：新闻、10-Q、10-K 三层衰减记忆加风险画像提示词；在 5 只股票上测试约 6 个月。
+- [FinCon: A Synthesized LLM Multi-Agent System with Conceptual Verbal Reinforcement for Enhanced Financial Decision Making](https://arxiv.org/abs/2407.06567) — Yangyang Yu et al., 2024 · 🗂️ 方法卡片. 经理—分析师层级结构，加一个风控组件，把每轮自我批评作为“概念化语言强化”反馈回去。
+- [TradingAgents: Multi-Agents LLM Financial Trading Framework](https://arxiv.org/abs/2412.20138) — Yijia Xiao et al., 2024 · 📖 全文精读. 按角色组织的 LLM“交易公司”：分析师、多空辩论、交易员、风险辩论、组合经理；回测仅覆盖 2024 年 1–3 月的少数美股科技股。
 - 🎤 [How Bridgewater's AIA Labs Built PAT: The AI Pocket Analyst Tool](https://www.bridgewater.com/aia-labs/how-bridgewaters-aia-labs-built-pat-the-ai-pocket-analyst-tool) — Brendan McManus, Michael Ran, Santi Weight (Bridgewater AIA Labs), 2026-05. 大型宏观基金少见的工程分享：如何把编码化的投资知识与智能体式 LLM 工作流、投资人反馈循环结合起来。
 
 ## 3. 执行层：智能体如何下单
 
 > 决策如何安全地变成成交？
 
-**10 个仓库 · 1 篇论文 · 6 篇文章** · [完整分层页（英文）→](layers/execution.md)
+**10 个仓库 · 1 篇论文 · 7 篇文章** · [完整分层页（英文）→](layers/execution.md)
 
 ### 券商与交易场所工具
 
-- [CCXT (with ccxt-mcp)](https://github.com/ccxt/ccxt) — 统一接入 100 多家加密货币交易所的 API，现附以安全护栏为设计核心的官方 MCP 服务。 ⚠️ MCP 服务尚早期；交易权限等级写在同时保存密钥的本地配置中。 🟢 `MIT` ⚡
-- [AgentKit](https://github.com/coinbase/agentkit) — 为 AI 智能体提供加密钱包与链上操作：转账、兑换、支付。 ⚠️ 默认无审批、限额与白名单：提示注入可能转走资金，须先加护栏。 🟢 `Apache-2.0` ⚡
-- [Alpaca MCP Server](https://github.com/alpacahq/alpaca-mcp-server) — 让LLM客户端查询行情并通过Alpaca下单的MCP服务器。 ⚠️ 默认模拟盘，但一个开关即切到实盘；未限制时所有工具集均开启。 🟢 `MIT` ⚡
-- [Polymarket MCP Server](https://github.com/caiovicentino/polymarket-mcp-server) — 提供45个Polymarket交易与监控工具的MCP服务器。 ⚠️ LLM客户端可动用真实资金下单，应先用模拟账户测试。 🟢 `MIT` ⚡
-- [fintool](https://github.com/second-state/fintool) — 为智能体提供分交易所交易与行情的 Rust CLI 套件。 ⚠️ 可在真实交易所下单，建议先用小仓位或测试网。 🟡 `MIT` ⚡
-- [Schwab MCP](https://github.com/jkoelker/schwab-mcp) — 嘉信理财（Schwab）社区版 MCP 服务：行情、期权链、持仓与下单，下单前需人工审批。 ⚠️ 非官方；审批后即对真实账户下单；需申请 Schwab 开发者应用。 🟢 `MIT` ⚡
-- [tastytrade MCP](https://github.com/tastytrade/tastytrade-mcp) — tastytrade 官方 MCP 服务：行情、期权链、持仓与下单。 ⚠️ 默认连接生产环境（真实资金）；应先用只读或沙箱模式。 🟢 `MIT` ⚡
+- [CCXT (with ccxt-mcp)](https://github.com/ccxt/ccxt) — 统一接入 100 多家加密货币交易所的 API，现附以安全护栏为设计核心的官方 MCP 服务。 ⚠️ MCP 服务尚早期；交易权限等级写在同时保存密钥的本地配置中。 🟢 [`MIT`](https://github.com/ccxt/ccxt/blob/133fd945e5dabea9b08a3d6b1012cefe1ef9713b/LICENSE.txt) [⚡](https://github.com/ccxt/ccxt/blob/133fd945e5dabea9b08a3d6b1012cefe1ef9713b/mcp/README.md?plain=1#L16-L22) [🔍 2026-10-26](https://github.com/ccxt/ccxt/tree/133fd945e5dabea9b08a3d6b1012cefe1ef9713b)
+- [AgentKit](https://github.com/coinbase/agentkit) — 为 AI 智能体提供加密钱包与链上操作：转账、兑换、支付。 ⚠️ 默认无审批、限额与白名单：提示注入可能转走资金，须先加护栏。 🟢 [`Apache-2.0`](https://github.com/coinbase/agentkit/blob/f2f3e8c11a91d56a17979a229a172ba6e61a85c2/LICENSE.md) [⚡](https://github.com/coinbase/agentkit/blob/f2f3e8c11a91d56a17979a229a172ba6e61a85c2/README.md?plain=1#L200-L204) [🔍 2026-10-26](https://github.com/coinbase/agentkit/tree/f2f3e8c11a91d56a17979a229a172ba6e61a85c2)
+- [Alpaca MCP Server](https://github.com/alpacahq/alpaca-mcp-server) — 让LLM客户端查询行情并通过Alpaca下单的MCP服务器。 ⚠️ 默认模拟盘，但一个开关即切到实盘；未限制时所有工具集均开启。 🟢 [`MIT`](https://github.com/alpacahq/alpaca-mcp-server/blob/d8dac43f3e17594e8879bac3b5b333196ea69aac/LICENSE) [⚡](https://github.com/alpacahq/alpaca-mcp-server/blob/d8dac43f3e17594e8879bac3b5b333196ea69aac/README.md?plain=1#L245-L258) [🔍 2026-10-26](https://github.com/alpacahq/alpaca-mcp-server/tree/d8dac43f3e17594e8879bac3b5b333196ea69aac)
+- [Polymarket MCP Server](https://github.com/caiovicentino/polymarket-mcp-server) — 提供45个Polymarket交易与监控工具的MCP服务器。 ⚠️ 完整模式用钱包真实资金交易；DEMO 模式只读；Polymarket 没有模拟盘账户。 🟢 [`MIT`](https://github.com/caiovicentino/polymarket-mcp-server/blob/21f65f319ff0fc4250ea1e5094581761906839e1/LICENSE) [⚡](https://github.com/caiovicentino/polymarket-mcp-server/blob/21f65f319ff0fc4250ea1e5094581761906839e1/README.md?plain=1#L184-L195) [🔍 2026-10-26](https://github.com/caiovicentino/polymarket-mcp-server/tree/21f65f319ff0fc4250ea1e5094581761906839e1)
+- [fintool](https://github.com/second-state/fintool) — 为智能体提供分交易所交易与行情的 Rust CLI 套件。 ⚠️ 可在真实交易所下单，建议先用小仓位或测试网。 🟡 ❓ [`MIT` 仅声明，无许可证文件](https://github.com/second-state/fintool/blob/177a9b8e3a09e507cdb2c8458f2be4b9574abaaf/Cargo.toml#L6) [⚡](https://github.com/second-state/fintool/blob/177a9b8e3a09e507cdb2c8458f2be4b9574abaaf/README.md?plain=1#L86-L97) [🔍 2026-10-26](https://github.com/second-state/fintool/tree/177a9b8e3a09e507cdb2c8458f2be4b9574abaaf)
+- [Schwab MCP](https://github.com/jkoelker/schwab-mcp) — 嘉信理财（Schwab）社区版 MCP 服务：行情、期权链、持仓与下单，下单前需人工审批。 ⚠️ 非官方；审批后即对真实账户下单；需申请 Schwab 开发者应用。 🟢 [`MIT`](https://github.com/jkoelker/schwab-mcp/blob/491960670d98dad9ed26f6631536b2db656f51be/LICENSE) [⚡](https://github.com/jkoelker/schwab-mcp/blob/491960670d98dad9ed26f6631536b2db656f51be/README.md?plain=1#L133-L151) [🔍 2026-10-26](https://github.com/jkoelker/schwab-mcp/tree/491960670d98dad9ed26f6631536b2db656f51be)
+- [tastytrade MCP](https://github.com/tastytrade/tastytrade-mcp) — tastytrade 官方 MCP 服务：行情、期权链、持仓与下单。 ⚠️ 默认连接生产环境（真实资金）；应先用只读或沙箱模式。 🟢 [`MIT`](https://github.com/tastytrade/tastytrade-mcp/blob/7f2bb636a8a1906fecc28f5da27ab382dd966941/LICENSE) [⚡](https://github.com/tastytrade/tastytrade-mcp/blob/7f2bb636a8a1906fecc28f5da27ab382dd966941/README.md?plain=1#L10-L19) [🔍 2026-10-26](https://github.com/tastytrade/tastytrade-mcp/tree/7f2bb636a8a1906fecc28f5da27ab382dd966941)
 
 ### 交易引擎（回测与实盘同一套代码）
 
-- [NautilusTrader](https://github.com/nautechsystems/nautilus_trader) — 同一策略代码可用于回测与实盘的事件驱动引擎。 ⚠️ 通用引擎，非 LLM 专用，智能体接入需自建。 🟢 `LGPL-3.0` ⚡
-- [LEAN](https://github.com/QuantConnect/Lean) — 用于研究、回测与实盘交易的事件驱动交易引擎。 ⚠️ 通用引擎，非 LLM 专用，智能体接入需自建。 🟢 `Apache-2.0` ⚡
+- [NautilusTrader](https://github.com/nautechsystems/nautilus_trader) — 同一策略代码可用于回测与实盘的事件驱动引擎。 ⚠️ 通用引擎，非 LLM 专用，智能体接入需自建。 🟢 [`LGPL-3.0`](https://github.com/nautechsystems/nautilus_trader/blob/04f766b4d434d67fc8672026fefa25135bdc01be/LICENSE) [⚡](https://github.com/nautechsystems/nautilus_trader/blob/04f766b4d434d67fc8672026fefa25135bdc01be/README.md?plain=1#L61) [🔍 2026-10-26](https://github.com/nautechsystems/nautilus_trader/tree/04f766b4d434d67fc8672026fefa25135bdc01be)
+- [LEAN](https://github.com/QuantConnect/Lean) — 用于研究、回测与实盘交易的事件驱动交易引擎。 ⚠️ 通用引擎，非 LLM 专用，智能体接入需自建。 🟢 [`Apache-2.0`](https://github.com/QuantConnect/Lean/blob/22404ea28b8d3f3c9eb74d6ed9f0444426f8e417/LICENSE) [⚡](https://github.com/QuantConnect/Lean/blob/22404ea28b8d3f3c9eb74d6ed9f0444426f8e417/readme.md?plain=1#L97) [🔍 2026-10-26](https://github.com/QuantConnect/Lean/tree/22404ea28b8d3f3c9eb74d6ed9f0444426f8e417)
 
 ### 从目标权重到订单
 
-- [FinRL-X (FinRL-Trading)](https://github.com/AI4Finance-Foundation/FinRL-Trading) — 以目标权重为核心的回测与券商下单管线。 ⚠️ RL 配置仅略胜等权，无择时时均不及 QQQ。 🟢 `Apache-2.0` ⚡ [🔬 拆解](docs/teardowns/finrl-x.md)
+- [FinRL-X (FinRL-Trading)](https://github.com/AI4Finance-Foundation/FinRL-Trading) — 以目标权重为核心的回测与券商下单管线。 ⚠️ RL 配置仅略胜等权，无择时时均不及 QQQ。 🟢 [`Apache-2.0`](https://github.com/AI4Finance-Foundation/FinRL-Trading/blob/4409abe925c904e570be78ebfb5e77ac3491dff8/LICENSE) [⚡](https://github.com/AI4Finance-Foundation/FinRL-Trading/blob/4409abe925c904e570be78ebfb5e77ac3491dff8/README.md?plain=1#L61) [🔬 拆解](docs/teardowns/finrl-x.md) [🔍 2026-10-26](https://github.com/AI4Finance-Foundation/FinRL-Trading/tree/4409abe925c904e570be78ebfb5e77ac3491dff8)
 
 ### 必读
 
-- [FinRL-X: An AI-Native Modular Infrastructure for Quantitative Trading](https://arxiv.org/abs/2603.21330) — Hongyang Yang et al., 2026. FinRL-X：以目标权重为核心的流水线（选股、配置、择时、风控叠加），回测与券商执行共用一套代码；含 2018–2025 回测和 4.5 个月模拟盘。
+- [FinRL-X: An AI-Native Modular Infrastructure for Quantitative Trading](https://arxiv.org/abs/2603.21330) — Hongyang Yang et al., 2026 · 📖 全文精读. FinRL-X：以目标权重为核心的流水线（选股、配置、择时、风控叠加），回测与券商执行共用一套代码；含 2018–2025 回测和 4.5 个月模拟盘。
 - 📝 [Robinhood is Now Open to Agents](https://robinhood.com/newsroom/robinhood-is-now-open-to-agents/) — Robinhood, 2026-05. 美国大型零售券商通过官方 MCP 服务向第三方智能体开放实盘交易，采用隔离的智能体专用账户、交易预览与紧急停止开关，是下单权限设计的参考范例。
 
 ## 4. Harness 层：如何运行、测试并信任它
@@ -199,42 +200,42 @@
 
 ### 研究与回测环境
 
-- [Qlib](https://github.com/microsoft/qlib) — 含数据层、ML模型库与回测工具的量化研究平台。 ⚠️ 通用量化平台，LLM 智能体部分需自建。 🟢 `MIT`
-- [Agentic Trading Lab](https://github.com/Open-Finance-Lab/AgenticTrading) — 构建、回测与模拟交易LLM交易智能体的研究平台。 ⚠️ 采用不常见的OpenMDW-1.0许可证，复用前需阅读。 🟢 `OpenMDW-1.0` 📝
+- [Qlib](https://github.com/microsoft/qlib) — 含数据层、ML模型库与回测工具的量化研究平台。 ⚠️ 通用量化平台，LLM 智能体部分需自建。 🟢 [`MIT`](https://github.com/microsoft/qlib/blob/54355232463878d2eebb91fe0ee5fa7fa1f5976c/LICENSE) [🔍 2026-10-26](https://github.com/microsoft/qlib/tree/54355232463878d2eebb91fe0ee5fa7fa1f5976c)
+- [Agentic Trading Lab](https://github.com/Open-Finance-Lab/AgenticTrading) — 构建、回测与模拟交易LLM交易智能体的研究平台。 ⚠️ 自带的 Robinhood 实盘通道默认关闭；采用不常见的 OpenMDW-1.0 许可证。 🟢 [`OpenMDW-1.0`](https://github.com/Open-Finance-Lab/AgenticTrading/blob/59ac7f7cc98b28d9f73d65c506e615791b04b2a2/LICENSE) [⚡](https://github.com/Open-Finance-Lab/AgenticTrading/blob/59ac7f7cc98b28d9f73d65c506e615791b04b2a2/dashboard/backend/api/routers/robinhood_live.py#L1-L5) [🔍 2026-10-26](https://github.com/Open-Finance-Lab/AgenticTrading/tree/59ac7f7cc98b28d9f73d65c506e615791b04b2a2)
 
 ### 模拟器与纸面交易环境
 
-- [FinRL-Meta](https://github.com/AI4Finance-Foundation/FinRL-Meta) — 面向金融强化学习的 Gym 式市场环境与基准。 ⚠️ 为强化学习而建，非 LLM 智能体：需自行适配。 🟢 `MIT`
-- [StockAgent](https://github.com/MingyuJ666/Stockagent) — LLM投资者在模拟股票交易所中交易。 ⚠️ 仓库中没有LICENSE文件，使用条款不明确。 🟡 `未找到许可证`
-- [polymarket-paper-trader](https://github.com/agent-next/polymarket-paper-trader) — 基于 Polymarket 实时订单簿的智能体模拟交易环境。 ⚠️ 仅限预测市场而非股票，成交逼真度为作者自述。 🟢 `MIT` 📝
+- [FinRL-Meta](https://github.com/AI4Finance-Foundation/FinRL-Meta) — 面向金融强化学习的 Gym 式市场环境与基准。 ⚠️ 为强化学习而建，非 LLM 智能体；模拟盘环境默认连接 Alpaca 模拟接口。 🟢 [`MIT`](https://github.com/AI4Finance-Foundation/FinRL-Meta/blob/286fef6c828a02a2ccf807c05b292d8cb28f8e95/LICENSE) [⚡](https://github.com/AI4Finance-Foundation/FinRL-Meta/blob/286fef6c828a02a2ccf807c05b292d8cb28f8e95/README.md?plain=1#L132) [🔍 2026-10-26](https://github.com/AI4Finance-Foundation/FinRL-Meta/tree/286fef6c828a02a2ccf807c05b292d8cb28f8e95)
+- [StockAgent](https://github.com/MingyuJ666/Stockagent) — LLM投资者在模拟股票交易所中交易。 ⚠️ 仓库中没有LICENSE文件，使用条款不明确。 🟡 ❓ [无许可证](https://github.com/MingyuJ666/Stockagent/tree/e2a9c052b81694067b1dbed4ccf39be9ab7f392c) [🔍 2026-10-26](https://github.com/MingyuJ666/Stockagent/tree/e2a9c052b81694067b1dbed4ccf39be9ab7f392c)
+- [polymarket-paper-trader](https://github.com/agent-next/polymarket-paper-trader) — 基于 Polymarket 实时订单簿的智能体模拟交易环境。 ⚠️ 仅限预测市场而非股票，成交逼真度为作者自述。 🟢 [`MIT`](https://github.com/agent-next/polymarket-paper-trader/blob/55bb35b7956815c71f5fb58292b2d1e859abff05/LICENSE) [📝](https://github.com/agent-next/polymarket-paper-trader/blob/55bb35b7956815c71f5fb58292b2d1e859abff05/README.md?plain=1#L13) [🔍 2026-10-26](https://github.com/agent-next/polymarket-paper-trader/tree/55bb35b7956815c71f5fb58292b2d1e859abff05)
 
 ### 基准、竞技场与前向实盘记录
 
-- [AI-Trader](https://github.com/HKUDS/AI-Trader) — 外部AI智能体注册交易的平台与实时排行榜。 ⚠️ 仓库根目录无LICENSE文件，仅README徽章标注MIT。 🟡 `MIT (README badge)` 📝
-- [LLM Trading Lab](https://github.com/LuckyOne7777/LLM-Trading-Lab) — ChatGPT管理真实资金微盘股组合的六个月实盘记录。 ⚠️ 仅六个月单次运行且由作者自评，不足以证明能力。 🟡 `未找到许可证`
-- [PIXIU / FinBen](https://github.com/The-FinAI/PIXIU) — 开源金融LLM FinMA及FinBen评测套件。 ⚠️ 任务高分难以反映实际交易表现。 🟢 `MIT`
-- [DeepFund](https://github.com/HKUSTDial/DeepFund) — 在截止日后数据上评测LLM基金经理的实时竞技场。 ⚠️ 竞技场结果取决于较短的实盘窗口。 🟡 `MIT`
-- [Live Trade Bench](https://github.com/ulab-uiuc/live-trade-bench) — 在美股与Polymarket上实盘运行并监控LLM交易智能体。 ⚠️ 在实时数据上运行模拟组合，不涉及真实资金；非商业许可。 🟡 `PolyForm Noncommercial 1.0.0`
+- [AI-Trader](https://github.com/HKUDS/AI-Trader) — 外部AI智能体注册交易的平台与实时排行榜。 ⚠️ 仓库根目录无LICENSE文件，仅README徽章标注MIT。 🟡 ❓ [`MIT` 仅声明，无许可证文件](https://github.com/HKUDS/AI-Trader/blob/d03ff6c056b32ced735adf7c19ed8175adb1c8df/README.md?plain=1#L11) [📝](https://github.com/HKUDS/AI-Trader/blob/d03ff6c056b32ced735adf7c19ed8175adb1c8df/README.md?plain=1#L119) [🔍 2026-10-26](https://github.com/HKUDS/AI-Trader/tree/d03ff6c056b32ced735adf7c19ed8175adb1c8df)
+- [LLM Trading Lab](https://github.com/LuckyOne7777/LLM-Trading-Lab) — ChatGPT管理真实资金微盘股组合的六个月实盘记录。 ⚠️ 仅一次六个月运行且由作者自评；代码无券商接口；无许可证文件。 🟡 ❓ [无许可证](https://github.com/LuckyOne7777/LLM-Trading-Lab/tree/589c92abe36616e3495cc46c05019d2c451c566f) [🔍 2026-10-26](https://github.com/LuckyOne7777/LLM-Trading-Lab/tree/589c92abe36616e3495cc46c05019d2c451c566f)
+- [PIXIU / FinBen](https://github.com/The-FinAI/PIXIU) — 开源金融LLM FinMA及FinBen评测套件。 ⚠️ 任务高分难以反映实际交易表现。 🟢 [`MIT`](https://github.com/The-FinAI/PIXIU/blob/860d6a085378ee0bd2c21287d978f00393f17aaa/LICENSE) [🔍 2026-10-26](https://github.com/The-FinAI/PIXIU/tree/860d6a085378ee0bd2c21287d978f00393f17aaa)
+- [DeepFund](https://github.com/HKUSTDial/DeepFund) — 在截止日后数据上评测LLM基金经理的实时竞技场。 ⚠️ 不进行交易（在实时数据上为决策打分）；结果依赖较短的实时窗口。 🟡 [`MIT`](https://github.com/HKUSTDial/DeepFund/blob/e31f1c2eae845b8627fe65621ba4febaf55c2385/LICENSE) [🔍 2026-10-26](https://github.com/HKUSTDial/DeepFund/tree/e31f1c2eae845b8627fe65621ba4febaf55c2385)
+- [Live Trade Bench](https://github.com/ulab-uiuc/live-trade-bench) — 在美股与Polymarket上实盘运行并监控LLM交易智能体。 ⚠️ 在实时数据上运行模拟组合，不涉及真实资金；非商业许可。 🟡 🔒 [`PolyForm-Noncommercial-1.0.0`](https://github.com/ulab-uiuc/live-trade-bench/blob/05fbfec8df76c2c309201e6b4b7c26aff7e6d0f9/LICENSE) [📝](https://github.com/ulab-uiuc/live-trade-bench/blob/05fbfec8df76c2c309201e6b4b7c26aff7e6d0f9/README.md?plain=1#L64-L71) [🔍 2026-10-26](https://github.com/ulab-uiuc/live-trade-bench/tree/05fbfec8df76c2c309201e6b4b7c26aff7e6d0f9)
 
 ### 稳健性与偏差控制
 
-- [TradeTrap](https://github.com/Yanlewen/TradeTrap) — 面向LLM交易智能体的故障注入测试工具。 ⚠️ 测的是鲁棒性，不是盈利能力。 🟡 `Apache-2.0`
+- [TradeTrap](https://github.com/Yanlewen/TradeTrap) — 面向LLM交易智能体的故障注入测试工具。 ⚠️ 测的是鲁棒性，不是盈利能力。 🟡 [`Apache-2.0`](https://github.com/Yanlewen/TradeTrap/blob/7e40c233a074b93f5f4de429361837ca0aab54b4/LICENSE) [🔍 2026-10-26](https://github.com/Yanlewen/TradeTrap/tree/7e40c233a074b93f5f4de429361837ca0aab54b4)
 
 ### Agent Harness：循环、评测、追踪与状态
 
-- [Harbor](https://github.com/harbor-framework/harbor) — 容器化的智能体评测框架：任务、写入奖励的独立验证器、基准与 RL 轨迹。 ⚠️ 行情数据与模拟器需打包成容器任务；云沙箱需付费。 🟢 `Apache-2.0` 🧰
-- [Harness²](https://github.com/google-research/harness2) — 在不改模型权重的前提下按任务调优智能体 Harness（提示词、工具、记忆、技能）的研究框架。 ⚠️ 研究代码，评测基准与交易无关；须保留改进循环看不到的留出集。 🟢 `Apache-2.0` 🧰
-- [Langfuse](https://github.com/langfuse/langfuse) — 可自托管的 LLM 应用与智能体追踪、提示词管理与评测平台。 ⚠️ ee/ 目录采用单独许可证；自托管需部署多个服务。 🟢 `MIT (ee/ directories under a separate license)` 🧰
-- [learn-claude-code](https://github.com/shareAI-lab/learn-claude-code) — 用 Python 从零逐步搭建小型编程智能体 Harness 的教程。 ⚠️ 教学代码，非生产级；与 Anthropic 无关。 🟢 `MIT` 🧰
-- [Pi (with Pi Durable)](https://github.com/earendil-works/pi) — 极简、可改造的 TypeScript 智能体 Harness；Pi Durable 为每一步做检查点，崩溃后可续跑。 ⚠️ Durable 包仍属实验性；续跑某一步不等于对账真实副作用（如订单） 🟢 `MIT` 🧰
-- [promptfoo](https://github.com/promptfoo/promptfoo) — 声明式的提示词与智能体评测和红队测试，可在 CI 中运行。 ⚠️ 通用 LLM 评测：交易专用评分器、行情样例与盈亏指标需自行编写。 🟢 `MIT` 🧰
-- [Single Agent Loop Kit](https://github.com/anthropics/single-agent-loop-kit) — 度量多智能体系统、并在评测下把子智能体合并进单循环的参考工具包。 ⚠️ 参考实现，不再维护；示例是客服场景而非交易。 🟢 `Apache-2.0` 🧰
+- [Harbor](https://github.com/harbor-framework/harbor) — 容器化的智能体评测框架：任务、写入奖励的独立验证器、基准与 RL 轨迹。 ⚠️ 行情数据与模拟器需打包成容器任务；云沙箱需付费。 🟢 [`Apache-2.0`](https://github.com/harbor-framework/harbor/blob/c080078c6b8a8a1db9a781380e15ed14189ad8d1/LICENSE) 🧰 [🔍 2026-10-26](https://github.com/harbor-framework/harbor/tree/c080078c6b8a8a1db9a781380e15ed14189ad8d1)
+- [Harness²](https://github.com/google-research/harness2) — 在不改模型权重的前提下按任务调优智能体 Harness（提示词、工具、记忆、技能）的研究框架。 ⚠️ 研究代码，评测基准与交易无关；须保留改进循环看不到的留出集。 🟢 [`Apache-2.0`](https://github.com/google-research/harness2/blob/1cfe254e8d25b15f37048c3730134686abe60335/LICENSE) 🧰 [🔍 2026-10-26](https://github.com/google-research/harness2/tree/1cfe254e8d25b15f37048c3730134686abe60335)
+- [Langfuse](https://github.com/langfuse/langfuse) — 可自托管的 LLM 应用与智能体追踪、提示词管理与评测平台。 ⚠️ ee/ 目录采用单独许可证；自托管需部署多个服务。 🟢 🧩 [`MIT + proprietary ee/`](https://github.com/langfuse/langfuse/blob/165b621fdf8fc7d34232df8d5a74a5ab36d3fc83/LICENSE) 🧰 [🔍 2026-10-26](https://github.com/langfuse/langfuse/tree/165b621fdf8fc7d34232df8d5a74a5ab36d3fc83)
+- [learn-claude-code](https://github.com/shareAI-lab/learn-claude-code) — 用 Python 从零逐步搭建小型编程智能体 Harness 的教程。 ⚠️ 教学代码，非生产级；与 Anthropic 无关。 🟢 [`MIT`](https://github.com/shareAI-lab/learn-claude-code/blob/ce8f9f186058939da54c9d6fead78dfb5d0fd6c3/LICENSE) 🧰 [🔍 2026-10-26](https://github.com/shareAI-lab/learn-claude-code/tree/ce8f9f186058939da54c9d6fead78dfb5d0fd6c3)
+- [Pi (with Pi Durable)](https://github.com/earendil-works/pi) — 极简、可改造的 TypeScript 智能体 Harness；Pi Durable 为每一步做检查点，崩溃后可续跑。 ⚠️ Durable 包仍属实验性；续跑某一步不等于对账真实副作用（如订单） 🟢 [`MIT`](https://github.com/earendil-works/pi/blob/6c384aa30f619d7b28963f2bab24d8dacbe73cb6/LICENSE) 🧰 [🔍 2026-10-26](https://github.com/earendil-works/pi/tree/6c384aa30f619d7b28963f2bab24d8dacbe73cb6)
+- [promptfoo](https://github.com/promptfoo/promptfoo) — 声明式的提示词与智能体评测和红队测试，可在 CI 中运行。 ⚠️ 通用 LLM 评测：交易专用评分器、行情样例与盈亏指标需自行编写。 🟢 [`MIT`](https://github.com/promptfoo/promptfoo/blob/e48ed85e08ff8a1ca74fa7d0e41daf47cf155efb/LICENSE) 🧰 [🔍 2026-10-26](https://github.com/promptfoo/promptfoo/tree/e48ed85e08ff8a1ca74fa7d0e41daf47cf155efb)
+- [Single Agent Loop Kit](https://github.com/anthropics/single-agent-loop-kit) — 度量多智能体系统、并在评测下把子智能体合并进单循环的参考工具包。 ⚠️ 参考实现，不再维护；示例是客服场景而非交易。 [💤](https://github.com/anthropics/single-agent-loop-kit/blob/c43796287b83bec847db923f07131d1cc8de750d/README.md?plain=1#L11) [`Apache-2.0`](https://github.com/anthropics/single-agent-loop-kit/blob/c43796287b83bec847db923f07131d1cc8de750d/LICENSE) 🧰 [🔍 2026-10-26](https://github.com/anthropics/single-agent-loop-kit/tree/c43796287b83bec847db923f07131d1cc8de750d)
 
 ### 必读
 
-- [Can LLM-based Financial Investing Strategies Outperform the Market in Long Run?](https://arxiv.org/abs/2505.07078) — Weixian Waylon Li et al., 2025. FINSABER：控制幸存者偏差、前视偏差和数据窥探的回测框架，覆盖二十年、100 多个标的；早先报告的 LLM 优势明显缩小。
-- [Time Travel is Cheating: Going Live with DeepFund for Real-Time Fund Investment Benchmarking](https://arxiv.org/abs/2505.11065) — Changlun Li et al., 2025. DeepFund：只使用各模型知识截止日之后发布的数据的实时基金竞技场；报告称即使强模型（DeepSeek-V3、Claude-3.7-Sonnet）在实时运行中也亏损。
-- [Detecting Lookahead Bias in LLM Forecasts](https://arxiv.org/abs/2512.23847) — Zhenyu Gao et al., 2025. 前视倾向（LAP）：只给日期的回忆式提问，估计 LLM 对结果的记忆程度，用于检测预测是否被污染。
+- [Can LLM-based Financial Investing Strategies Outperform the Market in Long Run?](https://arxiv.org/abs/2505.07078) — Weixian Waylon Li et al., 2025 · 📖 部分精读. FINSABER：控制幸存者偏差、前视偏差和数据窥探的回测框架，覆盖二十年、100 多个标的；早先报告的 LLM 优势明显缩小。
+- [Time Travel is Cheating: Going Live with DeepFund for Real-Time Fund Investment Benchmarking](https://arxiv.org/abs/2505.11065) — Changlun Li et al., 2025 · 🗂️ 方法卡片. DeepFund：只使用各模型知识截止日之后发布的数据的实时基金竞技场；报告称即使强模型（DeepSeek-V3、Claude-3.7-Sonnet）在实时运行中也亏损。
+- [Detecting Lookahead Bias in LLM Forecasts](https://arxiv.org/abs/2512.23847) — Zhenyu Gao et al., 2025 · 🗂️ 方法卡片. 前视倾向（LAP）：只给日期的回忆式提问，估计 LLM 对结果的记忆程度，用于检测预测是否被污染。
 - 𝕏 [Season 1 of Alpha Arena has officially ended](https://x.com/jay_azhang/status/1985481491078328621) — Jay A. Zhang (@jay_azhang, Nof1), 2025-11. 赛季结果帖，点明影响结果的设计限制：只有数值时间序列上下文、标的范围窄、动作空间有限、模型“性格”固定。两周、单次运行无法区分能力与运气。
 - 📝 [Effective harnesses for long-running agents](https://www.anthropic.com/research/effective-harnesses-for-long-running-agents) — Justin Young (Anthropic), 2025-11. 先由初始化智能体搭好脚手架，再由工作智能体每次只完成一个单元、端到端测试，并为下一次会话留下 git 历史和进度记录。同样适用于持续多天的投研与策略开发。
 - 📝 [Your LLM's Alpha Might Be Mere Memorization](https://hedgefundalpha.com/education/your-llms-alpha-might-be-mere-memorization/) — Greg Kapoustin (Hedge Fund Alpha), 2026-04. 从业者文章：LLM 的回测优势常在训练截止日之后消失，因此“时点一致性”不仅要覆盖数据，也要覆盖模型本身。
@@ -248,43 +249,43 @@
 
 ### 投研与报告
 
-- [Dexter](https://github.com/virattt/dexter) — 自主投研智能体：拆解问题、调用金融数据工具、自查并迭代。 ⚠️ 仅限研究；依赖付费数据 API；README 称 MIT 但无 LICENSE 文件。 🟢 `未找到许可证`
-- [FinRobot](https://github.com/AI4Finance-Foundation/FinRobot) — 代码算数、LLM写叙述的股票研究智能体平台。 ⚠️ 属于股票研究工作站而非交易系统，无可检验的交易业绩声明。 🟢 `Apache-2.0` [🔬 拆解](docs/teardowns/finrobot.md)
-- [OpenTerminalUI](https://github.com/Hitheshkaranth/OpenTerminalUI) — 可自托管的投研终端，AI 分析师会引用公告并标注每个数字的来源。 ⚠️ 单人维护的小项目；免费数据可能延迟或为合成数据（有标注）；仅支持模拟操作。 🟢 `MIT` 📝
+- [Dexter](https://github.com/virattt/dexter) — 自主投研智能体：拆解问题、调用金融数据工具、自查并迭代。 ⚠️ 仅限研究；依赖付费数据 API；README 称 MIT 但无 LICENSE 文件。 🟢 ❓ [`MIT` 仅声明，无许可证文件](https://github.com/virattt/dexter/blob/534f6be455523c5926eba72bdaf4f914555be5c9/README.md?plain=1#L190-L192) [🔍 2026-10-26](https://github.com/virattt/dexter/tree/534f6be455523c5926eba72bdaf4f914555be5c9)
+- [FinRobot](https://github.com/AI4Finance-Foundation/FinRobot) — 代码算数、LLM写叙述的股票研究智能体平台。 ⚠️ 属于股票研究工作站而非交易系统，无可检验的交易业绩声明。 🟢 [`Apache-2.0`](https://github.com/AI4Finance-Foundation/FinRobot/blob/63e1884a42ea7b729551a5424b4bd6a65af636e0/LICENSE) [🔬 拆解](docs/teardowns/finrobot.md) [🔍 2026-10-26](https://github.com/AI4Finance-Foundation/FinRobot/tree/63e1884a42ea7b729551a5424b4bd6a65af636e0)
+- [OpenTerminalUI](https://github.com/Hitheshkaranth/OpenTerminalUI) — 可自托管的投研终端，AI 分析师会引用公告并标注每个数字的来源。 ⚠️ 单人维护的小项目；免费数据可能延迟或为合成数据（有标注）；仅支持模拟操作。 🟢 [`MIT`](https://github.com/Hitheshkaranth/OpenTerminalUI/blob/9776de7f3246913d4bbeb8f9901c030b3f05d5aa/LICENSE) [📝](https://github.com/Hitheshkaranth/OpenTerminalUI/blob/9776de7f3246913d4bbeb8f9901c030b3f05d5aa/README.md?plain=1#L175) [🔍 2026-10-26](https://github.com/Hitheshkaranth/OpenTerminalUI/tree/9776de7f3246913d4bbeb8f9901c030b3f05d5aa)
 
 ### AI 基金与组合管理
 
-- [AI Hedge Fund](https://github.com/virattt/ai-hedge-fund) — LLM投资者智能体执行基金策略并回测历史。 ⚠️ 作者声明仅供教育用途，不下单交易，结果未经复现。 🟢 `MIT`
-- [Vibe-Trading](https://github.com/HKUDS/Vibe-Trading) — 个人交易智能体全栈（CLI、MCP、Web）：投研、带运行卡与验证的回测、模拟账户，以及会对账的实盘执行器。 ⚠️ 实盘券商连接有真实执行风险；未核对表现声明；注意冒名的代币与账号。 🟢 `MIT` ⚡
-- [TradingAgents-CN](https://github.com/hsliuping/TradingAgents-CN) — 面向A股的TradingAgents社区衍生框架。 ⚠️ 混合许可：应用层仅源码可见，并非开源。 🟢 `Apache-2.0 core + proprietary app layer` 📝
+- [AI Hedge Fund](https://github.com/virattt/ai-hedge-fund) — LLM 投资者智能体在真实交易日上运行模拟基金，并支持历史回测回放。 ⚠️ 作者声明仅供教学；只有模拟基金，不下真实订单；结果未经复现。 🟢 [`MIT`](https://github.com/virattt/ai-hedge-fund/blob/29b32f71861480e9bfd48b82cf0d3ca3e5680955/LICENSE) [📝](https://github.com/virattt/ai-hedge-fund/blob/29b32f71861480e9bfd48b82cf0d3ca3e5680955/README.md?plain=1#L57) [🔍 2026-10-26](https://github.com/virattt/ai-hedge-fund/tree/29b32f71861480e9bfd48b82cf0d3ca3e5680955)
+- [Vibe-Trading](https://github.com/HKUDS/Vibe-Trading) — 个人交易智能体全栈（CLI、MCP、Web）：投研、带运行卡与验证的回测、模拟账户，以及会对账的实盘执行器。 ⚠️ 实盘券商连接有真实执行风险；未核对表现声明；注意冒名的代币与账号。 🟢 [`MIT`](https://github.com/HKUDS/Vibe-Trading/blob/3cbb167e9d7afab1682934685437efb96faacd43/LICENSE) [⚡](https://github.com/HKUDS/Vibe-Trading/blob/3cbb167e9d7afab1682934685437efb96faacd43/README.md?plain=1#L773-L775) [🔍 2026-10-26](https://github.com/HKUDS/Vibe-Trading/tree/3cbb167e9d7afab1682934685437efb96faacd43)
+- [TradingAgents-CN](https://github.com/hsliuping/TradingAgents-CN) — 面向A股的TradingAgents社区衍生框架。 ⚠️ 混合许可：应用层仅源码可见，并非开源。 🟢 🧩 [`Apache-2.0 + proprietary`](https://github.com/hsliuping/TradingAgents-CN/blob/51060a7682cf51810b4bc3a704829438d18cd8dc/LICENSE) [📝](https://github.com/hsliuping/TradingAgents-CN/blob/51060a7682cf51810b4bc3a704829438d18cd8dc/README.md?plain=1#L23) [🔍 2026-10-26](https://github.com/hsliuping/TradingAgents-CN/tree/51060a7682cf51810b4bc3a704829438d18cd8dc)
 
 ### 因子工厂（量化研究自动化）
 
-- [RD-Agent](https://github.com/microsoft/RD-Agent) — 提出、实现并评估量化因子与模型的智能体循环。 ⚠️ 未核对头条结果，因子收益需留出样本检验。 🟢 `MIT`
-- [QuantaAlpha](https://github.com/QuantaAlpha/QuantaAlpha) — LLM驱动的进化式因子挖掘框架。 ⚠️ 仓库无LICENSE文件，MIT仅见于README徽章。 🟡 `MIT (README badge)`
-- [AlphaGen](https://github.com/RL-MLDM/alphagen) — 基于Qlib的强化学习公式化因子生成框架。 ⚠️ 仓库无LICENSE文件；核心为强化学习，LLM模块为后加。 🟡 `未找到许可证`
+- [RD-Agent](https://github.com/microsoft/RD-Agent) — 提出、实现并评估量化因子与模型的智能体循环。 ⚠️ 未核对头条结果，因子收益需留出样本检验。 🟢 [`MIT`](https://github.com/microsoft/RD-Agent/blob/484776c211e4fbbeef03e0ec00d6bbee7362a4f4/LICENSE) [🔍 2026-10-26](https://github.com/microsoft/RD-Agent/tree/484776c211e4fbbeef03e0ec00d6bbee7362a4f4)
+- [QuantaAlpha](https://github.com/QuantaAlpha/QuantaAlpha) — LLM驱动的进化式因子挖掘框架。 ⚠️ 无 LICENSE 文件；MIT 仅见于 README 徽章与 pyproject 分类器。 🟡 ❓ [`MIT` 仅声明，无许可证文件](https://github.com/QuantaAlpha/QuantaAlpha/blob/b7ceb27b1001261d7a95b209a963664ae1f8ab23/README.md?plain=1#L17) [🔍 2026-10-26](https://github.com/QuantaAlpha/QuantaAlpha/tree/b7ceb27b1001261d7a95b209a963664ae1f8ab23)
+- [AlphaGen](https://github.com/RL-MLDM/alphagen) — 基于Qlib的强化学习公式化因子生成框架。 ⚠️ 仓库无LICENSE文件；核心为强化学习，LLM模块为后加。 🟡 ❓ [无许可证](https://github.com/RL-MLDM/alphagen/tree/259687e8f316994426416c530a94842a2fe6405e) [🔍 2026-10-26](https://github.com/RL-MLDM/alphagen/tree/259687e8f316994426416c530a94842a2fe6405e)
 
 ### 预测市场
 
-- [Kalshi AI Trading Bot](https://github.com/ryanfrigo/kalshi-ai-trading-bot) — 带边际审计、MCP server 与代理工具的 Kalshi 交易工具包。 ⚠️ 其自身 55 笔前向交易的结论为无可测边际，账户含人工交易。 🟢 `MIT` ⚡
-- [Oracle3](https://github.com/YichengYang-Ethan/oracle3) — Kalshi与Polymarket预测市场代理工具包。 ⚠️ 只有声明，没有公开回测或记录。 🟢 `Apache-2.0` ⚡
-- [Kalshi Trading Bot CLI](https://github.com/OctagonAI/kalshi-trading-bot-cli) — 估算Kalshi市场概率并以分数Kelly定仓的CLI。 ⚠️ 未公布业绩记录；概率估算可能依赖供应商研究API。 🟢 `MIT`
+- [Kalshi AI Trading Bot](https://github.com/ryanfrigo/kalshi-ai-trading-bot) — 带边际审计、MCP server 与代理工具的 Kalshi 交易工具包。 ⚠️ 其自身 55 笔前向交易的结论为无可测边际，账户含人工交易。 🟢 [`MIT`](https://github.com/ryanfrigo/kalshi-ai-trading-bot/blob/7b9667bb7e7e7b263f14b54ab8647a05cbdd1383/LICENSE) [⚡](https://github.com/ryanfrigo/kalshi-ai-trading-bot/blob/7b9667bb7e7e7b263f14b54ab8647a05cbdd1383/README.md?plain=1#L207-L210) [🔍 2026-10-26](https://github.com/ryanfrigo/kalshi-ai-trading-bot/tree/7b9667bb7e7e7b263f14b54ab8647a05cbdd1383)
+- [Oracle3](https://github.com/YichengYang-Ethan/oracle3) — Kalshi与Polymarket预测市场代理工具包。 ⚠️ 只有声明，没有公开回测或记录。 🟢 [`Apache-2.0`](https://github.com/YichengYang-Ethan/oracle3/blob/267fb7c48dae7c4ff8922c02a3a223443e51bf0b/LICENSE) [⚡](https://github.com/YichengYang-Ethan/oracle3/blob/267fb7c48dae7c4ff8922c02a3a223443e51bf0b/README.md?plain=1#L24-L27) [🔍 2026-10-26](https://github.com/YichengYang-Ethan/oracle3/tree/267fb7c48dae7c4ff8922c02a3a223443e51bf0b)
+- [Kalshi Trading Bot CLI](https://github.com/OctagonAI/kalshi-trading-bot-cli) — 估算Kalshi市场概率并以分数Kelly定仓的CLI。 ⚠️ 会在 Kalshi 下真实订单；先用自带模拟账本或 Kalshi 演示环境；未公布业绩记录。 🟢 [`MIT`](https://github.com/OctagonAI/kalshi-trading-bot-cli/blob/fcba2ff115de7cf736b51a0b5611ee7ef709142e/LICENSE) [⚡](https://github.com/OctagonAI/kalshi-trading-bot-cli/blob/fcba2ff115de7cf736b51a0b5611ee7ef709142e/README.md?plain=1#L189-L191) [🔍 2026-10-26](https://github.com/OctagonAI/kalshi-trading-bot-cli/tree/fcba2ff115de7cf736b51a0b5611ee7ef709142e)
 
 ### 必读
 
-- [FinRobot: An Open-Source AI Agent Platform for Financial Applications using Large Language Models](https://arxiv.org/abs/2405.14767) — Hongyang Yang et al., 2024. FinRobot 白皮书：分层的金融 LLM 智能体平台（智能调度器、金融思维链）；第 5 节展示两个应用样例，没有收益指标。
-- [R&D-Agent-Quant: A Multi-Agent Framework for Data-Centric Factors and Model Joint Optimization](https://arxiv.org/abs/2505.15155) — Yuante Li et al., 2025. RD-Agent(Q)：多智能体循环，自动提出、实现并评估量化研究中的因子与模型。
+- [FinRobot: An Open-Source AI Agent Platform for Financial Applications using Large Language Models](https://arxiv.org/abs/2405.14767) — Hongyang Yang et al., 2024 · 📖 全文精读. FinRobot 白皮书：分层的金融 LLM 智能体平台（智能调度器、金融思维链）；第 5 节展示两个应用样例，没有收益指标。
+- [R&D-Agent-Quant: A Multi-Agent Framework for Data-Centric Factors and Model Joint Optimization](https://arxiv.org/abs/2505.15155) — Yuante Li et al., 2025 · 🗂️ 方法卡片. RD-Agent(Q)：多智能体循环，自动提出、实现并评估量化研究中的因子与模型。
 - 𝕏 [AI Hedge Fund 2.0 is now live](https://x.com/virattt/status/2075666117293658374) — Virat Singh (@virattt), 2026-07. 热门仓库的重新设计：投资者智能体负责研究，量化模型负责交易，每次决策都给出解释。从业者主动不再让 LLM 决定仓位或直接执行交易。
 <!-- /gen:directory -->
 
 ## 综述
 
 <!-- gen:surveys -->
-- [Large Language Models in Finance: A Survey](https://arxiv.org/abs/2311.10723) — Yinheng Li et al., 2023. 实用综述：金融场景中 LLM 的零样本使用、微调与定制训练。
-- [A Survey of Large Language Models for Financial Applications: Progress, Prospects and Challenges](https://arxiv.org/abs/2406.11903) — Yuqi Nie et al., 2024. 金融领域 LLM 应用综述，含前景与挑战。
-- [From Deep Learning to LLMs: A survey of AI in Quantitative Investment](https://arxiv.org/abs/2503.21422) — Bokai Cao et al., 2025. 量化投资中的 AI 综述：从手工特征、深度学习到 LLM 智能体，以 alpha 策略贯穿。
-- [The New Quant: A Survey of Large Language Models in Financial Prediction and Trading](https://arxiv.org/abs/2510.05533) — Weilong Fu, 2025. 以任务为中心的 LLM 收益预测与交易分类体系，基于 50 余篇一手研究。
-- [Agentic Trading: When LLM Agents Meet Financial Markets](https://arxiv.org/abs/2605.19337) — Yihan Xia et al., 2026. 按架构、能力与适应方式梳理智能体交易的综述。
+- [Large Language Models in Finance: A Survey](https://arxiv.org/abs/2311.10723) — Yinheng Li et al., 2023 · 🗂️ 方法卡片. 实用综述：金融场景中 LLM 的零样本使用、微调与定制训练。
+- [A Survey of Large Language Models for Financial Applications: Progress, Prospects and Challenges](https://arxiv.org/abs/2406.11903) — Yuqi Nie et al., 2024 · 🔖 仅读摘要. 金融领域 LLM 应用综述，含前景与挑战。
+- [From Deep Learning to LLMs: A survey of AI in Quantitative Investment](https://arxiv.org/abs/2503.21422) — Bokai Cao et al., 2025 · 🔖 仅读摘要. 量化投资中的 AI 综述：从手工特征、深度学习到 LLM 智能体，以 alpha 策略贯穿。
+- [The New Quant: A Survey of Large Language Models in Financial Prediction and Trading](https://arxiv.org/abs/2510.05533) — Weilong Fu, 2025 · 🔖 仅读摘要. 以任务为中心的 LLM 收益预测与交易分类体系，基于 50 余篇一手研究。
+- [Agentic Trading: When LLM Agents Meet Financial Markets](https://arxiv.org/abs/2605.19337) — Yihan Xia et al., 2026 · 🗂️ 方法卡片. 按架构、能力与适应方式梳理智能体交易的综述。
 <!-- /gen:surveys -->
 
 ## 证据告诉我们什么
@@ -309,6 +310,7 @@
 | [如何读回测](docs/06-reading-a-backtest.md) | 误差范围、记录长度、选择偏差。 |
 | [方法论](docs/07-methodology.md) | 目录如何构建，哪些由程序检查。 |
 | 深度拆解 | [TradingAgents](docs/teardowns/tradingagents.md) · [FinRobot](docs/teardowns/finrobot.md) · [FinMem](docs/teardowns/finmem.md) · [ContestTrade](docs/teardowns/contesttrade.md) · [FinRL-X](docs/teardowns/finrl-x.md)，均读到指定提交的代码层面。 |
+| [组件矩阵](docs/components.md) | 16 个常用组件横向对比：运行环境、接口、输入输出、密钥、下单权限，并附跨层组合示例。 |
 | [完整目录](docs/catalog/projects.md) · [全部论文](docs/catalog/papers.md) | 含 Star、证据等级与更长说明的总表。 |
 | [方法卡片](docs/cards/index.md) | 机器抽取的论文摘要；每个字段都有程序在原文中找到的引文支撑。 |
 
@@ -341,15 +343,17 @@ python tools/verify.py all                                  # 重新核对每个
 ## 收录原则
 
 - **边界清楚。** 收录：由 LLM 或智能体做研究、决策或交易的开源工作，以及这类系统所依赖的数据、执行与 Harness 基础设施。不收录：没有智能体接口的通用量化库（见 [awesome-quant](https://github.com/wilsonfreitas/awesome-quant)）、闭源产品、卖信号。
-- **准入门槛。** 仓库需要已发布代码、可读的 README、根目录许可证文件（或明确标注缺失），以及独特用途。只有公告、尚无代码的仓库放在分层页的观察名单里。
+- **准入门槛。** 仓库需要已发布代码、可读的 README 与独特用途。只有公告、尚无代码的仓库放在分层页的观察名单里；已归档或已弃用的移入归档区。
+- **许可证要分类，不能想当然。** 逐一阅读许可证文件原文，把每个仓库标为开源、混合（🧩）、受限（🔒）或待确认（❓）；首页分别计数，“仓库”不会被默认等同于“开源”。
 - **每个条目都写限制。** 写出最可能改变你选择的那一点：环境要求、仅模拟、下单权限、缺数据、不常见的许可证。
 - **收集不等于读过。** 论文按阅读深度标记（📖 全文精读、🗂️ 方法卡片、🔖 仅摘要）；仓库同样标记（🔬 深度拆解，或 README 与代码浏览）。
-- **注明日期并定期复核。** 许可证与最近提交来自核验当日的浅克隆；每周任务会重新核对所有论文与仓库。Star 仅作参考，从不作为收录标准。
+- **证据可点击。** 每个条目都链接到核验时的提交（🔍）。下单权限（⚡ 📝）、待确认或受限的许可证、维护声明都链接到该提交中的具体行；DEMO 或只读模式不会被称作模拟交易。
+- **注明日期并定期复核。** 活跃度按核验日的最近提交计算，并显示核验日期，过期的核验一眼可见。每周任务会重新核对所有论文、仓库与文章链接，并发布变动报告。
 - **数据优先。** 以上内容全部由 [`tools/build.py`](tools/build.py) 从 [`catalog/`](catalog/) 生成，中英文来自同一份条目；页面过期时 CI 会失败。详见[方法论](docs/07-methodology.md)。
 
 ## 参与贡献
 
-欢迎推荐与纠错。最快的方式是提一个 [issue](https://github.com/orangejustin/awesome-agentic-trading/issues/new/choose)，附链接和一句话；条目模板与准入规则见 [CONTRIBUTING.md](CONTRIBUTING.md)。中文或英文提交均可。
+欢迎推荐与纠错。最快的方式是提一个 [issue](https://github.com/orangejustin/awesome-agentic-trading/issues/new/choose)，附链接和一句话；条目模板与准入规则见 [CONTRIBUTING.md](CONTRIBUTING.md)。
 
 ## 许可证
 
