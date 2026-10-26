@@ -1,0 +1,34 @@
+name: Suggest a paper, article or X post
+description: Writing that carries an idea a builder can use
+title: "Add reading: "
+labels: [suggestion, reading]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Public links only: no private workspace links, login-walled posts, referral links or unverifiable profit claims.
+        Rules: [CONTRIBUTING.md](https://github.com/orangejustin/awesome-agentic-trading/blob/main/CONTRIBUTING.md#articles-and-posts).
+  - type: input
+    id: url
+    attributes:
+      label: Link (arXiv abstract page, post or article URL)
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Kind
+      options: [Paper, Blog or article, Documentation, X post, Podcast or talk, Other]
+    validations:
+      required: true
+  - type: dropdown
+    id: layer
+    attributes:
+      label: Layer
+      options: [1. Data, 2. Agent, 3. Execution, 4. Harness, 5. Application, Not sure]
+  - type: textarea
+    id: why
+    attributes:
+      label: Why should a builder read it?
+    validations:
+      required: true

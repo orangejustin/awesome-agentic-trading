@@ -1,20 +1,21 @@
 # Methodology
 
-How the catalog was built, what each label means, what is checked by a program and what by a person, and where the limits are. Snapshot date for everything: **2026-10-21 (US Pacific time)**.
+How the catalog was built, what each label means, what is checked by a program and what by a person, and where the limits are. The first snapshot is **2026-10-21 (US Pacific time)**; entries checked later carry their own `checked` date.
 
 ## Scope and limits
 
-- **Where the candidates come from.** Four public lists: [LLMQuant/awesome-trading-agents](https://github.com/LLMQuant/awesome-trading-agents), [Tom-roujiang/Awesome-LLM-Quantitative-Trading-Papers](https://github.com/Tom-roujiang/Awesome-LLM-Quantitative-Trading-Papers), [bettyguo/awesome-llm-trading-agents](https://github.com/bettyguo/awesome-llm-trading-agents) and [WallStreetPete/awesome-open-source-trading](https://github.com/WallStreetPete/awesome-open-source-trading), compared in [the list audit](03-lists-compared.md). We did not search outside them. Every catalogued paper and repository is linked by at least one of the four lists, or is the paper of a catalogued repository; `tools/list_audit.py --catalog` checks this.
-- **Curated, not exhaustive.** The lists together link 584 repositories and 151 arXiv papers. The catalog holds 57 papers and 45 repositories (six of them lists). A field this size has more than a page of notable work, and a project missing here is not a verdict on it.
+- **Where the candidates come from.** Two sources. (1) The first catalog, built for the *Agentic Trading Atlas* (merged into this repository), started from four public lists: [LLMQuant/awesome-trading-agents](https://github.com/LLMQuant/awesome-trading-agents), [Tom-roujiang/Awesome-LLM-Quantitative-Trading-Papers](https://github.com/Tom-roujiang/Awesome-LLM-Quantitative-Trading-Papers), [bettyguo/awesome-llm-trading-agents](https://github.com/bettyguo/awesome-llm-trading-agents) and [WallStreetPete/awesome-open-source-trading](https://github.com/WallStreetPete/awesome-open-source-trading), compared in [the list audit](03-lists-compared.md). Every entry checked on 2026-10-21 is linked by at least one of the four lists or is the paper of a catalogued repository; `tools/list_audit.py --catalog` checks the multi-list floor described below. (2) Since then, maintainers' source packs and contributions: entries added this way carry their own `checked` date (2026-10-26 onward) and are verified the same way, but are not tied to the four lists.
+- **Curated, not exhaustive.** The four lists alone link 584 repositories and 151 arXiv papers. A field this size has more than a page of notable work, and a project missing here is not a verdict on it.
 - **What we did not do.** We did not rerun any system, and we did not contact the authors. The [claim audit](05-claim-audit.md) is a reading of papers and code at named versions.
-- **Authorship.** The text was drafted with an AI assistant and then checked against the sources, by script wherever a script could do it and by reading otherwise. The method cards below are machine-extracted and labelled as such.
+- **Authorship.** The text was drafted with an AI assistant and then checked against the sources, by script wherever a script could do it and by reading otherwise. The method cards are machine-extracted and labelled as such.
 
 ## Inclusion rule
 
-1. **Papers.** Every arXiv paper that two or more lists link is included. Of the catalogued papers, 13 meet this (the TradingAgents paper is in all four lists). A further 43 are linked by one list, and one is included because a catalogued repository names it as its paper.
-2. **Repositories.** Every repository that two or more lists link is included unless it is general quant tooling or a general list, which are named with a reason in [`catalog/excluded.toml`](../catalog/excluded.toml) (twelve entries). Of the 39 catalogued non-list repositories, 32 are linked by two or more lists and 7 by one.
-3. **Above the floor, judgment.** The 43 single-list papers and 7 single-list repositories were chosen to give each layer of the [domain map](01-domain-map.md) its best-known examples, with a bias toward evaluation work, because that layer is the point of this atlas. We did not score candidates with a formula, and a different curator would choose differently. The rules above are the part you can audit.
-4. **Five deep dives.** [TradingAgents](teardowns/tradingagents.md), [FinRobot](teardowns/finrobot.md), [FinMem](teardowns/finmem.md) and [ContestTrade](teardowns/contesttrade.md) were chosen because they are widely cited and represent different decision designs (role-based firm, document-generation platform, layered-memory agent, tournament); [FinRL-X](teardowns/finrl-x.md) was added as the infrastructure counterpart, the one that owns the weights-to-orders back half the others lack.
+1. **Papers.** Every arXiv paper that two or more of the four lists link is included (13 papers; the TradingAgents paper is in all four). Others are included because a catalogued repository names them as its paper, or by the judgment in point 3.
+2. **Repositories.** Every repository that two or more of the four lists link is included unless it is general quant tooling or a general list, which are named with a reason in [`catalog/excluded.toml`](../catalog/excluded.toml).
+3. **Above the floor, judgment.** Further entries were chosen to give each layer of the [stack](../layers/README.md) its best-known examples, with a bias toward evaluation and harness work, because trust is the point of this list. We did not score candidates with a formula, and a different curator would choose differently. The rules above, and the admission rules in [CONTRIBUTING](../CONTRIBUTING.md#repositories), are the part you can audit.
+4. **General-purpose tools** (evals, tracing, agent harnesses, data validation) are included only for a job a trading-agent builder needs, and are marked 🧰.
+5. **Five deep dives.** [TradingAgents](teardowns/tradingagents.md), [FinRobot](teardowns/finrobot.md), [FinMem](teardowns/finmem.md) and [ContestTrade](teardowns/contesttrade.md) were chosen because they are widely cited and represent different decision designs (role-based firm, document-generation platform, layered-memory agent, tournament); [FinRL-X](teardowns/finrl-x.md) was added as the infrastructure counterpart, the one that owns the weights-to-orders back half the others lack.
 
 ## What a catalog entry records
 
@@ -43,14 +44,14 @@ Each teardown carries a "what we checked" table so that a reader can see which s
 
 | Check | Command | Runs |
 |---|---|---|
-| Schema and cross-references in the catalog | `python tools/atlas.py check` | every push |
-| Generated tables and counts in the docs are current | `python tools/atlas.py tables --check` | every push |
+| Schema and cross-references in the catalog | `python tools/build.py check` | every push |
+| Generated tables and counts in the docs are current | `python tools/build.py tables --check` | every push |
 | Statistics code against simulation | `python -m unittest discover -s tests -t .` | every push |
 | arXiv titles and dates, repository reachability | `python tools/verify.py all` | on a schedule |
 | Catalog against the inclusion rule | `python tools/list_audit.py --src DIR --catalog` | by hand (needs the four clones) |
 | Method cards' quotes against the paper text | `python -m tools.extract verify` | by hand |
 
-Numbers in the prose that come from the catalog (counts by rung, by layer) are generated into the documents between `<!-- atlas:... -->` markers and fail the check when stale. Numbers that come from papers are quoted with the table or section they come from.
+Numbers in the prose that come from the catalog (counts by rung, by layer) are generated into the documents between `<!-- gen:... -->` markers (including the directory sections of both READMEs) and fail the check when stale. Numbers that come from papers are quoted with the table or section they come from.
 
 ## Method cards
 

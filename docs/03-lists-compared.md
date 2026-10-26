@@ -58,7 +58,7 @@ Two reference lists set the tone we wanted: [Awesome-Generative-RecSys](https://
 
 ## 5. What an integration library has to do differently
 
-1. **One schema, with a grade.** Every project carries an [evidence rung](02-evidence-ladder.md), a reproducibility grade and a read depth, validated by [`tools/atlas.py`](../tools/atlas.py).
+1. **One schema, with a grade.** Every project carries an [evidence rung](02-evidence-ladder.md), a reproducibility grade and a read depth, validated by [`tools/build.py`](../tools/build.py).
 2. **Data first, tables generated.** `catalog/*.toml` is the source; the tables under `docs/catalog/` are rendered and checked for staleness in CI.
 3. **Every identifier verified by script.** [`tools/verify.py`](../tools/verify.py) resolves each arXiv identifier and repository, and it is run on a schedule so drift is caught rather than inherited.
 4. **Depth on a few, honest labels on the rest.** Five full [teardowns](teardowns/); everything else is labelled with how much of it we read.
