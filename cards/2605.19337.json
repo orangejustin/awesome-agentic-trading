@@ -1,0 +1,103 @@
+{
+ "arxiv": "2605.19337",
+ "title": "Agentic Trading: When LLM Agents Meet Financial Markets",
+ "published": "2026-05-19",
+ "updated": "2026-10-04",
+ "source": {
+  "kind": "html",
+  "url": "https://arxiv.org/html/2605.19337",
+  "chars": 215163,
+  "truncated": false,
+  "sha256": "c85afedefa4af3eeb2fe40d87480d453ec45d5a593e67b81871eaf6dd4fc8e10",
+  "fetched": "2026-10-21"
+ },
+ "extraction": {
+  "model": "claude-opus-5-5",
+  "effort": "medium",
+  "date": "2026-10-23",
+  "input_tokens": 75388,
+  "output_tokens": 1168,
+  "cost_usd": 0.3249
+ },
+ "fields": {
+  "task": {
+   "status": "stated",
+   "value": "A systematic survey synthesizing the literature on LLM-based agentic trading systems through an Architecture–Capability–Adaptation framework, including evaluation practices.",
+   "quote": "This survey provides a comprehensive, systematic, and forward-looking synthesis of the rapidly evolving landscape of agentic trading."
+  },
+  "architecture": {
+   "status": "stated",
+   "value": "Survey framework (A-C-A): Architecture (perception, memory, reasoning, execution), Capability (alpha discovery, portfolio optimization, risk control), Adaptation (ICL, SFT, RL, multi-agent coordination, self-evolution).",
+   "quote": "We structure the literature through a unified Architecture–Capability–Adaptation (A-C-A) conceptual framework"
+  },
+  "data": {
+   "status": "stated",
+   "value": "Literature corpus: 246 candidate records, 185 included studies (80 primary empirical, 105 background) from ACM DL, IEEE Xplore, arXiv, SSRN, Google Scholar plus citation chaining.",
+   "quote": "After deduplication and screening, the current ledger contains 185 included studies from 246 candidate records."
+  },
+  "window": {
+   "status": "stated",
+   "value": "Literature search window 2022-01-01 to 2026-09-30: initial window to 2026-03-09, arXiv extension window 2026-03-10 to 2026-09-30.",
+   "quote": "The formal search for contemporary trading-agent work covered records published from 2022-01-01 through 2026-09-30"
+  },
+  "models": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "baselines": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "headline_result": {
+   "status": "stated",
+   "value": "In the 80-study empirical subset: time split reported 50/80 (62.5%), transaction costs 47/80 (58.8%), universe/survivorship 48/80 (60.0%), execution semantics 47/80 (58.8%).",
+   "quote": "Across the pooled 80-study empirical subset, reported protocol-field coverage includes time-consistent split discipline (62.5%), explicit transaction-cost modeling (58.8%), universe survivorship controls (60.0%), and execution semantics (58.8%)."
+  },
+  "costs": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "uncertainty": {
+   "status": "stated",
+   "value": "Extraction-level audit of 15 fixed-seed records (seed = 20260426) with 150/150 field comparisons agreeing; a 182-record screening-boundary audit; not a representative reliability estimate.",
+   "quote": "All 150 field comparisons agreed pre-adjudication (100.0%)"
+  },
+  "leakage_controls": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "limitations": {
+   "status": "stated",
+   "value": "Search windows are not matched (multi-database vs arXiv only); extension cohort coded in single pass and more preliminary; A-C-A reclassification not randomly sampled and inter-rater agreement not assessed.",
+   "quote": "The windows are not matched search samples: the initial window spans multiple databases and citation chaining, whereas the extension uses arXiv only."
+  },
+  "release": {
+   "status": "stated",
+   "value": "Registry, protocol tables, and coding materials provided as Supplementary Materials S1–S3; anonymized repository with materials and LaTeX source to be released upon acceptance.",
+   "quote": "An anonymized repository containing the same materials and the LaTeX source will be released upon acceptance, subject to journal policy and anonymization requirements."
+  }
+ },
+ "verification": {
+  "verified": 8,
+  "failed": 0,
+  "not_found": 4,
+  "detail": {
+   "task": "exact",
+   "architecture": "exact",
+   "data": "exact",
+   "window": "exact",
+   "models": "not_found",
+   "baselines": "not_found",
+   "headline_result": "exact",
+   "costs": "not_found",
+   "uncertainty": "exact",
+   "leakage_controls": "not_found",
+   "limitations": "exact",
+   "release": "exact"
+  }
+ }
+}

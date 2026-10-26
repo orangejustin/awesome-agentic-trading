@@ -1,0 +1,103 @@
+{
+ "arxiv": "2606.29771",
+ "title": "CLQT: A Closed-Loop, Cost-Aware, Strategy-Consistent Benchmark for Diagnostic Evaluation of LLM Portfolio-Management Agents",
+ "published": "2026-06-29",
+ "updated": "2026-09-12",
+ "source": {
+  "kind": "html",
+  "url": "https://arxiv.org/html/2606.29771",
+  "chars": 146651,
+  "truncated": false,
+  "sha256": "1229ee866091c457bfd8800c029aff1cfdf2ac25b157d1ae590b179a6c76204d",
+  "fetched": "2026-10-21"
+ },
+ "extraction": {
+  "model": "claude-opus-5-5",
+  "effort": "medium",
+  "date": "2026-10-23",
+  "input_tokens": 60062,
+  "output_tokens": 2061,
+  "cost_usd": 0.2815
+ },
+ "fields": {
+  "task": {
+   "status": "stated",
+   "value": "A closed-loop benchmark that evaluates LLM portfolio-management agents by diagnosing their decision process (five capability axes) rather than ranking period returns.",
+   "quote": "We introduce CLQT, a closed-loop benchmark that reframes LLM trading evaluation as diagnosis rather than ranking."
+  },
+  "architecture": {
+   "status": "stated",
+   "value": "Five-stage loop (IA, MSS, MAPC, COE, ALE) run by six specialized agents (structured mode) or one autonomous orchestrator, with 19 MCP tools, three-tier memory, TimeGate, and hash-chained audit trail.",
+   "quote": "CLQT operates as a five-stage closed loop executed by TradingEngine, which orchestrates Protocol modules through a six-agent architecture."
+  },
+  "data": {
+   "status": "stated",
+   "value": "S&P-100-derived US equity universe (14 core + 58 candidate = 72 symbols); prices from Yahoo Finance, fundamentals Finnhub, news Alpha Vantage/Polygon/RSS/NewsAPI, macro FRED; bi-weekly backtest rebalance, daily live.",
+   "quote": "S&P-100-derived universe (14 core + 58 candidate = 72), all modules enabled, LOW cost tier, initial NAV $1M, context capped 32k for cohort comparability, uniform output budget 8192."
+  },
+  "window": {
+   "status": "stated",
+   "value": "Backtest: 26 bi-weekly rounds, 2025-06-16 to 2026-06-12 with 252-day warmup; live paper trading: 18 valid NYSE days, 2026-06-15 to 2026-07-10.",
+   "quote": "Period: 26 bi-weekly rounds, 2025-06-16 → 2026-06-12;"
+  },
+  "models": {
+   "status": "stated",
+   "value": "Backtest: qwen3-235b-a22b-2507, gemini-2.5-flash-lite, deepseek-chat-v3.1, gpt-5-mini, claude-haiku-4.5. Live: minimax-m3, deepseek-v4-pro, qwen3.7-plus, gpt-5.4-mini, gemini-3.5-flash, claude-sonnet-4.6. Judges: minimax-m3, GLM-5.2; all via OpenRouter.",
+   "quote": "qwen3-235b (large MoE, non-thinking), gemini-2.5-flash-lite (small), deepseek-chat-v3.1 (mid, hybrid→non-thinking), gpt-5-mini (reasoning, effort low), and claude-haiku-4.5 (small, thinking off)."
+  },
+  "baselines": {
+   "status": "stated",
+   "value": "Eight passive baselines: SPY, IEF, synthetic 60/40, equal-weight universe, buy-and-hold, rebalanced equal-weight, risk-parity (inverse-vol), and 12-1 momentum.",
+   "quote": "Every run is scored against a passive suite computed automatically: the index ETFs SPY (S&P 500 proxy) and IEF (7–10y Treasuries); a synthetic 60/40 (0.6·SPY + 0.4·IEF); and an equal-weight portfolio of the agent’s own investable universe (EW-Universe)."
+  },
+  "headline_result": {
+   "status": "stated",
+   "value": "Capability leader deepseek·structured (APM-CS 72.9, Sharpe 2.99, +28.6%) is not the Sharpe leader; coherence agreement–judge gap +0.30 backtest and +0.23 live.",
+   "quote": "+0.30 backtest (agreement 0.58 / minimax-m3 judge 0.28), +0.23 live (agreement 0.63 / GLM-5.2 judge 0.40; Figure 12)."
+  },
+  "costs": {
+   "status": "stated",
+   "value": "Default LOW tier: 2.0 bps spread, 0.5 bps commission, 1.0 bps slippage, 30 ann bps borrow, square-root impact; financing accrues off Fed Funds plus spread (zero under long-only). HIGH tier mis-calibrated (~527 bps/round).",
+   "quote": "| low (default) | 2.0 | 0.5 | 1.0 | 30 | square_root"
+  },
+  "uncertainty": {
+   "status": "stated",
+   "value": "Five seeds per reliable configuration, results as seed means; ±0.42 Sharpe repeated-run noise band; run ranges for ablations; bootstrapped CIs and Kendall-τ rank stability left for future work.",
+   "quote": "Rows report means over repeated runs (seeds); bootstrapped CIs and Kendall-τ rank-stability are a planned broader-run pass (§8.6)."
+  },
+  "leakage_controls": {
+   "status": "stated",
+   "value": "TimeGate point-in-time enforcement on all data incl. memory; model cutoffs precede backtest (qwen3 within ≤1-month grace); point-in-time universe membership against survivorship; post-cutoff live track; canary/future-shift probes implemented but not exercised.",
+   "quote": "Post-cutoff windows. Per-model eligibility filtering ensures backtest data postdates each model’s training cutoff. Universe integrity. Point-in-time universe membership avoids survivorship bias."
+  },
+  "limitations": {
+   "status": "stated",
+   "value": "Single benign rising regime; modeled backtest costs; returns underpowered for module attribution; ablation on one anchor model; small cohort; mode-confounded axes; judge self-preference not fully eliminated; single author human rater; unexercised contamination probes; HIGH tier mis-calibrated.",
+   "quote": "The window is a single, predominantly rising market (SPY +27%, max DD −8.9%, VIX median 17); backtest costs are modeled, not executed (the live track supplies real fills on the daily deltas)."
+  },
+  "release": {
+   "status": "stated",
+   "value": "Audit databases, scorecard/analysis tooling and figure scripts available from the corresponding author on reasonable request; no public repository stated.",
+   "quote": "The audit databases, scorecard and analysis tooling, and figure-generation scripts are available from the corresponding author on reasonable request."
+  }
+ },
+ "verification": {
+  "verified": 12,
+  "failed": 0,
+  "not_found": 0,
+  "detail": {
+   "task": "exact",
+   "architecture": "exact",
+   "data": "exact",
+   "window": "exact",
+   "models": "exact",
+   "baselines": "exact",
+   "headline_result": "exact",
+   "costs": "exact",
+   "uncertainty": "exact",
+   "leakage_controls": "exact",
+   "limitations": "exact",
+   "release": "exact"
+  }
+ }
+}

@@ -1,0 +1,103 @@
+{
+ "arxiv": "2502.16789",
+ "title": "AlphaAgent: LLM-Driven Alpha Mining with Regularized Exploration to Counteract Alpha Decay",
+ "published": "2025-02-24",
+ "updated": "2025-06-09",
+ "source": {
+  "kind": "html",
+  "url": "https://arxiv.org/html/2502.16789",
+  "chars": 51073,
+  "truncated": false,
+  "sha256": "4c59c5fdef548a466d3b685458467abf8cb5eb8eda6a9104898c042ee1248712",
+  "fetched": "2026-10-21"
+ },
+ "extraction": {
+  "model": "claude-opus-5-5",
+  "effort": "medium",
+  "date": "2026-10-23",
+  "input_tokens": 21145,
+  "output_tokens": 1555,
+  "cost_usd": 0.1157
+ },
+ "fields": {
+  "task": {
+   "status": "stated",
+   "value": "Mining alpha factors that predict future asset returns while resisting alpha decay caused by overfitting and factor crowding.",
+   "quote": "we propose AlphaAgent, an autonomous framework that effectively integrates LLM-driven agents with ad hoc regularization for mining decay-resistant alpha factors."
+  },
+  "architecture": {
+   "status": "stated",
+   "value": "Closed loop of three LLM agents: idea agent proposes market hypotheses, factor agent builds AST-based factor expressions under originality/alignment/complexity regularization with a knowledge base, eval agent backtests and feeds back. Factors plus base alphas feed a LightGBM model.",
+   "quote": "AlphaAgent implements a recurrent framework for alpha factor mining through three specialized agents powered by large language models (LLMs): idea agent, factor agent, and eval agent."
+  },
+  "data": {
+   "status": "stated",
+   "value": "Daily OHLCV data for CSI 500 (China A-shares, from Baostock) and S&P 500 (US, from Yahoo Finance).",
+   "quote": "Raw data employed to construct alpha factors include only OHLCV (i.e., $open, $high, $low, $close, $volume). CSI 500 data is collected from Baostock (BaoStock, 2024), while S&P 500 data is from Yahoo Finance (Aroussi, 2024)."
+  },
+  "window": {
+   "status": "stated",
+   "value": "Training 2015-01 to 2019-12, validation 2020-01 to 2020-12, testing 2021-01 to 2025-01 (1004 trading days S&P 500; 968 CSI 500).",
+   "quote": "| | Testing: 2021-01 to 2025-01 | 1004"
+  },
+  "models": {
+   "status": "stated",
+   "value": "GPT-3.5-turbo as base LLM for agents; LightGBM (max depth 4) forecaster; also tested Qwen-Plus and DeepSeek-R1 as base LLMs.",
+   "quote": "AlphaAgent employs GPT-3.5-turbo (Ouyang et al., 2022) as the foundational LLM to support agents."
+  },
+  "baselines": {
+   "status": "stated",
+   "value": "LSTM, Transformer, LightGBM, StockMixer, TRA, AlphaForge, RD-Agent (GPT-4-turbo), OpenAI-o1 and DeepSeek-R1 (best-of-10); also Alpha158, GP and RSI for decay analysis.",
+   "quote": "We compare AlphaAgent with several baseline approaches: (1) Traditional time-series forecasting models including LSTM (Graves and Graves, 2012) and Transformer (Vaswani et al., 2017) which capture temporal dependencies; (2) Tree-based model LightGBM"
+  },
+  "headline_result": {
+   "status": "stated",
+   "value": "2021-01-01 to 2024-12-31: CSI 500 IC 0.0212, annualized excess return 11.00%, IR 1.488, MDD -9.36%; S&P 500 IC 0.0056, AR 8.74%, IR 1.0545, MDD -9.10%.",
+   "quote": "| AlphaAgent | 0.0212 | 0.1938 | 11.00% | 1.488 | -9.36% | 0.0056 | 0.0552 | 8.74% | 1.0545 | -9.10%"
+  },
+  "costs": {
+   "status": "stated",
+   "value": "CSI 500: 0.0005 buying and 0.0015 selling fees; S&P 500: only selling fee of 0.0005. Top-50 dropout-5 strategy.",
+   "quote": "For CSI 500, the transaction fees are set at 0.0005 for buying and 0.0015 for selling. For S&P 500, only selling fees are applied, with a rate of 0.0005."
+  },
+  "uncertainty": {
+   "status": "stated",
+   "value": "20 independent trials of five rounds for RD-Agent and AlphaAgent; Student's t test on IC differences vs RD-Agent with p-values below 0.05 (0.0311, 0.0109, 0.0382) across base LLMs.",
+   "quote": "with p-values for IC differences between AlphaAgent and RD-Agent being consistently below 0.05 (GPT-3.5-turbo: 0.0311, Qwen-Plus: 0.0109, DeepSeek-R1: 0.0382)."
+  },
+  "leakage_controls": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "limitations": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "release": {
+   "status": "stated",
+   "value": "Code released on GitHub.",
+   "quote": "Code is available at: https://github.com/RndmVariableQ/AlphaAgent"
+  }
+ },
+ "verification": {
+  "verified": 10,
+  "failed": 0,
+  "not_found": 2,
+  "detail": {
+   "task": "exact",
+   "architecture": "exact",
+   "data": "exact",
+   "window": "exact",
+   "models": "exact",
+   "baselines": "exact",
+   "headline_result": "exact",
+   "costs": "exact",
+   "uncertainty": "exact",
+   "leakage_controls": "not_found",
+   "limitations": "not_found",
+   "release": "exact"
+  }
+ }
+}

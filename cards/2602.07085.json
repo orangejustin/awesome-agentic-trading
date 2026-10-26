@@ -1,0 +1,103 @@
+{
+ "arxiv": "2602.07085",
+ "title": "QuantaAlpha: An Evolutionary Framework for LLM-Driven Alpha Mining",
+ "published": "2026-02-06",
+ "updated": "2026-05-18",
+ "source": {
+  "kind": "html",
+  "url": "https://arxiv.org/html/2602.07085",
+  "chars": 66110,
+  "truncated": false,
+  "sha256": "1ac1d02f9630aeb0a0c698b04c8b210bca8e22a23b2ef994ebb1776b317ad329",
+  "fetched": "2026-10-21"
+ },
+ "extraction": {
+  "model": "claude-opus-5-5",
+  "effort": "medium",
+  "date": "2026-10-23",
+  "input_tokens": 28167,
+  "output_tokens": 1883,
+  "cost_usd": 0.1503
+ },
+ "fields": {
+  "task": {
+   "status": "stated",
+   "value": "Automated LLM-driven alpha factor mining that improves factors via trajectory-level evolution (mutation and crossover) under noisy, non-stationary markets.",
+   "quote": "we propose QuantaAlpha, an evolutionary alpha mining framework that treats each end-to-end mining run as a trajectory and improves factors via trajectory-level mutation and crossover."
+  },
+  "architecture": {
+   "status": "stated",
+   "value": "Multi-agent pipeline: diversified planning initialization, idea agent for hypotheses, factor agent producing symbolic AST expressions compiled to code with consistency verifier and complexity/redundancy gates, evaluation agent, self-evolution via mutation/crossover, final factor pool fed to LightGBM.",
+   "quote": "Overview of the QuantaAlpha framework, which consists of four core components: (A) Diversified Planning Initialization for candidate hypotheses, (B) Factor Realization that instantiates hypotheses into executable factors with constraint gating, (C) Self-Evolution with mutation and crossover over evaluated trajectories"
+  },
+  "data": {
+   "status": "stated",
+   "value": "Daily OHLCV+vwap data via Qlib for CSI 300 (300 large-cap A-shares); zero-shot transfer to CSI 500 and S&P 500; target is next-day return.",
+   "quote": "Factor construction utilizes six basic features—open, high, low, close, volume, and vwap—to predict the next-day return"
+  },
+  "window": {
+   "status": "stated",
+   "value": "Train Jan 1 2016–Dec 31 2020, validation Jan 1–Dec 31 2021, test Jan 1 2022–Dec 26 2025 (same for all markets).",
+   "quote": "We adopt a chronological split with training (Jan. 1, 2016 to Dec. 31, 2020), validation (Jan. 1, 2021 to Dec. 31, 2021), and testing (Jan. 1, 2022 to Dec. 26, 2025)."
+  },
+  "models": {
+   "status": "stated",
+   "value": "Backbone LLMs Qwen3-235B, DeepSeek-V3.2, Gemini-3-Pro-Preview, Claude-4.5-Sonnet, GPT-5.2 (DeepSeek-V3.2 default); LightGBM as downstream model.",
+   "quote": "we evaluate multiple backbone LLMs, including Qwen3-235B, DeepSeek-V3.2, Gemini-3-Pro-Preview, Claude-4.5-Sonnet, and GPT-5.2. Unless otherwise specified, all other LLM-based experiments in this paper adopt DeepSeek-V3.2 for consistency and fair comparison."
+  },
+  "baselines": {
+   "status": "stated",
+   "value": "ML models (Linear, MLP, LightGBM, XGBoost, CatBoost, DoubleEnsemble), deep learning (GRU, LSTM, Transformer, TRA), factor libraries (Alpha158, Alpha360), LLM agents RD-Agent and AlphaAgent.",
+   "quote": "We compare QuantaAlpha against four baseline categories: traditional machine learning models, deep learning time-series models, classical factor libraries, and LLM-based factor research agents, including RD-Agent and AlphaAgent."
+  },
+  "headline_result": {
+   "status": "stated",
+   "value": "With GPT-5.2 on CSI 300 test period (2022–2025): IC 0.0472, ARR 4.68%, MDD 11.80%; transfer cumulative excess return about 40.28% (CSI 500) and 19.1% (S&P 500) over four years.",
+   "quote": "Using GPT-5.2, QuantaAlpha achieves the best IC at 0.0472, delivers an ARR of 4.68%, and maintains a low MDD of 11.80%."
+  },
+  "costs": {
+   "status": "stated",
+   "value": "Buy 0.05%, sell 0.15% (0.20% round-trip), sensitivity at 1.5x and 2.0x; ~1.8M tokens and ~20 hours per main run via hosted APIs.",
+   "quote": "we adopt a standard transaction-cost setting with a buying cost of 0.05% (open_cost=0.0005) and a selling cost of 0.15% (close_cost=0.0015), corresponding to a 0.20% round-trip cost."
+  },
+  "uncertainty": {
+   "status": "stated",
+   "value": "Three initial seed combinations (IC std 0.0021); daily IC t-tests over 966 trading days with 95% CIs, p<0.001.",
+   "quote": "In particular, the standard deviations of IC and Rank IC are 0.0021 and 0.0024, respectively, suggesting that QuantaAlpha’s performance is not driven by a fortuitously selected seed set."
+  },
+  "leakage_controls": {
+   "status": "stated",
+   "value": "Factor pool admission uses only 2021 validation RankIC; 2022–2025 test window never accessed during evolution or pool construction; chronological split.",
+   "quote": "The RankIC gate for pool admission is computed exclusively on the 2021 validation period; the 2022–2025 test window is never accessed during evolution or pool construction."
+  },
+  "limitations": {
+   "status": "stated",
+   "value": "Real-world deployment would need additional transaction-cost modeling, risk control and live trading validation; performance decays after ~15 iterations.",
+   "quote": "although real-world deployment would require additional transaction-cost modeling, risk control, and live trading validation."
+  },
+  "release": {
+   "status": "stated",
+   "value": "Data and code released on GitHub.",
+   "quote": "Data and code are available at https://github.com/QuantaAlpha/QuantaAlpha."
+  }
+ },
+ "verification": {
+  "verified": 12,
+  "failed": 0,
+  "not_found": 0,
+  "detail": {
+   "task": "exact",
+   "architecture": "exact",
+   "data": "exact",
+   "window": "exact",
+   "models": "exact",
+   "baselines": "exact",
+   "headline_result": "exact",
+   "costs": "exact",
+   "uncertainty": "exact",
+   "leakage_controls": "exact",
+   "limitations": "exact",
+   "release": "exact"
+  }
+ }
+}

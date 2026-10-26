@@ -1,0 +1,103 @@
+{
+ "arxiv": "2407.06567",
+ "title": "FinCon: A Synthesized LLM Multi-Agent System with Conceptual Verbal Reinforcement for Enhanced Financial Decision Making",
+ "published": "2024-07-09",
+ "updated": "2024-11-07",
+ "source": {
+  "kind": "html",
+  "url": "https://arxiv.org/html/2407.06567",
+  "chars": 74570,
+  "truncated": false,
+  "sha256": "6bb73f17768096c672a940a0f2592630a1f06951df9452c5c9f73a4eec964480",
+  "fetched": "2026-10-21"
+ },
+ "extraction": {
+  "model": "claude-opus-5-5",
+  "effort": "medium",
+  "date": "2026-10-23",
+  "input_tokens": 29782,
+  "output_tokens": 1446,
+  "cost_usd": 0.148
+ },
+ "fields": {
+  "task": {
+   "status": "stated",
+   "value": "Sequential financial decision-making with an LLM multi-agent system, covering single stock trading and portfolio management.",
+   "quote": "We introduce FinCon, an LLM-based multi-agent framework with conceptual verbal reinforcement for diverse financial tasks."
+  },
+  "architecture": {
+   "status": "stated",
+   "value": "Manager-analyst hierarchy: seven analyst agents (news/filings text, Whisper audio for earnings calls, data analysis, stock selection) feed a sole decision-maker manager; dual-level risk control (within-episode CVaR alerts, over-episode conceptual verbal reinforcement via textual gradient descent); memory modules.",
+   "quote": "The agent system of FinCon consists of two main components: the Manager-Analyst Agent Group component and the Risk-Control component."
+  },
+  "data": {
+   "status": "stated",
+   "value": "Daily stock prices (Yahoo Finance), Refinitiv/Reuters news, 10-Q/10-K filings, Zacks research, earnings call audio; eight US stocks for single trading and two 3-stock portfolios selected from a pool of 42 stocks.",
+   "quote": "We construct a market environment representation using real-world financial data, including stock prices, daily news, company filings (Form 10-Q, Form 10-K, etc.), and ECC audio from January 3, 2022, to June 10, 2023"
+  },
+  "window": {
+   "status": "stated",
+   "value": "Train January 3, 2022 to October 4, 2022; test October 5, 2022 to June 10, 2023. DRL baselines trained January 1, 2018 to October 4, 2022.",
+   "quote": "FinCon is trained from January 3, 2022, to October 4, 2022, and tested from October 5, 2022, to June 10, 2023. DRL agents are trained over the period from January 1, 2018, to October 4, 2022"
+  },
+  "models": {
+   "status": "stated",
+   "value": "GPT-4-Turbo for all LLM agents at temperature 0.3 (0 for belief generation); Whisper API for audio.",
+   "quote": "All LLM-based agents use GPT-4-Turbo, with temperature set at 0.3."
+  },
+  "baselines": {
+   "status": "stated",
+   "value": "Single stock: Buy-and-Hold, A2C, PPO, DQN, Generative Agent, FinGPT, FinMem, FinAgent. Portfolio: Markowitz MV, FinRL-A2C, Equal-Weighted ETF.",
+   "quote": "For single-stock trading, we compare FinCon with DRL agents (A2C, PPO, DQN) and LLM-based agents (Generative Agent (GA), FinGPT, FinMem, FinAgent) as well as the Buy-and-Hold (B & H) strategy. For portfolio management, we compare FinCon with Markowitz MV, FinRL-A2C, and Equal-Weighted ETF strategy"
+  },
+  "headline_result": {
+   "status": "stated",
+   "value": "Portfolio 1 (TSLA, MSFT, PFE) over the test period: CR 113.836%, SR 3.269, MDD 16.163%, vs Equal-Weighted ETF CR 9.344%. TSLA single-stock: CR 82.871%, SR 1.972.",
+   "quote": "| FinCon | 113.836 | 3.269 | 16.163"
+  },
+  "costs": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "uncertainty": {
+   "status": "stated",
+   "value": "Reported median CR and SR from five repeated epochs; Wilcoxon signed-rank test for significance of top CRs and SRs.",
+   "quote": "The final performance metrics are based on the test trajectory with the median CR and SR values from five repeated epochs."
+  },
+  "leakage_controls": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "limitations": {
+   "status": "stated",
+   "value": "Multi-asset portfolios increase hallucination risk (e.g., non-existent memory indices); scaling to large portfolios is constrained by LLM input length.",
+   "quote": "However, managing multi-asset portfolios introduces more complexity, leading to a higher likelihood of hallucination compared to single-asset trading."
+  },
+  "release": {
+   "status": "stated",
+   "value": "Authors say they will release code and demo on GitHub.",
+   "quote": "We will release the code and demo in the following repo https://github.com/The-FinAI/FinCon"
+  }
+ },
+ "verification": {
+  "verified": 10,
+  "failed": 0,
+  "not_found": 2,
+  "detail": {
+   "task": "exact",
+   "architecture": "exact",
+   "data": "exact",
+   "window": "exact",
+   "models": "exact",
+   "baselines": "exact",
+   "headline_result": "exact",
+   "costs": "not_found",
+   "uncertainty": "exact",
+   "leakage_controls": "not_found",
+   "limitations": "exact",
+   "release": "exact"
+  }
+ }
+}

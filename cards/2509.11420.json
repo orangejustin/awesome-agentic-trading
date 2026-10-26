@@ -1,0 +1,103 @@
+{
+ "arxiv": "2509.11420",
+ "title": "Trading-R1: Financial Trading with LLM Reasoning via Reinforcement Learning",
+ "published": "2025-09-14",
+ "updated": "2025-09-14",
+ "source": {
+  "kind": "html",
+  "url": "https://arxiv.org/html/2509.11420",
+  "chars": 108877,
+  "truncated": false,
+  "sha256": "8f4f19751fe31a34163682b5af6d7b8d36c5e64fb528c91433acd930ca05e5c1",
+  "fetched": "2026-10-21"
+ },
+ "extraction": {
+  "model": "claude-opus-5-5",
+  "effort": "medium",
+  "date": "2026-10-23",
+  "input_tokens": 43776,
+  "output_tokens": 1780,
+  "cost_usd": 0.2107
+ },
+ "fields": {
+  "task": {
+   "status": "stated",
+   "value": "Training a financial reasoning LLM that writes structured, evidence-grounded investment theses and outputs five-class trading decisions (Strong Sell to Strong Buy) for equities and ETFs.",
+   "quote": "We present Trading-R1, a financially-aware model that incorporates strategic thinking and planning for comprehensive thesis composition, facts-grounded analysis, and volatility-adjusted decision making."
+  },
+  "architecture": {
+   "status": "stated",
+   "value": "Single LLM trained with a three-stage easy-to-hard curriculum (Structure, Claims, Decision), each stage an SFT warm-start on reverse-reasoning-distilled theses followed by GRPO reinforcement fine-tuning with structure, evidence and volatility-aware decision rewards.",
+   "quote": "The curriculum unfolds across three stages, each warm-started with SFT (Figure 3) to establish structural and stylistic priors, and refined with RFT to align behavior through task-specific rewards."
+  },
+  "data": {
+   "status": "stated",
+   "value": "Tauric-TR1-DB: ~100k samples from 14 large-cap tickers (incl. SPY, QQQ), daily asset-day snapshots of news (Finnhub, Google News), technicals (Yahoo Finance, stockstats), fundamentals (SimFin, SEC), insider/analyst sentiment, FRED macro.",
+   "quote": "We construct our dataset from 14 large-cap tickers spanning diverse sectors: BRK.B, JPM, LLY, JNJ, XOM, CVX, AAPL, NVDA, AMZN, META, MSFT, TSLA, QQQ, and SPY. The collection covers January 1, 2024 through May 31, 2025 (roughly 354 trading days)."
+  },
+  "window": {
+   "status": "stated",
+   "value": "Training data covers January 1, 2024 to May 31, 2025; backtest covers June 1 to August 31, 2024, described as a held-out period excluded from training.",
+   "quote": "The backtest covers June 1 to August 31, 2024, a held-out period excluded from the training data that reflects diverse market conditions and provides a realistic benchmark for assessing generalization and robustness."
+  },
+  "models": {
+   "status": "stated",
+   "value": "Qwen3-4B backbone fine-tuned with LoRA; o3-mini/o4-mini used to generate recommendations and GPT-4.1-nano to elaborate reasoning in reverse reasoning distillation.",
+   "quote": "We adopt Qwen3-4B as the backbone model, since it is already optimized for reasoning tasks."
+  },
+  "baselines": {
+   "status": "stated",
+   "value": "Qwen-4B, GPT-4.1-nano, GPT-4.1-mini, GPT-4.1, LLaMA-3.3, LLaMA-Scout, Qwen3-32B, DeepSeek, O3-mini, O4-mini, plus SFT-only and RL-only Trading-R1 ablations.",
+   "quote": "For small language models (SLMs), we evaluate Qwen-4B, GPT-4.1-nano, and GPT-4.1-mini. For larger LLMs, we include GPT-4.1, LLaMA-3.3, LLaMA-Scout, and Qwen3-32B. For reinforcement learning–enhanced models (RLMs), we consider DeepSeek, O3-mini, and O4-mini."
+  },
+  "headline_result": {
+   "status": "stated",
+   "value": "On NVDA, Trading-R1 returned 8.08% cumulative return with Sharpe 2.72 (table; text says 1.88), 70.0% hit rate, 3.80% max drawdown over the Jun–Aug 2024 backtest.",
+   "quote": "| Trading-R1 | 8.08 | 2.72 | 70.0 | 3.80 | 5.82 | 1.80 | 63.6 | 3.68 | 2.38 | 0.87 | 60.4 | 1.90"
+  },
+  "costs": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "uncertainty": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "leakage_controls": {
+   "status": "stated",
+   "value": "Trades use only information available up to each trading day; data aligned with strict pre/post ordering; fundamentals filtered to reports published on or before the trading date; test period said to be held out.",
+   "quote": "Trades are executed using only information available up to each trading day, eliminating look-ahead bias and ensuring strictly causal evaluation in a fully out-of-sample setting."
+  },
+  "limitations": {
+   "status": "stated",
+   "value": "Hard-to-predict markets, noisy data, thesis-to-decision gap, reward-induced training instability, persistent hallucinations, and a training universe biased toward large-cap AI-related stocks in a bullish 2024–2025 cycle creating structural long bias.",
+   "quote": "Another limitation lies in the training universe, which has been biased toward blue-chip and large-cap companies, especially in AI-related sectors during the bullish 2024–2025 cycle. This introduces a structural long bias."
+  },
+  "release": {
+   "status": "stated",
+   "value": "Trading-R1 Terminal is announced as to be released on GitHub at TauricResearch/Trading-R1.",
+   "quote": "Trading-R1 Terminal will be released at https://github.com/TauricResearch/Trading-R1."
+  }
+ },
+ "verification": {
+  "verified": 10,
+  "failed": 0,
+  "not_found": 2,
+  "detail": {
+   "task": "exact",
+   "architecture": "exact",
+   "data": "exact",
+   "window": "exact",
+   "models": "exact",
+   "baselines": "exact",
+   "headline_result": "exact",
+   "costs": "not_found",
+   "uncertainty": "not_found",
+   "leakage_controls": "exact",
+   "limitations": "exact",
+   "release": "exact"
+  }
+ }
+}

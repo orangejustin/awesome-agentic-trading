@@ -1,0 +1,103 @@
+{
+ "arxiv": "2406.18394",
+ "title": "AlphaForge: A Framework to Mine and Dynamically Combine Formulaic Alpha Factors",
+ "published": "2024-06-26",
+ "updated": "2024-12-12",
+ "source": {
+  "kind": "html",
+  "url": "https://arxiv.org/html/2406.18394",
+  "chars": 44035,
+  "truncated": false,
+  "sha256": "ff4f7b0bebaae8206dac4c4fc6bcc0c3fcdfa82a4078b226525c8f7a60a20d97",
+  "fetched": "2026-10-21"
+ },
+ "extraction": {
+  "model": "claude-opus-5-5",
+  "effort": "medium",
+  "date": "2026-10-23",
+  "input_tokens": 18746,
+  "output_tokens": 1548,
+  "cost_usd": 0.1059
+ },
+ "fields": {
+  "task": {
+   "status": "stated",
+   "value": "Mining formulaic alpha factors and dynamically combining them with time-varying weights into a Mega-Alpha signal for stock selection.",
+   "quote": "this paper proposes a two-stage formulaic alpha generating framework AlphaForge, for alpha factor mining and factor combination."
+  },
+  "architecture": {
+   "status": "stated",
+   "value": "Two stages: a generator trained against a frozen differentiable predictor (surrogate for fitness) with diversity loss produces a factor zoo; then a daily combination model reselects top-N factors by recent IC/ICIR and fits linear regression weights.",
+   "quote": "It consists of a generative-predictive neural network for mining factors and a composite model for dynamically selecting and combining factors based on their dynamic performance."
+  },
+  "data": {
+   "status": "stated",
+   "value": "Constituents of CSI300 and CSI500 (China A-shares), daily open, high, close, low, volume, vwap features, downloaded via Qlib; label is 20-day forward VWAP return.",
+   "quote": "We choose the CSI300 and CSI500 dataset because the constituent stocks of these two indices cover the majority of the market capitalization in China’s A-share market."
+  },
+  "window": {
+   "status": "stated",
+   "value": "Test 2018 to 2022 with annual retraining (five sessions); first split train 2010-01-01 to 2016-12-31, validation 2017, test 2018; prior year used as validation each time.",
+   "quote": "The first training set, validation set and test set are respectively (2010-01-01 to 2016-12-31), (2017-01-01 to 2017-12-31) and (2018-01-01 to 2018-12-31)."
+  },
+  "models": {
+   "status": "stated",
+   "value": "Neural generator and predictor (surrogate) networks with gumbel-softmax over one-hot RPN formulas; linear regression combiner. No LLMs.",
+   "quote": "Our factor mining model comprises a generator G and a differentiable predictor P , as illustrated in part (A) of Figure 1."
+  },
+  "baselines": {
+   "status": "stated",
+   "value": "Genetic Programming, Deep Symbolic Optimization, Reinforcement Learning (Yu et al. 2023), XGBoost, LightGBM, MLP, and a Static ablation.",
+   "quote": "These include the Genetic Programming (GP) method, the Deep Symbolic Optimization DSO method (Landajuela et al. 2022a) and Reinforcement Learning (RL)(Yu et al. 2023)."
+  },
+  "headline_result": {
+   "status": "stated",
+   "value": "AlphaForge IC 4.40% and RankIC 5.89% on CSI300; IC 2.84% and RankIC 5.57% on CSI500 (std in parentheses), over 2018–2022 tests.",
+   "quote": "| Ours | 4.40(0.56) | 5.89(0.69) | 2.84(0.58) | 5.57(0.58)"
+  },
+  "costs": {
+   "status": "stated",
+   "value": "Simulation holds top 50 stocks equal-weighted with at most 5 stock changes per day to limit trading costs; no explicit cost rate given.",
+   "quote": "Additionally, a daily limit of changing a maximum of 5 stocks was imposed to avoid excessive trading costs."
+  },
+  "uncertainty": {
+   "status": "stated",
+   "value": "Each model run 5 times to avoid random seed effects; standard deviations reported in parentheses in Table 1.",
+   "quote": "To avoid the effects of random seeds, we repeated the run 5 times for each model."
+  },
+  "leakage_controls": {
+   "status": "stated",
+   "value": "Rolling annual retraining with the preceding year as validation and out-of-sample test years to emulate real investment and mitigate overfitting.",
+   "quote": "To mitigate over-fitting and closely emulate the actual investment process, we conducted performance testing from 2018 to 2022. The model was retrained annually with updated data, using the year preceding the test year as the validation dataset, resulting in a total of five training sessions."
+  },
+  "limitations": {
+   "status": "stated",
+   "value": "Generator is trained on the IC of individual factors rather than the combined IC of the whole batch, which might improve mining efficiency.",
+   "quote": "the training objective of our framework’s mining algorithm’s generator is the IC of individual alpha factors. Exploring the possibility of incorporating the combined IC of the entire batch of factors may enhance the efficiency of factor mining."
+  },
+  "release": {
+   "status": "stated",
+   "value": "Code published on GitHub at https://github.com/DulyHao/AlphaForge; stock data is public via Qlib.",
+   "quote": "our framework implementation is published on GitHub11 1 https://github.com/DulyHao/AlphaForge."
+  }
+ },
+ "verification": {
+  "verified": 12,
+  "failed": 0,
+  "not_found": 0,
+  "detail": {
+   "task": "exact",
+   "architecture": "exact",
+   "data": "exact",
+   "window": "exact",
+   "models": "exact",
+   "baselines": "exact",
+   "headline_result": "exact",
+   "costs": "exact",
+   "uncertainty": "exact",
+   "leakage_controls": "exact",
+   "limitations": "exact",
+   "release": "exact"
+  }
+ }
+}

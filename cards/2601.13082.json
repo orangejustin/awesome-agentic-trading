@@ -1,0 +1,103 @@
+{
+ "arxiv": "2601.13082",
+ "title": "Adversarial News and Lost Profits: Manipulating Headlines in LLM-Driven Algorithmic Trading",
+ "published": "2026-01-19",
+ "updated": "2026-01-19",
+ "source": {
+  "kind": "html",
+  "url": "https://arxiv.org/html/2601.13082",
+  "chars": 85978,
+  "truncated": false,
+  "sha256": "1a3f897e9744b14cf97358872bacf8db82d41acfc881dcc833ffbcdbb0fd029a",
+  "fetched": "2026-10-21"
+ },
+ "extraction": {
+  "model": "claude-opus-5-5",
+  "effort": "medium",
+  "date": "2026-10-23",
+  "input_tokens": 34409,
+  "output_tokens": 1868,
+  "cost_usd": 0.175
+ },
+ "fields": {
+  "task": {
+   "status": "stated",
+   "value": "Quantifying the monetary impact of human-imperceptible adversarial manipulations of news headlines (homoglyphs, hidden text) on an LLM-driven algorithmic trading system.",
+   "quote": "Hence, we wonder (RQ): what happens to the profitability of an ATS that has ingested an “adversarial news”, deliberately manipulated so that it misleads an LLM while remaining visually unaltered to the human eye?"
+  },
+  "architecture": {
+   "status": "stated",
+   "value": "ATS in Backtrader fusing an LSTM one-day-ahead price forecast (50-day window) with LLM headline sentiment (LLM stock-name association, then sentiment, daily mean, 7-day moving average); weighted sum thresholded into long/short/hold.",
+   "quote": "We implement a realistic ATS in Backtrader that fuses an LSTM-based price forecast with LLM-derived sentiment (FinBERT, FinGPT, FinLLaMA, and six general-purpose LLMs), and quantify monetary impact using portfolio metrics."
+  },
+  "data": {
+   "status": "stated",
+   "value": "Daily OHLCV from YahooFinance 2013–2025 and Refinitiv news headlines, for ten large-cap U.S. equities: GOOGL, AAPL, NVDA, MSFT, AMZN, META, TSLA, LLY, JPM, XOM.",
+   "quote": "Stock market data (analysed by the LSTM): we use daily OHLCV records (open, high, low, close, and traded volume) provided by YahooFinance [69] during 2013–2025."
+  },
+  "window": {
+   "status": "stated",
+   "value": "LSTM trained Jan 2013–Dec 2023; test simulation 14 months, Feb 2024 to Apr 2025; parameters tuned on training set.",
+   "quote": "such simulations span across 14 months (from Feb, 2024 to Apr, 2025, ensuring no overlap with the training set)."
+  },
+  "models": {
+   "status": "stated",
+   "value": "FinBERT (ProsusAI/finbert v1.0), FinGPT-6B v2.1, FinLLaMA-7B v1.2, OpenAI O3, O3 Pro, 4o, 4o-mini, 4o-mini-high (tested Jul 2025), GPT-5 (Aug 2025), Gemini Pro 1.5 (Jul 2025); plus LSTM price model.",
+   "quote": "Note: All GPT-family models, O3/O3 Pro, and Gemini were evaluated on their July 2025 versions. GPT-5 was tested in August 2025. Offline models (FinBERT, FinGPT, FinLLaMA) are version-stable checkpoints."
+  },
+  "baselines": {
+   "status": "stated",
+   "value": "LSTM-only ATS (from prior work) versus LSTM+LLM ATS; attacked runs compared with paired clean runs.",
+   "quote": "The “LSTM only” ATS has a stable growth of its CR, which amounts to an increase of 7.9% at the end of the testing period. In contrast, adding the LLM leads to a much more profitable ATS, with an overall CR at the end of the testing period of 19.22%."
+  },
+  "headline_result": {
+   "status": "stated",
+   "value": "Homoglyph attack on FinBERT ATS: mean ΔCR -3.67 pp, worst case -17.70 pp (TSLA, 28 Feb 2024) over the 14-month test; clean CR 19.22%.",
+   "quote": "Regardless, on average, and by aggregating all possible combinations, the homoglyph manipulation induce a drop to the CR of 3.67%."
+  },
+  "costs": {
+   "status": "stated",
+   "value": "Initial capital $1,000,000; transaction cost $0.005 per share; slippage 0.02.",
+   "quote": "We set: initial capital= 1,000,000 $ (common [77]); transaction cost= 0.005 $ per share [78]; slippage cost= 0.02 to account for the difference between the expected and actual execution prices [79]."
+  },
+  "uncertainty": {
+   "status": "stated",
+   "value": "Exhaustive evaluation over all stock-day combinations (~8k perturbations); t-tests (p<.05) for O3 robustness; fixed seeds (seed=42 offline, deterministic API); repeated with shuffled ticker lists.",
+   "quote": "As expected, O3 is the most robust model (verified with a t-test, p<.05 : the overall drop in CR is of only 0.5%; across the 14-months test window, the attacks launched in 91% of the days had no effect on O3)."
+  },
+  "leakage_controls": {
+   "status": "stated",
+   "value": "Signals at end of day t execute at next-day open to prevent look-ahead; test window does not overlap training set.",
+   "quote": "Signals observed at the end of day t translate into orders that execute at the market open of day t{+}1 , enforcing a clear temporal boundary and preventing look-ahead bias [72, 73]."
+  },
+  "limitations": {
+   "status": "stated",
+   "value": "No claim of generality across ATS designs (trade frequency, windows, brokers, models); real-world ATS may behave differently; many other attack variants possible.",
+   "quote": "For instance, one can change the frequency of the trades, or use different historical windows, or different brokers, or models trained over different datasets. We therefore do not claim generality of our results."
+  },
+  "release": {
+   "status": "stated",
+   "value": "Code, ATS implementations, sanitization plugin and survey shared in a repository [25]; Refinitiv data cannot be released.",
+   "quote": "(Unfortunately, we cannot release data from Refinitiv, but the headlines always refer to publicly-available news.)"
+  }
+ },
+ "verification": {
+  "verified": 12,
+  "failed": 0,
+  "not_found": 0,
+  "detail": {
+   "task": "exact",
+   "architecture": "exact",
+   "data": "exact",
+   "window": "exact",
+   "models": "exact",
+   "baselines": "exact",
+   "headline_result": "exact",
+   "costs": "exact",
+   "uncertainty": "exact",
+   "leakage_controls": "exact",
+   "limitations": "exact",
+   "release": "exact"
+  }
+ }
+}

@@ -1,0 +1,103 @@
+{
+ "arxiv": "2510.14264",
+ "title": "AlphaQuanter: An End-to-End Tool-Augmented Agentic Reinforcement Learning Framework for Stock Trading",
+ "published": "2025-10-16",
+ "updated": "2026-04-19",
+ "source": {
+  "kind": "html",
+  "url": "https://arxiv.org/html/2510.14264",
+  "chars": 70415,
+  "truncated": false,
+  "sha256": "3e55ba2901e9552db3ce35f14fdc33ae640f2887a57d6c3879f763bbb8a4fffa",
+  "fetched": "2026-10-21"
+ },
+ "extraction": {
+  "model": "claude-opus-5-5",
+  "effort": "medium",
+  "date": "2026-10-23",
+  "input_tokens": 31619,
+  "output_tokens": 1916,
+  "cost_usd": 0.1648
+ },
+ "fields": {
+  "task": {
+   "status": "stated",
+   "value": "Daily single-stock trading decisions (BUY/SELL/HOLD) by an LLM agent that learns via RL to orchestrate tools and acquire information on demand.",
+   "quote": "we introduce AlphaQuanter, a single-agent framework that uses reinforcement learning (RL) to learn a dynamic policy over a transparent, tool-augmented decision workflow, which empowers a single agent to autonomously orchestrate tools and proactively acquire information on demand"
+  },
+  "architecture": {
+   "status": "stated",
+   "value": "Single ReAct-like agent: initial plan, then iterative loop of tool-based information acquisition, reasoning, and acting; trajectories scored by outcome reward plus format and tool process scores; policy trained with GRPO in verl.",
+   "quote": "The workflow begins with an initial Plan generation, followed by an iterative loop with three stages: (i) identify an information gap and Acquire new evidence via a tool call; (ii) Reason over the acquired evidence to update beliefs, and (iii) Act"
+  },
+  "data": {
+   "status": "stated",
+   "value": "Five US large-cap stocks (GOOGL, MSFT, META, NVDA, TSLA); daily OHLCV and technical indicators, fundamentals, news/Reddit sentiment, and macro indicators from Yahoo Finance, Alpha Vantage and a Reddit dump.",
+   "quote": "We focus on five stocks: Alphabet Inc. (GOOGL); Microsoft Corporation (MSFT); Meta Platforms, Inc. (META); NVIDIA Corporation (NVDA); and Tesla, Inc. (TSLA)."
+  },
+  "window": {
+   "status": "stated",
+   "value": "Train 2022-09-01 to 2024-03-30 (395 days); valid 2024-05-15 to 2024-11-14 (128 days); test 2025-01-01 to 2025-06-30 (122 trading days), with ~30-trading-day gaps.",
+   "quote": "| Test | 2025-01-01 | 2025-06-30 | 6 months | 122"
+  },
+  "models": {
+   "status": "stated",
+   "value": "AlphaQuanter trained on Qwen2.5-3B-Instruct and Qwen2.5-7B-Instruct; Qwen3-30B-A3B-Instruct used to summarize Reddit posts.",
+   "quote": "We train the AlphaQuanter agents using Qwen2.5-3B-Instruct and Qwen2.5-7B-Instruct Yang et al. (2024) as backbones, with the verl framework Sheng et al. (2025), optimizing the policy with the GRPO algorithm Shao et al. (2024)."
+  },
+  "baselines": {
+   "status": "stated",
+   "value": "Buy-and-hold; MACD and ZMR rules; FinRL A2C and PPO; Chronos-2; FinMem and TradingAgents (GPT-4o); TradingAgents with various backbones (Qwen, DeepSeek-V3.1, Kimi-K2, GPT-4o-mini, GPT-4o); single-agent AlphaQuanter without RL.",
+   "quote": "We compare with seven categories of baselines: (1) Market: a passive buy and hold strategy; (2) Rule: classic technical trading rules, including MACD and ZMR Zhang et al. (2024a); (3) RL: traditional deep RL baselines, including A2C and PPO"
+  },
+  "headline_result": {
+   "status": "stated",
+   "value": "Over the six-month 2025 test period, AlphaQuanter-7B averaged ARR 34.94%, SR 0.65, MDD 24.93% across five stocks (3B: 23.03%, 0.43, 25.16%).",
+   "quote": "| | AlphaQuanter-7B | -2.52% | 41.91% | 47.23% | 45.41% | 42.67% | 34.94% | 0.65 | 24.93%"
+  },
+  "costs": {
+   "status": "stated",
+   "value": "Transaction fee rate λ = 0.001 on buys/sells; capital utilization κ = 0.9 as slippage buffer. Inference: AlphaQuanter-7B uses 4.1K tokens per decision, 0.15× multi-agent cost.",
+   "quote": "| \\lambda | Transaction fee rate for BUY/SELL orders."
+  },
+  "uncertainty": {
+   "status": "stated",
+   "value": "Mean over three independent runs with distinct random seeds; no confidence intervals reported. Also a rolling-window (3-month, 7-day step) robustness analysis; inter-rater α=0.78 for human eval.",
+   "quote": "For each configuration, we report the mean performance over three independent runs (distinct random seeds) to mitigate variance."
+  },
+  "leakage_controls": {
+   "status": "stated",
+   "value": "Chronological non-overlapping splits with ~30-trading-day gaps; tool calls with dates beyond the current decision date are heavily penalized in the reward.",
+   "quote": "We split data chronologically into non-overlapping train/valid/test sets, as shown in Table 4. We also insert an approximately 30-trading-day gap between successive sets to prevent leakage and look-ahead bias."
+  },
+  "limitations": {
+   "status": "stated",
+   "value": "Bounded by predefined toolset; single-asset rather than portfolio decisions; long accumulated context from tool calls under computational constraints, needing better memory.",
+   "quote": "First, the agent’s capabilities are bounded by its pre-defined toolset. It can orchestrate existing functions but cannot generate novel analytical methods. Second, our framework focuses on single-asset decision making"
+  },
+  "release": {
+   "status": "stated",
+   "value": "Code and data released on GitHub.",
+   "quote": "Our code and data can be found at https://github.com/horizon-llm/AlphaQuanter."
+  }
+ },
+ "verification": {
+  "verified": 12,
+  "failed": 0,
+  "not_found": 0,
+  "detail": {
+   "task": "exact",
+   "architecture": "exact",
+   "data": "exact",
+   "window": "exact",
+   "models": "exact",
+   "baselines": "exact",
+   "headline_result": "exact",
+   "costs": "exact",
+   "uncertainty": "exact",
+   "leakage_controls": "exact",
+   "limitations": "exact",
+   "release": "exact"
+  }
+ }
+}

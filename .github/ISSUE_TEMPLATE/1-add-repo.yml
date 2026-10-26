@@ -1,0 +1,52 @@
+name: Suggest a repository
+description: An open-source project that belongs in one of the five layers
+title: "Add repo: "
+labels: [suggestion, repo]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        A link and one sentence are enough; maintainers verify and fill in the rest. 中文也可以。
+        Admission rules: [CONTRIBUTING.md](https://github.com/orangejustin/awesome-agentic-trading/blob/main/CONTRIBUTING.md#repositories).
+  - type: input
+    id: url
+    attributes:
+      label: Repository URL
+      placeholder: https://github.com/owner/name
+    validations:
+      required: true
+  - type: dropdown
+    id: layer
+    attributes:
+      label: Layer
+      options:
+        - 1. Data (what the agent sees)
+        - 2. Agent (how it thinks)
+        - 3. Execution (how it acts)
+        - 4. Harness (how you run, test and trust it)
+        - 5. Application (what you build with it)
+        - Not sure
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What would someone use it for?
+    validations:
+      required: true
+  - type: textarea
+    id: limit
+    attributes:
+      label: One important limitation (optional)
+      description: Setup needs, API keys, simulation only, can place real orders, unusual license, unverified claims...
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: The repository contains released code, not only a README.
+        - label: I have disclosed any affiliation with this project below (or I have none).
+  - type: input
+    id: affiliation
+    attributes:
+      label: Affiliation (if any)
