@@ -1,0 +1,53 @@
+# Repositories that appear in two or more of the four source lists but are deliberately NOT catalogued.
+# `python tools/list_audit.py --src DIR --catalog` fails if a multi-list repository is neither in
+# projects.toml nor here, so the inclusion rule in docs/07-methodology.md stays checkable.
+# Reasons: general-list = a broad link list, covered by docs/03-lists-compared.md;
+#          quant-library = general quant tooling with no LLM component (see "What we left out on purpose").
+
+[[excluded]]
+repo = "wilsonfreitas/awesome-quant"
+reason = "general-list"
+
+[[excluded]]
+repo = "georgezouq/awesome-ai-in-finance"
+reason = "general-list"
+
+[[excluded]]
+repo = "dataarctech/awesome-finllms"
+reason = "general-list"
+
+[[excluded]]
+repo = "wangzhe3224/awesome-systematic-trading"
+reason = "general-list"
+
+[[excluded]]
+repo = "dcajasn/riskfolio-lib"
+reason = "quant-library"
+
+[[excluded]]
+repo = "kernc/backtesting.py"
+reason = "quant-library"
+
+[[excluded]]
+repo = "lumiwealth/lumibot"
+reason = "quant-library"
+
+[[excluded]]
+repo = "mementum/backtrader"
+reason = "quant-library"
+
+[[excluded]]
+repo = "polakowo/vectorbt"
+reason = "quant-library"
+
+[[excluded]]
+repo = "pyportfolio/pyportfolioopt"
+reason = "quant-library"
+
+[[excluded]]
+repo = "skfolio/skfolio"
+reason = "quant-library"
+
+[[excluded]]
+repo = "stefan-jansen/zipline-reloaded"
+reason = "quant-library"

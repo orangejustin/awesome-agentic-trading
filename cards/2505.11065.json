@@ -1,0 +1,103 @@
+{
+ "arxiv": "2505.11065",
+ "title": "Time Travel is Cheating: Going Live with DeepFund for Real-Time Fund Investment Benchmarking",
+ "published": "2025-05-16",
+ "updated": "2025-10-14",
+ "source": {
+  "kind": "html",
+  "url": "https://arxiv.org/html/2505.11065",
+  "chars": 50060,
+  "truncated": false,
+  "sha256": "32e153d1345e2d39986f158ad1fadd6aaeaa890f0b410fb07e97321f9ab3d816",
+  "fetched": "2026-10-21"
+ },
+ "extraction": {
+  "model": "claude-opus-5-5",
+  "effort": "medium",
+  "date": "2026-10-23",
+  "input_tokens": 20774,
+  "output_tokens": 1593,
+  "cost_usd": 0.115
+ },
+ "fields": {
+  "task": {
+   "status": "stated",
+   "value": "A live, real-time benchmark for evaluating LLMs as fund managers, avoiding look-ahead leakage from historical back-testing.",
+   "quote": "we introduce DeepFund, a live fund benchmark tool designed to rigorously evaluate LLM in real-time market conditions."
+  },
+  "architecture": {
+   "status": "stated",
+   "value": "Single LLM powers a multi-agent workflow: Financial Planner assigns analysts; Analyst Team (Technical, Company News, Policy, Insider, etc.) emits Bullish/Bearish/Neutral signals; Portfolio Manager decides Buy/Sell/Hold with dual memory; built on LangChain with Supabase storage.",
+   "quote": "Below, the Multi-Agent Workflow mimics a structured fund management process through three distinct roles: Financial Planner, Analyst Team, and Portfolio Manager. The entire workflow is powered by a single LLM, selected from various providers available in the LLM Factory"
+  },
+  "data": {
+   "status": "stated",
+   "value": "Live data from Alpha Vantage and Yahoo Finance (statements, news, daily trading stats, insider transactions, macro, policy news); daily trading on AAPL, AXP, BAC, KO, CVX with $100,000 initial cash.",
+   "quote": "our experiments target investments in Berkshire Hathaway’s top five holdings as of Q1 2025: Apple (AAPL), American Express (AXP), Bank of America (BAC), Coca-Cola (KO), and Chevron (CVX). Each LLM manages initial cashflow with a total amount of $100,000."
+  },
+  "window": {
+   "status": "stated",
+   "value": "Live trading March 17 to April 17, 2025, 24 trading days, daily frequency; no training split. Extended appendix run covers all of Q2 2025.",
+   "quote": "The trading period is from March 17 to April 17, 2025, covering 24 trading days with a daily trading frequency."
+  },
+  "models": {
+   "status": "stated",
+   "value": "GPT-4.1, Llama 4 Scout, Gemini 2.5 Flash, Claude 3.7 Sonnet, Grok 3 mini Beta, DeepSeek-V3, Qwen2.5-Max, Doubao-1.5-pro, GLM-4-Air; temperature 0.5.",
+   "quote": "We evaluated nine state-of-the-art LLMs from various providers, each with distinct knowledge cutoff dates, to fairly assess their real-time investment performance, as shown in Table 2."
+  },
+  "baselines": {
+   "status": "stated",
+   "value": "S&P 500 index and a Buy & Hold strategy (portfolio initialized by the LLM on day 1 and held), plus cross-LLM comparison.",
+   "quote": "| S&P 500 | -6.91 | NA | 0.3 | 13.7 | NA | 1.00 | 0.0"
+  },
+  "headline_result": {
+   "status": "stated",
+   "value": "Only Grok 3 mini Beta was profitable: CR +1.1%, SR 0.51, MDD 5.5% over Mar 17–Apr 17, 2025; others lost (e.g., DeepSeek-V3 -5.7%, Doubao -8.1%) vs S&P 500 -6.91%.",
+   "quote": "| Grok 3 mini Beta | +1.1 | -3.09 | 0.51 | 5.5 | 61 | 0.42 | 0.2"
+  },
+  "costs": {
+   "status": "stated",
+   "value": "Transaction fees not modeled; total evaluation cost about $100 (LLM APIs 40%, financial data 40%, cloud database 20%).",
+   "quote": "The evaluation incurred approximately $100 in total costs (i.e., LLM APIs 40%, financial data 40%, and cloud database 20%, correspondingly)."
+  },
+  "uncertainty": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "leakage_controls": {
+   "status": "stated",
+   "value": "Live forward testing using only real-time market data published after each model's pretraining cutoff.",
+   "quote": "DeepFund connects directly with real-time stock market data – specifically data published after each model’s pretraining cutoff – to ensure fair and leakage-free evaluations."
+  },
+  "limitations": {
+   "status": "stated",
+   "value": "US stocks only; ignores transaction fees, trading restrictions, hybrid strategies; limited metrics; short evaluation period in a volatile market may skew results.",
+   "quote": "Lastly, the evaluation period was short and occurred during a volatile market, which could skew our results toward specific trading approaches."
+  },
+  "release": {
+   "status": "stated",
+   "value": "Code released on GitHub under MIT license; live interface at deepfund.paradoox.ai.",
+   "quote": "Our code is available at https://github.com/HKUSTDial/DeepFund."
+  }
+ },
+ "verification": {
+  "verified": 11,
+  "failed": 0,
+  "not_found": 1,
+  "detail": {
+   "task": "exact",
+   "architecture": "exact",
+   "data": "exact",
+   "window": "exact",
+   "models": "exact",
+   "baselines": "exact",
+   "headline_result": "exact",
+   "costs": "exact",
+   "uncertainty": "not_found",
+   "leakage_controls": "exact",
+   "limitations": "exact",
+   "release": "exact"
+  }
+ }
+}

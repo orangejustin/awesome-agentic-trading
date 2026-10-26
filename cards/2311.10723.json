@@ -1,0 +1,103 @@
+{
+ "arxiv": "2311.10723",
+ "title": "Large Language Models in Finance: A Survey",
+ "published": "2023-09-28",
+ "updated": "2024-07-08",
+ "source": {
+  "kind": "html",
+  "url": "https://arxiv.org/html/2311.10723",
+  "chars": 38400,
+  "truncated": false,
+  "sha256": "f5f4c2a0a9779a97c8b80ae63c0c993b50adc64207dde05a96d95a61cc84da11",
+  "fetched": "2026-10-21"
+ },
+ "extraction": {
+  "model": "claude-opus-5-5",
+  "effort": "medium",
+  "date": "2026-10-23",
+  "input_tokens": 15583,
+  "output_tokens": 1377,
+  "cost_usd": 0.0899
+ },
+ "fields": {
+  "task": {
+   "status": "stated",
+   "value": "Survey of existing LLM solutions for finance tasks and a decision framework guiding practitioners in choosing an LLM approach given data, compute and performance constraints.",
+   "quote": "In this paper, we provide a practical survey focused on two key aspects of utilizing LLMs for financial tasks: existing solutions and guidance for adoption."
+  },
+  "architecture": {
+   "status": "stated",
+   "value": "A four-level decision framework: Level 1 zero-shot, Level 2 few-shot, Level 3 tool-augmented generation and fine-tuning, Level 4 training an LLM from scratch; move up only if performance is unsatisfactory.",
+   "quote": "The framework, illustrated in Figure 1, categorizes the usage of LLMs into four levels based on computational resources and data requirements. By progressing through the levels, costs associated with training and data collection increase."
+  },
+  "data": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "window": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "models": {
+   "status": "stated",
+   "value": "Surveyed models include FinMA (LLaMA-7B/30B), FinGPT (ChatGLM, LLaMA), Instruct-FinGPT, Fin-LLaMA, Cornucopia, BloombergGPT (50B-BLOOM), XuanYuan2.0 (176B-BLOOM), Fin-T5 (770M-T5).",
+   "quote": "Table 2 presents the current finance LLMs that have been trained from scratch: BloombergGPT, Xuan Yuan 2.0 (Zhang et al., 2023c), and Fin-T5(Lu et al., 2023)."
+  },
+  "baselines": {
+   "status": "stated",
+   "value": "Reported comparisons are against base LLaMA and other open-source LLMs (BLOOM, OPT, ChatGLM), BloombergGPT, ChatGPT and GPT-4; from-scratch models compared to BLOOM176B and T5.",
+   "quote": "Compared to the original base LLM (LLaMA) and other open-source LLMs (BLOOM, OPT(Zhang et al., 2022), ChatGLM(Zeng et al., 2023; Du et al., 2022)), all fine-tuned finance LLMs exhibit significantly better performance across all finance-domain tasks reported in the papers, especially classification tasks."
+  },
+  "headline_result": {
+   "status": "stated",
+   "value": "Summarized from prior work: BloombergGPT average score 62.51 vs BLOOM176B 54.35; Fin-T5 81.78 vs T5 79.56 on finance classification tasks.",
+   "quote": "BloombergGPT achieves an impressive average score of 62.51, surpassing the open-source BLOOM176B model, which only attains a score of 54.35. Similarly, Fin-T5 demonstrates its excellence with an average score of 81.78, outperforming the T5 model’s score of 79.56."
+  },
+  "costs": {
+   "status": "stated",
+   "value": "Approximate inference/deployment costs: 0.006 - 0.037 $/1k tokens for open-source zero-shot, 0.002 - 0.12 for third-party; train from scratch about $5,000,000 development cost; assumes NVIDIA A100, 3 to 33 seconds per 1k tokens.",
+   "quote": "We assume using NVIDIA A100 GPU. The cost of $/ tokens = $ / second * second / 1k tokens, and it typically takes 3 to 33 seconds to generate 1k tokens, depending on model size."
+  },
+  "uncertainty": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "leakage_controls": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "limitations": {
+   "status": "stated",
+   "value": "LLMs can produce disinformation/hallucinations and exhibit biases; they pose regulation and governance challenges and remain black boxes with limited explainability.",
+   "quote": "Two major challenges are the production of disinformation and the manifestation of biases, such as racial, gender, and religious biases, in LLMs (Tamkin et al., 2021)."
+  },
+  "release": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  }
+ },
+ "verification": {
+  "verified": 7,
+  "failed": 0,
+  "not_found": 5,
+  "detail": {
+   "task": "exact",
+   "architecture": "exact",
+   "data": "not_found",
+   "window": "not_found",
+   "models": "exact",
+   "baselines": "exact",
+   "headline_result": "exact",
+   "costs": "exact",
+   "uncertainty": "not_found",
+   "leakage_controls": "not_found",
+   "limitations": "exact",
+   "release": "not_found"
+  }
+ }
+}

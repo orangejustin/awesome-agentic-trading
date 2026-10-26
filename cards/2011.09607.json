@@ -1,0 +1,103 @@
+{
+ "arxiv": "2011.09607",
+ "title": "FinRL: A Deep Reinforcement Learning Library for Automated Stock Trading in Quantitative Finance",
+ "published": "2020-11-19",
+ "updated": "2022-03-02",
+ "source": {
+  "kind": "html",
+  "url": "https://arxiv.org/html/2011.09607",
+  "chars": 26890,
+  "truncated": false,
+  "sha256": "5086d6e0b116998dd7bc16661e06a477a35e57d6fef684509afc19053a1da8be",
+  "fetched": "2026-10-21"
+ },
+ "extraction": {
+  "model": "claude-opus-5-5",
+  "effort": "medium",
+  "date": "2026-10-23",
+  "input_tokens": 12186,
+  "output_tokens": 1491,
+  "cost_usd": 0.0786
+ },
+ "fields": {
+  "task": {
+   "status": "stated",
+   "value": "A beginner-friendly deep reinforcement learning library for developing and backtesting automated stock trading strategies (single stock, multiple stock trading, portfolio allocation).",
+   "quote": "In this paper, we introduce a DRL library FinRL that facilitates beginners to expose themselves to quantitative finance and to develop their own stock trading strategies."
+  },
+  "architecture": {
+   "status": "stated",
+   "value": "Three layers: Gym-based market environment (MDP with state, action, reward), DRL agent layer with fine-tuned algorithms, and application layer; lower layers provide APIs to upper layers.",
+   "quote": "Three-layer architecture: The three layers of FinRL library are stock market environment, DRL trading agent, and stock trading applications. The agent layer interacts with the environment layer in an exploration-exploitation manner"
+  },
+  "data": {
+   "status": "stated",
+   "value": "Historical data from NASDAQ-100, DJIA, S&P 500, SSE 50, CSI 300, HSI; OHLCV and technical indicators at daily, hourly or minute frequency. Demos use SPY, QQQ, GOOGL, AMZN, AAPL, MSFT and Dow Jones 30 constituents.",
+   "quote": "FinRL provides six environments based on representative listings, including NASDAQ-100, DJIA, S&P 500, SSE 50, CSI 300, and HSI, plus one user-defined environment."
+  },
+  "window": {
+   "status": "stated",
+   "value": "Reported test results cover 2019/01/01-2020/09/23; training/validation split dates not given in text.",
+   "quote": "| 2019/01/01-2020/09/23 | TD3 | DDPG | Min-Var. | DJIA"
+  },
+  "models": {
+   "status": "stated",
+   "value": "DRL algorithms DQN, DDPG, Multi-Agent DDPG, PPO, SAC, A2C, TD3, based on OpenAI Baselines and Stable Baselines; PPO used for single stock, DDPG and TD3 for multiple stock/portfolio.",
+   "quote": "FinRL library includes fine-tuned standard DRL algorithms, namely, DQN [29][34], DDPG [29], Multi-Agent DDPG [30], PPO [40], SAC [18], A2C [33] and TD3 [11]."
+  },
+  "baselines": {
+   "status": "stated",
+   "value": "Buy-and-hold, mean-variance, min-variance, momentum, equal-weighted strategies; in demos, S&P 500 index, DJIA index and min-variance allocation.",
+   "quote": "FinRL uses five conventional strategies, namely passive buy-and-hold trading strategy [32], mean-variance strategy [1], and min-variance strategy [1], momentum trading strategy [15], and equal-weighted strategy"
+  },
+  "headline_result": {
+   "status": "stated",
+   "value": "Over 2019/01/01-2020/09/23 on DJIA constituents, TD3 Sharpe ratio 1.38; 1.03 and DDPG 1.28; 0.98 versus Min-Var. 0.44 and DJIA 0.48.",
+   "quote": "| Sharpe ratio | 1.38; 1.03 | 1.28; 0.98 | 0.44 | 0.48"
+  },
+  "costs": {
+   "status": "stated",
+   "value": "Transaction costs as a parameter: flat fee or per-share percentage (e.g., 1/1000 or 2/1000); bid-ask spread can be added to closing price.",
+   "quote": "Per share percentage: a per share rate for every share traded, for example, 1/1000 or 2/1000 are the most commonly used transaction cost rate for each trade."
+  },
+  "uncertainty": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "leakage_controls": {
+   "status": "stated",
+   "value": "Training-validation-testing split, with testing data held out for unbiased evaluation; rolling window retraining supported.",
+   "quote": "Testing (trading) dataset is the sample of data to provide an unbiased evaluation of a fine-tuned model."
+  },
+  "limitations": {
+   "status": "stated",
+   "value": "Authors note large maximum drawdowns in single-stock results due to the Covid-19 market crash.",
+   "quote": "The maximum drawdown in Table 1 is large due to Covid-19 market crash."
+  },
+  "release": {
+   "status": "stated",
+   "value": "Library to be released on GitHub.",
+   "quote": "The FinRL library will be available on Github at link https://github.com/AI4Finance-LLC/FinRL-Library."
+  }
+ },
+ "verification": {
+  "verified": 11,
+  "failed": 0,
+  "not_found": 1,
+  "detail": {
+   "task": "exact",
+   "architecture": "exact",
+   "data": "exact",
+   "window": "exact",
+   "models": "exact",
+   "baselines": "exact",
+   "headline_result": "exact",
+   "costs": "exact",
+   "uncertainty": "not_found",
+   "leakage_controls": "exact",
+   "limitations": "exact",
+   "release": "exact"
+  }
+ }
+}

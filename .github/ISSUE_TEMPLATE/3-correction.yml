@@ -1,0 +1,23 @@
+name: Report an error or a stale entry
+description: A link, date, license, grade or claim that is wrong or out of date
+title: "Fix: "
+labels: [correction]
+body:
+  - type: input
+    id: where
+    attributes:
+      label: Page and entry
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What is wrong
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Source we can check (commit, file, arXiv version, table number)
+    validations:
+      required: true

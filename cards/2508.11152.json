@@ -1,0 +1,103 @@
+{
+ "arxiv": "2508.11152",
+ "title": "AlphaAgents: Large Language Model based Multi-Agents for Equity Portfolio Constructions",
+ "published": "2025-08-15",
+ "updated": "2025-08-15",
+ "source": {
+  "kind": "html",
+  "url": "https://arxiv.org/html/2508.11152",
+  "chars": 34819,
+  "truncated": false,
+  "sha256": "d4b43ff22b3c21196dc363080560f781da10b373dcb341e31cf9d020e5f92573",
+  "fetched": "2026-10-21"
+ },
+ "extraction": {
+  "model": "claude-opus-5-5",
+  "effort": "medium",
+  "date": "2026-10-23",
+  "input_tokens": 14212,
+  "output_tokens": 1224,
+  "cost_usd": 0.0813
+ },
+ "fields": {
+  "task": {
+   "status": "stated",
+   "value": "Using role-based LLM multi-agent collaboration and debate to support stock selection in equity research and portfolio management under different risk tolerances.",
+   "quote": "This study investigates the application of role-based multi-agent systems to support stock selection in equity research and portfolio management."
+  },
+  "architecture": {
+   "status": "stated",
+   "value": "Three specialist agents (Fundamental with 10-K/yfinance pull and RAG tools, Sentiment with news summarization tool, Valuation with volatility/return tool) coordinated by an AutoGen group chat assistant; round-robin debate until consensus; risk profiles set via prompts.",
+   "quote": "We utilize the Microsoft AutoGen framework (Wu et al., 2023) as the infrastructure for our multi-agent system, leveraging its group chat and assistant agent capabilities."
+  },
+  "data": {
+   "status": "stated",
+   "value": "10-K and 10-Q disclosures, Bloomberg financial news, and Yahoo Finance historical price and volume data; universe of 15 randomly selected technology-sector stocks.",
+   "quote": "The primary data sources utilized in the system are listed in Table 1, including 10-K and 10-Q financial disclosures, Bloomberg financial news, and historical stock price and volume data from Yahoo Finance."
+  },
+  "window": {
+   "status": "stated",
+   "value": "Agents used data and news from January 2024; portfolios initialized February 1, 2024 and monitored over the following four months.",
+   "quote": "The agents were trained using data and news from January 2024. Based on each agent’s responses and their final decisions following debate and collaboration, we constructed the corresponding portfolios: the valuation agent portfolio, news sentiment agent portfolio, fundamental agent portfolio, and the final multi-agent portfolio, all initialized on February 1, 2024."
+  },
+  "models": {
+   "status": "stated",
+   "value": "GPT4o as the LLM; GPT 4-o also cited as embedding model in the RAG tool.",
+   "quote": "After experimenting with various GPT models, we chose GPT4o as the model for our experiments."
+  },
+  "baselines": {
+   "status": "stated",
+   "value": "Equal-weighted benchmark portfolio of the 15 tech stocks, and single-agent portfolios from the fundamental and valuation agents.",
+   "quote": "For comparison, single-agent portfolios from the fundamental and valuation agents were also created; the sentiment agent was excluded due to insufficient news coverage in some cases."
+  },
+  "headline_result": {
+   "status": "stated",
+   "value": "Qualitative only: in the risk-neutral setting the multi-agent portfolio outperformed the benchmark and single-agent portfolios over the test window; in the risk-averse setting all agent portfolios underperformed the benchmark.",
+   "quote": "In the risk-neutral setting, the proposed multi-agent outperforms the benchmark as well as the single agent framework during the testing window."
+  },
+  "costs": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "uncertainty": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "leakage_controls": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "limitations": {
+   "status": "stated",
+   "value": "Analysis limited in scope; risk-seeking prompts indistinguishable from risk-neutral; sentiment agent lacked news coverage for some stocks; focus only on stock selection, not portfolio optimization.",
+   "quote": "While a risk-seeking profile was also tested, its outputs were nearly indistinguishable from the risk-neutral case and excluded from final evaluation highlighting a limitation of prompt-based differentiation for adjacent risk profiles."
+  },
+  "release": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  }
+ },
+ "verification": {
+  "verified": 8,
+  "failed": 0,
+  "not_found": 4,
+  "detail": {
+   "task": "exact",
+   "architecture": "exact",
+   "data": "exact",
+   "window": "exact",
+   "models": "exact",
+   "baselines": "exact",
+   "headline_result": "exact",
+   "costs": "not_found",
+   "uncertainty": "not_found",
+   "leakage_controls": "not_found",
+   "limitations": "exact",
+   "release": "not_found"
+  }
+ }
+}

@@ -1,0 +1,103 @@
+{
+ "arxiv": "2512.10971",
+ "title": "AI-Trader: Benchmarking Autonomous Agents in Real-Time Financial Markets",
+ "published": "2025-12-01",
+ "updated": "2025-12-01",
+ "source": {
+  "kind": "html",
+  "url": "https://arxiv.org/html/2512.10971",
+  "chars": 51139,
+  "truncated": false,
+  "sha256": "a0ea72dbc2df890e6725aaee28feaf888f9789057a577910e46cb509f0b82746",
+  "fetched": "2026-10-21"
+ },
+ "extraction": {
+  "model": "claude-opus-5-5",
+  "effort": "medium",
+  "date": "2026-10-23",
+  "input_tokens": 20263,
+  "output_tokens": 1700,
+  "cost_usd": 0.1151
+ },
+ "fields": {
+  "task": {
+   "status": "stated",
+   "value": "A live, fully autonomous, data-uncontaminated benchmark for evaluating LLM agents' financial trading decisions across U.S. stocks, A-shares and cryptocurrencies.",
+   "quote": "we introduce AI-Trader, the first fully-automated, live, and data-uncontaminated evaluation benchmark for LLM agents in financial decision-making."
+  },
+  "architecture": {
+   "status": "stated",
+   "value": "Decoupled live trading environment and ReAct-style trading agents with minimal context (prices, holdings, tools), using MCP tools: Check Price, Search, News, Math, Trade; Buy/Sell/Hold actions with rejection and self-correction on liquidity violations.",
+   "quote": "The AI-Trader framework consists of two fully decoupled components: the Live Trading Environment (Sec.3.1) and the Trading Agents (Sec. 3.2)."
+  },
+  "data": {
+   "status": "stated",
+   "value": "Nasdaq-100 constituents plus cash (hourly), SSE-50 constituents (daily), and 10 USDT crypto pairs tracked by the Bitwise Index (daily); prices, web search and financial news via tools.",
+   "quote": "We employ a daily-frequency strategy for trading A-shares and cryptocurrencies, while monitoring and recording U.S. equity trades using an hourly-frequency strategy."
+  },
+  "window": {
+   "status": "stated",
+   "value": "Live trading: U.S. equities and A-shares October 1, 2025 to November 7, 2025; cryptocurrency November 1 to November 14, 2025. No training split (benchmark of pretrained LLMs).",
+   "quote": "we present live trading results for U.S. equities and A-shares from October 1, 2025, to November 7, 2025, along with a detailed evaluation and analysis of the cryptocurrency market from November 1 to November 14, 2025."
+  },
+  "models": {
+   "status": "stated",
+   "value": "DeepSeek-v3.1, MiniMax-M2, Claude-3.7-sonnet, GPT-5, Qwen3-max, Gemini-2.5-flash, each wrapped in identical agents.",
+   "quote": "The AI-Trader employs six mainstream models as baselines: DeepSeek-v3.1 (Liu et al., 2024), MiniMax-M2 (MiniMax, 2025), Claude-3.7-sonnet (Anthropic, 2025a) , GPT-5 (OpenAI, 2025), Qwen3-max (Yang et al., 2025), and Gemini-2.5-flash (Comanici et al., 2025)."
+  },
+  "baselines": {
+   "status": "stated",
+   "value": "Market benchmarks: QQQ Invesco (U.S.), SSE-50 index (A-shares), CD5 Index (crypto); LLMs compared against each other.",
+   "quote": "AI trading strategies more easily generate excess returns in highly liquid markets. In the U.S. market, multiple AI agents achieved positive excess returns: MiniMax-M2 (+7.69% excess), DeepSeek-v3.1 (+6.52% excess), and even Claude-3.7-Sonnet (+1.24% excess) all outperformed QQQ."
+  },
+  "headline_result": {
+   "status": "stated",
+   "value": "U.S. market (Oct 1–Nov 7, 2025, hourly): MiniMax-M2 cumulative return 9.56% vs QQQ 1.87%, Sortino 4.42, MDD -4.92%; no agent beat SSE-50 (1.65%); in crypto only DeepSeek-v3.1 beat CD5 (-12.18% vs -14.30%).",
+   "quote": "In the U.S. market, MiniMax-M2 achieves a cumulative return of 9.56% (significantly higher than QQQ’s 1.87%) and the highest Sortino ratio among all models at 4.42, while limiting maximum drawdown to -4.92%, outperforming all AI models except the benchmark."
+  },
+  "costs": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "uncertainty": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "leakage_controls": {
+   "status": "stated",
+   "value": "Live evaluation in real time; Search tool strictly limited to information available up to the current simulated time to prevent future data leakage.",
+   "quote": "strictly limited to information available up to the current simulated time—to prevent data leakage from the future and support AI in fundamental or event-driven analysis."
+  },
+  "limitations": {
+   "status": "stated",
+   "value": "Agents lack a systematic information verification module and can be swayed by single news sources; poor returns, weak risk management and poor cross-market generalization of current agents.",
+   "quote": "the decision-making mechanism lacks a systematic information verification module, making it prone to forming judgments based on a single information source, which can easily lead to misjudgments in highly volatile and information-dense market conditions."
+  },
+  "release": {
+   "status": "stated",
+   "value": "Code and evaluation data open-sourced on GitHub.",
+   "quote": "The code and evaluation data are open-sourced to foster community research: https://github.com/HKUDS/AI-Trader."
+  }
+ },
+ "verification": {
+  "verified": 10,
+  "failed": 0,
+  "not_found": 2,
+  "detail": {
+   "task": "exact",
+   "architecture": "exact",
+   "data": "exact",
+   "window": "exact",
+   "models": "exact",
+   "baselines": "exact",
+   "headline_result": "exact",
+   "costs": "not_found",
+   "uncertainty": "not_found",
+   "leakage_controls": "exact",
+   "limitations": "exact",
+   "release": "exact"
+  }
+ }
+}

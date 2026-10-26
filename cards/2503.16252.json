@@ -1,0 +1,103 @@
+{
+ "arxiv": "2503.16252",
+ "title": "Fin-R1: A Large Language Model for Financial Reasoning through Reinforcement Learning",
+ "published": "2025-03-20",
+ "updated": "2026-03-19",
+ "source": {
+  "kind": "html",
+  "url": "https://arxiv.org/html/2503.16252",
+  "chars": 65896,
+  "truncated": false,
+  "sha256": "d8b661e76e4614b7db3173822cb2ea1e6e7951b599ea1ea68c44455b4065796a",
+  "fetched": "2026-10-21"
+ },
+ "extraction": {
+  "model": "claude-opus-5-5",
+  "effort": "medium",
+  "date": "2026-10-23",
+  "input_tokens": 26740,
+  "output_tokens": 1681,
+  "cost_usd": 0.1406
+ },
+ "fields": {
+  "task": {
+   "status": "stated",
+   "value": "Building a compact 7B reasoning LLM for financial scenarios that addresses fragmented data, opaque reasoning, and weak transferability in financial tasks.",
+   "quote": "In response, we introduce Fin-R1, a reasoning LLM designed for financial scenarios. With a compact size of 7 billion parameters, Fin-R1 reduces deployment costs while addressing the aforementioned challenges."
+  },
+  "architecture": {
+   "status": "stated",
+   "value": "Two-stage pipeline: data distillation with DeepSeek-R1 and filtering with Qwen2.5-72B-Instruct as judge to build Fin-R1-Data; then SFT on Qwen2.5-7B-Instruct followed by GRPO with format and accuracy rewards (Qwen2.5-Max as accuracy evaluator).",
+   "quote": "The model is first trained via SFT on Fin-R1-Data and is then optimized through GRPO with two reward functions, a format reward and an accuracy reward."
+  },
+  "data": {
+   "status": "stated",
+   "value": "Fin-R1-Data: 60,091 bilingual (Chinese/English) CoT entries in four categories, built from FinanceQT, Finance-500K, FinanceIQ, FinPEE, Ant-Finance, FinCorpus, FinQA, ConvFinQA, TFNS, FinCUGE. No market price data or frequency.",
+   "quote": "Fin-R1-Data consists of 60,091 bilingual (Chinese and English) entries, organized into four categories, as shown in Figure 3."
+  },
+  "window": {
+   "status": "stated",
+   "value": "No dated period; evaluation on random 1,000-question samples per dataset (all if fewer), and a stratified 10% test subset of Finance-Instruct-500k.",
+   "quote": "For Finance-Instruct-500k, we evaluate the performance various models on a custom 10% test subset, extracted via stratified sampling from the full dataset. For all other datasets, we randomly sample 1,000 questions for testing"
+  },
+  "models": {
+   "status": "stated",
+   "value": "Base model Qwen2.5-7B-Instruct; DeepSeek-R1-671B for distillation; Qwen2.5-72B-Instruct as data-filtering judge; Qwen2.5-Max as RL accuracy evaluator; GPT-4o compared as judge.",
+   "quote": "We adopt Qwen2.5-7B-Instruct as the base model."
+  },
+  "baselines": {
+   "status": "stated",
+   "value": "Eight LLMs: DeepSeek-R1, DeepSeek-R1-Distill-Qwen-7B/14B/32B, DeepSeek-R1-Distill-Llama-70B, Qwen-2.5-7B/14B/32B-Instruct; plus ablations Fin-R1-SFT and Fin-R1-Zero.",
+   "quote": "We compare our Fin-R1 against eight state-of-the-art LLMs, including (i) DeepSeek-R1; (ii) DeepSeek-R1-Distill-Qwen-7B; (iii) DeepSeek-R1-Distill-Qwen-14B; (iv) DeepSeek-R1-Distill-Qwen-32B; (v) DeepSeek-R1-Distill-Llama-70B; (vi) Qwen-2.5-7B-Instruct; (vii) Qwen-2.5-14B-Instruct; and (viii) Qwen-2.5-32B-Instruct."
+  },
+  "headline_result": {
+   "status": "stated",
+   "value": "Average score 75.2 across five financial benchmarks, second to DeepSeek-R1 (78.2); best on FinQA (76.0) and ConvFinQA (85.0).",
+   "quote": "Specifically, it achieves an average score of 75.2, ranking the second overall, and outperforms all models of similar size, with only a 3-point gap from the best-performing DeepSeek-R1 (78.2)."
+  },
+  "costs": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "uncertainty": {
+   "status": "stated",
+   "value": "Only for judge-model selection: five repeated experiments per prompt strategy on 100 FinQA samples. No repeated runs or intervals reported for main benchmark results.",
+   "quote": "We randomly select 100 sample instances from the FinQA dataset and conduct five repeated experiments for each prompt strategy to assess result stability."
+  },
+  "leakage_controls": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "limitations": {
+   "status": "stated",
+   "value": "Authors note GRPO alone produces incoherent outputs and SFT can only imitate demonstrations; future work to support multimodal financial data.",
+   "quote": "A closer look at the model output (see Figure 9(a)) reveals that using GRPO alone for RL training often produces incoherent outputs."
+  },
+  "release": {
+   "status": "stated",
+   "value": "Code publicly released on GitHub.",
+   "quote": "Our code is publicly available at https://github.com/SUFE-AIFLM-Lab/Fin-R1, and has already attracted over 700 stars."
+  }
+ },
+ "verification": {
+  "verified": 10,
+  "failed": 0,
+  "not_found": 2,
+  "detail": {
+   "task": "exact",
+   "architecture": "exact",
+   "data": "exact",
+   "window": "exact",
+   "models": "exact",
+   "baselines": "exact",
+   "headline_result": "exact",
+   "costs": "not_found",
+   "uncertainty": "exact",
+   "leakage_controls": "not_found",
+   "limitations": "exact",
+   "release": "exact"
+  }
+ }
+}

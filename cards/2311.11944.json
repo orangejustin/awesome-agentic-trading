@@ -1,0 +1,103 @@
+{
+ "arxiv": "2311.11944",
+ "title": "FinanceBench: A New Benchmark for Financial Question Answering",
+ "published": "2023-11-20",
+ "updated": "2023-11-20",
+ "source": {
+  "kind": "html",
+  "url": "https://arxiv.org/html/2311.11944",
+  "chars": 50020,
+  "truncated": false,
+  "sha256": "182e56857e40bcc5db8fae4723eb89e7e6395d1ba171b2d58204389cd2f6ca6f",
+  "fetched": "2026-10-21"
+ },
+ "extraction": {
+  "model": "claude-opus-5-5",
+  "effort": "medium",
+  "date": "2026-10-23",
+  "input_tokens": 19286,
+  "output_tokens": 1344,
+  "cost_usd": 0.104
+ },
+ "fields": {
+  "task": {
+   "status": "stated",
+   "value": "A benchmark for evaluating LLMs on open book financial question answering about publicly traded companies.",
+   "quote": "FinanceBench is a first-of-its-kind test suite for evaluating the performance of LLMs on open book financial question answering (QA)."
+  },
+  "architecture": {
+   "status": "stated",
+   "value": "Configurations: closed book, oracle (evidence pages given), single vector store per document, shared vector store over all documents (Langchain, Chroma, OpenAI text-embedding-ada-002), and long context with filing in prompt; context-first vs context-last prompt orders.",
+   "quote": "Our vector store is implemented in Langchain44 4 https://www.langchain.com/, using a Chroma database55 5 https://www.trychroma.com/ and OpenAI embeddings (text-embedding-ada-002)."
+  },
+  "data": {
+   "status": "stated",
+   "value": "10,231 question/answer/evidence triplets covering 40 US publicly traded companies and 361 public filings (10Ks, 10Qs, 8Ks, earnings reports) released 2015-2023; 150-case human eval sample.",
+   "quote": "It covers 40 companies that are publicly traded in the USA and 361 public filings, released between 2015 and 2023, including 10Ks, 10Qs, 8Ks, and Earnings Reports."
+  },
+  "window": {
+   "status": "stated",
+   "value": "Evaluation on a 150-case sample (50 domain-relevant, 50 novel-generated, 50 metrics-generated); all configurations tested in November 2023. No train split.",
+   "quote": "We test 16 model configurations, including the Oracle and Closed book settings. All were tested in November 2023."
+  },
+  "models": {
+   "status": "stated",
+   "value": "GPT-4, GPT-4-Turbo (128k context), Claude2 (100k context), Llama2 (llama-2-70b-chat via Replicate); temperature 0.01, max tokens 2,048.",
+   "quote": "We test four LLMs, from three model providers: OpenAI’s GPT-4 OpenAI (2023) and GPT-4-Turbo with a 128k context window22 2 https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo; Anthropic’s Claude2 with a 100k context windowBai et al. (2022); and Meta’s Llama2 Touvron et al. (2023)."
+  },
+  "baselines": {
+   "status": "stated",
+   "value": "Configurations compared against each other; closed book and oracle serve as reference points, single vector store as a naive retrieval baseline. GPT-3.5 tested early and dropped.",
+   "quote": "The Oracle setting and the Closed Book setting are highlighted in red as these represent unrealistic evaluation scenarios that only serve as reference points."
+  },
+  "headline_result": {
+   "status": "stated",
+   "value": "GPT-4-Turbo with shared vector store incorrectly answered or refused 81% of questions; best realistic config GPT-4-Turbo long context correct on 118 (79%) of 150; Oracle 85%.",
+   "quote": "Notably, GPT-4-Turbo used with a retrieval system incorrectly answered or refused to answer 81% of questions."
+  },
+  "costs": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "uncertainty": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "leakage_controls": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "limitations": {
+   "status": "stated",
+   "value": "Single-turn questions only; only public filings and listed companies (bias to larger firms); no cross-company comparisons; some questions simplistic and some gold answers ambiguous.",
+   "quote": "Equally, another limitation of FinanceBench is that it only contains publically listed companies, which necessarily biases the dataset towards larger companies and properly-audited and well-written documents."
+  },
+  "release": {
+   "status": "stated",
+   "value": "The 150 evaluation cases are released open-source on GitHub.",
+   "quote": "The 150 evaluation cases are available open-source.11 1 https://github.com/patronus-ai/financebench"
+  }
+ },
+ "verification": {
+  "verified": 9,
+  "failed": 0,
+  "not_found": 3,
+  "detail": {
+   "task": "exact",
+   "architecture": "exact",
+   "data": "exact",
+   "window": "exact",
+   "models": "exact",
+   "baselines": "exact",
+   "headline_result": "exact",
+   "costs": "not_found",
+   "uncertainty": "not_found",
+   "leakage_controls": "not_found",
+   "limitations": "exact",
+   "release": "exact"
+  }
+ }
+}

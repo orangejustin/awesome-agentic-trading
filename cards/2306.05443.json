@@ -1,0 +1,103 @@
+{
+ "arxiv": "2306.05443",
+ "title": "PIXIU: A Large Language Model, Instruction Data and Evaluation Benchmark for Finance",
+ "published": "2023-06-08",
+ "updated": "2023-06-08",
+ "source": {
+  "kind": "html",
+  "url": "https://arxiv.org/html/2306.05443",
+  "chars": 37694,
+  "truncated": false,
+  "sha256": "6a09e7035e4e2814f2a6ca4a27a14723873a36f6a7b02bb856f26d08f3dda699",
+  "fetched": "2026-10-21"
+ },
+ "extraction": {
+  "model": "claude-opus-5-5",
+  "effort": "medium",
+  "date": "2026-10-23",
+  "input_tokens": 16735,
+  "output_tokens": 1539,
+  "cost_usd": 0.0977
+ },
+ "fields": {
+  "task": {
+   "status": "stated",
+   "value": "Building an open-source instruction-tuned financial LLM (FinMA), a financial instruction-tuning dataset (FIT), and an evaluation benchmark (FLARE) covering financial NLP and stock movement prediction.",
+   "quote": "This paper introduces PIXIU, a comprehensive framework including the first financial LLM based on fine-tuning LLaMA with instruction data, the first instruction data with 136K data samples to support the fine-tuning, and an evaluation benchmark with 5 tasks and 9 datasets."
+  },
+  "architecture": {
+   "status": "stated",
+   "value": "LLaMA fine-tuned with multi-task instruction data (instruction/text/response templates written by domain experts); FinMA-7B and 30B on NLP tasks only, FinMA-7B-full on all data; AdamW, batch 32, lr 8e-6, max length 2048.",
+   "quote": "We train three models: FinMA-7B and FinMA-30B by fine-tuning LLaMA 7B and 30B checkpoint with instruction tuning data covering NLP tasks, and FinMA-7B-full by fine-tuning LLaMA 7B with full instruction tuning data ."
+  },
+  "data": {
+   "status": "stated",
+   "value": "Nine open datasets: FPB, FiQA-SA, Gold Headline, FIN NER, FinQA, ConvFinQA, and stock movement datasets BigData22, ACL18, CIKM18 (tweets plus historical prices); 136,609 instruction samples.",
+   "quote": "Our contributions can be summarized as follows: 1) We introduce FIT, the first multi-task and multi-modal instruction tuning data in the financial domain, covering 5 tasks and 9 datasets with 136,609 (136K) data samples."
+  },
+  "window": {
+   "status": "stated",
+   "value": "Validation and test sets randomly selected from FIT (e.g. ACL18 valid 2,554 / test 3,719); no test dates given.",
+   "quote": "We randomly select validation sets from FIT to select the best model checkpoint, and test sets for evaluation."
+  },
+  "models": {
+   "status": "stated",
+   "value": "LLaMA 7B and 30B as backbones for FinMA-7B, FinMA-30B, FinMA-7B-full.",
+   "quote": "We fine-tune LLaMA-7B with 15 epochs and LLaAM-7B-full with 3 epochs based on AdamW optimizer (Loshchilov and Hutter, 2017)."
+  },
+  "baselines": {
+   "status": "stated",
+   "value": "BloombergGPT, GPT-4, ChatGPT, BLOOM, GPT-NeoX, OPT-66B, Vicuna-13B, in zero-shot or few-shot settings.",
+   "quote": "We compare FinMA with following LLMs: 1) BloombergGPT (Wu et al., 2023)."
+  },
+  "headline_result": {
+   "status": "stated",
+   "value": "FinMA-30B outperforms GPT-4 by 10% F1 and BloombergGPT by 37% F1 on FPB; on ACL18 stock prediction FinMA-7B-full gets Acc 0.56, MCC 0.10.",
+   "quote": "For example, FinMA-30B outperforms GPT-4 by 10% F1 score, and BloombergGPT by 37% F1 score on the FPB dataset."
+  },
+  "costs": {
+   "status": "stated",
+   "value": "Compute only: FinMA-7B fine-tuned on 8 A100 40GB GPUs; FinMA-30B on 128 A100 40GB GPUs. No trading costs.",
+   "quote": "Different from FinMA-7B, it can only be distributed fine-tuned on 128 A100 40GB GPUs."
+  },
+  "uncertainty": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "leakage_controls": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "limitations": {
+   "status": "stated",
+   "value": "Models only up to 30B, 30B not trained on full data; weak quantitative reasoning and stock prediction; reliance on handcrafted instructions and LLaMA input length; potential misuse.",
+   "quote": "Model and Training Constraints: We only present FinMA models up to 30B. Due to computational constraints, FinMA-30B has not been fine-tuned on the full dataset."
+  },
+  "release": {
+   "status": "stated",
+   "value": "Model, datasets, benchmark and results open-sourced at https://github.com/chancefocus/PIXIU.",
+   "quote": "The model, datasets, benchmark, and experimental results are open-sourced 11 1 https://github.com/chancefocus/PIXIU to facilitate future research in financial AI."
+  }
+ },
+ "verification": {
+  "verified": 10,
+  "failed": 0,
+  "not_found": 2,
+  "detail": {
+   "task": "exact",
+   "architecture": "exact",
+   "data": "exact",
+   "window": "exact",
+   "models": "exact",
+   "baselines": "exact",
+   "headline_result": "exact",
+   "costs": "exact",
+   "uncertainty": "not_found",
+   "leakage_controls": "not_found",
+   "limitations": "exact",
+   "release": "exact"
+  }
+ }
+}

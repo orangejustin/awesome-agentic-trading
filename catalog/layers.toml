@@ -1,0 +1,233 @@
+# The five-layer stack. Source of truth for every layer and category the catalog may use.
+# Order here is the order on every generated page. Each category belongs to exactly one layer.
+#   question  = the one question this layer answers
+#   scope     = what belongs here (and, implicitly, what does not)
+#   failures  = how systems usually go wrong at this layer
+#   gaps      = what the catalog shows nobody does well yet
+# Builder notes (layer.note) are this list's own recommendations, not claims made by any linked source.
+
+[[layer]]
+id = "data"
+num = 1
+title = "Data layer"
+title_zh = "数据层"
+tagline = "what the agent sees"
+tagline_zh = "智能体看到什么"
+question = "What did the agent know, and when did it know it?"
+question_zh = "智能体知道什么？什么时候知道的？"
+scope = "Market, fundamental, filing and news data; connectors that hand data to an agent (MCP servers); datasets; and the step that turns text into signals."
+failures = ["restated fundamentals overwriting the originals", "news timestamps that are crawl times, not publication times", "survivorship in the universe", "adjusted prices that embed later splits", "prompt injection through news text"]
+gaps = "Almost no agent framework ships a point-in-time store. The MCP data servers listed here serve current data; none was checked for point-in-time guarantees, so none should feed a backtest unaudited."
+
+  [[layer.category]]
+  id = "data-platforms"
+  title = "Market and fundamental data"
+  title_zh = "行情与基本面数据"
+
+  [[layer.category]]
+  id = "data-text"
+  title = "Filings, news and text"
+  title_zh = "财报、新闻与文本"
+
+  [[layer.category]]
+  id = "data-mcp"
+  title = "Data servers for agents (MCP)"
+  title_zh = "面向智能体的数据服务（MCP）"
+
+  [[layer.category]]
+  id = "data-signals"
+  title = "Text into signals"
+  title_zh = "文本变信号"
+
+  [[layer.category]]
+  id = "data-quality"
+  title = "Data validation and evidence records"
+  title_zh = "数据校验与证据记录"
+
+  [[layer.note]]
+  title = "Keep an evidence record, not just a value"
+  body = "Store every fetched fact with its source URL, `published_at`, `retrieved_at` and a label: fact, inference, hypothesis or unknown. A citation that matches the source text shows the source says it; it does not show the inference drawn from it."
+
+  [[layer.note]]
+  title = "Show conflicting indicators instead of voting"
+  body = "When combining risk gauges (VIX, put/call, dealer gamma, short interest, flows, sentiment), split them by index, sector and holding, show the ones that disagree with their source and as-of time, and do not add them up into a single score."
+
+  [[layer.note]]
+  title = "Session and pivot features must not peek"
+  body = "Chart features such as session high/low (killzones) and swing-anchored VWAP are event features, not signals. Define sessions in exchange time with daylight saving (for US futures, America/New_York), use only reference levels visible at that moment, define break and reclaim exactly, and confirm a pivot only after its right-hand bars have closed."
+
+  [[layer.note]]
+  title = "An installed connector is not a working feed"
+  body = "A connector that installs and passes its health check has not yet returned correct data. Pin versions, whitelist read-only tools, keep the raw response and its timestamp, and compare price, time, gaps and latency against a licensed source before trusting it."
+
+[[layer]]
+id = "agent"
+num = 2
+title = "Agent layer"
+title_zh = "Agent 层"
+tagline = "how it thinks"
+tagline_zh = "智能体如何思考"
+question = "Given the signals, what is the call, and how is it argued?"
+question_zh = "拿到信号之后，结论是什么？理由如何论证？"
+scope = "Finance LLMs and reasoning models, single agents with memory and reflection, multi-agent decision architectures, and learned (reinforcement-learning) policies."
+failures = ["debate as theatre: the same model arguing with itself", "conclusions driven by the persona prompt", "no baseline against a single call to the same model", "position size left to the model"]
+gaps = "Architecture comparisons rarely control for spend: a design that makes eleven model calls per decision is usually compared with rule-based baselines, not with one call to the same model at the same budget."
+
+  [[layer.category]]
+  id = "agent-models"
+  title = "Finance LLMs and reasoning models"
+  title_zh = "金融大模型与推理模型"
+
+  [[layer.category]]
+  id = "agent-multi"
+  title = "Multi-agent decision architectures"
+  title_zh = "多智能体决策架构"
+
+  [[layer.category]]
+  id = "agent-memory"
+  title = "Single agents, memory and reflection"
+  title_zh = "单智能体、记忆与反思"
+
+  [[layer.category]]
+  id = "agent-rl"
+  title = "Reinforcement learning and learned policies"
+  title_zh = "强化学习与学习型策略"
+
+  [[layer.note]]
+  title = "Compare architectures at the same budget"
+  body = "Fix the task, inputs, model and token budget, change one thing at a time, and always include a single-call baseline. See [fair evaluation](../docs/04-fair-evaluation.md)."
+
+  [[layer.note]]
+  title = "A forecaster is not an explanation"
+  body = "Time-series foundation models predict sequences; they do not explain events. Test one against simple statistical baselines and a random walk on the same data, out of sample, with complete OHLCV and timestamps first."
+
+[[layer]]
+id = "execution"
+num = 3
+title = "Execution layer"
+title_zh = "执行层"
+tagline = "how it acts"
+tagline_zh = "智能体如何下单"
+question = "How does a decision become a fill, safely?"
+question_zh = "决策如何安全地变成成交？"
+scope = "Broker and venue tools that give an agent order authority, trading engines that run the same code in backtest and live, and pipelines that turn target weights into orders."
+failures = ["an agent with an order tool and no guard", "retries that double-submit", "state lost on a crash", "no reconciliation between intent and fills"]
+gaps = "No catalogued paper is about execution for LLM agents. Most agent projects stop at a decision; the order path, limits and reconciliation are left to you."
+
+  [[layer.category]]
+  id = "exec-brokers"
+  title = "Broker and venue tools for agents"
+  title_zh = "券商与交易场所工具"
+
+  [[layer.category]]
+  id = "exec-engines"
+  title = "Trading engines (same code in backtest and live)"
+  title_zh = "交易引擎（回测与实盘同一套代码）"
+
+  [[layer.category]]
+  id = "exec-pipelines"
+  title = "From target weights to orders"
+  title_zh = "从目标权重到订单"
+
+  [[layer.note]]
+  title = "Reconcile before you resend"
+  body = "When an order's state is unknown after a timeout or crash, reconcile with the broker first; never blindly resend. Keep intent, checkpoint and replay separate from the real side effects, and do not promise exactly-once delivery."
+
+  [[layer.note]]
+  title = "Charting access is not order authority"
+  body = "Connecting an agent to a charting or data platform does not grant it broker execution. Start every connector read-only, review each tool and session permission, and enable write tools one at a time on a paper account."
+
+[[layer]]
+id = "harness"
+num = 4
+title = "Harness layer"
+title_zh = "Harness 层"
+tagline = "how you run, test and trust it"
+tagline_zh = "如何运行、测试并信任它"
+question = "Is the result real, and would we notice if it stopped being real?"
+question_zh = "结果是真的吗？如果它不再成立，我们能及时发现吗？"
+scope = "Research and backtest environments, simulators and paper-trading gyms, benchmarks and live arenas, robustness and bias control, and the agent harness itself: loops, evals, traces and durable state."
+failures = ["a test window the model has already read (look-ahead)", "headline Sharpe ratios from a few months", "costs and slippage left out", "regressions found in production instead of in a replayed trace"]
+gaps = "No catalogued agentic system's headline trading table can be regenerated from its repository. Live arenas fix look-ahead but run for weeks, far too short to separate skill from luck."
+
+  [[layer.category]]
+  id = "harness-research"
+  title = "Research and backtest environments"
+  title_zh = "研究与回测环境"
+
+  [[layer.category]]
+  id = "harness-sim"
+  title = "Simulators and paper-trading gyms"
+  title_zh = "模拟器与纸面交易环境"
+
+  [[layer.category]]
+  id = "harness-bench"
+  title = "Benchmarks, arenas and forward records"
+  title_zh = "基准、竞技场与前向实盘记录"
+
+  [[layer.category]]
+  id = "harness-robustness"
+  title = "Robustness and bias control"
+  title_zh = "稳健性与偏差控制"
+
+  [[layer.category]]
+  id = "harness-runtime"
+  title = "Agent harness: loops, evals, traces and state"
+  title_zh = "Agent Harness：循环、评测、追踪与状态"
+
+  [[layer.note]]
+  title = "Keep the verifier independent"
+  body = "The component that grades a run must not share the agent's context or prompts. Fix the task, inputs, model and budget per experiment, turn every failed trace into a regression case, and keep a held-out set that no automatic improvement loop ever sees."
+
+  [[layer.note]]
+  title = "Write a run manifest for every backtest"
+  body = "Record data snapshot, code commit, model and parameters, costs, and the in-sample and out-of-sample windows, and report results after costs. Use the [report card](../tools/evalkit/report_card.py) and the error bars in [reading a backtest](../docs/06-reading-a-backtest.md)."
+
+  [[layer.note]]
+  title = "Prove a P&L with a ledger, not a screenshot"
+  body = "A credible record shows when each input was available, the price it could have traded at, fees, realized and unrealized P&L, and drawdown. Screenshots of returns without an account ledger are marketing, however large the number."
+
+[[layer]]
+id = "application"
+num = 5
+title = "Application layer"
+title_zh = "应用层"
+tagline = "what you build with it"
+tagline_zh = "用它做出什么"
+question = "What end-to-end job does it do for a user?"
+question_zh = "它为用户端到端完成什么工作？"
+scope = "Systems aimed at a use case that you can run as they are: research desks and reports, simulated funds and portfolio managers, alpha factories, and prediction-market bots."
+failures = ["a demo presented as a track record", "a research assistant whose numbers come from the model, not from code", "data snooping at scale when an LLM proposes thousands of factors"]
+gaps = "Loss analysis is missing: no catalogued application reconciles a real account (cash flows, fees, FX) and separates market, sector, single-name and leverage exposure from execution and process mistakes."
+
+  [[layer.category]]
+  id = "app-research"
+  title = "Research desks and reports"
+  title_zh = "投研与报告"
+
+  [[layer.category]]
+  id = "app-funds"
+  title = "AI funds and portfolio managers"
+  title_zh = "AI 基金与组合管理"
+
+  [[layer.category]]
+  id = "app-alpha"
+  title = "Alpha factories (automated quant research)"
+  title_zh = "因子工厂（量化研究自动化）"
+
+  [[layer.category]]
+  id = "app-prediction"
+  title = "Prediction markets"
+  title_zh = "预测市场"
+
+  [[layer.note]]
+  title = "Numbers by code, narrative by model"
+  body = "Let deterministic code compute every figure and let the model write around it, then check the text against the numbers. See the [FinRobot deep dive](../docs/teardowns/finrobot.md)."
+
+  [[layer.note]]
+  title = "What a loss-analysis tool must reconcile"
+  body = "Opening value + net external flows + investment P&L = closing value, within a stated tolerance; per-position, fee and FX figures must add up to the account total; deposits are not returns. Refuse a summary built on stale prices, missing cost basis, the wrong account or mixed regular and extended-hours data. Score following the rules separately from making money, so a disciplined loss and a lucky rule-break are not confused. Build and test it on synthetic statements."
+
+  [[layer.note]]
+  title = "Process as well as P&L"
+  body = "Practitioner routines (pre-market preparation, written rules, a risk check before every order, a trade journal) translate directly into agent workflows. Review a trading agent on two tracks: did it follow its process, and what did it earn after costs."

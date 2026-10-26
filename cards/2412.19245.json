@@ -1,0 +1,103 @@
+{
+ "arxiv": "2412.19245",
+ "title": "Sentiment trading with large language models",
+ "published": "2024-12-26",
+ "updated": "2024-12-26",
+ "source": {
+  "kind": "html",
+  "url": "https://arxiv.org/html/2412.19245",
+  "chars": 39907,
+  "truncated": false,
+  "sha256": "2482735a730b11a680c1de740c31238bbb4c9d3d6d7dcd04dbdf4a0339364865",
+  "fetched": "2026-10-21"
+ },
+ "extraction": {
+  "model": "claude-opus-5-5",
+  "effort": "medium",
+  "date": "2026-10-23",
+  "input_tokens": 15985,
+  "output_tokens": 1499,
+  "cost_usd": 0.0939
+ },
+ "fields": {
+  "task": {
+   "status": "stated",
+   "value": "Use LLM-derived sentiment scores from U.S. financial news to predict stock returns and build sentiment-based trading strategies, comparing against a dictionary approach.",
+   "quote": "We aim to create more refined representations of news text using large language models (LLMs) and leverage these representations to develop models for predicting stock returns."
+  },
+  "architecture": {
+   "status": "stated",
+   "value": "Two-step pipeline: BERT and OPT are fine-tuned to classify news by the sign of the 3-day excess return, producing sentiment scores. These scores feed a fixed-effects panel regression and daily-rebalanced value-weighted long/short/long-short top/bottom 20% portfolios.",
+   "quote": "Our analysis is a two-step process: first, we turn text into numbers, and then we use those numbers to model economic patterns."
+  },
+  "data": {
+   "status": "stated",
+   "value": "Refinitiv U.S. company news (965,375 unique articles after filtering) and CRSP daily stock returns for AMEX, NASDAQ and NYSE firms appearing in at least one article, January 1, 2010 to June 30, 2023.",
+   "quote": "In our research, we primarily use two datasets: one from the Center for Research in Security Prices (CRSP) that includes daily stock returns, and another from Refinitiv with global news."
+  },
+  "window": {
+   "status": "stated",
+   "value": "Sample from January 1, 2010 to June 30, 2023. A random 20% test split, then 20% of the remainder for validation, leaving 193,070 training articles. The trading simulation covers August 2021 to July 2023.",
+   "quote": "We allocated 20% of the data randomly for testing and, from the remaining data pool, allocated another 20% randomly for validation purposes, resulting in a training set of 193,070 articles."
+  },
+  "models": {
+   "status": "stated",
+   "value": "BERT (345 million parameters) and OPT (2.7 billion parameters), fine-tuned from Hugging Face, plus FINBERT without fine-tuning and the Loughran-McDonald dictionary.",
+   "quote": "For our analysis we chose BERT and OPT models with 345 million and 2.7 billion parameters (huggingface2021)."
+  },
+  "baselines": {
+   "status": "stated",
+   "value": "FINBERT, the Loughran-McDonald dictionary, and value-weighted and equal-weighted market portfolios.",
+   "quote": "Additionally, we include benchmark comparisons with value-weighted and equal-weighted market portfolios without considering sentiment scores."
+  },
+  "headline_result": {
+   "status": "stated",
+   "value": "OPT accuracy 74.4%. The OPT long-short strategy achieves a Sharpe ratio of 3.05 with 10 bps costs and a 355% gain from August 2021 to July 2023.",
+   "quote": "A long-short strategy based on OPT, accounting for 10 basis points (bps) in transaction costs, yields an exceptional Sharpe ratio of 3.05. From August 2021 to July 2023, this strategy produces an impressive 355% gain"
+  },
+  "costs": {
+   "status": "stated",
+   "value": "10 basis points transaction cost per trade. Market benchmark portfolios are shown without transaction costs.",
+   "quote": "To make our simulation more aligned with actual trading conditions, we included a transaction cost of 10 basis points for each trade, accounting for the typical costs traders would encounter in the market."
+  },
+  "uncertainty": {
+   "status": "stated",
+   "value": "Regression standard errors are double-clustered by firm and date, with t-statistics and significance levels reported. No repeated runs or seeds are reported.",
+   "quote": "We employ double clustering for standard errors by firm and date, addressing potential concerns related to heteroscedasticity and autocorrelation."
+  },
+  "leakage_controls": {
+   "status": "stated",
+   "value": "Trade execution is aligned with news release timestamps (before 6 am, 6 am–4 pm, after 4 pm). Near-duplicate articles are removed. No contamination or survivorship controls are stated.",
+   "quote": "We synchronize our trading decisions with the timing of news releases."
+  },
+  "limitations": {
+   "status": "stated",
+   "value": "GPT-4 could not be used because it is not publicly available, and smaller OPT versions were used due to limited computing resources.",
+   "quote": "We used smaller versions of OPT due to our limited computer resources."
+  },
+  "release": {
+   "status": "stated",
+   "value": "Data are not shared because they are licensed from commercial databases. No code release is mentioned.",
+   "quote": "The data are licensed from commercial databases and thus cannot be shared here."
+  }
+ },
+ "verification": {
+  "verified": 12,
+  "failed": 0,
+  "not_found": 0,
+  "detail": {
+   "task": "exact",
+   "architecture": "exact",
+   "data": "exact",
+   "window": "exact",
+   "models": "exact",
+   "baselines": "exact",
+   "headline_result": "exact",
+   "costs": "exact",
+   "uncertainty": "exact",
+   "leakage_controls": "exact",
+   "limitations": "exact",
+   "release": "exact"
+  }
+ }
+}

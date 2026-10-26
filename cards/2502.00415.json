@@ -1,0 +1,103 @@
+{
+ "arxiv": "2502.00415",
+ "title": "MarketSenseAI 2.0: Enhancing Stock Analysis through LLM Agents",
+ "published": "2025-02-01",
+ "updated": "2025-10-03",
+ "source": {
+  "kind": "html",
+  "url": "https://arxiv.org/html/2502.00415",
+  "chars": 48323,
+  "truncated": false,
+  "sha256": "80d33b5b55df57d0edfbc33a97a5b00de08197bf0c074c345758336fffd356e5",
+  "fetched": "2026-10-21"
+ },
+ "extraction": {
+  "model": "claude-opus-5-5",
+  "effort": "medium",
+  "date": "2026-10-23",
+  "input_tokens": 19691,
+  "output_tokens": 1650,
+  "cost_usd": 0.1118
+ },
+ "fields": {
+  "task": {
+   "status": "stated",
+   "value": "Holistic LLM-agent-based stock analysis and selection, producing buy/hold/sell signals from news, prices, fundamentals and macroeconomic data.",
+   "quote": "MarketSenseAI is a novel framework for holistic stock analysis which leverages Large Language Models (LLMs) to process financial news, historical prices, company fundamentals and the macroeconomic environment to support decision making in stock analysis and selection."
+  },
+  "architecture": {
+   "status": "stated",
+   "value": "Five LLM agents (News, Fundamentals with Chain-of-Agents over filings/earnings calls, Dynamics, Macroeconomic with RAG/HyDE over institutional reports, Signal agent using CoT) combine outputs into buy/hold/sell signals with explanations.",
+   "quote": "Signal Agent: The final component integrates the textual outputs from the previous four modules—news, fundamentals, price dynamics, and macroeconomic outlook—into a single decision-making process. Implemented via a CoT prompting strategy"
+  },
+  "data": {
+   "status": "stated",
+   "value": "S&P 100 and S&P 500 stocks; financial news, quarterly statements, SEC filings (EDGAR), earnings call transcripts (RapidAPI), prices, and macro reports from central banks and banks; monthly signals.",
+   "quote": "Stock-specific data: Financial news, quarterly statements, SEC filings, earnings call transcripts, and historical price data."
+  },
+  "window": {
+   "status": "stated",
+   "value": "S&P 100: January 2023 to December 2024; S&P 500: calendar year 2024. No train/validation split described.",
+   "quote": "For S&P 100 stocks, our analysis covers January 2023 to December 2024, providing a two-year evaluation under varying market conditions. We extended our analysis to the broader S&P 500 universe for calendar year 2024"
+  },
+  "models": {
+   "status": "stated",
+   "value": "GPT-4o for all inference; GPT-4o-mini for Ragas RAG evaluation; FinBERT for sentiment analysis of summaries.",
+   "quote": "The GPT-4o model serves as the primary LLM for all processes requiring model inference [50], while the system maintains an LLM-agnostic architecture that allows seamless integration of alternative models via API."
+  },
+  "baselines": {
+   "status": "stated",
+   "value": "Equal-weighted and cap-weighted S&P 100 (EQWL, OEF ETFs) and S&P 500 (RSP, SPY ETFs) benchmarks; previous MarketSenseAI fundamentals version (basic numerical data).",
+   "quote": "These portfolios are compared against their corresponding equally or market cap weighted benchmark (S&P 100 or S&P 500) to assess the system’s effectiveness in generating actionable investment signals."
+  },
+  "headline_result": {
+   "status": "stated",
+   "value": "S&P 100 2023-2024: MS-Cap cumulative return 125.9% (123.0% after costs) vs 73.5% index; Sortino 4.43 vs 3.82. S&P 500 2024: 33.8% higher Sortino than market.",
+   "quote": "| MS-Cap | 125.9 (123.0) | 2.76 | 4.43 | 22.3 | 13.8 | 82"
+  },
+  "costs": {
+   "status": "stated",
+   "value": "Transaction costs of 10bps per trade applied to returns in parentheses.",
+   "quote": "aValues in parentheses represent the total returns (%) after transaction costs (10bps/trade)."
+  },
+  "uncertainty": {
+   "status": "stated",
+   "value": "No repeated runs reported; factor regressions report significance levels (p<0.01) and R² of 0.884/0.854; standard deviation of monthly buy signals reported.",
+   "quote": "The negative SMB coefficients ( -0.13 to -0.22 , p<0.01 ) reflect a tilt toward large-cap stocks"
+  },
+  "leakage_controls": {
+   "status": "stated",
+   "value": "Metadata filtering by date/publication date to sequence reports chronologically; authors note date-aware retrieval and fixed LLM cut-offs, but no explicit contamination test.",
+   "quote": "All the input queries to Macroecomic Agent, first undergo metadata filtering, which narrows the set of candidate documents by date or source."
+  },
+  "limitations": {
+   "status": "stated",
+   "value": "S&P 500 analysis limited to 2024 due to data availability; RAG evaluation with GPT-4o-mini may affect absolute scores; prompt sensitivity complicates backtesting and replicability.",
+   "quote": "While the S&P 500 analysis was limited to 2024 due to data availability, the system’s ability to scale to a larger universe (500 stocks) while improving performance underscores its robust stock-picking capabilities."
+  },
+  "release": {
+   "status": "stated",
+   "value": "No code release stated; the system is available as a service at https://www.marketsense-ai.com/.",
+   "quote": "MarketSenseAI is available at https://www.marketsense-ai.com/"
+  }
+ },
+ "verification": {
+  "verified": 12,
+  "failed": 0,
+  "not_found": 0,
+  "detail": {
+   "task": "exact",
+   "architecture": "exact",
+   "data": "exact",
+   "window": "exact",
+   "models": "exact",
+   "baselines": "exact",
+   "headline_result": "exact",
+   "costs": "exact",
+   "uncertainty": "exact",
+   "leakage_controls": "exact",
+   "limitations": "exact",
+   "release": "exact"
+  }
+ }
+}
