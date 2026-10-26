@@ -1,0 +1,103 @@
+{
+ "arxiv": "2512.02261",
+ "title": "TradeTrap: Are LLM-based Trading Agents Truly Reliable and Faithful?",
+ "published": "2025-12-01",
+ "updated": "2025-12-01",
+ "source": {
+  "kind": "html",
+  "url": "https://arxiv.org/html/2512.02261",
+  "chars": 45003,
+  "truncated": false,
+  "sha256": "1fa8c5c52c1134a7e71e4394eee6784a79c2c88d60afa5527c181f724b35dbf6",
+  "fetched": "2026-10-21"
+ },
+ "extraction": {
+  "model": "claude-opus-5-5",
+  "effort": "medium",
+  "date": "2026-10-23",
+  "input_tokens": 18317,
+  "output_tokens": 1036,
+  "cost_usd": 0.094
+ },
+ "fields": {
+  "task": {
+   "status": "stated",
+   "value": "Stress-testing the reliability and robustness of LLM-based autonomous trading agents (Adaptive and Procedural) under controlled system-level adversarial perturbations.",
+   "quote": "We propose TradeTrap, a unified evaluation framework for systematically stress-testing both Adaptive and Procedural autonomous trading agents."
+  },
+  "architecture": {
+   "status": "stated",
+   "value": "Unified evaluation agent with external data interfaces (market data, social media, fundamentals), prompt-driven reasoning, memory/state, and execution via brokerage APIs; Adaptive (tool-calling, e.g. AI-Trader) and Procedural (fixed pipeline, e.g. NoFX/ValueCell) variants; attack modules inject perturbations.",
+   "quote": "although existing trading agents differ in internal control flow, they all share a common functional structure composed of external data interfaces, prompt-driven reasoning, internal memory/state, and execution modules."
+  },
+  "data": {
+   "status": "stated",
+   "value": "Historical U.S. equity market data; universe of approximately 100 NASDAQ-100 stocks, replayed chronologically; news and social-media (X, Reddit) feeds.",
+   "quote": "The trading universe consists of approximately 100 stocks from the NASDAQ-100 index. Market data are replayed in chronological order to simulate live trading conditions."
+  },
+  "window": {
+   "status": "stated",
+   "value": "Backtest from October 1 to October 31 (year not specified in text); no train/validation split described.",
+   "quote": "The evaluation period spans from October 1 to October 31."
+  },
+  "models": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "baselines": {
+   "status": "stated",
+   "value": "Clean (unattacked) runs of each agent type, and the QQQ index benchmark.",
+   "quote": "All other components—including market data, prompts, memory mechanisms, execution logic, and risk constraints—remain identical to the clean baseline setting."
+  },
+  "headline_result": {
+   "status": "stated",
+   "value": "Under state tampering, the Procedural agent's total return fell from 0.91% to -61.02% over the October evaluation month, with max drawdown 91.97%; final NAV $1928.82 from $5000.",
+   "quote": "The clean baseline achieves a total return of 0.91% with 9.29% volatility and 1.59% maximum drawdown, whereas the tampered agent suffers a total loss of 61.02% with an annualized return of -100%."
+  },
+  "costs": {
+   "status": "stated",
+   "value": "Transaction fees and slippage are not included; risk-free rate set to zero for Sharpe.",
+   "quote": "Transaction fees and slippage are not included in the current evaluation, so all reported results reflect pure strategy and execution effects."
+  },
+  "uncertainty": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "leakage_controls": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "limitations": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "release": {
+   "status": "stated",
+   "value": "Code is public on GitHub.",
+   "quote": "Our code is public at https://github.com/Yanlewen/TradeTrap."
+  }
+ },
+ "verification": {
+  "verified": 8,
+  "failed": 0,
+  "not_found": 4,
+  "detail": {
+   "task": "exact",
+   "architecture": "exact",
+   "data": "exact",
+   "window": "exact",
+   "models": "not_found",
+   "baselines": "exact",
+   "headline_result": "exact",
+   "costs": "exact",
+   "uncertainty": "not_found",
+   "leakage_controls": "not_found",
+   "limitations": "not_found",
+   "release": "exact"
+  }
+ }
+}

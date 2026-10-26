@@ -1,0 +1,314 @@
+# Short home-page lines per project, drafted with tools/extract/briefs.py (Claude API) from the catalog
+# entry only, then reviewed and partly rewritten by hand. tools/atlas.py check requires one entry per non-list project.
+
+[tradingagents]
+tagline = "LangGraph multi-agent trading firm whose analyst and risk debates yield five-tier ratings"
+audience = "Developers building multi-agent LLM trading decision pipelines"
+limit = "Evaluates decision quality only; no portfolio simulator, Sharpe code or paper harness"
+tagline_zh = "基于 LangGraph 的多智能体交易公司，输出五级评级"
+audience_zh = "构建多智能体 LLM 交易决策流程的开发者"
+limit_zh = "仅评估决策质量，无组合模拟、Sharpe 代码及论文评测框架"
+
+[finrobot]
+tagline = "Equity-research agent platform where code computes figures and LLMs write narrative"
+audience = "Developers building LLM research tools with auditable numbers"
+limit = "Research workstation, not a trading system; no trading-performance claim to test"
+tagline_zh = "代码算数、LLM写叙述的股票研究智能体平台"
+audience_zh = "构建数字可审计的LLM研究工具的开发者"
+limit_zh = "属于股票研究工作站而非交易系统，无可检验的交易业绩声明"
+
+[finmem]
+tagline = "Single LLM trading agent with risk persona and three-layer decaying memory"
+audience = "Researchers studying memory design for LLM trading agents"
+limit = "Repo ships no market data, only placeholders and a fake sample zip"
+tagline_zh = "带风险画像与三层衰减记忆的单一交易智能体"
+audience_zh = "研究LLM交易智能体记忆设计的研究者"
+limit_zh = "仓库不含市场数据，仅有占位文件和伪造样例压缩包"
+
+[contesttrade]
+tagline = "Multi-agent framework where competing teams build text factors and trades, weighted by predicted Sharpe"
+audience = "Researchers studying competitive multi-agent trading decision systems"
+limit = "Repo lacks backtest code, so the paper's Table 1 cannot be regenerated"
+tagline_zh = "多智能体竞赛框架，按预测Sharpe分配权重"
+audience_zh = "研究竞争式多智能体交易决策的研究者"
+limit_zh = "仓库无回测代码，无法复现论文Table 1结果"
+
+[finrl-x]
+tagline = "Weight-centric pipeline that backtests target weights and sends them to a broker"
+audience = "Developers building trading systems needing shared backtest-to-broker interfaces"
+limit = "RL allocator barely beats equal-weight; both trail QQQ without timing overlay"
+tagline_zh = "以目标权重为核心的回测与券商下单管线"
+audience_zh = "需要回测与下单统一接口的开发者"
+limit_zh = "RL 配置仅略胜等权，无择时时均不及 QQQ"
+
+[finrl]
+tagline = "Deep reinforcement learning library and tutorials for stock trading environments"
+audience = "Researchers applying deep RL to portfolio trading simulations"
+limit = "Teaching-oriented RL environments; no headline result checked here"
+tagline_zh = "面向股票交易环境的深度强化学习库与教程"
+audience_zh = "将深度强化学习用于组合交易模拟的研究者"
+limit_zh = "偏教学的 RL 环境，未核对其头条结果"
+
+[fingpt]
+tagline = "Open financial LLM project with data pipelines and LoRA fine-tuning recipes"
+audience = "Researchers fine-tuning LLMs for finance NLP tasks"
+limit = "A model and data project; no trading-performance claim checked"
+tagline_zh = "开源金融LLM项目，含数据管道与LoRA微调方案"
+audience_zh = "为金融NLP任务微调LLM的研究者"
+limit_zh = "模型与数据项目，未核对交易表现"
+
+[ai-hedge-fund]
+tagline = "LLM investor agents run a fund mandate with historical backtest replay"
+audience = "Learners exploring multi-agent LLM investment decision workflows"
+limit = "Educational only per author's disclaimer; places no trades, results not rerun"
+tagline_zh = "LLM投资者智能体执行基金策略并回测历史"
+audience_zh = "探索多智能体LLM投资决策的学习者"
+limit_zh = "作者声明仅供教育用途，不下单交易，结果未经复现"
+
+[qlib]
+tagline = "Quant research platform with data layer, ML model zoo and backtest tooling"
+audience = "Researchers building ML alpha models and backtest workflows"
+limit = "General quant platform; the LLM agent layer is up to you"
+tagline_zh = "含数据层、ML模型库与回测工具的量化研究平台"
+audience_zh = "构建ML因子模型与回测流程的研究者"
+limit_zh = "通用量化平台，LLM 智能体部分需自建"
+
+[rd-agent]
+tagline = "Agent loop that proposes, implements and evaluates quant factor and model ideas"
+audience = "Researchers who automate alpha factor and model research"
+limit = "No headline result checked; factor gains need held-out testing"
+tagline_zh = "提出、实现并评估量化因子与模型的智能体循环"
+audience_zh = "希望自动化因子与模型研究的研究者"
+limit_zh = "未核对头条结果，因子收益需留出样本检验"
+
+[ai-trader]
+tagline = "Agent-native trading platform and live leaderboard where outside AI agents trade"
+audience = "Researchers who benchmark AI trading agents in live settings"
+limit = "No LICENSE file at repo root; MIT stated only in README badge"
+tagline_zh = "外部AI智能体注册交易的平台与实时排行榜"
+audience_zh = "在实盘环境中评测AI交易智能体的研究者"
+limit_zh = "仓库根目录无LICENSE文件，仅README徽章标注MIT"
+
+[vibe-trading]
+tagline = "Toolkit giving an AI agent trading capabilities, with API and MCP access"
+audience = "Developers building AI agents that make and execute trades"
+limit = "Gives an agent order paths; no performance claim checked"
+tagline_zh = "为AI agent提供交易能力的工具包，支持API与MCP"
+audience_zh = "构建交易决策与执行agent的开发者"
+limit_zh = "给智能体下单通道，未核对表现声明"
+
+[quantagent]
+tagline = "LangGraph multi-agent technical-analysis system for short-horizon trading with web UI"
+audience = "Developers building multi-agent technical-analysis trading systems"
+limit = "Paper backtest not rerun; short-horizon results need long records"
+tagline_zh = "LangGraph多智能体短线技术分析系统"
+audience_zh = "构建多智能体技术分析交易系统的开发者"
+limit_zh = "论文回测未重跑，短周期结果需长记录验证"
+
+[fincon]
+tagline = "Manager-analyst agent hierarchy with risk-control agent triggering self-critique"
+audience = "Researchers studying hierarchical multi-agent trading decision frameworks"
+limit = "Code not released; repo holds only a license and README"
+tagline_zh = "带风控自我批评的经理-分析师智能体层级框架"
+audience_zh = "研究层级多智能体交易决策的研究者"
+limit_zh = "代码未发布，仓库仅含许可证和README"
+
+[deepfund]
+tagline = "Live arena benchmarking LLM fund managers on post-cutoff market data"
+audience = "Researchers who evaluate LLM trading agents"
+limit = "Arena results depend on a short live window"
+tagline_zh = "在截止日后数据上评测LLM基金经理的实时竞技场"
+audience_zh = "评估LLM交易智能体的研究者"
+limit_zh = "竞技场结果取决于较短的实盘窗口"
+
+[live-trade-bench]
+tagline = "FastAPI platform running and monitoring LLM trading agents live on stocks and Polymarket"
+audience = "Researchers who evaluate LLM trading agents under live conditions"
+limit = "Noncommercial license restricts reuse; check terms before adopting"
+tagline_zh = "在美股与Polymarket上实盘运行并监控LLM交易智能体"
+audience_zh = "实盘评估LLM交易智能体的研究者"
+limit_zh = "采用非商业许可，复用前需核查条款"
+
+[stockagent]
+tagline = "Simulated stock exchange where LLM investors trade under external factors"
+audience = "Researchers studying how external factors shape LLM trading behavior"
+limit = "No LICENSE file in the repo, so reuse terms are unclear"
+tagline_zh = "LLM投资者在模拟股票交易所中交易"
+audience_zh = "研究外部因素如何影响交易行为的研究者"
+limit_zh = "仓库中没有LICENSE文件，使用条款不明确"
+
+[trading-r1]
+tagline = "Reasoning model trained with SFT and RL to produce investment theses"
+audience = "Researchers who follow LLM reasoning models for investment decisions"
+limit = "Repo holds only a two-line README; no model or code released"
+tagline_zh = "经SFT与RL训练、生成投资论点的推理模型"
+audience_zh = "关注投资决策推理模型的研究者"
+limit_zh = "仓库仅有两行README，尚未发布模型或代码"
+
+[tradetrap]
+tagline = "Fault-injection toolkit testing LLM trading agents against attacks and data manipulation"
+audience = "Researchers who stress-test the robustness of LLM trading agents"
+limit = "Measures robustness, not profitability"
+tagline_zh = "面向LLM交易智能体的故障注入测试工具"
+audience_zh = "测试LLM交易智能体鲁棒性的研究者"
+limit_zh = "测的是鲁棒性，不是盈利能力"
+
+[lean]
+tagline = "Event-driven algorithmic trading engine for research, backtesting and live trading"
+audience = "Developers building strategies to backtest and trade live via brokers"
+limit = "General engine, not LLM-specific; agent integration is up to you"
+tagline_zh = "用于研究、回测与实盘交易的事件驱动交易引擎"
+audience_zh = "需回测并经券商实盘交易的策略开发者"
+limit_zh = "通用引擎，非 LLM 专用，智能体接入需自建"
+
+[nautilus-trader]
+tagline = "Event-driven engine running the same strategy code in backtest and live"
+audience = "Developers building strategies for both backtesting and live execution"
+limit = "General engine, not LLM-specific; agent integration is up to you"
+tagline_zh = "同一策略代码可用于回测与实盘的事件驱动引擎"
+audience_zh = "需同时回测与实盘执行策略的开发者"
+limit_zh = "通用引擎，非 LLM 专用，智能体接入需自建"
+
+[openbb]
+tagline = "Open data-integration platform serving market and economic data to Python and agents"
+audience = "Developers building apps or AI agents needing market data"
+limit = "Data access only; point-in-time correctness is up to you"
+tagline_zh = "面向Python与AI智能体的开放金融数据集成平台"
+audience_zh = "需要市场数据的应用与智能体开发者"
+limit_zh = "只管取数，时点正确性需自己保证"
+
+[alpaca-mcp-server]
+tagline = "MCP server letting LLM clients query market data and place Alpaca orders"
+audience = "Developers connecting LLM agents to Alpaca brokerage accounts"
+limit = "Gives an agent order authority; run on a paper account first"
+tagline_zh = "让LLM客户端查询行情并通过Alpaca下单的MCP服务器"
+audience_zh = "将LLM智能体接入Alpaca账户的开发者"
+limit_zh = "赋予智能体下单权限，应先在模拟账户上运行"
+
+[tradingagents-cn]
+tagline = "Chinese A-share derivative of TradingAgents with web app, screening and paper trading"
+audience = "Developers building multi-agent trading tools for Chinese A-shares"
+limit = "Hybrid license: application layer is source-available, not open source"
+tagline_zh = "面向A股的TradingAgents社区衍生框架"
+audience_zh = "构建A股多智能体交易工具的开发者"
+limit_zh = "混合许可：应用层仅源码可见，并非开源"
+
+[llm-trading-lab]
+tagline = "Logged six-month live experiment of ChatGPT managing a real-money micro-cap portfolio"
+audience = "Researchers who study live LLM portfolio management behavior"
+limit = "Single six-month run with author-run evaluation; too short to prove skill"
+tagline_zh = "ChatGPT管理真实资金微盘股组合的六个月实盘记录"
+audience_zh = "研究LLM实盘组合管理行为的研究者"
+limit_zh = "仅六个月单次运行且由作者自评，不足以证明能力"
+
+[polymarket-paper-trader]
+tagline = "Paper-trading gym for agents on live Polymarket order books with MCP server"
+audience = "Developers building and benchmarking prediction-market trading agents"
+limit = "Prediction markets only, not equities; fill-fidelity claim is the author's own"
+tagline_zh = "基于 Polymarket 实时订单簿的智能体模拟交易环境"
+audience_zh = "构建和评测预测市场交易智能体的开发者"
+limit_zh = "仅限预测市场而非股票，成交逼真度为作者自述"
+
+[yahoo-finance-mcp]
+tagline = "MCP server giving LLM clients Yahoo Finance prices, statements, options and news"
+audience = "Developers connecting LLM clients to free market data"
+limit = "Wraps yfinance current data, not point-in-time; unsuitable for backtesting"
+tagline_zh = "为LLM客户端提供Yahoo Finance数据的MCP服务器"
+audience_zh = "为LLM客户端接入免费行情数据的开发者"
+limit_zh = "基于yfinance当前数据而非时点存档，不适合回测"
+
+[qwen-dianjin]
+tagline = "Alibaba Cloud hub for finance reasoning models, datasets and benchmarks"
+audience = "Researchers evaluating or building LLMs for financial tasks"
+limit = "A research hub, not a trading system; sub-projects have separate READMEs and licenses"
+tagline_zh = "阿里云金融推理模型、数据与基准合集"
+audience_zh = "评测或构建金融大模型的研究者"
+limit_zh = "属研究合集而非交易系统，各子项目文档与许可证独立"
+
+[polymarket-mcp-server]
+tagline = "MCP server exposing 45 tools for Polymarket discovery, trading and monitoring"
+audience = "Developers connecting LLM clients to Polymarket trading"
+limit = "Grants an LLM client order authority over real funds; test on paper first"
+tagline_zh = "提供45个Polymarket交易与监控工具的MCP服务器"
+audience_zh = "将LLM客户端接入Polymarket交易的开发者"
+limit_zh = "LLM客户端可动用真实资金下单，应先用模拟账户测试"
+
+[financial-datasets-mcp]
+tagline = "MCP server exposing Financial Datasets API financials, prices and company news"
+audience = "Developers connecting LLM agents to financial statement and price data"
+limit = "Requires a Financial Datasets API key; last commit 2025-06-05"
+tagline_zh = "提供 Financial Datasets API 财务、价格与新闻的 MCP 服务器"
+audience_zh = "为 LLM 智能体接入金融数据的开发者"
+limit_zh = "需要 Financial Datasets API 密钥；最后提交于 2025-06-05"
+
+[mcp-massive]
+tagline = "First-party MCP server exposing the Massive (formerly Polygon.io) market-data API"
+audience = "Developers connecting LLM agents to Massive market data"
+limit = "Marked experimental by its authors and requires a Massive API key"
+tagline_zh = "Massive（原 Polygon.io）行情 API 的官方 MCP 服务器"
+audience_zh = "将 LLM 智能体接入 Massive 数据的开发者"
+limit_zh = "作者标注为实验性，且需要 API 密钥"
+
+[kalshi-trading-bot-cli]
+tagline = "CLI that estimates Kalshi market probabilities and sizes trades with fractional Kelly"
+audience = "Developers building LLM-driven prediction market trading tools"
+limit = "No performance record published; estimates may rely on the vendor's research API"
+tagline_zh = "估算Kalshi市场概率并以分数Kelly定仓的CLI"
+audience_zh = "构建LLM预测市场交易工具的开发者"
+limit_zh = "未公布业绩记录；概率估算可能依赖供应商研究API"
+
+[agentic-trading-lab]
+tagline = "Research platform to build, backtest and paper-trade LLM trading agents"
+audience = "Researchers who build and inspect LLM trading agents"
+limit = "Uses the uncommon OpenMDW-1.0 license; read it before reuse"
+tagline_zh = "构建、回测与模拟交易LLM交易智能体的研究平台"
+audience_zh = "构建并分析LLM交易智能体的研究者"
+limit_zh = "采用不常见的OpenMDW-1.0许可证，复用前需阅读"
+
+[quantaalpha]
+tagline = "LLM-driven evolutionary factor mining from research direction to backtested factors"
+audience = "Researchers exploring automated alpha factor discovery with LLMs"
+limit = "No LICENSE file; MIT appears only on a README badge"
+tagline_zh = "LLM驱动的进化式因子挖掘框架"
+audience_zh = "研究LLM自动挖掘alpha因子的研究者"
+limit_zh = "仓库无LICENSE文件，MIT仅见于README徽章"
+
+[alphagen]
+tagline = "RL agent generating formulaic alpha factor sets on Qlib, with LLM module"
+audience = "Quant researchers who mine formulaic alpha factors"
+limit = "No LICENSE file in the repository; reinforcement learning core, LLM module added later"
+tagline_zh = "基于Qlib的强化学习公式化因子生成框架"
+audience_zh = "挖掘公式化Alpha因子的量化研究者"
+limit_zh = "仓库无LICENSE文件；核心为强化学习，LLM模块为后加"
+
+[kalshi-ai-trading-bot]
+tagline = "Kalshi trading toolkit with an edge audit, MCP server and agent tools"
+audience = "Developers building or auditing agents for Kalshi prediction markets"
+limit = "Own forward verdict over 55 trades reports no measured edge"
+tagline_zh = "带边际审计、MCP server 与代理工具的 Kalshi 交易工具包"
+audience_zh = "为 Kalshi 预测市场构建或审计代理的开发者"
+limit_zh = "其自身 55 笔前向交易的结论为无可测边际，账户含人工交易"
+
+[fintool]
+tagline = "Rust CLI suite giving agents per-venue trading binaries plus market data"
+audience = "Developers building agents that trade on crypto and prediction venues"
+limit = "Holds order authority on live venues; start with small size or testnet"
+tagline_zh = "为智能体提供分交易所交易与行情的 Rust CLI 套件"
+audience_zh = "构建加密与预测市场交易智能体的开发者"
+limit_zh = "可在真实交易所下单，建议先用小仓位或测试网"
+
+[pixiu]
+tagline = "Open financial LLM FinMA with instruction data and FinBen evaluation suite"
+audience = "Researchers evaluating LLMs on financial language and reasoning tasks"
+limit = "High scores on these tasks say little about trading performance"
+tagline_zh = "开源金融LLM FinMA及FinBen评测套件"
+audience_zh = "评估LLM金融语言与推理能力的研究者"
+limit_zh = "任务高分难以反映实际交易表现"
+
+[oracle3]
+tagline = "Prediction-market agent toolkit for Kalshi and Polymarket with paper and live execution"
+audience = "Developers building agents that trade Kalshi and Polymarket contracts"
+limit = "Claims only; no backtest or record disclosed"
+tagline_zh = "Kalshi与Polymarket预测市场代理工具包"
+audience_zh = "构建预测市场交易代理的开发者"
+limit_zh = "只有声明，没有公开回测或记录"

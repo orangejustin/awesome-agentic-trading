@@ -1,0 +1,103 @@
+{
+ "arxiv": "2505.15155",
+ "title": "R&D-Agent-Quant: A Multi-Agent Framework for Data-Centric Factors and Model Joint Optimization",
+ "published": "2025-05-21",
+ "updated": "2025-09-25",
+ "source": {
+  "kind": "html",
+  "url": "https://arxiv.org/html/2505.15155",
+  "chars": 97121,
+  "truncated": false,
+  "sha256": "467ad50cedf98117b6f1024c821f873a4a7fa3ed674023951ad4d920123d907b",
+  "fetched": "2026-10-21"
+ },
+ "extraction": {
+  "model": "claude-opus-5-5",
+  "effort": "medium",
+  "date": "2026-10-23",
+  "input_tokens": 43201,
+  "output_tokens": 2007,
+  "cost_usd": 0.2129
+ },
+ "fields": {
+  "task": {
+   "status": "stated",
+   "value": "Automating full-stack quantitative strategy R&D (factor mining and return-prediction model design) via coordinated factor–model co-optimization with LLM agents.",
+   "quote": "we propose R&D-Agent(Q), the first data-centric multi-agent framework for automating full-stack quantitative strategy development via coordinated factor–model co-optimization (Fig. 2)."
+  },
+  "architecture": {
+   "status": "stated",
+   "value": "Five LLM-powered units in a closed loop: Specification, Synthesis (hypotheses via knowledge forest), Implementation (Co-STEER code agent with DAG scheduling and knowledge base), Validation (Qlib backtests), Analysis (feedback plus Thompson-sampling bandit choosing factor vs model).",
+   "quote": "We decompose the quantitative process into five LLM-powered units, each mainly focused on information gathering and LLM API interactions: Specification (scenario definition), Synthesis (ideas generation), Implementation (code development), Validation (backtesting), and Analysis (result evaluation and task scheduling)."
+  },
+  "data": {
+   "status": "stated",
+   "value": "CSI 300 (300 large-cap China A-shares), daily; market price-volume data plus Wind fundamental fields; extended to CSI 500 and NASDAQ 100.",
+   "quote": "we use the CSI 300 dataset, covering 300 large-cap A-share stocks in the Chinese market."
+  },
+  "window": {
+   "status": "stated",
+   "value": "CSI 300: train Jan 1 2008–Dec 31 2014, validation 2015–2016, test Jan 1 2017–Aug 1 2020. CSI 500/NASDAQ 100: train 2008–2021, validation 2022–2023, test Jan 1 2024–Jun 30 2025.",
+   "quote": "The time span is split into training (Jan 1, 2008 – Dec 31, 2014), validation (Jan 1, 2015 – Dec 31, 2016), and testing (Jan 1, 2017 – Aug 1, 2020)."
+  },
+  "models": {
+   "status": "stated",
+   "value": "GPT-4o and o3-mini main backends (o4-mini for out-of-sample tests); also o1, GPT-4.1, GPT-4o-mini, o3 compared; text-embedding-ada-002 for embeddings; LightGBM fixed predictor in R&D-Factor; GPT-4-turbo for Co-STEER benchmark.",
+   "quote": "For GPT-4o and GPT-4o-mini, we enabled streaming, set temperature to 0.8, and capped token usage at 4096. For o3-mini, o3, and GPT-4.1, we disabled streaming, used a temperature of 1.0, and allowed up to 10,000 tokens."
+  },
+  "baselines": {
+   "status": "stated",
+   "value": "Factor libraries Alpha 101, Alpha 158, Alpha 360, AutoAlpha; ML models (Linear, MLP, LightGBM, XGBoost, CatBoost, DoubleEnsemble); DL models (GRU, LSTM, ALSTM, Transformer, PatchTST, iTransformer, Mamba, TRA, MASTER, GATs).",
+   "quote": "At the factor level, we compare against Alpha 101 [41], Alpha 158 [42], Alpha 360 [43], and AutoAlpha [44]."
+  },
+  "headline_result": {
+   "status": "stated",
+   "value": "On CSI 300 test (2017–Aug 2020), R&D-Agent(Q) with o3-mini achieves IC 0.0532, ARR 14.21%, IR 1.74 (MDD -0.0742).",
+   "quote": "By co-optimizing factors and models, R&D-Agent(Q)o3-mini achieves the highest overall performance: an IC of 0.0532, ARR of 14.21%, and IR of 1.74."
+  },
+  "costs": {
+   "status": "stated",
+   "value": "CSI 300: buy cost 0.05%, sell cost 0.15%, min fee 5 CNY, price limit 0.095, executed at close; NASDAQ 100: 0.1% per trade. LLM cost under $10 per run.",
+   "quote": "Trades are executed at the closing price, with a buy cost of 0.05%, a sell cost of 0.15%, and a minimum transaction fee of 5 CNY per trade."
+  },
+  "uncertainty": {
+   "status": "stated",
+   "value": "Baselines run with five random seeds; median ARR reported instead of error bars or confidence intervals. Token costs averaged over 5 trials.",
+   "quote": "For each baseline model, we conducted extensive hyperparameter tuning and evaluated robustness using five independent runs with different random seeds. Rather than reporting standard error bars or confidence intervals, we report the median annualized return (ARR) across these runs."
+  },
+  "leakage_controls": {
+   "status": "stated",
+   "value": "Out-of-sample test 2024–2025 after LLM cutoffs (GPT-4o Oct 2023, o4-mini Jun 2024); LLM sees only schema-level info, not raw data or temporal splits; health checks that factors are leakage-free.",
+   "quote": "Moreover, our framework adopts a data-centric design: the LLM is never exposed to raw market data or explicit temporal splits, but only to schema-level information"
+  },
+  "limitations": {
+   "status": "stated",
+   "value": "No alternative/multimodal data; relies solely on LLM built-in financial knowledge without RAG; batch-based design limits real-time/high-frequency adaptation.",
+   "quote": "Real-Time Market Adaptation: The batch-based design restricts timely reactions to high-frequency trading. Incorporating event-driven or incremental learning could improve adaptability to regime shifts, anomalies, and emergent signals."
+  },
+  "release": {
+   "status": "stated",
+   "value": "Code released on GitHub at https://github.com/microsoft/RD-Agent; no new dataset proposed, market data generation script provided.",
+   "quote": "Our code is available at: https://github.com/microsoft/RD-Agent."
+  }
+ },
+ "verification": {
+  "verified": 12,
+  "failed": 0,
+  "not_found": 0,
+  "detail": {
+   "task": "exact",
+   "architecture": "exact",
+   "data": "exact",
+   "window": "exact",
+   "models": "exact",
+   "baselines": "exact",
+   "headline_result": "exact",
+   "costs": "exact",
+   "uncertainty": "exact",
+   "leakage_controls": "exact",
+   "limitations": "exact",
+   "release": "exact"
+  }
+ }
+}

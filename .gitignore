@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.venv/
+.cache/
+.DS_Store
+.env
+.env.*
+*.key
+
+# local only: fetched source text, run ledgers, and the machine-specific key config
+data/
+tools/extract/local.toml

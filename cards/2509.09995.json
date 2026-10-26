@@ -1,0 +1,103 @@
+{
+ "arxiv": "2509.09995",
+ "title": "QuantHarness: Price-Driven Multi-Agent LLMs for High-Frequency Trading",
+ "published": "2025-09-12",
+ "updated": "2026-07-27",
+ "source": {
+  "kind": "html",
+  "url": "https://arxiv.org/html/2509.09995",
+  "chars": 62255,
+  "truncated": false,
+  "sha256": "3337cd21bfca7a9c5874554c335984b6492b138b9cc2c52a73d11d4817bc30ff",
+  "fetched": "2026-10-21"
+ },
+ "extraction": {
+  "model": "claude-opus-5-5",
+  "effort": "medium",
+  "date": "2026-10-23",
+  "input_tokens": 25424,
+  "output_tokens": 1599,
+  "cost_usd": 0.1337
+ },
+ "fields": {
+  "task": {
+   "status": "stated",
+   "value": "Short-horizon (high-frequency) directional trading using a multi-agent LLM framework that operates solely on OHLC price data and technical signals.",
+   "quote": "To bridge this gap, we introduce QuantHarness, the first multi-agent LLM framework explicitly designed for high-frequency algorithmic trading."
+  },
+  "architecture": {
+   "status": "stated",
+   "value": "LangGraph system with IndicatorAgent, PatternAgent (multimodal chart pattern matching), TrendAgent (OLS trend channels), RiskAgent (fixed stop-loss, LLM risk-reward ratio), and DecisionAgent outputting LONG/SHORT over next three candles; zero-shot, no fine-tuning.",
+   "quote": "The system decomposes trading into four specialized agent, IndicatorAgent, PatternAgent, TrendAgent, and RiskAgent, that communicate through structured prompts."
+  },
+  "data": {
+   "status": "stated",
+   "value": "1-hour and 4-hour OHLC bars from YFinance and TradingView for BTC/USD, CL, ES, NQ, QQQ, SPX, DJI, VIX (and DAX at 1h); 5,000 bars per asset, 100 sampled segments of 100 candles each.",
+   "quote": "All historical price data used in the benchmark are obtained via the publicly available APIs, specifically YFinance and TradingView’s historical market data services. We use 1-hour and 4-hour OHLC (Open, High, Low, Close) candlestick data for all assets to maintain consistency in time resolution."
+  },
+  "window": {
+   "status": "stated",
+   "value": "4-hour data spans e.g. DJI/QQQ/SPX 2015-08 to 2025-05, BTC 2023-04-01 to 2025-06-23; 1-hour data e.g. BTC 2025-02-21 to 2025-09-13. Segments randomly sampled; XGBoost trained on 50 files, tested on remaining 50.",
+   "quote": "| BTC/USD | Cryptocurrency | 2023-04-01 | 2025-06-23 | 5000"
+  },
+  "models": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "baselines": {
+   "status": "stated",
+   "value": "Random selection, Linear Regression on 40-bar closing-price slope, XGBoost on TA-Lib indicators; TradingAgent also appears in Table 1.",
+   "quote": "We evaluate four categories of baselines: (i) Random Methods, which performs random selection of market trend between LONG and SHORT and risk-reward ratio \\in[1.2,1.8] . (ii) Linear Regression, which serves as a rule-based baseline."
+  },
+  "headline_result": {
+   "status": "stated",
+   "value": "On 4-hour bars, NQ accuracy 55.3 (+26.5% over random baseline), R_cc 0.216; SPX accuracy 63.7 (+34.6%).",
+   "quote": "| | Our | 55.3 | +26.5% | 0.216 | 0.814 | -0.639"
+  },
+  "costs": {
+   "status": "stated",
+   "value": "Returns use simulated stop-loss of 0.05% and LLM-set take-profit; no transaction costs, slippage or inference costs stated.",
+   "quote": "We adopt a fixed stop-loss threshold \\rho=0.0005 (i.e., 0.05%), selected to reflect the relatively small fluctuations typical within a short three-candlestick forecast horizon, consistent with prior work (Kissell, 2013)."
+  },
+  "uncertainty": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "leakage_controls": {
+   "status": "stated",
+   "value": "Last three candles of each 100-candle segment withheld during inference to prevent test-time leakage; no discussion of LLM training-data contamination.",
+   "quote": "From this, 100 evaluation segments per asset are sampled, each with 100 consecutive candlesticks—the last three withheld to prevent test-time leakage."
+  },
+  "limitations": {
+   "status": "stated",
+   "value": "Accuracy degrades on ultra-short candles (~1–15 min) due to noise; architecture not truly real-time because LLM and tool calls add latency exceeding 1-minute opportunity windows.",
+   "quote": "Second, the architecture is not truly real‑time. Each inference cycle involves an LLM call plus several bound indicator/pattern tools, introducing latencies that can exceed the window in which a 1‑minute opportunity remains exploitable."
+  },
+  "release": {
+   "status": "stated",
+   "value": "Code on GitHub at Y-Research-SBU/QuantHarness, plus a project website.",
+   "quote": "\\metadata[Github]https://github.com/Y-Research-SBU/QuantHarness \\metadata[Website]https://Y-Research-SBU.github.io/QuantHarness/"
+  }
+ },
+ "verification": {
+  "verified": 10,
+  "failed": 0,
+  "not_found": 2,
+  "detail": {
+   "task": "exact",
+   "architecture": "exact",
+   "data": "exact",
+   "window": "exact",
+   "models": "not_found",
+   "baselines": "exact",
+   "headline_result": "exact",
+   "costs": "exact",
+   "uncertainty": "not_found",
+   "leakage_controls": "exact",
+   "limitations": "exact",
+   "release": "exact"
+  }
+ }
+}

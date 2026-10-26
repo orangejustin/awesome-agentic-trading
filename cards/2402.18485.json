@@ -1,0 +1,103 @@
+{
+ "arxiv": "2402.18485",
+ "title": "A Multimodal Foundation Agent for Financial Trading: Tool-Augmented, Diversified, and Generalist",
+ "published": "2024-02-28",
+ "updated": "2024-06-28",
+ "source": {
+  "kind": "html",
+  "url": "https://arxiv.org/html/2402.18485",
+  "chars": 166219,
+  "truncated": false,
+  "sha256": "3224096a71200582346e4a2c30a9cfd891bd5e2691334e041e2b999b639df638",
+  "fetched": "2026-10-21"
+ },
+ "extraction": {
+  "model": "claude-opus-5-5",
+  "effort": "medium",
+  "date": "2026-10-23",
+  "input_tokens": 64495,
+  "output_tokens": 1393,
+  "cost_usd": 0.2858
+ },
+ "fields": {
+  "task": {
+   "status": "stated",
+   "value": "Single-asset daily trading (buy, sell or hold a stock or cryptocurrency) using a multimodal, tool-augmented LLM agent to maximize profit.",
+   "quote": "Specifically, we focus on single asset (e.g., stock or Crypto) trading."
+  },
+  "architecture": {
+   "status": "stated",
+   "value": "Five modules: market intelligence (news, prices, reports, with diversified retrieval), vector-store memory, low-level reflection on price movements with Kline charts, high-level reflection on past decisions with trading charts, and a tool-augmented decision module using expert guidance and rule-based strategies.",
+   "quote": "FinAgent is a multimodal LLMs agent in this framework specifically designed for financial trading, which contains five core modules, namely market intelligence module (M), memory module (Mem), low-level reflection module (L), high-level reflection module (H) and decision-making module (D)."
+  },
+  "data": {
+   "status": "stated",
+   "value": "Five US stocks (AAPL, AMZN, GOOGL, MSFT, TSLA) and ETHUSD. Inputs are daily OHLC and adjusted-close prices, Kline and trading charts, and news from Financial Modeling Prep. Expert guidance comes from Seeking Alpha.",
+   "quote": "We acquired price and news data for all assets from Financial Modeling Prep44 4 FMP API provides data about stock historical price and news, company financial statements, and cryptocurrencies."
+  },
+  "window": {
+   "status": "stated",
+   "value": "Training period 2022-06-01 to 2023-06-01. Test period 2023-06-01 to 2024-01-01. The full span covers 398 trading days.",
+   "quote": "For dataset split, the data from the latter half of the year is allocated for testing (2023-06-01 \\sim 2024-01-01) purposes, while the data from the penultimate year is utilized for training (2022-06-01 \\sim 2023-06-01)."
+  },
+  "models": {
+   "status": "stated",
+   "value": "GPT-4 is called via the OpenAI API, with multimodal GPT-4V referenced. No snapshot is given.",
+   "quote": "XML is easy to parse, and extracting fields is simpler, making it an ideal output format for GPT-4."
+  },
+  "baselines": {
+   "status": "stated",
+   "value": "Twelve baselines: B&H, MACD, KDJ&RSI, ZMR, LGBM, LSTM, Transformer, SAC, PPO, DQN, FinGPT and FinMem.",
+   "quote": "We compare and evaluate the trading performance of FinAgent with four widely accepted conventional rule-based trading strategies (B&H, MACD, KDJ&RSI and ZMR) and eight advanced algorithms."
+  },
+  "headline_result": {
+   "status": "stated",
+   "value": "On TSLA over the test period, FinAgent achieves 92.27% ARR, SR 2.01 and MDD 12.14%, an 84.39% ARR improvement over the best baseline. Average profit improvement is over 36% across 6 datasets.",
+   "quote": "Specifically, a 92.27% return (a 84.39% relative improvement) is achieved on one dataset."
+  },
+  "costs": {
+   "status": "stated",
+   "value": "The reward function accounts for a commission fee. The fee level is not specified.",
+   "quote": "The reward function leverages the change of market capitals (earned/lost money) (Liu et al., 2020a) with consideration of commission fee (Sun et al., 2023c; Wang et al., 2021b)."
+  },
+  "uncertainty": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "leakage_controls": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "limitations": {
+   "status": "stated",
+   "value": "Auxiliary tools are stock-specific, which hurts crypto performance. Results are sensitive to prompt engineering and API randomness, which cannot be controlled. FinAgent accepts slightly higher risk.",
+   "quote": "Limitation 3: Result is sensitive to prompt engineering and randomness. In our experiments, we observed a distinct variation in the trading decisions when modifying the decision prompt and executing the agent across different trials."
+  },
+  "release": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  }
+ },
+ "verification": {
+  "verified": 9,
+  "failed": 0,
+  "not_found": 3,
+  "detail": {
+   "task": "exact",
+   "architecture": "exact",
+   "data": "exact",
+   "window": "exact",
+   "models": "exact",
+   "baselines": "exact",
+   "headline_result": "exact",
+   "costs": "exact",
+   "uncertainty": "not_found",
+   "leakage_controls": "not_found",
+   "limitations": "exact",
+   "release": "not_found"
+  }
+ }
+}

@@ -1,0 +1,103 @@
+{
+ "arxiv": "2406.11903",
+ "title": "A Survey of Large Language Models for Financial Applications: Progress, Prospects and Challenges",
+ "published": "2024-06-15",
+ "updated": "2024-06-15",
+ "source": {
+  "kind": "html",
+  "url": "https://arxiv.org/html/2406.11903",
+  "chars": 161397,
+  "truncated": false,
+  "sha256": "9a9734e5a97c62807431dae30b49960746aade9d329cf3edc46d798325aa8e83",
+  "fetched": "2026-10-21"
+ },
+ "extraction": {
+  "model": "claude-opus-5-5",
+  "effort": "medium",
+  "date": "2026-10-23",
+  "input_tokens": 53003,
+  "output_tokens": 946,
+  "cost_usd": 0.2309
+ },
+ "fields": {
+  "task": {
+   "status": "stated",
+   "value": "A survey of how large language models are applied to financial tasks, covering linguistic tasks, sentiment analysis, time series, reasoning and agent-based modeling.",
+   "quote": "In this survey, we explore the application of LLMs on various financial tasks, focusing on their potential to transform traditional practices and drive innovation."
+  },
+  "architecture": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "data": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "window": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "models": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "baselines": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "headline_result": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "costs": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "uncertainty": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "leakage_controls": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "limitations": {
+   "status": "stated",
+   "value": "The authors name open challenges for LLMs in finance: data privacy, interpretability and computational costs. Elsewhere they also discuss lookahead bias, data pollution, signal decay, hallucinations and uncertainty estimation.",
+   "quote": "Despite their promising capabilities, challenges such as data privacy, interpretability, and computational costs need to be addressed to ensure the responsible and effective deployment of LLMs in finance."
+  },
+  "release": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  }
+ },
+ "verification": {
+  "verified": 2,
+  "failed": 0,
+  "not_found": 10,
+  "detail": {
+   "task": "exact",
+   "architecture": "not_found",
+   "data": "not_found",
+   "window": "not_found",
+   "models": "not_found",
+   "baselines": "not_found",
+   "headline_result": "not_found",
+   "costs": "not_found",
+   "uncertainty": "not_found",
+   "leakage_controls": "not_found",
+   "limitations": "exact",
+   "release": "not_found"
+  }
+ }
+}

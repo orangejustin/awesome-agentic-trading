@@ -1,0 +1,688 @@
+# Papers. Source of truth for every paper the atlas cites.
+# Metadata (title, first author, dates) comes from the arXiv API; run tools/verify.py to re-check.
+# `read` = how much we actually read: full | partial | abstract | card (auto-extracted, see cards/).
+# Dates are arXiv UTC dates: `published` is v1, `updated` is the latest version.
+
+[[paper]]
+arxiv = "2309.03736"
+title = "TradingGPT: Multi-Agent System with Layered Memory and Distinct Characters for Enhanced Financial Trading Performance"
+first_author = "Yang Li"
+n_authors = 5
+published = "2023-09-07"
+updated = "2023-09-07"
+layer = "decision"
+kind = "system"
+read = "card"
+summary = "Multi-agent trading system giving each agent layered memory and a distinct 'character'; same layered-memory idea as FinMem."
+
+[[paper]]
+arxiv = "2311.13743"
+title = "FinMem: A Performance-Enhanced LLM Trading Agent with Layered Memory and Character Design"
+first_author = "Yangyang Yu"
+n_authors = 9
+published = "2023-11-23"
+updated = "2023-12-03"
+layer = "decision"
+kind = "system"
+read = "full"
+summary = "Single trading agent with three decaying memory tiers (news / 10-Q / 10-K) and risk-persona prompts. Tests five tickers over roughly six months."
+
+[[paper]]
+arxiv = "2401.03737"
+title = "Can Large Language Models Beat Wall Street? Unveiling the Potential of AI in Stock Selection"
+first_author = "Georgios Fatouros"
+n_authors = 4
+published = "2024-01-08"
+updated = "2024-04-04"
+layer = "decision"
+kind = "system"
+read = "card"
+summary = "MarketSenseAI: GPT-4 with chain-of-thought and in-context learning over news, prices, fundamentals and macro to select stocks."
+
+[[paper]]
+arxiv = "2402.18485"
+title = "A Multimodal Foundation Agent for Financial Trading: Tool-Augmented, Diversified, and Generalist"
+first_author = "Wentao Zhang"
+n_authors = 13
+published = "2024-02-28"
+updated = "2024-06-28"
+layer = "decision"
+kind = "system"
+read = "card"
+summary = "FinAgent: multimodal trading agent that reads news, prices and K-line charts and calls tools, aimed at several trading tasks rather than one."
+
+[[paper]]
+arxiv = "2407.09546"
+title = "A Reflective LLM-based Agent to Guide Zero-shot Cryptocurrency Trading"
+first_author = "Yuan Li"
+n_authors = 6
+published = "2024-06-27"
+updated = "2026-08-17"
+layer = "decision"
+kind = "system"
+read = "card"
+summary = "CryptoTrade: zero-shot crypto trading agent that combines on-chain and off-chain data and reflects on past trades."
+
+[[paper]]
+arxiv = "2407.06567"
+title = "FinCon: A Synthesized LLM Multi-Agent System with Conceptual Verbal Reinforcement for Enhanced Financial Decision Making"
+first_author = "Yangyang Yu"
+n_authors = 17
+published = "2024-07-09"
+updated = "2024-11-07"
+layer = "decision"
+kind = "system"
+read = "card"
+summary = "Manager-analyst hierarchy plus a risk-control component whose episodic self-critique is fed back as 'conceptual verbal reinforcement'."
+
+[[paper]]
+arxiv = "2412.20138"
+title = "TradingAgents: Multi-Agents LLM Financial Trading Framework"
+first_author = "Yijia Xiao"
+n_authors = 4
+published = "2024-12-28"
+updated = "2025-06-03"
+layer = "decision"
+kind = "system"
+read = "full"
+summary = "Role-based LLM 'trading firm': analysts, bull/bear debate, trader, risk debate, portfolio manager. Reports a Jan-Mar 2024 backtest on a few US tech stocks."
+
+[[paper]]
+arxiv = "2502.00415"
+title = "MarketSenseAI 2.0: Enhancing Stock Analysis through LLM Agents"
+first_author = "George Fatouros"
+n_authors = 4
+published = "2025-02-01"
+updated = "2025-10-03"
+layer = "decision"
+kind = "system"
+read = "card"
+summary = "MarketSenseAI 2.0: adds retrieval over SEC filings and earnings calls and LLM agents for macro analysis."
+
+[[paper]]
+arxiv = "2508.00554"
+title = "ContestTrade: A Multi-Agent Trading System Based on Internal Contest Mechanism"
+first_author = "Li Zhao"
+n_authors = 8
+published = "2025-08-01"
+updated = "2026-08-20"
+layer = "decision"
+kind = "system"
+read = "full"
+summary = "Quantify-Predict-Allocate contest: data analysts and research agents are scored on realized feedback, and weights follow predicted Sharpe. A-share backtest Jan-Jun 2025."
+
+[[paper]]
+arxiv = "2508.11152"
+title = "AlphaAgents: Large Language Model based Multi-Agents for Equity Portfolio Constructions"
+first_author = "Tianjiao Zhao"
+n_authors = 6
+published = "2025-08-15"
+updated = "2025-08-15"
+layer = "decision"
+kind = "system"
+read = "card"
+summary = "Team of role-based LLM agents that analyze stocks for equity research and portfolio construction, evaluated on stock picks under different risk tolerances."
+
+[[paper]]
+arxiv = "2509.09995"
+title = "QuantHarness: Price-Driven Multi-Agent LLMs for High-Frequency Trading"
+first_author = "Fei Xiong"
+n_authors = 5
+published = "2025-09-12"
+updated = "2026-07-27"
+layer = "decision"
+kind = "system"
+read = "card"
+summary = "QuantHarness (earlier QuantAgent): four agents (indicator, pattern, trend, risk) for high-frequency trading, tested on nine instruments at 1-hour and 4-hour horizons. The GitHub repo still uses the QuantAgent name."
+
+[[paper]]
+arxiv = "2509.11420"
+title = "Trading-R1: Financial Trading with LLM Reasoning via Reinforcement Learning"
+first_author = "Yijia Xiao"
+n_authors = 6
+published = "2025-09-14"
+updated = "2025-09-14"
+layer = "decision"
+kind = "model"
+read = "card"
+summary = "Trading-R1: reasoning model trained with supervised fine-tuning, then RL on a three-stage easy-to-hard curriculum; 100k-sample corpus, 18 months, 14 equities; tested on six equities/ETFs. Its GitHub repo holds only a README."
+
+[[paper]]
+arxiv = "2510.04787"
+title = "Trade in Minutes! Rationality-Driven Agentic System for Quantitative Financial Trading"
+first_author = "Zifan Song"
+n_authors = 8
+published = "2025-10-06"
+updated = "2026-02-09"
+layer = "decision"
+kind = "system"
+read = "card"
+summary = "TiMi: multi-agent system that separates strategy development from minute-level deployment, so LLM inference is not needed on every tick; tested on 200+ trading pairs."
+
+[[paper]]
+arxiv = "2510.14264"
+title = "AlphaQuanter: An End-to-End Tool-Augmented Agentic Reinforcement Learning Framework for Stock Trading"
+first_author = "Zheye Deng"
+n_authors = 4
+published = "2025-10-16"
+updated = "2026-04-19"
+layer = "decision"
+kind = "system"
+read = "card"
+summary = "AlphaQuanter: single agent trained with RL to choose which tools to call, replacing a fixed multi-agent pipeline."
+
+[[paper]]
+arxiv = "2512.02720"
+title = "StockMem: An Event-Reflection Memory Framework for Stock Forecasting"
+first_author = "He Wang"
+n_authors = 4
+published = "2025-12-02"
+updated = "2025-12-02"
+layer = "decision"
+kind = "system"
+read = "card"
+summary = "StockMem: two-layer memory that structures news into events, consolidates them daily and tracks them over time for stock forecasting."
+
+[[paper]]
+arxiv = "2303.17564"
+title = "BloombergGPT: A Large Language Model for Finance"
+first_author = "Shijie Wu"
+n_authors = 9
+published = "2023-03-30"
+updated = "2023-12-21"
+layer = "perception"
+kind = "model"
+read = "card"
+summary = "BloombergGPT: 50B-parameter model trained on a 363B-token financial corpus plus general data."
+
+[[paper]]
+arxiv = "2304.07619"
+title = "Can ChatGPT Forecast Stock Price Movements? Return Predictability and Large Language Models"
+first_author = "Alejandro Lopez-Lira"
+n_authors = 2
+published = "2023-04-15"
+updated = "2025-10-28"
+layer = "perception"
+kind = "study"
+read = "card"
+summary = "Scores news headlines with ChatGPT/GPT-4 and tests the scores against next-day returns, using post-cutoff headlines; reports predictability that fades as LLM adoption rises."
+
+[[paper]]
+arxiv = "2306.05443"
+title = "PIXIU: A Large Language Model, Instruction Data and Evaluation Benchmark for Finance"
+first_author = "Qianqian Xie"
+n_authors = 7
+published = "2023-06-08"
+updated = "2023-06-08"
+layer = "perception"
+kind = "model"
+read = "card"
+summary = "PIXIU: LLaMA fine-tuned on 136K financial instructions, plus a five-task evaluation benchmark."
+
+[[paper]]
+arxiv = "2405.14767"
+title = "FinRobot: An Open-Source AI Agent Platform for Financial Applications using Large Language Models"
+first_author = "Hongyang Yang"
+n_authors = 11
+published = "2024-05-23"
+updated = "2024-05-27"
+layer = "perception"
+kind = "platform"
+read = "full"
+summary = "FinRobot whitepaper: layered platform for financial LLM agents (Smart Scheduler, financial chain-of-thought). Section 5 shows two applications with sample outputs, no return metrics."
+
+[[paper]]
+arxiv = "2407.17866"
+title = "Financial Statement Analysis with Large Language Models"
+first_author = "Alex Kim"
+n_authors = 3
+published = "2024-07-25"
+updated = "2025-02-20"
+layer = "perception"
+kind = "study"
+read = "card"
+summary = "GPT-4 reads anonymized financial statements and predicts the direction of future earnings, reported to beat human analysts."
+
+[[paper]]
+arxiv = "2412.19245"
+title = "Sentiment trading with large language models"
+first_author = "Kemal Kirtac"
+n_authors = 2
+published = "2024-12-26"
+updated = "2024-12-26"
+layer = "perception"
+kind = "study"
+read = "card"
+summary = "Compares LLM sentiment scores of 965,375 US news articles (2010-2023) against subsequent daily returns."
+
+[[paper]]
+arxiv = "2502.08127"
+title = "Fino1: On the Transferability of Reasoning-Enhanced LLMs and Reinforcement Learning to Finance"
+first_author = "Lingfei Qian"
+n_authors = 9
+published = "2025-02-12"
+updated = "2025-06-14"
+layer = "perception"
+kind = "model"
+read = "card"
+summary = "Fino1: finance chain-of-thought corpus and a comparison of RL methods for financial reasoning."
+
+[[paper]]
+arxiv = "2503.16252"
+title = "Fin-R1: A Large Language Model for Financial Reasoning through Reinforcement Learning"
+first_author = "Zhaowei Liu"
+n_authors = 17
+published = "2025-03-20"
+updated = "2026-03-19"
+layer = "perception"
+kind = "model"
+read = "card"
+summary = "Fin-R1: 7B financial reasoning model trained in two stages (distilled reasoning data, then RL)."
+
+[[paper]]
+arxiv = "2402.06698"
+title = "FNSPID: A Comprehensive Financial News Dataset in Time Series"
+first_author = "Zihan Dong"
+n_authors = 3
+published = "2024-02-09"
+updated = "2024-02-09"
+layer = "data"
+kind = "dataset"
+read = "card"
+summary = "FNSPID: financial news dataset aligned in time with stock prices, for text-plus-numbers prediction."
+
+[[paper]]
+arxiv = "2306.12964"
+title = "Generating Synergistic Formulaic Alpha Collections via Reinforcement Learning"
+first_author = "Shuo Yu"
+n_authors = 7
+published = "2023-05-25"
+updated = "2023-05-25"
+layer = "alpha"
+kind = "method"
+read = "card"
+summary = "AlphaGen: mines a synergistic set of formulaic alphas with reinforcement learning, scoring the set rather than each alpha alone."
+
+[[paper]]
+arxiv = "2308.00016"
+title = "Alpha-GPT: Human-AI Interactive Alpha Mining for Quantitative Investment"
+first_author = "Saizhuo Wang"
+n_authors = 6
+published = "2023-07-31"
+updated = "2025-09-20"
+layer = "alpha"
+kind = "system"
+read = "card"
+summary = "Alpha-GPT: human-in-the-loop alpha mining where an LLM turns a quant's idea into candidate factor expressions."
+
+[[paper]]
+arxiv = "2406.18394"
+title = "AlphaForge: A Framework to Mine and Dynamically Combine Formulaic Alpha Factors"
+first_author = "Hao Shi"
+n_authors = 8
+published = "2024-06-26"
+updated = "2024-12-12"
+layer = "alpha"
+kind = "method"
+read = "card"
+summary = "AlphaForge: mines formulaic factors and combines them with time-varying weights instead of fixed ones."
+
+[[paper]]
+arxiv = "2502.16789"
+title = "AlphaAgent: LLM-Driven Alpha Mining with Regularized Exploration to Counteract Alpha Decay"
+first_author = "Ziyi Tang"
+n_authors = 8
+published = "2025-02-24"
+updated = "2025-06-09"
+layer = "alpha"
+kind = "system"
+read = "card"
+summary = "AlphaAgent: LLM alpha mining with regularized exploration aimed at reducing homogeneous, crowded factors and alpha decay."
+
+[[paper]]
+arxiv = "2505.15155"
+title = "R&D-Agent-Quant: A Multi-Agent Framework for Data-Centric Factors and Model Joint Optimization"
+first_author = "Yuante Li"
+n_authors = 7
+published = "2025-05-21"
+updated = "2025-09-25"
+layer = "alpha"
+kind = "system"
+read = "card"
+summary = "RD-Agent(Q): multi-agent loop that proposes, implements and evaluates factors and models for quant research."
+
+[[paper]]
+arxiv = "2602.07085"
+title = "QuantaAlpha: An Evolutionary Framework for LLM-Driven Alpha Mining"
+first_author = "Jun Han"
+n_authors = 17
+published = "2026-02-06"
+updated = "2026-05-18"
+layer = "alpha"
+kind = "system"
+read = "card"
+summary = "QuantaAlpha: evolutionary alpha mining that mutates and recombines whole mining trajectories."
+
+[[paper]]
+arxiv = "2602.14670"
+title = "FactorMiner: A Self-Evolving Agent with Skills and Experience Memory for Financial Alpha Discovery"
+first_author = "Yanlong Wang"
+n_authors = 6
+published = "2026-02-16"
+updated = "2026-08-19"
+layer = "alpha"
+kind = "system"
+read = "card"
+summary = "FactorMiner: self-evolving factor-mining agent with modular skills and an experience memory to cut redundancy."
+
+[[paper]]
+arxiv = "2011.09607"
+title = "FinRL: A Deep Reinforcement Learning Library for Automated Stock Trading in Quantitative Finance"
+first_author = "Xiao-Yang Liu"
+n_authors = 7
+published = "2020-11-19"
+updated = "2022-03-02"
+layer = "portfolio"
+kind = "library"
+read = "card"
+summary = "FinRL: deep-RL library for automated stock trading with tutorials; the starting point of the FinRL family."
+
+[[paper]]
+arxiv = "2502.07393"
+title = "FinRL-DeepSeek: LLM-Infused Risk-Sensitive Reinforcement Learning for Trading Agents"
+first_author = "Mostapha Benhenda"
+n_authors = 1
+published = "2025-02-11"
+updated = "2025-02-11"
+layer = "portfolio"
+kind = "method"
+read = "card"
+summary = "FinRL-DeepSeek: adds LLM-derived news risk and recommendation signals to a CVaR-PPO agent, tested on the Nasdaq-100."
+
+[[paper]]
+arxiv = "2603.21330"
+title = "FinRL-X: An AI-Native Modular Infrastructure for Quantitative Trading"
+first_author = "Hongyang Yang"
+n_authors = 5
+published = "2026-03-22"
+updated = "2026-03-22"
+layer = "portfolio"
+kind = "infrastructure"
+read = "full"
+summary = "FinRL-X: weight-centric pipeline (selection, allocation, timing, risk overlay) shared by backtest and broker execution; 2018-2025 backtest plus 4.5-month paper trading."
+
+[[paper]]
+arxiv = "2311.11944"
+title = "FinanceBench: A New Benchmark for Financial Question Answering"
+first_author = "Pranab Islam"
+n_authors = 6
+published = "2023-11-20"
+updated = "2023-11-20"
+layer = "evaluation"
+kind = "benchmark"
+read = "card"
+summary = "FinanceBench: 10,231 open-book questions on public companies; a question-answering minimum bar, not a trading test."
+
+[[paper]]
+arxiv = "2402.12659"
+title = "FinBen: A Holistic Financial Benchmark for Large Language Models"
+first_author = "Qianqian Xie"
+n_authors = 34
+published = "2024-02-20"
+updated = "2024-06-19"
+layer = "evaluation"
+kind = "benchmark"
+read = "card"
+summary = "FinBen: 36 datasets over 24 financial tasks including forecasting and decision-making."
+
+[[paper]]
+arxiv = "2407.18957"
+title = "When AI Meets Finance (StockAgent): Large Language Model-based Stock Trading in Simulated Real-world Environments"
+first_author = "Chong Zhang"
+n_authors = 13
+published = "2024-07-15"
+updated = "2026-06-23"
+layer = "evaluation"
+kind = "simulator"
+read = "card"
+summary = "StockAgent: LLM investors in a simulated exchange, built to study how external factors move trading behavior while avoiding test-set leakage."
+
+[[paper]]
+arxiv = "2412.18174"
+title = "INVESTORBENCH: A Benchmark for Financial Decision-Making Tasks with LLM-based Agent"
+first_author = "Haohang Li"
+n_authors = 15
+published = "2024-12-24"
+updated = "2024-12-24"
+layer = "evaluation"
+kind = "benchmark"
+read = "card"
+summary = "InvestorBench: benchmark and environments for LLM agents on stocks, crypto and ETFs, tested with 13 backbone LLMs."
+
+[[paper]]
+arxiv = "2505.07078"
+title = "Can LLM-based Financial Investing Strategies Outperform the Market in Long Run?"
+first_author = "Weixian Waylon Li"
+n_authors = 4
+published = "2025-05-11"
+updated = "2026-06-26"
+layer = "evaluation"
+kind = "benchmark"
+read = "partial"
+summary = "FINSABER: bias-aware backtester (survivorship, look-ahead, data snooping) run over two decades and 100+ symbols; earlier LLM advantages shrink."
+
+[[paper]]
+arxiv = "2505.11065"
+title = "Time Travel is Cheating: Going Live with DeepFund for Real-Time Fund Investment Benchmarking"
+first_author = "Changlun Li"
+n_authors = 10
+published = "2025-05-16"
+updated = "2025-10-14"
+layer = "evaluation"
+kind = "benchmark"
+read = "card"
+summary = "DeepFund: live fund arena using only data published after each model's cutoff; reports that even strong models (DeepSeek-V3, Claude-3.7-Sonnet) lose money in its live run."
+
+[[paper]]
+arxiv = "2510.02209"
+title = "StockBench: Can LLM Agents Trade Stocks Profitably In Real-world Markets?"
+first_author = "Yanxu Chen"
+n_authors = 8
+published = "2025-10-02"
+updated = "2026-03-02"
+layer = "evaluation"
+kind = "benchmark"
+read = "partial"
+summary = "StockBench: 20 Dow stocks, 82 trading days (Mar-Jun 2025, after most model cutoffs), 14 models against an equal-weight buy-and-hold baseline."
+
+[[paper]]
+arxiv = "2510.11695"
+title = "When Agents Trade: Live Multi-Market Trading Benchmark for LLM Agents"
+first_author = "Lingfei Qian"
+n_authors = 17
+published = "2025-10-13"
+updated = "2025-10-30"
+layer = "evaluation"
+kind = "benchmark"
+read = "partial"
+summary = "Agent Market Arena: live comparison of four agent architectures across five LLM backbones on TSLA, BMRN, BTC and ETH, Aug 1 - Sep 30 2025."
+
+[[paper]]
+arxiv = "2511.03628"
+title = "LiveTradeBench: Seeking Real-World Alpha with Large Language Models"
+first_author = "Haofei Yu"
+n_authors = 3
+published = "2025-11-05"
+updated = "2025-11-05"
+layer = "evaluation"
+kind = "benchmark"
+read = "card"
+summary = "LiveTradeBench: live environment (US stocks and Polymarket); 50-day live runs of 21 LLMs. Reports that high LMArena scores do not imply better trading."
+
+[[paper]]
+arxiv = "2512.10971"
+title = "AI-Trader: Benchmarking Autonomous Agents in Real-Time Financial Markets"
+first_author = "Tianyu Fan"
+n_authors = 6
+published = "2025-12-01"
+updated = "2025-12-01"
+layer = "evaluation"
+kind = "benchmark"
+read = "card"
+summary = "AI-Trader: live, data-uncontaminated benchmark over US stocks, A-shares and crypto with six LLMs; reports most agents with poor returns and weak risk management."
+
+[[paper]]
+arxiv = "2512.02261"
+title = "TradeTrap: Are LLM-based Trading Agents Truly Reliable and Faithful?"
+first_author = "Lewen Yan"
+n_authors = 7
+published = "2025-12-01"
+updated = "2025-12-01"
+layer = "evaluation"
+kind = "benchmark"
+read = "card"
+summary = "TradeTrap: stress tests four agent components (market intelligence, strategy, ledger, execution) with injected faults and attacks."
+
+[[paper]]
+arxiv = "2512.06607"
+title = "A Fast and Effective Solution to the Problem of Look-ahead Bias in LLMs"
+first_author = "Humzah Merchant"
+n_authors = 2
+published = "2025-12-07"
+updated = "2026-09-23"
+layer = "evaluation"
+kind = "method"
+read = "card"
+summary = "Inference-time logit adjustment with two small models (one tuned on information to forget, one on information to keep) to mimic an earlier knowledge cutoff."
+
+[[paper]]
+arxiv = "2512.23847"
+title = "Detecting Lookahead Bias in LLM Forecasts"
+first_author = "Zhenyu Gao"
+n_authors = 3
+published = "2025-12-29"
+updated = "2026-06-12"
+layer = "evaluation"
+kind = "method"
+read = "card"
+summary = "Lookahead Propensity (LAP): date-only recall query that estimates how much an LLM has memorized an outcome; used to test forecast contamination."
+
+[[paper]]
+arxiv = "2601.13082"
+title = "Adversarial News and Lost Profits: Manipulating Headlines in LLM-Driven Algorithmic Trading"
+first_author = "Advije Rizvani"
+n_authors = 3
+published = "2026-01-19"
+updated = "2026-01-19"
+layer = "evaluation"
+kind = "study"
+read = "card"
+summary = "Human-imperceptible headline manipulations (homoglyphs, hidden text) mislead LLM sentiment inside a backtested trader, cutting annual returns by up to 17.7 percentage points."
+
+[[paper]]
+arxiv = "2602.18481"
+title = "AlphaForgeBench: Benchmarking End-to-End Trading Strategy Design with Large Language Models"
+first_author = "Wentao Zhang"
+n_authors = 8
+published = "2026-02-10"
+updated = "2026-05-27"
+layer = "evaluation"
+kind = "benchmark"
+read = "card"
+summary = "AlphaForgeBench: shows large run-to-run variance and flip-flopping actions when LLMs trade directly, so it benchmarks LLMs as factor researchers with deterministic execution."
+
+[[paper]]
+arxiv = "2605.28359"
+title = "From Knowing to Doing: A Memory-Controlled Benchmark for LLM Trading Agents on Stock Markets"
+first_author = "Taojie Zhu"
+n_authors = 10
+published = "2026-05-27"
+updated = "2026-05-27"
+layer = "evaluation"
+kind = "benchmark"
+read = "card"
+summary = "KTD-Fin: masks identifiers and dates, and attributes returns Barra-style to market, style and selection alpha; on CSI300 2024-2026 the leakage-controlled returns of ten LLM agents are largely passive exposure."
+
+[[paper]]
+arxiv = "2606.29771"
+title = "CLQT: A Closed-Loop, Cost-Aware, Strategy-Consistent Benchmark for Diagnostic Evaluation of LLM Portfolio-Management Agents"
+first_author = "Bo Qu"
+n_authors = 2
+published = "2026-06-29"
+updated = "2026-09-12"
+layer = "evaluation"
+kind = "benchmark"
+read = "card"
+summary = "CLQT: closed-loop benchmark with a hard point-in-time gate, institutional costs, an audit chain and a five-axis scorecard; reports that the capability leader is not the Sharpe leader."
+
+[[paper]]
+arxiv = "2311.10723"
+title = "Large Language Models in Finance: A Survey"
+first_author = "Yinheng Li"
+n_authors = 4
+published = "2023-09-28"
+updated = "2024-07-08"
+layer = "survey"
+kind = "survey"
+read = "card"
+summary = "Practical survey of LLMs in finance: zero-shot use, fine-tuning, custom training."
+
+[[paper]]
+arxiv = "2406.11903"
+title = "A Survey of Large Language Models for Financial Applications: Progress, Prospects and Challenges"
+first_author = "Yuqi Nie"
+n_authors = 7
+published = "2024-06-15"
+updated = "2024-06-15"
+layer = "survey"
+kind = "survey"
+read = "abstract"
+summary = "Survey of LLM applications in finance with prospects and challenges."
+
+[[paper]]
+arxiv = "2503.21422"
+title = "From Deep Learning to LLMs: A survey of AI in Quantitative Investment"
+first_author = "Bokai Cao"
+n_authors = 7
+published = "2025-03-27"
+updated = "2025-03-27"
+layer = "survey"
+kind = "survey"
+read = "abstract"
+summary = "Survey of AI in quantitative investment from hand-crafted features through deep learning to LLM agents, using alpha strategies as the running example."
+
+[[paper]]
+arxiv = "2510.05533"
+title = "The New Quant: A Survey of Large Language Models in Financial Prediction and Trading"
+first_author = "Weilong Fu"
+n_authors = 1
+published = "2025-10-07"
+updated = "2025-10-07"
+layer = "survey"
+kind = "survey"
+read = "abstract"
+summary = "Task-centered taxonomy of LLMs for return prediction and trading, built on 50+ primary studies."
+
+[[paper]]
+arxiv = "2605.19337"
+title = "Agentic Trading: When LLM Agents Meet Financial Markets"
+first_author = "Yihan Xia"
+n_authors = 7
+published = "2026-05-19"
+updated = "2026-10-04"
+layer = "survey"
+kind = "survey"
+read = "card"
+summary = "Survey organizing agentic trading by architecture, capability and adaptation."
+
+[[paper]]
+arxiv = "2510.15691"
+title = "Exploring the Synergy of Quantitative Factors and Newsflow Representations from Large Language Models for Stock Return Prediction"
+first_author = "Tian Guo"
+n_authors = 2
+published = "2025-10-17"
+updated = "2025-11-25"
+layer = "perception"
+kind = "method"
+read = "card"
+summary = "Fuses quantitative factors with LLM-derived newsflow representations for return prediction and stock selection, comparing three fusion architectures and a mixture model."

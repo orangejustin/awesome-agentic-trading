@@ -1,0 +1,103 @@
+{
+ "arxiv": "2407.17866",
+ "title": "Financial Statement Analysis with Large Language Models",
+ "published": "2024-07-25",
+ "updated": "2025-02-20",
+ "source": {
+  "kind": "html-v2",
+  "url": "https://arxiv.org/html/2407.17866v2",
+  "chars": 136790,
+  "truncated": false,
+  "sha256": "9eda92b26640e0b693a4a202e02403210abe76753845ffdd321c46da5a6590f8",
+  "fetched": "2026-10-21"
+ },
+ "extraction": {
+  "model": "claude-opus-5-5",
+  "effort": "medium",
+  "date": "2026-10-23",
+  "input_tokens": 50945,
+  "output_tokens": 1910,
+  "cost_usd": 0.242
+ },
+ "fields": {
+  "task": {
+   "status": "stated",
+   "value": "Use an LLM (GPT-4) to analyze standardized, anonymized balance sheets and income statements and predict the direction of next-year earnings, compared with analysts and ML models, and test trading strategies.",
+   "quote": "We provide standardized and anonymous financial statements to GPT4 and instruct the model to analyze them to determine the direction of firms’ future earnings."
+  },
+  "architecture": {
+   "status": "stated",
+   "value": "No fine-tuning; chain-of-thought prompt has GPT act as analyst: identify trends, compute ratios, interpret them, then predict increase/decrease with rationale, magnitude and confidence. Separately, BERT embeddings of GPT narratives feed an ANN.",
+   "quote": "The model is then instructed to (i) identify and describe notable changes in certain financial statement items. Then, we ask the model to (ii) compute key financial ratios without explicitly limiting the set of ratios that need to be computed."
+  },
+  "data": {
+   "status": "stated",
+   "value": "Compustat annual data, fiscal years 1968-2021, December 31 fiscal year-end firms; 150,678 firm-years from 15,401 firms; I/B/E/S analyst sample 1983-2021 with 39,533 observations.",
+   "quote": "The full sample spans the 1968-2021 period and includes 150,678 firm-year observations from 15,401 distinct firms. The analyst sample spans the 1983-2021 period with 39,533 observations from 3,152 distinct firms."
+  },
+  "window": {
+   "status": "stated",
+   "value": "Evaluation over fiscal years 1968-2021; ML baselines use rolling five-year training windows (t-5 to t-1) with 20% validation split; clean out-of-sample test uses fiscal 2022 data to predict 2023 earnings.",
+   "quote": "In both cases, we use a rolling five-year training window. That is, we estimate (train) the model using data from years t-5 to t-1 , and apply the trained model to the year t data to generate forecasts."
+  },
+  "models": {
+   "status": "stated",
+   "value": "gpt-4-0125-preview (temperature 0, top-p 1); also GPT4-Turbo-1106-preview for out-of-sample check, GPT-3.5-turbo, Gemini Pro 1.5, and BERT-base-uncased for embeddings.",
+   "quote": "We use gpt-4-0125-preview, which is the most updated GPT model by OpenAI at the time of our experiment. The temperature parameter is set to zero to ensure minimal variability in the model’s responses."
+  },
+  "baselines": {
+   "status": "stated",
+   "value": "Naive model extrapolating prior change; analyst consensus forecasts (1m, 3m, 6m); stepwise logistic regression with 59 Ou-Penman predictors; ANN on those predictors; ANN on financial statement variables; tree-based model; simple non-CoT GPT prompt.",
+   "quote": "The first model follows Ou and Penman (1989) and relies on a stepwise logistic regression model with 59 predictors."
+  },
+  "headline_result": {
+   "status": "stated",
+   "value": "GPT with CoT: 60.35% accuracy vs 52.71% for 1-month analysts (analyst sample); 60.31% accuracy, 63.45% F1 on full sample vs ANN 60.45%/61.62%; equal-weighted long-short Sharpe 3.36.",
+   "quote": "With chain-of-thought prompts, GPT achieves an accuracy of 60.35%, or a 7 percentage points increase compared to analyst predictions one month after the earnings release. The difference is statistically significant at 1% level."
+  },
+  "costs": {
+   "status": "stated",
+   "value": "With 10 basis points transaction costs, GPT equal-weighted portfolio Sharpe ratio 2.84; value-weighted 0.95.",
+   "quote": "Accounting for 10 basis points in transaction costs, the GPT-based equal-weighted portfolio yields a Sharpe ratio of 2.84. The value-weighted portfolio yields a Sharpe ratio of 0.95."
+  },
+  "uncertainty": {
+   "status": "stated",
+   "value": "Bootstrapped standard errors (1,000 observations sampled 1,000 times) with 95% confidence intervals; significance tests of differences; industry-clustered standard errors in regressions; t-statistics for alphas.",
+   "quote": "We obtain bootstrapped standard errors by randomly sampling 1,000 observations 1,000 times and include 95% confidence intervals."
+  },
+  "leakage_controls": {
+   "status": "stated",
+   "value": "Anonymized, standardized statements with names removed and relative years; tests asking GPT to guess firm name/year; out-of-sample test predicting 2023 earnings beyond training cutoff; out-of-sample rolling training for ML baselines.",
+   "quote": "First, we anonymize and standardize corporate financial statements to prevent the potential memory of the company by the language model from influencing our results. In particular, we omit company names from the balance sheet and income statement and replace years with labels, such as t , and t-1 ."
+  },
+  "limitations": {
+   "status": "stated",
+   "value": "No narrative/industry context provided, disadvantaging the LLM; accuracy declines over time and in crises; GPT 3.5 performs worse; GPT weaker on value-weighted portfolios; results should be interpreted with caution; text inputs harder to anonymize.",
+   "quote": "Although one must interpret our results with caution, we provide evidence consistent with large language models having human-like capabilities in the financial domain."
+  },
+  "release": {
+   "status": "stated",
+   "value": "An interactive companion app is provided (requires an OpenAI account); no code or data release location stated.",
+   "quote": "Companion App: To showcase the capabilities of LLMs for financial statement analysis, we created an interactive tool:"
+  }
+ },
+ "verification": {
+  "verified": 12,
+  "failed": 0,
+  "not_found": 0,
+  "detail": {
+   "task": "exact",
+   "architecture": "exact",
+   "data": "exact",
+   "window": "exact",
+   "models": "exact",
+   "baselines": "exact",
+   "headline_result": "exact",
+   "costs": "exact",
+   "uncertainty": "exact",
+   "leakage_controls": "exact",
+   "limitations": "exact",
+   "release": "exact"
+  }
+ }
+}

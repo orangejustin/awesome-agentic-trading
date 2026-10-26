@@ -1,0 +1,103 @@
+{
+ "arxiv": "2407.18957",
+ "title": "When AI Meets Finance (StockAgent): Large Language Model-based Stock Trading in Simulated Real-world Environments",
+ "published": "2024-07-15",
+ "updated": "2026-06-23",
+ "source": {
+  "kind": "html",
+  "url": "https://arxiv.org/html/2407.18957",
+  "chars": 78459,
+  "truncated": false,
+  "sha256": "9dd0452430f7d88b899347f9964aa012ea8e28569fc291bfc3508a48ffe310da",
+  "fetched": "2026-10-21"
+ },
+ "extraction": {
+  "model": "claude-opus-5-5",
+  "effort": "medium",
+  "date": "2026-10-23",
+  "input_tokens": 34239,
+  "output_tokens": 1467,
+  "cost_usd": 0.1663
+ },
+ "fields": {
+  "task": {
+   "status": "stated",
+   "value": "Simulate investors' stock trading behavior with LLM-driven multi-agent system to evaluate impact of external factors (macroeconomics, policy, fundamentals, events) on trading and prices.",
+   "quote": "We have developed a multi-agent AI system called StockAgent, driven by LLMs, designed to simulate investors’ trading behaviors in response to the real stock market."
+  },
+  "architecture": {
+   "status": "stated",
+   "value": "Multi-agent system with Investment Agent module (random capital, liabilities, four personalities, secretary correcting invalid responses), Transaction module (order book, random clock page replacement ordering), and BBS module for sharing trading tips daily.",
+   "quote": "comprising (1) Investment Agent module, (2) Transaction module, and (3) BBS module, structured to prevent agent action conflicts and ensure message availability."
+  },
+  "data": {
+   "status": "stated",
+   "value": "Two anonymized US stocks (Stock A circulating, Stock B in IPO stage); their financial reports used to set initial valuations; external economic events from 2014 to 2019; simulated trading sessions per day.",
+   "quote": "we select two stocks from the United States stock market, referred to as anonymized Stock A and Stock B. We use their financial reports—specifically, the balance sheet, income statement, and cash flow statement—as the basis for calculating the initial settings of our simulation."
+  },
+  "window": {
+   "status": "stated",
+   "value": "Simulated periods: 10 trading days for RQ1/RQ2, 154 trading days listed for RQ3 (also described as 30 rounds over 10 days); simulated year of 264 trading days. No real calendar test dates.",
+   "quote": "The simulation covers one year comprising 264 trading days, divided into four quarters of 66 trading days each."
+  },
+  "models": {
+   "status": "stated",
+   "value": "GPT-3.5-Turbo (gpt-3.5-turbo-0125) and Gemini-Pro (Gemini-pro-1.0).",
+   "quote": "We use two LLMs, namely GPT (gpt-3.5-turbo-0125) and Gemini (Gemini-pro-1.0), to develop StockAgent."
+  },
+  "baselines": {
+   "status": "stated",
+   "value": "No external baselines; GPT vs Gemini agents compared, and Gemini-Pro used as baseline for ablations removing financial information, BBS, financial state, loan, and interest change.",
+   "quote": "In this simulated stock trading experiment, we use Gemini-Pro as the baseline model to conduct an ablation study."
+  },
+  "headline_result": {
+   "status": "stated",
+   "value": "GPT agents traded 3118792 shares of A vs Gemini 128981 over 10 days, but with fewer trades (384 vs 800 for Stock A).",
+   "quote": "| GPT | 3118792 | 329590 | 176758380.8 | 14109526.0"
+  },
+  "costs": {
+   "status": "stated",
+   "value": "Transaction fee 0.005 currency units per share, minimum 1 and maximum 5.95 per transaction; loan annualized rates 2.7%/3%/3.3% for 1/2/3-month loans; 0% deposit rate.",
+   "quote": "We put the transaction fee of each Agent in purchasing shares to 0.005 currency units per share, the minimum transaction fee of each transaction is 1 currency unit, and the maximum transaction fee is 5.95 currency units."
+  },
+  "uncertainty": {
+   "status": "not_found",
+   "value": "",
+   "quote": ""
+  },
+  "leakage_controls": {
+   "status": "stated",
+   "value": "Stocks are anonymized and the simulated market prevents the model from leveraging prior knowledge related to the test data.",
+   "quote": "Additionally, StockAgent avoids the test set leakage issue present in existing trading simulation systems based on AI Agents. Specifically, it prevents the model from leveraging prior knowledge it may have acquired related to the test data."
+  },
+  "limitations": {
+   "status": "stated",
+   "value": "Simulation results may be biased by LLM choice; reliability of LLM-agent stock recommendations needs further research; robustness could improve with more LLMs, trading days, rounds and traders.",
+   "quote": "This finding may have a certain impact on users and exchanges that use StockAgent for testing, and their simulation results may be biased due to different LLM choices."
+  },
+  "release": {
+   "status": "stated",
+   "value": "Code released on GitHub.",
+   "quote": "The code is available at https://github.com/MingyuJ666/Stockagent."
+  }
+ },
+ "verification": {
+  "verified": 11,
+  "failed": 0,
+  "not_found": 1,
+  "detail": {
+   "task": "exact",
+   "architecture": "exact",
+   "data": "exact",
+   "window": "exact",
+   "models": "exact",
+   "baselines": "exact",
+   "headline_result": "exact",
+   "costs": "exact",
+   "uncertainty": "not_found",
+   "leakage_controls": "exact",
+   "limitations": "exact",
+   "release": "exact"
+  }
+ }
+}
