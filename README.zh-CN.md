@@ -11,7 +11,7 @@
 
 > 一份经过核验的**开源智能体交易（Agentic Trading）**地图：开源仓库、论文、文章与帖子，按智能体交易系统的五层组织：**数据层 → Agent 层 → 执行层 → Harness 层 → 应用层**。
 
-<!-- gen:headline -->52 个开源仓库 · 58 篇论文 · 17 篇文章与帖子 · 5 个深度拆解<!-- /gen:headline -->。每个仓库条目都写明做什么、许可证、是否仍在维护，以及最关键的限制；每篇论文都标明我们实际读到了什么程度。
+<!-- gen:headline -->61 个开源仓库 · 59 篇论文 · 40 篇文章与帖子 · 5 个深度拆解<!-- /gen:headline -->。每个仓库条目都写明做什么、许可证、是否仍在维护，以及最关键的限制；每篇论文都标明我们实际读到了什么程度。
 
 > [!WARNING]
 > 仅供研究与学习，不构成任何投资建议。部分工具可以下真实订单（标记为 ⚡），请先在模拟账户上使用。被收录不代表项目能盈利或可直接用于生产。
@@ -43,11 +43,11 @@
 <!-- gen:stack -->
 | 层 | 回答的问题 | 仓库 | 论文 | 文章 |
 |---|---|---|---|---|
-| [1. 数据层](layers/data.md) | 智能体知道什么？什么时候知道的？ | 10 | 5 | 5 |
-| [2. Agent 层](layers/agent.md) | 拿到信号之后，结论是什么？理由如何论证？ | 8 | 22 | 0 |
-| [3. 执行层](layers/execution.md) | 决策如何安全地变成成交？ | 6 | 1 | 0 |
-| [4. Harness 层](layers/harness.md) | 结果是真的吗？如果它不再成立，我们能及时发现吗？ | 17 | 17 | 10 |
-| [5. 应用层](layers/application.md) | 它为用户端到端完成什么工作？ | 11 | 8 | 2 |
+| [1. 数据层](layers/data.md) | 智能体知道什么？什么时候知道的？ | 13 | 5 | 6 |
+| [2. Agent 层](layers/agent.md) | 拿到信号之后，结论是什么？理由如何论证？ | 8 | 22 | 3 |
+| [3. 执行层](layers/execution.md) | 决策如何安全地变成成交？ | 10 | 1 | 6 |
+| [4. Harness 层](layers/harness.md) | 结果是真的吗？如果它不再成立，我们能及时发现吗？ | 18 | 18 | 15 |
+| [5. 应用层](layers/application.md) | 它为用户端到端完成什么工作？ | 12 | 8 | 10 |
 <!-- /gen:stack -->
 
 ## 从这里开始
@@ -72,24 +72,41 @@
 <!-- gen:milestones -->
 | 时间 | 里程碑 | 为什么重要 |
 |---|---|---|
+| 2020-11 | [FinRL：面向交易的深度强化学习库](https://arxiv.org/abs/2011.09607) | 把交易环境与强化学习智能体做成可复用的开源组件；后续的 FinRL-Meta、FinRL-X 把这条线从模拟延伸到券商。 |
+| 2023-03 | [BloombergGPT](https://arxiv.org/abs/2303.17564) | 大型金融数据公司训练的金融专用大模型；数月内即出现开源金融大模型（FinGPT、FinMA）。 |
+| 2023-04 | [《ChatGPT 能预测股价走势吗？》](https://arxiv.org/abs/2304.07619) | 首个被广泛引用的证据：在模型截止日之后的新闻上，LLM 读标题能预测次日收益；此后评判相关研究都绕不开“前视偏差”这一问题。 |
+| 2023-11 | [FinMem：带分层记忆的交易智能体](https://arxiv.org/abs/2311.13743) | 从“LLM 当情绪打分器”走向“LLM 当智能体”：记忆、反思与风险画像，成为后续系统沿用的设计语汇。 |
+| 2024-11 | [Model Context Protocol（MCP）发布](https://www.anthropic.com/news/model-context-protocol) | 为智能体提供工具的标准方式；此后券商、交易所与数据商都用它向任意兼容的智能体开放行情与下单。 |
+| 2024-11 | [AI Hedge Fund 仓库诞生](https://github.com/virattt/ai-hedge-fund/commit/0c595638f5e3e2c6de0bfe6ca06773d7384cc3ea) | 其“投资大师人设”智能体成为被广泛复制的开源多智能体投资模板；2026 年的重新设计又把交易决策交回量化模型。 |
+| 2024-12 | [TradingAgents：多智能体“交易公司”](https://arxiv.org/abs/2412.20138) | 按角色分工的“交易公司”（分析师、多空辩论、交易员、风控团队）成为常见的参考架构；也是我们对比的四个热门清单唯一共同收录的论文。 |
+| 2025-05 | [《时间旅行是作弊》：用截止日之后的数据做实时评测](https://arxiv.org/abs/2505.11065) | 让“只用模型截止日之后发布的数据评测”成为应对前视偏差的标准做法，并报告在此条件下强模型也会亏损。 |
+| 2025-05 | [R&D-Agent-Quant：让智能体跑完因子研究闭环](https://arxiv.org/abs/2505.15155) | 展示了智能体端到端地提出、编码并评估因子与模型，把关注点从“会交易的智能体”转向“会做研究的智能体”。 |
+| 2025-07 | [Claude for Financial Services 发布](https://www.anthropic.com/news/claude-for-financial-services) | 前沿实验室以连接主流数据商的 MCP 连接器打包金融工作流，让投研智能体一次工具调用就能拿到授权数据。 |
+| 2025-10 | [Alpha Arena：大模型公开用真金白银交易](https://x.com/jay_azhang/status/1979312946154033227) | 六个模型各持 1 万美元，公开自主交易加密永续合约；Qwen 3 MAX 于 2025-11-03 位列第一。它让实盘记录进入主流视野，也暴露了单次运行之短。 |
+| 2025-12 | [FINRA 监管报告首次专门讨论 AI 智能体](https://www.finra.org/rules-guidance/guidance/reports/2026-finra-annual-regulatory-oversight-report/gen-ai) | 美国监管机构定义了 AI 智能体并列出机构必须监督的风险（自主性、权限、可审计性），让 Harness 设计变成合规问题。 |
+| 2026-05 | [Robinhood 向智能体开放实盘交易](https://robinhood.com/newsroom/robinhood-is-now-open-to-agents/) | 大型零售券商通过 MCP 向第三方智能体开放官方下单通道，配以隔离账户、交易预览与紧急停止：下单权限成为产品功能。 |
+| 2026-07 | [盈透证券向任意客户端开放 MCP 服务](https://fxnewsgroup.com/forex-news/retail-forex/interactive-brokers-enables-traders-to-connect-their-accounts-to-any-mcp-compatible-ai-application/) | 全球性券商向任意兼容智能体开放远程 MCP 服务，支持 OAuth 授权与撤销。来源为行业媒体报道。 |
 <!-- /gen:milestones -->
 
-**图例：** 🟢 活跃（核验时最近 90 天内有提交）· 🟡 放缓（一年内）· ⚪ 停更 · ⚡ 可下真实订单 · 📝 模拟交易 · 🧰 用于此环节的通用工具 · 🔬 我们的深度拆解。同一类别内按核验时的 GitHub Star 数排序：这是热度信号，不是质量评分。
+**图例：** 🟢 活跃（核验时最近 90 天内有提交）· 🟡 放缓（一年内）· ⚪ 停更 · ⚡ 可下真实订单 · 📝 模拟交易 · 🧰 用于此环节的通用工具 · 🔬 我们的深度拆解。同一类别内按已记录的 GitHub Star 数排序：这是热度信号，不是质量评分。
 
 <!-- gen:directory -->
 ## 1. 数据层：智能体看到什么
 
 > 智能体知道什么？什么时候知道的？
 
-**10 个仓库 · 5 篇论文 · 5 篇文章** · [完整分层页（英文）→](layers/data.md)
+**13 个仓库 · 5 篇论文 · 6 篇文章** · [完整分层页（英文）→](layers/data.md)
 
 ### 行情与基本面数据
 
 - [OpenBB](https://github.com/OpenBB-finance/OpenBB) — 面向Python与AI智能体的开放金融数据集成平台。 ⚠️ 只管取数，时点正确性需自己保证。 🟢 `Apache-2.0`
+- [AKShare](https://github.com/akfamily/akshare) — 把中国及全球公开行情、宏观与新闻数据取成 pandas，附面向 LLM 的 llms.txt。 ⚠️ 抓取型接口会随网站改版失效；为当前数据而非时点数据；自身无 MCP 服务。 🟢 `MIT` 🧰
 - [TradingView-API](https://github.com/Mathieu2301/TradingView-API) — 非官方的 TradingView TypeScript 客户端，可取 K 线、指标、选股器与回放数据，附防前视的回测模块。 ⚠️ 非官方，依赖未公开接口，存在条款风险；根目录无 LICENSE 文件（package.json 声明 ISC） 🟢 `未找到许可证`
 
 ### 财报、新闻与文本
 
+- [edgartools](https://github.com/dgunning/edgartools) — 把 SEC EDGAR 公告转成 Python 对象与 DataFrame，并提供面向智能体的 MCP 服务。 ⚠️ 仅覆盖美国 SEC 申报主体；请求须带联系身份并遵守 SEC 限速。 🟢 `MIT`
+- [FNSPID](https://github.com/Zdong104/FNSPID_Financial_News_Dataset) — 4,775 家标普 500 公司在 1999–2023 年间按时间对齐的新闻与价格数据。 ⚠️ 数据止于 2023 年；许可证文件（CC BY-NC）与 README 说明冲突；已停止维护。 ⚪ `CC-BY-NC-4.0`
 - [Agent-Reach](https://github.com/Panniantong/Agent-Reach) — 让编程智能体读取 X、Reddit、小红书、雪球、视频字幕等平台的命令行工具。 ⚠️ 复用浏览器登录 Cookie（建议用小号）；有平台条款风险；健康检查通过不等于取数正确。 🟢 `MIT` 🧰
 - [OpenCLI](https://github.com/jackwener/OpenCLI) — 把网站变成 JSON 命令的浏览器自动化命令行，通过已登录的 Chrome 为智能体取数。 ⚠️ 以已登录账户的权限运行；网站改版会导致适配器失效；应只放行只读命令。 🟢 `Apache-2.0` 🧰
 - [Trafilatura](https://github.com/adbar/trafilatura) — 从新闻、公告网页中抽取正文与元数据（标题、作者、日期） ⚠️ 只负责抽取，不支持登录与 JavaScript 渲染；仍需遵守网站条款。 🟢 `Apache-2.0` 🧰
@@ -115,7 +132,7 @@
 
 > 拿到信号之后，结论是什么？理由如何论证？
 
-**8 个仓库 · 22 篇论文 · 0 篇文章** · [完整分层页（英文）→](layers/agent.md)
+**8 个仓库 · 22 篇论文 · 3 篇文章** · [完整分层页（英文）→](layers/agent.md)
 
 ### 金融大模型与推理模型
 
@@ -142,18 +159,23 @@
 - [FinMem: A Performance-Enhanced LLM Trading Agent with Layered Memory and Character Design](https://arxiv.org/abs/2311.13743) — Yangyang Yu et al., 2023. 单一交易智能体：新闻、10-Q、10-K 三层衰减记忆加风险画像提示词；在 5 只股票上测试约 6 个月。
 - [FinCon: A Synthesized LLM Multi-Agent System with Conceptual Verbal Reinforcement for Enhanced Financial Decision Making](https://arxiv.org/abs/2407.06567) — Yangyang Yu et al., 2024. 经理—分析师层级结构，加一个风控组件，把每轮自我批评作为“概念化语言强化”反馈回去。
 - [TradingAgents: Multi-Agents LLM Financial Trading Framework](https://arxiv.org/abs/2412.20138) — Yijia Xiao et al., 2024. 按角色组织的 LLM“交易公司”：分析师、多空辩论、交易员、风险辩论、组合经理；回测仅覆盖 2024 年 1–3 月的少数美股科技股。
+- 🎤 [How Bridgewater's AIA Labs Built PAT: The AI Pocket Analyst Tool](https://www.bridgewater.com/aia-labs/how-bridgewaters-aia-labs-built-pat-the-ai-pocket-analyst-tool) — Brendan McManus, Michael Ran, Santi Weight (Bridgewater AIA Labs), 2026-05. 大型宏观基金少见的工程分享：如何把编码化的投资知识与智能体式 LLM 工作流、投资人反馈循环结合起来。
 
 ## 3. 执行层：智能体如何下单
 
 > 决策如何安全地变成成交？
 
-**6 个仓库 · 1 篇论文 · 0 篇文章** · [完整分层页（英文）→](layers/execution.md)
+**10 个仓库 · 1 篇论文 · 6 篇文章** · [完整分层页（英文）→](layers/execution.md)
 
 ### 券商与交易场所工具
 
-- [Alpaca MCP Server](https://github.com/alpacahq/alpaca-mcp-server) — 让LLM客户端查询行情并通过Alpaca下单的MCP服务器。 ⚠️ 赋予智能体下单权限，应先在模拟账户上运行。 🟢 `MIT` ⚡
+- [CCXT (with ccxt-mcp)](https://github.com/ccxt/ccxt) — 统一接入 100 多家加密货币交易所的 API，现附以安全护栏为设计核心的官方 MCP 服务。 ⚠️ MCP 服务尚早期；交易权限等级写在同时保存密钥的本地配置中。 🟢 `MIT` ⚡
+- [AgentKit](https://github.com/coinbase/agentkit) — 为 AI 智能体提供加密钱包与链上操作：转账、兑换、支付。 ⚠️ 默认无审批、限额与白名单：提示注入可能转走资金，须先加护栏。 🟢 `Apache-2.0` ⚡
+- [Alpaca MCP Server](https://github.com/alpacahq/alpaca-mcp-server) — 让LLM客户端查询行情并通过Alpaca下单的MCP服务器。 ⚠️ 默认模拟盘，但一个开关即切到实盘；未限制时所有工具集均开启。 🟢 `MIT` ⚡
 - [Polymarket MCP Server](https://github.com/caiovicentino/polymarket-mcp-server) — 提供45个Polymarket交易与监控工具的MCP服务器。 ⚠️ LLM客户端可动用真实资金下单，应先用模拟账户测试。 🟢 `MIT` ⚡
 - [fintool](https://github.com/second-state/fintool) — 为智能体提供分交易所交易与行情的 Rust CLI 套件。 ⚠️ 可在真实交易所下单，建议先用小仓位或测试网。 🟡 `MIT` ⚡
+- [Schwab MCP](https://github.com/jkoelker/schwab-mcp) — 嘉信理财（Schwab）社区版 MCP 服务：行情、期权链、持仓与下单，下单前需人工审批。 ⚠️ 非官方；审批后即对真实账户下单；需申请 Schwab 开发者应用。 🟢 `MIT` ⚡
+- [tastytrade MCP](https://github.com/tastytrade/tastytrade-mcp) — tastytrade 官方 MCP 服务：行情、期权链、持仓与下单。 ⚠️ 默认连接生产环境（真实资金）；应先用只读或沙箱模式。 🟢 `MIT` ⚡
 
 ### 交易引擎（回测与实盘同一套代码）
 
@@ -167,12 +189,13 @@
 ### 必读
 
 - [FinRL-X: An AI-Native Modular Infrastructure for Quantitative Trading](https://arxiv.org/abs/2603.21330) — Hongyang Yang et al., 2026. FinRL-X：以目标权重为核心的流水线（选股、配置、择时、风控叠加），回测与券商执行共用一套代码；含 2018–2025 回测和 4.5 个月模拟盘。
+- 📝 [Robinhood is Now Open to Agents](https://robinhood.com/newsroom/robinhood-is-now-open-to-agents/) — Robinhood, 2026-05. 美国大型零售券商通过官方 MCP 服务向第三方智能体开放实盘交易，采用隔离的智能体专用账户、交易预览与紧急停止开关，是下单权限设计的参考范例。
 
 ## 4. Harness 层：如何运行、测试并信任它
 
 > 结果是真的吗？如果它不再成立，我们能及时发现吗？
 
-**17 个仓库 · 17 篇论文 · 10 篇文章** · [完整分层页（英文）→](layers/harness.md)
+**18 个仓库 · 18 篇论文 · 15 篇文章** · [完整分层页（英文）→](layers/harness.md)
 
 ### 研究与回测环境
 
@@ -181,16 +204,17 @@
 
 ### 模拟器与纸面交易环境
 
+- [FinRL-Meta](https://github.com/AI4Finance-Foundation/FinRL-Meta) — 面向金融强化学习的 Gym 式市场环境与基准。 ⚠️ 为强化学习而建，非 LLM 智能体：需自行适配。 🟢 `MIT`
 - [StockAgent](https://github.com/MingyuJ666/Stockagent) — LLM投资者在模拟股票交易所中交易。 ⚠️ 仓库中没有LICENSE文件，使用条款不明确。 🟡 `未找到许可证`
 - [polymarket-paper-trader](https://github.com/agent-next/polymarket-paper-trader) — 基于 Polymarket 实时订单簿的智能体模拟交易环境。 ⚠️ 仅限预测市场而非股票，成交逼真度为作者自述。 🟢 `MIT` 📝
 
 ### 基准、竞技场与前向实盘记录
 
-- [AI-Trader](https://github.com/HKUDS/AI-Trader) — 外部AI智能体注册交易的平台与实时排行榜。 ⚠️ 仓库根目录无LICENSE文件，仅README徽章标注MIT。 🟡 `MIT (README badge)`
+- [AI-Trader](https://github.com/HKUDS/AI-Trader) — 外部AI智能体注册交易的平台与实时排行榜。 ⚠️ 仓库根目录无LICENSE文件，仅README徽章标注MIT。 🟡 `MIT (README badge)` 📝
 - [LLM Trading Lab](https://github.com/LuckyOne7777/LLM-Trading-Lab) — ChatGPT管理真实资金微盘股组合的六个月实盘记录。 ⚠️ 仅六个月单次运行且由作者自评，不足以证明能力。 🟡 `未找到许可证`
 - [PIXIU / FinBen](https://github.com/The-FinAI/PIXIU) — 开源金融LLM FinMA及FinBen评测套件。 ⚠️ 任务高分难以反映实际交易表现。 🟢 `MIT`
 - [DeepFund](https://github.com/HKUSTDial/DeepFund) — 在截止日后数据上评测LLM基金经理的实时竞技场。 ⚠️ 竞技场结果取决于较短的实盘窗口。 🟡 `MIT`
-- [Live Trade Bench](https://github.com/ulab-uiuc/live-trade-bench) — 在美股与Polymarket上实盘运行并监控LLM交易智能体。 ⚠️ 采用非商业许可，复用前需核查条款。 🟡 `PolyForm Noncommercial 1.0.0`
+- [Live Trade Bench](https://github.com/ulab-uiuc/live-trade-bench) — 在美股与Polymarket上实盘运行并监控LLM交易智能体。 ⚠️ 在实时数据上运行模拟组合，不涉及真实资金；非商业许可。 🟡 `PolyForm Noncommercial 1.0.0`
 
 ### 稳健性与偏差控制
 
@@ -211,17 +235,20 @@
 - [Can LLM-based Financial Investing Strategies Outperform the Market in Long Run?](https://arxiv.org/abs/2505.07078) — Weixian Waylon Li et al., 2025. FINSABER：控制幸存者偏差、前视偏差和数据窥探的回测框架，覆盖二十年、100 多个标的；早先报告的 LLM 优势明显缩小。
 - [Time Travel is Cheating: Going Live with DeepFund for Real-Time Fund Investment Benchmarking](https://arxiv.org/abs/2505.11065) — Changlun Li et al., 2025. DeepFund：只使用各模型知识截止日之后发布的数据的实时基金竞技场；报告称即使强模型（DeepSeek-V3、Claude-3.7-Sonnet）在实时运行中也亏损。
 - [Detecting Lookahead Bias in LLM Forecasts](https://arxiv.org/abs/2512.23847) — Zhenyu Gao et al., 2025. 前视倾向（LAP）：只给日期的回忆式提问，估计 LLM 对结果的记忆程度，用于检测预测是否被污染。
+- 𝕏 [Season 1 of Alpha Arena has officially ended](https://x.com/jay_azhang/status/1985481491078328621) — Jay A. Zhang (@jay_azhang, Nof1), 2025-11. 赛季结果帖，点明影响结果的设计限制：只有数值时间序列上下文、标的范围窄、动作空间有限、模型“性格”固定。两周、单次运行无法区分能力与运气。
 - 📝 [Effective harnesses for long-running agents](https://www.anthropic.com/research/effective-harnesses-for-long-running-agents) — Justin Young (Anthropic), 2025-11. 先由初始化智能体搭好脚手架，再由工作智能体每次只完成一个单元、端到端测试，并为下一次会话留下 git 历史和进度记录。同样适用于持续多天的投研与策略开发。
+- 📝 [Your LLM's Alpha Might Be Mere Memorization](https://hedgefundalpha.com/education/your-llms-alpha-might-be-mere-memorization/) — Greg Kapoustin (Hedge Fund Alpha), 2026-04. 从业者文章：LLM 的回测优势常在训练截止日之后消失，因此“时点一致性”不仅要覆盖数据，也要覆盖模型本身。
 - 📝 [Building agents: When to fold subagents into your main agent loop](https://claude.com/resources/articles/building-agents-when-to-fold-subagents-into-your-main-agent-loop) — Diane Sarkis (Anthropic), 2026-10. 许多智能体用“单循环 + 按需加载技能”比“协调者 + 多个子智能体”效果更好；只在需要隔离上下文、并行独立任务或指令冲突时保留子智能体，并在评测下逐步迁移。直接适用于分析师/风控/交易员式的多智能体团队。
 
 ## 5. 应用层：用它做出什么
 
 > 它为用户端到端完成什么工作？
 
-**11 个仓库 · 8 篇论文 · 2 篇文章** · [完整分层页（英文）→](layers/application.md)
+**12 个仓库 · 8 篇论文 · 10 篇文章** · [完整分层页（英文）→](layers/application.md)
 
 ### 投研与报告
 
+- [Dexter](https://github.com/virattt/dexter) — 自主投研智能体：拆解问题、调用金融数据工具、自查并迭代。 ⚠️ 仅限研究；依赖付费数据 API；README 称 MIT 但无 LICENSE 文件。 🟢 `未找到许可证`
 - [FinRobot](https://github.com/AI4Finance-Foundation/FinRobot) — 代码算数、LLM写叙述的股票研究智能体平台。 ⚠️ 属于股票研究工作站而非交易系统，无可检验的交易业绩声明。 🟢 `Apache-2.0` [🔬 拆解](docs/teardowns/finrobot.md)
 - [OpenTerminalUI](https://github.com/Hitheshkaranth/OpenTerminalUI) — 可自托管的投研终端，AI 分析师会引用公告并标注每个数字的来源。 ⚠️ 单人维护的小项目；免费数据可能延迟或为合成数据（有标注）；仅支持模拟操作。 🟢 `MIT` 📝
 
@@ -247,6 +274,7 @@
 
 - [FinRobot: An Open-Source AI Agent Platform for Financial Applications using Large Language Models](https://arxiv.org/abs/2405.14767) — Hongyang Yang et al., 2024. FinRobot 白皮书：分层的金融 LLM 智能体平台（智能调度器、金融思维链）；第 5 节展示两个应用样例，没有收益指标。
 - [R&D-Agent-Quant: A Multi-Agent Framework for Data-Centric Factors and Model Joint Optimization](https://arxiv.org/abs/2505.15155) — Yuante Li et al., 2025. RD-Agent(Q)：多智能体循环，自动提出、实现并评估量化研究中的因子与模型。
+- 𝕏 [AI Hedge Fund 2.0 is now live](https://x.com/virattt/status/2075666117293658374) — Virat Singh (@virattt), 2026-07. 热门仓库的重新设计：投资者智能体负责研究，量化模型负责交易，每次决策都给出解释。从业者主动不再让 LLM 决定仓位或直接执行交易。
 <!-- /gen:directory -->
 
 ## 综述

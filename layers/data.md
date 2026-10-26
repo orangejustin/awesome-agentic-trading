@@ -11,7 +11,7 @@
 
 **Open gap.** Almost no agent framework ships a point-in-time store. The MCP data servers listed here serve current data; none was checked for point-in-time guarantees, so none should feed a backtest unaudited.
 
-10 repos · 5 papers · 5 articles and posts. Legend: 🟢 active (last commit within 90 days of the check) · 🟡 slowing (within a year) · ⚪ dormant · ⚡ can place real orders · 📝 paper trading · 🧰 general-purpose tool applied here · 📖 read in full · 🗂️ machine-extracted [method card](../docs/cards/index.md) · 🔖 abstract only.
+13 repos · 5 papers · 6 articles and posts. Legend: 🟢 active (last commit within 90 days of the check) · 🟡 slowing (within a year) · ⚪ dormant · ⚡ can place real orders · 📝 paper trading · 🧰 general-purpose tool applied here · 📖 read in full · 🗂️ machine-extracted [method card](../docs/cards/index.md) · 🔖 abstract only.
 
 ## Contents
 
@@ -28,12 +28,15 @@
 | Project | What it does | Suits | Status | License | Last commit | Key limit |
 |---|---|---|---|---|---|---|
 | [OpenBB](https://github.com/OpenBB-finance/OpenBB) | Open data-integration platform serving market and economic data to Python and agents | Developers building apps or AI agents needing market data | 🟢 active | Apache-2.0 | 2026-10-18 | Data access only; point-in-time correctness is up to you |
+| [AKShare](https://github.com/akfamily/akshare) 🧰 | Public Chinese and global market, macro and news data into pandas, with an llms.txt for LLMs | Builders of A-share and Hong Kong agent projects who need free data | 🟢 active | MIT | 2026-10-23 | Scraped endpoints break when sites change; current data, not point-in-time; no MCP server of its own |
 | [TradingView-API](https://github.com/Mathieu2301/TradingView-API) | Unofficial TypeScript client for TradingView candles, indicators, screener and replay, with a look-ahead-guarded backtest module | Developers feeding TradingView data and indicator values to an agent | 🟢 active | no license file | 2026-10-25 | Unofficial, undocumented endpoints with Terms-of-Use risk; no root LICENSE file (package.json says ISC) |
 
 ### Filings, news and text
 
 | Project | What it does | Suits | Status | License | Last commit | Key limit |
 |---|---|---|---|---|---|---|
+| [edgartools](https://github.com/dgunning/edgartools) | SEC EDGAR filings as typed Python objects and DataFrames, with an MCP server for agents | Builders who need primary-source US filings and financials in an agent's research step | 🟢 active | MIT | 2026-10-25 | US SEC filers only; requests need a contact identity and respect SEC rate limits |
+| [FNSPID](https://github.com/Zdong104/FNSPID_Financial_News_Dataset) | Time-aligned financial news and prices for 4,775 S&P 500 companies, 1999-2023 | Researchers testing text-plus-price models on a fixed historical corpus | ⚪ dormant | CC-BY-NC-4.0 | 2025-07-24 | Data ends in 2023; license file (CC BY-NC) conflicts with a README note; no longer maintained |
 | [Agent-Reach](https://github.com/Panniantong/Agent-Reach) 🧰 | CLI that gives a coding agent read access to X, Reddit, Xiaohongshu, Xueqiu, video subtitles and more | Researchers adding social and Chinese-platform sentiment to an agent's inputs | 🟢 active | MIT | 2026-10-25 | Reuses browser login cookies (use a secondary account); platform-terms risk; health check is not proof of correct data |
 | [OpenCLI](https://github.com/jackwener/OpenCLI) 🧰 | Browser-automation CLI that turns websites into JSON commands for agents, through your logged-in Chrome | Developers pulling data from sites without APIs into an agent workflow | 🟢 active | Apache-2.0 | 2026-10-26 | Runs with your logged-in account's privileges; adapters break when sites change; whitelist read-only commands |
 | [Trafilatura](https://github.com/adbar/trafilatura) 🧰 | Extracts the main text and metadata (title, author, date) from news and filing pages | Developers cleaning web pages into text before an agent's research step | 🟢 active | Apache-2.0 | 2026-10-23 | Extraction only: no login or JavaScript rendering; site terms still apply |
@@ -88,6 +91,7 @@ Newest first. Icons: 𝕏 post · 📝 blog · 📘 docs · 📰 news · 🎧 po
 - 🔧 [NAAIM Exposure Index](https://naaim.org/programs/naaim-exposure-index/) — National Association of Active Investment Managers, 2026-10-26. Primary source for a widely quoted positioning gauge. Public data carries a three-month delay, so a current reading quoted in a post usually cannot be checked from here.
 - 📘 [sqzme monitor documentation (DIX and GEX)](https://squeezemetrics.com/monitor/docs) — SqueezeMetrics, 2026-10-26. Primary definitions of dark-pool (DIX) and gamma-exposure (GEX) measures, with the vendor's own stated limitations. Check thresholds attributed to the vendor against this page.
 - 𝕏 [A five-group checklist for judging a selloff: VIX term structure, put/call, dealer gamma, short interest, flows and sentiment](https://x.com/youngstockuser/status/2114326634547311060) — @youngstockuser, 2026-10-25. A practitioner's map of where each risk gauge comes from and how it is read, in Chinese. Useful as a data-source checklist; it is a viewpoint, not a tested bottom signal, and one threshold it attributes to a vendor is not in the vendor's docs.
+- 📝 [Advancing Claude for Financial Services](https://www.anthropic.com/news/advancing-claude-for-financial-services) — Anthropic, 2025-10-27. Market-data connectors (LSEG, Moody's, Aiera, MT Newswires and others) and finance Agent Skills: a concrete example of packaging data access and analyst workflows as skills.
 
 ## Builder notes
 

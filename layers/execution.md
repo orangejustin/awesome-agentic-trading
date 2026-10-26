@@ -11,12 +11,13 @@
 
 **Open gap.** No catalogued paper is about execution for LLM agents. Most agent projects stop at a decision; the order path, limits and reconciliation are left to you.
 
-6 repos · 1 papers · 0 articles and posts. Legend: 🟢 active (last commit within 90 days of the check) · 🟡 slowing (within a year) · ⚪ dormant · ⚡ can place real orders · 📝 paper trading · 🧰 general-purpose tool applied here · 📖 read in full · 🗂️ machine-extracted [method card](../docs/cards/index.md) · 🔖 abstract only.
+10 repos · 1 papers · 6 articles and posts. Legend: 🟢 active (last commit within 90 days of the check) · 🟡 slowing (within a year) · ⚪ dormant · ⚡ can place real orders · 📝 paper trading · 🧰 general-purpose tool applied here · 📖 read in full · 🗂️ machine-extracted [method card](../docs/cards/index.md) · 🔖 abstract only.
 
 ## Contents
 
 - [Repositories](#repositories)
 - [Also relevant from other layers](#also-relevant-from-other-layers)
+- [Archived and deprecated](#archived-and-deprecated)
 - [Papers](#papers)
 - [Articles and posts](#articles-and-posts)
 - [Builder notes](#builder-notes)
@@ -27,9 +28,13 @@
 
 | Project | What it does | Suits | Status | License | Last commit | Key limit |
 |---|---|---|---|---|---|---|
-| [Alpaca MCP Server](https://github.com/alpacahq/alpaca-mcp-server) ⚡ | MCP server letting LLM clients query market data and place Alpaca orders | Developers connecting LLM agents to Alpaca brokerage accounts | 🟢 active | MIT | 2026-10-12 | Gives an agent order authority; run on a paper account first |
+| [CCXT (with ccxt-mcp)](https://github.com/ccxt/ccxt) ⚡ | Unified API for 100+ crypto exchanges, now with an official MCP server built around guardrails | Builders giving an agent crypto market data and gated order access | 🟢 active | MIT | 2026-10-26 | MCP server is early; trading tiers live in a local config that also holds API keys |
+| [AgentKit](https://github.com/coinbase/agentkit) ⚡ | Gives an AI agent a crypto wallet and onchain actions: transfers, swaps, payments | Builders of onchain trading or payment agents | 🟢 active | Apache-2.0 | 2026-10-14 | No built-in approval, spend cap or allowlist: a prompt injection can move funds; add guardrails first |
+| [Alpaca MCP Server](https://github.com/alpacahq/alpaca-mcp-server) ⚡ | MCP server letting LLM clients query market data and place Alpaca orders | Developers connecting LLM agents to Alpaca brokerage accounts | 🟢 active | MIT | 2026-10-23 | Paper by default, but one flag switches to live orders; all toolsets on unless restricted |
 | [Polymarket MCP Server](https://github.com/caiovicentino/polymarket-mcp-server) ⚡ | MCP server exposing 45 tools for Polymarket discovery, trading and monitoring | Developers connecting LLM clients to Polymarket trading | 🟢 active | MIT | 2026-09-20 | Grants an LLM client order authority over real funds; test on paper first |
 | [fintool](https://github.com/second-state/fintool) ⚡ | Rust CLI suite giving agents per-venue trading binaries plus market data | Developers building agents that trade on crypto and prediction venues | 🟡 slowing | MIT | 2026-05-19 | Holds order authority on live venues; start with small size or testnet |
+| [Schwab MCP](https://github.com/jkoelker/schwab-mcp) ⚡ | Community MCP server for Charles Schwab: quotes, option chains, positions and orders with human approval | Schwab clients who want an agent with a human approval step before each order | 🟢 active | MIT | 2026-10-23 | Unofficial; real-account orders once approved; needs a Schwab developer app |
+| [tastytrade MCP](https://github.com/tastytrade/tastytrade-mcp) ⚡ | tastytrade's official MCP server: quotes, option chains, positions and order entry | Options traders connecting an agent to a tastytrade account | 🟢 active | MIT | 2026-09-03 | Defaults to production (real money); start in read-only or sandbox mode |
 
 ### Trading engines (same code in backtest and live)
 
@@ -53,6 +58,13 @@ Listed in their primary layer; they also ship working code for this one.
 - [polymarket-paper-trader](https://github.com/agent-next/polymarket-paper-trader) — Paper-trading gym for agents on live Polymarket order books with MCP server. *Primary: [Harness layer](harness.md).*
 - [Vibe-Trading](https://github.com/HKUDS/Vibe-Trading) — Personal trading-agent stack (CLI, MCP, web): research, backtests with run cards and validation, paper accounts and a reconciling live runner. *Primary: [Application layer](application.md).*
 
+## Archived and deprecated
+
+Kept for reference because they are cited or show a useful design; their authors no longer maintain them.
+
+- [Hummingbot MCP](https://github.com/hummingbot/mcp) — MCP server that let an agent drive Hummingbot: accounts, orders and market-making bots. ⚠️ Archived by its owner on 2026-10-06 with no successor named. Needed a separately running Hummingbot API stack and could place real crypto orders.
+- [QuantConnect MCP Server](https://github.com/QuantConnect/mcp-server) — Official MCP server to manage, backtest and deploy QuantConnect (LEAN) strategies. ⚠️ Deprecated by QuantConnect in its README in favour of the MCP built into its VS Code extension (see QuantConnect's MCP documentation); not archived on GitHub. Could deploy live algorithms.
+
 ## Papers
 
 ### From target weights to orders
@@ -63,7 +75,14 @@ Listed in their primary layer; they also ship working code for this one.
 
 ## Articles and posts
 
-None yet. [Suggest an article or thread](../CONTRIBUTING.md#articles-and-posts).
+Newest first. Icons: 𝕏 post · 📝 blog · 📘 docs · 📰 news · 🎧 podcast · 📄 paper or report. A post is listed for the idea it carries; its own performance claims are not verified here.
+
+- 📝 [Paper Trading and Live Portfolio Monitoring Now Available in ChatGPT with Alpaca](https://alpaca.markets/blog/paper-trading-and-live-portfolio-monitoring-now-available-in-chatgpt-with-alpaca/) — Luke West (Alpaca), 2026-10-12. A clean permission split for a chat surface: simulated orders in paper mode, read-only live accounts, and a live plugin that cannot submit, modify or cancel orders.
+- 📰 [Interactive Brokers enables traders to connect their accounts to any MCP-compatible AI application](https://fxnewsgroup.com/forex-news/retail-forex/interactive-brokers-enables-traders-to-connect-their-accounts-to-any-mcp-compatible-ai-application/) — Maria Nikolova (FX News Group), 2026-07-17. IBKR opens its remote MCP server to any MCP client with OAuth consent and revocation, beyond its official assistant connectors. Trade-press report; IBKR's own page was not reachable at check time.
+- 📝 [Robinhood is Now Open to Agents](https://robinhood.com/newsroom/robinhood-is-now-open-to-agents/) — Robinhood, 2026-05-27. A large US retail broker gives third-party agents live trading through official MCP servers, using a ring-fenced agentic account, trade previews and kill switches: a reference design for order authority.
+- 📝 [Alpaca Launches V2 of MCP Server](https://alpaca.markets/blog/alpaca-launches-mcp-server-v2/) — Satoshi Ido (Alpaca), 2026-04-09. Rebuilding a broker MCP server from OpenAPI specs and adding toolset filtering: lessons for anyone who maintains an execution tool surface.
+- 📝 [Alpaca Launches Official MCP Server Enabling Multi-Market Trading with AI Interfaces](https://alpaca.markets/blog/introducing-official-mcp-server-enabling-multi-market-trading-with-ai-interfaces/) — Satoshi Ido (Alpaca), 2025-11-20. A broker's own walkthrough of letting an LLM client research, place and cancel orders across stocks, options and crypto, including the paper versus live key caveat.
+- 📝 [Introducing the Model Context Protocol](https://www.anthropic.com/news/model-context-protocol) — Anthropic, 2024-11-25. The protocol that most broker and exchange integrations for agents in this list are built on.
 
 ## Builder notes
 

@@ -124,10 +124,10 @@ limit_zh = "竞技场结果取决于较短的实盘窗口"
 [live-trade-bench]
 tagline = "FastAPI platform running and monitoring LLM trading agents live on stocks and Polymarket"
 audience = "Researchers who evaluate LLM trading agents under live conditions"
-limit = "Noncommercial license restricts reuse; check terms before adopting"
+limit = "Simulated portfolios on live data, not real capital; noncommercial license"
 tagline_zh = "在美股与Polymarket上实盘运行并监控LLM交易智能体"
 audience_zh = "实盘评估LLM交易智能体的研究者"
-limit_zh = "采用非商业许可，复用前需核查条款"
+limit_zh = "在实时数据上运行模拟组合，不涉及真实资金；非商业许可"
 
 [stockagent]
 tagline = "Simulated stock exchange where LLM investors trade under external factors"
@@ -180,10 +180,10 @@ limit_zh = "只管取数，时点正确性需自己保证"
 [alpaca-mcp-server]
 tagline = "MCP server letting LLM clients query market data and place Alpaca orders"
 audience = "Developers connecting LLM agents to Alpaca brokerage accounts"
-limit = "Gives an agent order authority; run on a paper account first"
+limit = "Paper by default, but one flag switches to live orders; all toolsets on unless restricted"
 tagline_zh = "让LLM客户端查询行情并通过Alpaca下单的MCP服务器"
 audience_zh = "将LLM智能体接入Alpaca账户的开发者"
-limit_zh = "赋予智能体下单权限，应先在模拟账户上运行"
+limit_zh = "默认模拟盘，但一个开关即切到实盘；未限制时所有工具集均开启"
 
 [tradingagents-cn]
 tagline = "Chinese A-share derivative of TradingAgents with web app, screening and paper trading"
@@ -432,3 +432,99 @@ limit = "Small single-maintainer project; free data may be delayed or synthetic 
 tagline_zh = "可自托管的投研终端，AI 分析师会引用公告并标注每个数字的来源"
 audience_zh = "需要“引用证据”式投研工作台的个人投资者与开发者"
 limit_zh = "单人维护的小项目；免费数据可能延迟或为合成数据（有标注）；仅支持模拟操作"
+
+[edgartools]
+tagline = "SEC EDGAR filings as typed Python objects and DataFrames, with an MCP server for agents"
+audience = "Builders who need primary-source US filings and financials in an agent's research step"
+limit = "US SEC filers only; requests need a contact identity and respect SEC rate limits"
+tagline_zh = "把 SEC EDGAR 公告转成 Python 对象与 DataFrame，并提供面向智能体的 MCP 服务"
+audience_zh = "需要在智能体研究环节使用美国一手公告与财报的开发者"
+limit_zh = "仅覆盖美国 SEC 申报主体；请求须带联系身份并遵守 SEC 限速"
+
+[akshare]
+tagline = "Public Chinese and global market, macro and news data into pandas, with an llms.txt for LLMs"
+audience = "Builders of A-share and Hong Kong agent projects who need free data"
+limit = "Scraped endpoints break when sites change; current data, not point-in-time; no MCP server of its own"
+tagline_zh = "把中国及全球公开行情、宏观与新闻数据取成 pandas，附面向 LLM 的 llms.txt"
+audience_zh = "需要免费数据的 A 股、港股智能体项目开发者"
+limit_zh = "抓取型接口会随网站改版失效；为当前数据而非时点数据；自身无 MCP 服务"
+
+[fnspid]
+tagline = "Time-aligned financial news and prices for 4,775 S&P 500 companies, 1999-2023"
+audience = "Researchers testing text-plus-price models on a fixed historical corpus"
+limit = "Data ends in 2023; license file (CC BY-NC) conflicts with a README note; no longer maintained"
+tagline_zh = "4,775 家标普 500 公司在 1999–2023 年间按时间对齐的新闻与价格数据"
+audience_zh = "在固定历史语料上检验“文本 + 价格”模型的研究者"
+limit_zh = "数据止于 2023 年；许可证文件（CC BY-NC）与 README 说明冲突；已停止维护"
+
+[ccxt]
+tagline = "Unified API for 100+ crypto exchanges, now with an official MCP server built around guardrails"
+audience = "Builders giving an agent crypto market data and gated order access"
+limit = "MCP server is early; trading tiers live in a local config that also holds API keys"
+tagline_zh = "统一接入 100 多家加密货币交易所的 API，现附以安全护栏为设计核心的官方 MCP 服务"
+audience_zh = "需要为智能体提供加密行情与受控下单权限的开发者"
+limit_zh = "MCP 服务尚早期；交易权限等级写在同时保存密钥的本地配置中"
+
+[coinbase-agentkit]
+tagline = "Gives an AI agent a crypto wallet and onchain actions: transfers, swaps, payments"
+audience = "Builders of onchain trading or payment agents"
+limit = "No built-in approval, spend cap or allowlist: a prompt injection can move funds; add guardrails first"
+tagline_zh = "为 AI 智能体提供加密钱包与链上操作：转账、兑换、支付"
+audience_zh = "构建链上交易或支付智能体的开发者"
+limit_zh = "默认无审批、限额与白名单：提示注入可能转走资金，须先加护栏"
+
+[tastytrade-mcp]
+tagline = "tastytrade's official MCP server: quotes, option chains, positions and order entry"
+audience = "Options traders connecting an agent to a tastytrade account"
+limit = "Defaults to production (real money); start in read-only or sandbox mode"
+tagline_zh = "tastytrade 官方 MCP 服务：行情、期权链、持仓与下单"
+audience_zh = "希望把智能体接入 tastytrade 账户的期权交易者"
+limit_zh = "默认连接生产环境（真实资金）；应先用只读或沙箱模式"
+
+[schwab-mcp]
+tagline = "Community MCP server for Charles Schwab: quotes, option chains, positions and orders with human approval"
+audience = "Schwab clients who want an agent with a human approval step before each order"
+limit = "Unofficial; real-account orders once approved; needs a Schwab developer app"
+tagline_zh = "嘉信理财（Schwab）社区版 MCP 服务：行情、期权链、持仓与下单，下单前需人工审批"
+audience_zh = "希望智能体每次下单前都经人工审批的嘉信用户"
+limit_zh = "非官方；审批后即对真实账户下单；需申请 Schwab 开发者应用"
+
+[finrl-meta]
+tagline = "Gym-style market environments and benchmarks for financial reinforcement learning"
+audience = "Researchers who want standard market environments to train or test policies"
+limit = "Built for RL, not LLM agents: bring your own adapter"
+tagline_zh = "面向金融强化学习的 Gym 式市场环境与基准"
+audience_zh = "需要标准市场环境来训练或测试策略的研究者"
+limit_zh = "为强化学习而建，非 LLM 智能体：需自行适配"
+
+[dexter]
+tagline = "Autonomous research agent that plans, calls financial-data tools, checks its own work and iterates"
+audience = "Builders who want a compact reference for a self-checking research loop"
+limit = "Research only; needs a paid data API; no LICENSE file although the README says MIT"
+tagline_zh = "自主投研智能体：拆解问题、调用金融数据工具、自查并迭代"
+audience_zh = "需要“会自查的研究循环”精简参考实现的开发者"
+limit_zh = "仅限研究；依赖付费数据 API；README 称 MIT 但无 LICENSE 文件"
+
+[polymarket-agents]
+tagline = "Polymarket's official framework for LLM agents that trade prediction markets"
+audience = "Readers studying an early first-party design for prediction-market agents"
+limit = "Archived since 2026-05; Python 3.9; wallet private key required"
+tagline_zh = "Polymarket 官方的预测市场交易智能体框架"
+audience_zh = "研究早期官方预测市场智能体设计的读者"
+limit_zh = "已于 2026-05 归档；需钱包私钥"
+
+[hummingbot-mcp]
+tagline = "MCP server that let an agent drive Hummingbot: accounts, orders and market-making bots"
+audience = "Readers studying how a bot framework exposed orders to agents"
+limit = "Archived 2026-10-06; could place real crypto orders"
+tagline_zh = "让智能体驱动 Hummingbot 的 MCP 服务：账户、订单与做市机器人"
+audience_zh = "研究交易机器人框架如何向智能体开放下单的读者"
+limit_zh = "已于 2026-10-06 归档；可下真实加密订单"
+
+[quantconnect-mcp]
+tagline = "Official MCP server to manage, backtest and deploy QuantConnect (LEAN) strategies"
+audience = "Readers using QuantConnect who want to see the tool surface an agent gets"
+limit = "Deprecated for the MCP inside QuantConnect's VS Code extension"
+tagline_zh = "管理、回测并部署 QuantConnect（LEAN）策略的官方 MCP 服务"
+audience_zh = "使用 QuantConnect、想了解智能体可用工具面的读者"
+limit_zh = "已弃用，官方改为 VS Code 扩展内置的 MCP"

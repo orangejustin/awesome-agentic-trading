@@ -197,3 +197,245 @@ date = "2026-10-26"
 layer = "application"
 why = "A Chinese summary of the same advice: pre-market preparation, written rules, a risk check, a journal. A secondhand summary with no source link; the podcast above is the closest primary source."
 checked = "2026-10-26"
+
+# ---------------------------------------------------------------- added from the 2026-10-26 research pass
+
+[[article]]
+title = "Advancing Claude for Financial Services"
+author = "Anthropic"
+url = "https://www.anthropic.com/news/advancing-claude-for-financial-services"
+source = "blog"
+date = "2025-10-27"
+layer = "data"
+why = "Market-data connectors (LSEG, Moody's, Aiera, MT Newswires and others) and finance Agent Skills: a concrete example of packaging data access and analyst workflows as skills."
+checked = "2026-10-26"
+
+[[article]]
+title = "Wrapping LLMs in an evolutionary framework to search trading policies"
+author = "Julian Togelius (@togelius)"
+url = "https://x.com/togelius/status/1995942724374331507"
+source = "x"
+date = "2025-12-02"
+layer = "agent"
+why = "A researcher's case that LLMs write code well but optimize policies poorly, so Nof1 wraps them in evolutionary search to generate trading policies. A design idea for the agent's outer loop."
+checked = "2026-10-26"
+
+[[article]]
+title = "A diagram of my AI hedge fund (multi-agent, multi-LLM)"
+author = "Virat Singh (@virattt)"
+url = "https://x.com/virattt/status/1888629199981715726"
+source = "x"
+date = "2025-02-09"
+layer = "agent"
+why = "The persona agents, analyst agents and portfolio manager graph that became the template for many open-source \"AI hedge fund\" repositories."
+checked = "2026-10-26"
+
+[[article]]
+title = "How Bridgewater's AIA Labs Built PAT: The AI Pocket Analyst Tool"
+author = "Brendan McManus, Michael Ran, Santi Weight (Bridgewater AIA Labs)"
+url = "https://www.bridgewater.com/aia-labs/how-bridgewaters-aia-labs-built-pat-the-ai-pocket-analyst-tool"
+source = "talk"
+date = "2026-05-19"
+layer = "agent"
+why = "A rare engineering talk from a large macro fund on combining codified investment knowledge with agentic LLM workflows and investor feedback loops."
+why_zh = "大型宏观基金少见的工程分享：如何把编码化的投资知识与智能体式 LLM 工作流、投资人反馈循环结合起来。"
+featured = true
+checked = "2026-10-26"
+
+[[article]]
+title = "Introducing the Model Context Protocol"
+author = "Anthropic"
+url = "https://www.anthropic.com/news/model-context-protocol"
+source = "blog"
+date = "2024-11-25"
+layer = "execution"
+why = "The protocol that most broker and exchange integrations for agents in this list are built on."
+checked = "2026-10-26"
+
+[[article]]
+title = "Alpaca Launches Official MCP Server Enabling Multi-Market Trading with AI Interfaces"
+author = "Satoshi Ido (Alpaca)"
+url = "https://alpaca.markets/blog/introducing-official-mcp-server-enabling-multi-market-trading-with-ai-interfaces/"
+source = "blog"
+date = "2025-11-20"
+layer = "execution"
+why = "A broker's own walkthrough of letting an LLM client research, place and cancel orders across stocks, options and crypto, including the paper versus live key caveat."
+checked = "2026-10-26"
+
+[[article]]
+title = "Alpaca Launches V2 of MCP Server"
+author = "Satoshi Ido (Alpaca)"
+url = "https://alpaca.markets/blog/alpaca-launches-mcp-server-v2/"
+source = "blog"
+date = "2026-04-09"
+layer = "execution"
+why = "Rebuilding a broker MCP server from OpenAPI specs and adding toolset filtering: lessons for anyone who maintains an execution tool surface."
+checked = "2026-10-26"
+
+[[article]]
+title = "Paper Trading and Live Portfolio Monitoring Now Available in ChatGPT with Alpaca"
+author = "Luke West (Alpaca)"
+url = "https://alpaca.markets/blog/paper-trading-and-live-portfolio-monitoring-now-available-in-chatgpt-with-alpaca/"
+source = "blog"
+date = "2026-10-12"
+layer = "execution"
+why = "A clean permission split for a chat surface: simulated orders in paper mode, read-only live accounts, and a live plugin that cannot submit, modify or cancel orders."
+checked = "2026-10-26"
+
+[[article]]
+title = "Robinhood is Now Open to Agents"
+author = "Robinhood"
+url = "https://robinhood.com/newsroom/robinhood-is-now-open-to-agents/"
+source = "blog"
+date = "2026-05-27"
+layer = "execution"
+why = "A large US retail broker gives third-party agents live trading through official MCP servers, using a ring-fenced agentic account, trade previews and kill switches: a reference design for order authority."
+why_zh = "美国大型零售券商通过官方 MCP 服务向第三方智能体开放实盘交易，采用隔离的智能体专用账户、交易预览与紧急停止开关，是下单权限设计的参考范例。"
+featured = true
+checked = "2026-10-26"
+
+[[article]]
+title = "Interactive Brokers enables traders to connect their accounts to any MCP-compatible AI application"
+author = "Maria Nikolova (FX News Group)"
+url = "https://fxnewsgroup.com/forex-news/retail-forex/interactive-brokers-enables-traders-to-connect-their-accounts-to-any-mcp-compatible-ai-application/"
+source = "news"
+date = "2026-07-17"
+layer = "execution"
+why = "IBKR opens its remote MCP server to any MCP client with OAuth consent and revocation, beyond its official assistant connectors. Trade-press report; IBKR's own page was not reachable at check time."
+checked = "2026-10-26"
+
+[[article]]
+title = "Alpha Arena is live"
+author = "Jay A. Zhang (@jay_azhang, Nof1)"
+url = "https://x.com/jay_azhang/status/1979312946154033227"
+source = "x"
+date = "2025-10-17"
+layer = "harness"
+why = "Launch of the first widely watched live, real-money benchmark of LLM traders: six models, $10K each, fully autonomous, crypto perpetuals."
+checked = "2026-10-26"
+
+[[article]]
+title = "Season 1 of Alpha Arena has officially ended"
+author = "Jay A. Zhang (@jay_azhang, Nof1)"
+url = "https://x.com/jay_azhang/status/1985481491078328621"
+source = "x"
+date = "2025-11-03"
+layer = "harness"
+why = "Results post that names the design limits shaping the outcome: numeric time-series-only context, a narrow asset universe, a limited action space, persistent model \"personalities\". Two weeks of one run cannot separate skill from luck."
+why_zh = "赛季结果帖，点明影响结果的设计限制：只有数值时间序列上下文、标的范围窄、动作空间有限、模型“性格”固定。两周、单次运行无法区分能力与运气。"
+featured = true
+checked = "2026-10-26"
+
+[[article]]
+title = "Season 1.5 of Alpha Arena is live with $320K deployed"
+author = "Jay A. Zhang (@jay_azhang, Nof1)"
+url = "https://x.com/jay_azhang/status/1991256354657366251"
+source = "x"
+date = "2025-11-19"
+layer = "harness"
+why = "The second season moved to US equities with several competition modes, framed as testing judgement rather than knowledge."
+checked = "2026-10-26"
+
+[[article]]
+title = "Your LLM's Alpha Might Be Mere Memorization"
+author = "Greg Kapoustin (Hedge Fund Alpha)"
+url = "https://hedgefundalpha.com/education/your-llms-alpha-might-be-mere-memorization/"
+source = "blog"
+date = "2026-04-21"
+layer = "harness"
+why = "Practitioner essay: LLM backtest edges often vanish after the training cutoff, so point-in-time integrity has to cover the model as well as the data."
+why_zh = "从业者文章：LLM 的回测优势常在训练截止日之后消失，因此“时点一致性”不仅要覆盖数据，也要覆盖模型本身。"
+featured = true
+checked = "2026-10-26"
+
+[[article]]
+title = "2026 FINRA Annual Regulatory Oversight Report: GenAI and AI agents"
+author = "FINRA"
+url = "https://www.finra.org/rules-guidance/guidance/reports/2026-finra-annual-regulatory-oversight-report/gen-ai"
+source = "docs"
+date = "2025-12-09"
+layer = "harness"
+why = "A US regulator's list of AI-agent risks broker-dealers must supervise: autonomy, scope and authority, auditability, data sensitivity, reward misalignment. A checklist for any harness that lets an agent act."
+checked = "2026-10-26"
+
+[[article]]
+title = "Claude for Financial Services"
+author = "Anthropic"
+url = "https://www.anthropic.com/news/claude-for-financial-services"
+source = "blog"
+date = "2025-07-15"
+layer = "application"
+why = "A frontier lab's packaged finance offering, built on MCP connectors to data vendors (S&P Global, FactSet, Morningstar, PitchBook and others)."
+checked = "2026-10-26"
+
+[[article]]
+title = "Agents for financial services"
+author = "Anthropic"
+url = "https://www.anthropic.com/news/finance-agents"
+source = "blog"
+date = "2026-05-05"
+layer = "application"
+why = "Ten finance agent templates (earnings reviewer, model builder, market researcher and others) shipped as plugins and cookbooks, with per-tool permissions and audit logs."
+checked = "2026-10-26"
+
+[[article]]
+title = "AI Hedge Fund 2.0 is now live"
+author = "Virat Singh (@virattt)"
+url = "https://x.com/virattt/status/2075666117293658374"
+source = "x"
+date = "2026-07-10"
+layer = "application"
+why = "The redesign of a popular repository: investor agents do the research, quant models make the trades, and every call is explained. A practitioner moving away from letting the LLM size or execute trades."
+why_zh = "热门仓库的重新设计：投资者智能体负责研究，量化模型负责交易，每次决策都给出解释。从业者主动不再让 LLM 决定仓位或直接执行交易。"
+featured = true
+checked = "2026-10-26"
+
+[[article]]
+title = "RD-Agent: An open-source solution for smarter R&D"
+author = "Microsoft Research Asia"
+url = "https://www.microsoft.com/en-us/research/articles/rd-agent-an-open-source-solution-for-smarter-rd/"
+source = "blog"
+date = "2025-01-02"
+layer = "application"
+why = "The lab's write-up of the research and development dual-agent loop behind RD-Agent, including the automated factor-mining scenario that led to R&D-Agent-Quant."
+checked = "2026-10-26"
+
+[[article]]
+title = "Man Group deploys agentic AI for quant signal discovery"
+author = "Hedgeweek (based on Bloomberg reporting)"
+url = "https://hedgeweek.com/news/man-group-deploys-agentic-ai-for-quant-signal-discovery"
+source = "news"
+date = "2025-07-11"
+layer = "application"
+why = "A large systematic manager reports an agent (AlphaGPT) that mines data, writes signal code and backtests, with signals approved for live trading only after human checkpoints. Secondary source."
+checked = "2026-10-26"
+
+[[article]]
+title = "Man Group's Forterre: \"Tremendously excited\" by agentic AI"
+author = "Will Acworth and Mark Hayes (FIA MarketVoice)"
+url = "https://www.fia.org/marketvoice/articles/man-groups-forterre-tremendously-excited-agentic-ai"
+source = "news"
+date = "2026-06-26"
+layer = "application"
+why = "On-record view from a large manager's CFO and COO on research agents working alongside human quants, with people in the loop."
+checked = "2026-10-26"
+
+[[article]]
+title = "Hype vs. Reality: David Siegel on Large Language Models"
+author = "Two Sigma"
+url = "https://www.twosigma.com/articles/hype-vs-reality-david-siegel-on-large-language-models/"
+source = "blog"
+date = "2023-06-13"
+layer = "application"
+why = "An early, sober take from a quant-fund co-founder: LLMs are interesting but not yet reliable for business-critical use without substantial human oversight."
+checked = "2026-10-26"
+
+[[article]]
+title = "Public brings AI trading agents to prediction markets with Kalshi tie-up"
+author = "Camila Grigera Naon (Fortune)"
+url = "https://fortune.com/2026/09/24/public-ai-trading-agents-prediction-markets-kalshi-tie-up/"
+source = "news"
+date = "2026-09-24"
+layer = "application"
+why = "An \"agentic brokerage\" pattern: the model compiles a user's intent into fixed, user-approved rules, and the agent cannot trade outside them."
+checked = "2026-10-26"

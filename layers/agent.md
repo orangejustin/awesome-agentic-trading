@@ -11,7 +11,7 @@
 
 **Open gap.** Architecture comparisons rarely control for spend: a design that makes eleven model calls per decision is usually compared with rule-based baselines, not with one call to the same model at the same budget.
 
-8 repos · 22 papers · 0 articles and posts. Legend: 🟢 active (last commit within 90 days of the check) · 🟡 slowing (within a year) · ⚪ dormant · ⚡ can place real orders · 📝 paper trading · 🧰 general-purpose tool applied here · 📖 read in full · 🗂️ machine-extracted [method card](../docs/cards/index.md) · 🔖 abstract only.
+8 repos · 22 papers · 3 articles and posts. Legend: 🟢 active (last commit within 90 days of the check) · 🟡 slowing (within a year) · ⚪ dormant · ⚡ can place real orders · 📝 paper trading · 🧰 general-purpose tool applied here · 📖 read in full · 🗂️ machine-extracted [method card](../docs/cards/index.md) · 🔖 abstract only.
 
 ## Contents
 
@@ -113,7 +113,11 @@ Repositories that exist and are often cited but do not yet hold the system's cod
 
 ## Articles and posts
 
-None yet. [Suggest an article or thread](../CONTRIBUTING.md#articles-and-posts).
+Newest first. Icons: 𝕏 post · 📝 blog · 📘 docs · 📰 news · 🎧 podcast · 📄 paper or report. A post is listed for the idea it carries; its own performance claims are not verified here.
+
+- 🎤 [How Bridgewater's AIA Labs Built PAT: The AI Pocket Analyst Tool](https://www.bridgewater.com/aia-labs/how-bridgewaters-aia-labs-built-pat-the-ai-pocket-analyst-tool) — Brendan McManus, Michael Ran, Santi Weight (Bridgewater AIA Labs), 2026-05-19. A rare engineering talk from a large macro fund on combining codified investment knowledge with agentic LLM workflows and investor feedback loops.
+- 𝕏 [Wrapping LLMs in an evolutionary framework to search trading policies](https://x.com/togelius/status/1995942724374331507) — Julian Togelius (@togelius), 2025-12-02. A researcher's case that LLMs write code well but optimize policies poorly, so Nof1 wraps them in evolutionary search to generate trading policies. A design idea for the agent's outer loop.
+- 𝕏 [A diagram of my AI hedge fund (multi-agent, multi-LLM)](https://x.com/virattt/status/1888629199981715726) — Virat Singh (@virattt), 2025-02-09. The persona agents, analyst agents and portfolio manager graph that became the template for many open-source "AI hedge fund" repositories.
 
 ## Builder notes
 

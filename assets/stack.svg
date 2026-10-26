@@ -10,13 +10,13 @@
 <text x="58" y="117" font-size="13" font-weight="700" fill="#FFFFFF" text-anchor="middle" >5</text>
 <text x="78" y="117" font-size="14.5" font-weight="700" fill="#0F172A" text-anchor="start" >Application: what you build with it</text>
 <text x="50" y="142" font-size="12.5" font-weight="400" fill="#475569" text-anchor="start" >Research desks and reports · AI funds · alpha factories · prediction-market bots</text>
-<text x="908" y="117" font-size="12.5" font-weight="600" fill="#B45309" text-anchor="end" >11 repos · 8 papers</text>
+<text x="908" y="117" font-size="12.5" font-weight="600" fill="#B45309" text-anchor="end" >12 repos · 8 papers</text>
 <path d="M480 194 L480 170" stroke="#475569" stroke-width="1.8" fill="none" marker-end="url(#a)"/>
 <rect x="36" y="196" width="888" height="304" rx="14" fill="#0478571F" stroke="#047857" stroke-width="1.5" stroke-dasharray="7 5"/>
 <circle cx="58" cy="220" r="12" fill="#047857"/>
 <text x="58" y="225" font-size="13" font-weight="700" fill="#FFFFFF" text-anchor="middle" >4</text>
 <text x="78" y="225" font-size="14.5" font-weight="700" fill="#0F172A" text-anchor="start" >Harness: how you run, test and trust it</text>
-<text x="908" y="225" font-size="12.5" font-weight="600" fill="#047857" text-anchor="end" >17 repos · 17 papers</text>
+<text x="908" y="225" font-size="12.5" font-weight="600" fill="#047857" text-anchor="end" >18 repos · 18 papers</text>
 <text x="50" y="482" font-size="12.5" font-weight="400" fill="#475569" text-anchor="start" >Backtest environments · simulators · benchmarks and live arenas · bias control · agent loops, evals, traces and state</text>
 <rect x="60" y="252" width="264" height="168" rx="12" fill="#FFFFFF" stroke="#0E7490" stroke-width="1.5"/>
 <rect x="60" y="252" width="264" height="168" rx="12" fill="#0E74901F"/>
@@ -27,7 +27,7 @@
 <text x="76" y="330" font-size="12.5" font-weight="400" fill="#0F172A" text-anchor="start" >· Market, filing and news data</text>
 <text x="76" y="350" font-size="12.5" font-weight="400" fill="#0F172A" text-anchor="start" >· MCP data servers, datasets</text>
 <text x="76" y="370" font-size="12.5" font-weight="400" fill="#0F172A" text-anchor="start" >· Text into signals</text>
-<text x="76" y="406" font-size="12" font-weight="600" fill="#0E7490" text-anchor="start" >10 repos · 5 papers</text>
+<text x="76" y="406" font-size="12" font-weight="600" fill="#0E7490" text-anchor="start" >13 repos · 5 papers</text>
 <rect x="348" y="252" width="264" height="168" rx="12" fill="#FFFFFF" stroke="#4F46E5" stroke-width="1.5"/>
 <rect x="348" y="252" width="264" height="168" rx="12" fill="#4F46E51F"/>
 <circle cx="370" cy="276" r="12" fill="#4F46E5"/>
@@ -47,7 +47,7 @@
 <text x="652" y="330" font-size="12.5" font-weight="400" fill="#0F172A" text-anchor="start" >· Broker and venue tools</text>
 <text x="652" y="350" font-size="12.5" font-weight="400" fill="#0F172A" text-anchor="start" >· Engines: backtest = live</text>
 <text x="652" y="370" font-size="12.5" font-weight="400" fill="#0F172A" text-anchor="start" >· Weights into orders</text>
-<text x="652" y="406" font-size="12" font-weight="600" fill="#B91C1C" text-anchor="start" >6 repos · 1 paper</text>
+<text x="652" y="406" font-size="12" font-weight="600" fill="#B91C1C" text-anchor="start" >10 repos · 1 paper</text>
 <path d="M326 336 L344 336" stroke="#475569" stroke-width="1.8" fill="none" marker-end="url(#a)"/>
 <path d="M614 336 L632 336" stroke="#475569" stroke-width="1.8" fill="none" marker-end="url(#a)"/>
 <path d="M768 422 L768 446 L192 446 L192 426" stroke="#047857" stroke-width="1.6" stroke-dasharray="6 5" fill="none" marker-end="url(#a)"/>

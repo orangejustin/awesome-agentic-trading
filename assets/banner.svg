@@ -6,7 +6,7 @@
 <text x="64" y="118" font-size="58" font-weight="800" fill="#FFFFFF" text-anchor="start" >Awesome Agentic Trading</text>
 <text x="64" y="166" font-size="22" font-weight="400" fill="#B6C4D8" text-anchor="start" >Open-source repos, papers and writing on LLM agents that research, decide and trade.</text>
 <text x="64" y="204" font-size="17" font-weight="600" fill="#7DD3FC" text-anchor="start" >Data  ·  Agent  ·  Execution  ·  Harness  ·  Application</text>
-<text x="64" y="252" font-size="15" font-weight="400" fill="#8EA2BD" text-anchor="start" >52 repos  ·  58 papers  ·  17 articles  ·  5 deep dives  ·  every entry dated, checked and given its limit</text>
+<text x="64" y="252" font-size="15" font-weight="400" fill="#8EA2BD" text-anchor="start" >61 repos  ·  59 papers  ·  40 articles  ·  5 deep dives  ·  every entry dated, checked and given its limit</text>
 <polyline points="1010,236 1068,214 1126,222 1184,184 1242,144" fill="none" stroke="#3B4F72" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
 <circle cx="1010" cy="236" r="12" fill="#0E7490" stroke="#0B1220" stroke-width="3"/>
 <circle cx="1068" cy="214" r="12" fill="#4F46E5" stroke="#0B1220" stroke-width="3"/>

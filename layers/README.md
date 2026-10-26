@@ -9,11 +9,11 @@ Every agentic trading system, however it is marketed, is some arrangement of fiv
 
 | Layer | The question it answers | Scope | Repos | Papers | Articles |
 |---|---|---|---|---|---|
-| [1. Data layer](data.md) | What did the agent know, and when did it know it? | Market, fundamental, filing and news data; connectors that hand data to an agent (MCP servers); datasets; and the step that turns text into signals. | 10 | 5 | 5 |
-| [2. Agent layer](agent.md) | Given the signals, what is the call, and how is it argued? | Finance LLMs and reasoning models, single agents with memory and reflection, multi-agent decision architectures, and learned (reinforcement-learning) policies. | 8 | 22 | 0 |
-| [3. Execution layer](execution.md) | How does a decision become a fill, safely? | Broker and venue tools that give an agent order authority, trading engines that run the same code in backtest and live, and pipelines that turn target weights into orders. | 6 | 1 | 0 |
-| [4. Harness layer](harness.md) | Is the result real, and would we notice if it stopped being real? | Research and backtest environments, simulators and paper-trading gyms, benchmarks and live arenas, robustness and bias control, and the agent harness itself: loops, evals, traces and durable state. | 17 | 17 | 10 |
-| [5. Application layer](application.md) | What end-to-end job does it do for a user? | Systems aimed at a use case that you can run as they are: research desks and reports, simulated funds and portfolio managers, alpha factories, and prediction-market bots. | 11 | 8 | 2 |
+| [1. Data layer](data.md) | What did the agent know, and when did it know it? | Market, fundamental, filing and news data; connectors that hand data to an agent (MCP servers); datasets; and the step that turns text into signals. | 13 | 5 | 6 |
+| [2. Agent layer](agent.md) | Given the signals, what is the call, and how is it argued? | Finance LLMs and reasoning models, single agents with memory and reflection, multi-agent decision architectures, and learned (reinforcement-learning) policies. | 8 | 22 | 3 |
+| [3. Execution layer](execution.md) | How does a decision become a fill, safely? | Broker and venue tools that give an agent order authority, trading engines that run the same code in backtest and live, and pipelines that turn target weights into orders. | 10 | 1 | 6 |
+| [4. Harness layer](harness.md) | Is the result real, and would we notice if it stopped being real? | Research and backtest environments, simulators and paper-trading gyms, benchmarks and live arenas, robustness and bias control, and the agent harness itself: loops, evals, traces and durable state. | 18 | 18 | 15 |
+| [5. Application layer](application.md) | What end-to-end job does it do for a user? | Systems aimed at a use case that you can run as they are: research desks and reports, simulated funds and portfolio managers, alpha factories, and prediction-market bots. | 12 | 8 | 10 |
 
 ## How entries are placed
 

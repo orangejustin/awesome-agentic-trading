@@ -206,6 +206,10 @@ def check(papers: list[dict], projects: list[dict], layers: list[dict] | None = 
         for k in ("last_commit", "stars_asof", "checked"):
             if p.get(k) and not DATE.match(p[k]):
                 errs.append(f"project {i}: bad date in {k}")
+        if p.get("archived") and p.get("watch"):
+            errs.append(f"project {i}: an entry is either archived or on the watchlist, not both")
+        if p.get("archived") and not p.get("caveat"):
+            errs.append(f"project {i}: archived entries need a caveat saying since when and what replaces them")
         if p.get("stars") and not p.get("stars_asof"):
             errs.append(f"project {i}: stars need stars_asof")
         if p.get("read") == "teardown":
@@ -253,8 +257,8 @@ def in_layers(projects: list[dict]) -> list[dict]:
 
 
 def listed(projects: list[dict]) -> list[dict]:
-    """Projects shown in the directories: in a layer and with released code."""
-    return [p for p in in_layers(projects) if not p.get("watch")]
+    """Projects shown in the directories: in a layer, with released code, not archived or deprecated."""
+    return [p for p in in_layers(projects) if not p.get("watch") and not p.get("archived")]
 
 
 def gh(p: dict) -> str:
@@ -428,10 +432,12 @@ def render_layer_page(c: dict, lay: dict) -> str:
         L.append("- [Also relevant from other layers](#also-relevant-from-other-layers)")
     if any(p.get("watch") for p in rows_all):
         L.append("- [Watchlist: announced, code not released](#watchlist-announced-code-not-released)")
+    if any(p.get("archived") for p in rows_all):
+        L.append("- [Archived and deprecated](#archived-and-deprecated)")
     L += ["- [Papers](#papers)", "- [Articles and posts](#articles-and-posts)", "- [Builder notes](#builder-notes)", "",
           "## Repositories", ""]
     for cat in lay["category"]:
-        rows = [p for p in rows_all if p["category"] == cat["id"] and not p.get("watch")]
+        rows = [p for p in rows_all if p["category"] == cat["id"] and not p.get("watch") and not p.get("archived")]
         if not rows:
             continue
         rows.sort(key=lambda p: (-stars_num(p), p["name"].lower()))
@@ -468,6 +474,13 @@ def render_layer_page(c: dict, lay: dict) -> str:
               "They move into the directory when code is released.", ""]
         for p in watch:
             L.append(f"- [{p['name']}]({gh(p)}) — {end(p['brief']['tagline'])} ⚠️ {end(p['brief']['limit'])}")
+        L.append("")
+    archived = [p for p in rows_all if p.get("archived")]
+    if archived:
+        L += ["## Archived and deprecated", "",
+              "Kept for reference because they are cited or show a useful design; their authors no longer maintain them.", ""]
+        for p in archived:
+            L.append(f"- [{p['name']}]({gh(p)}) — {end(p['brief']['tagline'])} ⚠️ {end(p['caveat'])}")
         L.append("")
     L += ["## Papers", ""]
     if not papers:
@@ -592,6 +605,8 @@ def render_projects(projects: list[dict], layers: list[dict] | None = None) -> s
                 link += f" ([teardown](../teardowns/{p['id']}.md))"
             if p.get("watch"):
                 link += " (watchlist: code not released)"
+            if p.get("archived"):
+                link += " (archived or deprecated)"
             summ = esc(p["summary"])
             if p.get("caveat"):
                 summ += f" **Note:** {esc(p['caveat'])}"

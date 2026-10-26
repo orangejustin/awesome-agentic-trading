@@ -11,11 +11,12 @@
 
 **Open gap.** Loss analysis is missing: no catalogued application reconciles a real account (cash flows, fees, FX) and separates market, sector, single-name and leverage exposure from execution and process mistakes.
 
-11 repos · 8 papers · 2 articles and posts. Legend: 🟢 active (last commit within 90 days of the check) · 🟡 slowing (within a year) · ⚪ dormant · ⚡ can place real orders · 📝 paper trading · 🧰 general-purpose tool applied here · 📖 read in full · 🗂️ machine-extracted [method card](../docs/cards/index.md) · 🔖 abstract only.
+12 repos · 8 papers · 10 articles and posts. Legend: 🟢 active (last commit within 90 days of the check) · 🟡 slowing (within a year) · ⚪ dormant · ⚡ can place real orders · 📝 paper trading · 🧰 general-purpose tool applied here · 📖 read in full · 🗂️ machine-extracted [method card](../docs/cards/index.md) · 🔖 abstract only.
 
 ## Contents
 
 - [Repositories](#repositories)
+- [Archived and deprecated](#archived-and-deprecated)
 - [Papers](#papers)
 - [Articles and posts](#articles-and-posts)
 - [Builder notes](#builder-notes)
@@ -26,6 +27,7 @@
 
 | Project | What it does | Suits | Status | License | Last commit | Key limit |
 |---|---|---|---|---|---|---|
+| [Dexter](https://github.com/virattt/dexter) | Autonomous research agent that plans, calls financial-data tools, checks its own work and iterates | Builders who want a compact reference for a self-checking research loop | 🟢 active | no license file | 2026-09-23 | Research only; needs a paid data API; no LICENSE file although the README says MIT |
 | [FinRobot](https://github.com/AI4Finance-Foundation/FinRobot) · [🔬 deep dive](../docs/teardowns/finrobot.md) | Equity-research agent platform where code computes figures and LLMs write narrative | Developers building LLM research tools with auditable numbers | 🟢 active | Apache-2.0 | 2026-09-28 | Research workstation, not a trading system; no trading-performance claim to test |
 | [OpenTerminalUI](https://github.com/Hitheshkaranth/OpenTerminalUI) 📝 | Self-hosted research terminal with an AI analyst that cites filings and labels where each number came from | Individual investors and builders who want an evidence-citing research desk | 🟢 active | MIT | 2026-10-25 | Small single-maintainer project; free data may be delayed or synthetic (labelled); paper actions only |
 
@@ -53,6 +55,12 @@
 | [Oracle3](https://github.com/YichengYang-Ethan/oracle3) ⚡ | Prediction-market agent toolkit for Kalshi and Polymarket with paper and live execution | Developers building agents that trade Kalshi and Polymarket contracts | 🟢 active | Apache-2.0 | 2026-10-11 | Claims only; no backtest or record disclosed |
 | [Kalshi Trading Bot CLI](https://github.com/OctagonAI/kalshi-trading-bot-cli) | CLI that estimates Kalshi market probabilities and sizes trades with fractional Kelly | Developers building LLM-driven prediction market trading tools | 🟢 active | MIT | 2026-10-01 | No performance record published; estimates may rely on the vendor's research API |
 
+## Archived and deprecated
+
+Kept for reference because they are cited or show a useful design; their authors no longer maintain them.
+
+- [Polymarket Agents](https://github.com/Polymarket/agents) — Polymarket's official framework for LLM agents that trade prediction markets. ⚠️ Archived by Polymarket on 2026-05-11, with no commits since 2024-11; no successor named. Needs a Polygon wallet key; Polymarket's terms bar US persons from trading through it.
+
 ## Papers
 
 ### Research desks and reports
@@ -78,7 +86,15 @@
 Newest first. Icons: 𝕏 post · 📝 blog · 📘 docs · 📰 news · 🎧 podcast · 📄 paper or report. A post is listed for the idea it carries; its own performance claims are not verified here.
 
 - 𝕏 [Ten rules for part-time traders, after Linda Raschke](https://x.com/OtherSideBJ/status/2114565357503709621) — @OtherSideBJ, 2026-10-26. A Chinese summary of the same advice: pre-market preparation, written rules, a risk check, a journal. A secondhand summary with no source link; the podcast above is the closest primary source.
+- 📰 [Public brings AI trading agents to prediction markets with Kalshi tie-up](https://fortune.com/2026/09/24/public-ai-trading-agents-prediction-markets-kalshi-tie-up/) — Camila Grigera Naon (Fortune), 2026-09-24. An "agentic brokerage" pattern: the model compiles a user's intent into fixed, user-approved rules, and the agent cannot trade outside them.
+- 𝕏 [AI Hedge Fund 2.0 is now live](https://x.com/virattt/status/2075666117293658374) — Virat Singh (@virattt), 2026-07-10. The redesign of a popular repository: investor agents do the research, quant models make the trades, and every call is explained. A practitioner moving away from letting the LLM size or execute trades.
+- 📰 [Man Group's Forterre: "Tremendously excited" by agentic AI](https://www.fia.org/marketvoice/articles/man-groups-forterre-tremendously-excited-agentic-ai) — Will Acworth and Mark Hayes (FIA MarketVoice), 2026-06-26. On-record view from a large manager's CFO and COO on research agents working alongside human quants, with people in the loop.
+- 📝 [Agents for financial services](https://www.anthropic.com/news/finance-agents) — Anthropic, 2026-05-05. Ten finance agent templates (earnings reviewer, model builder, market researcher and others) shipped as plugins and cookbooks, with per-tool permissions and audit logs.
 - 🎧 [The 10 Lessons Part-Time Traders Need to Learn to Be Successful (with Linda Raschke)](https://podcasts.apple.com/np/podcast/the-10-lessons-part-time-traders-need-to-learn-to-be/id1586336923?i=1000763578389) — The TraderLion Podcast, 2026-04-25. Process habits from a veteran trader: a written plan, volatility-based sizing, a journal, grading yourself on process. Each maps onto a step an agent workflow can enforce and log.
+- 📝 [Claude for Financial Services](https://www.anthropic.com/news/claude-for-financial-services) — Anthropic, 2025-07-15. A frontier lab's packaged finance offering, built on MCP connectors to data vendors (S&P Global, FactSet, Morningstar, PitchBook and others).
+- 📰 [Man Group deploys agentic AI for quant signal discovery](https://hedgeweek.com/news/man-group-deploys-agentic-ai-for-quant-signal-discovery) — Hedgeweek (based on Bloomberg reporting), 2025-07-11. A large systematic manager reports an agent (AlphaGPT) that mines data, writes signal code and backtests, with signals approved for live trading only after human checkpoints. Secondary source.
+- 📝 [RD-Agent: An open-source solution for smarter R&D](https://www.microsoft.com/en-us/research/articles/rd-agent-an-open-source-solution-for-smarter-rd/) — Microsoft Research Asia, 2025-01-02. The lab's write-up of the research and development dual-agent loop behind RD-Agent, including the automated factor-mining scenario that led to R&D-Agent-Quant.
+- 📝 [Hype vs. Reality: David Siegel on Large Language Models](https://www.twosigma.com/articles/hype-vs-reality-david-siegel-on-large-language-models/) — Two Sigma, 2023-06-13. An early, sober take from a quant-fund co-founder: LLMs are interesting but not yet reliable for business-critical use without substantial human oversight.
 
 ## Builder notes
 

@@ -11,7 +11,7 @@
 
 > A curated, checked map of **open-source agentic trading**: repositories, papers, articles and posts, organized by the five layers of an agentic trading stack: **Data → Agent → Execution → Harness → Application**.
 
-<!-- gen:headline -->52 open-source repos · 58 papers · 17 articles and posts · 5 deep dives<!-- /gen:headline -->. Every repository entry says what it does, its license, whether it is maintained and its most important limit; every paper says how much of it we actually read.
+<!-- gen:headline -->61 open-source repos · 59 papers · 40 articles and posts · 5 deep dives<!-- /gen:headline -->. Every repository entry says what it does, its license, whether it is maintained and its most important limit; every paper says how much of it we actually read.
 
 > [!WARNING]
 > Research and education only. Nothing here is financial advice. Several listed tools can place real orders (marked ⚡); start them on a paper account. Inclusion does not mean a project is profitable or production-ready.
@@ -43,11 +43,11 @@ Data, Agent and Execution are the pipeline: see, think, act. The Harness wraps a
 <!-- gen:stack -->
 | Layer | The question it answers | Repos | Papers | Articles |
 |---|---|---|---|---|
-| [1. Data layer](layers/data.md) | What did the agent know, and when did it know it? | 10 | 5 | 5 |
-| [2. Agent layer](layers/agent.md) | Given the signals, what is the call, and how is it argued? | 8 | 22 | 0 |
-| [3. Execution layer](layers/execution.md) | How does a decision become a fill, safely? | 6 | 1 | 0 |
-| [4. Harness layer](layers/harness.md) | Is the result real, and would we notice if it stopped being real? | 17 | 17 | 10 |
-| [5. Application layer](layers/application.md) | What end-to-end job does it do for a user? | 11 | 8 | 2 |
+| [1. Data layer](layers/data.md) | What did the agent know, and when did it know it? | 13 | 5 | 6 |
+| [2. Agent layer](layers/agent.md) | Given the signals, what is the call, and how is it argued? | 8 | 22 | 3 |
+| [3. Execution layer](layers/execution.md) | How does a decision become a fill, safely? | 10 | 1 | 6 |
+| [4. Harness layer](layers/harness.md) | Is the result real, and would we notice if it stopped being real? | 18 | 18 | 15 |
+| [5. Application layer](layers/application.md) | What end-to-end job does it do for a user? | 12 | 8 | 10 |
 <!-- /gen:stack -->
 
 ## Start here
@@ -72,24 +72,41 @@ Key moments, each with the reason it matters. The full catalog is below, by laye
 <!-- gen:milestones -->
 | When | Milestone | Why it matters |
 |---|---|---|
+| 2020-11 | [FinRL: deep reinforcement learning library for trading](https://arxiv.org/abs/2011.09607) | Made trading environments and RL agents reusable open source; its successors (FinRL-Meta, FinRL-X) carry the line from simulation to a broker. |
+| 2023-03 | [BloombergGPT](https://arxiv.org/abs/2303.17564) | A large language model trained for finance from a major data firm; open finance LLMs (FinGPT, FinMA) followed within months. |
+| 2023-04 | ["Can ChatGPT Forecast Stock Price Movements?"](https://arxiv.org/abs/2304.07619) | First widely cited evidence that LLM-read headlines predict next-day returns on news after the model's cutoff, which put look-ahead bias at the centre of how later work is judged. |
+| 2023-11 | [FinMem: a trading agent with layered memory](https://arxiv.org/abs/2311.13743) | Moved from "LLM as a sentiment scorer" to "LLM as an agent" with memory, reflection and a risk persona, the design vocabulary later systems reuse. |
+| 2024-11 | [Model Context Protocol released](https://www.anthropic.com/news/model-context-protocol) | A standard way to hand an agent tools; brokers, exchanges and data vendors later used it to expose market data and orders to any compatible agent. |
+| 2024-11 | [AI Hedge Fund repository starts](https://github.com/virattt/ai-hedge-fund/commit/0c595638f5e3e2c6de0bfe6ca06773d7384cc3ea) | Its investor-persona agents became a widely copied open-source template for multi-agent investing; its 2026 redesign moved trading decisions back to quant models. |
+| 2024-12 | [TradingAgents: a multi-agent trading firm](https://arxiv.org/abs/2412.20138) | The role-based firm (analysts, bull/bear debate, trader, risk team) became a common reference architecture; the only paper linked by all four popular lists we compared. |
+| 2025-05 | ["Time Travel is Cheating": live benchmarking on post-cutoff data](https://arxiv.org/abs/2505.11065) | Made evaluation on data published after each model's cutoff the standard answer to look-ahead, and reported that strong models lose money once it is applied. |
+| 2025-05 | [R&D-Agent-Quant: agents that run the factor research loop](https://arxiv.org/abs/2505.15155) | Showed agents proposing, coding and evaluating factors and models end to end, shifting attention from agents that trade to agents that research. |
+| 2025-07 | [Claude for Financial Services](https://www.anthropic.com/news/claude-for-financial-services) | A frontier lab packaged finance workflows on MCP connectors to major data vendors, making licensed data a tool call away for research agents. |
+| 2025-10 | [Alpha Arena: LLMs trade real money in public](https://x.com/jay_azhang/status/1979312946154033227) | Six models with $10K each traded crypto perpetuals autonomously in public; Qwen 3 MAX finished first on 2025-11-03. It made live records mainstream, and showed how short one run is. |
+| 2025-12 | [FINRA addresses AI agents in its oversight report](https://www.finra.org/rules-guidance/guidance/reports/2026-finra-annual-regulatory-oversight-report/gen-ai) | A US regulator defined AI agents and listed the risks firms must supervise (autonomy, authority, auditability), turning harness design into a compliance question. |
+| 2026-05 | [Robinhood opens live trading to agents](https://robinhood.com/newsroom/robinhood-is-now-open-to-agents/) | A large retail broker gave third-party agents official order access through MCP, with a ring-fenced account, previews and kill switches: order authority became a product feature. |
+| 2026-07 | [Interactive Brokers opens its MCP server to any client](https://fxnewsgroup.com/forex-news/retail-forex/interactive-brokers-enables-traders-to-connect-their-accounts-to-any-mcp-compatible-ai-application/) | A global broker made its remote MCP server available to any compatible agent, with OAuth consent and revocation. Trade-press source. |
 <!-- /gen:milestones -->
 
-**Legend:** 🟢 active (last commit within 90 days of our check) · 🟡 slowing (within a year) · ⚪ dormant · ⚡ can place real orders · 📝 paper trading · 🧰 general-purpose tool used for this job · 🔬 our deep dive. Within a category, repositories are ordered by GitHub stars at our check, a popularity signal, not a quality score.
+**Legend:** 🟢 active (last commit within 90 days of our check) · 🟡 slowing (within a year) · ⚪ dormant · ⚡ can place real orders · 📝 paper trading · 🧰 general-purpose tool used for this job · 🔬 our deep dive. Within a category, repositories are ordered by GitHub stars where we recorded them, a popularity signal, not a quality score.
 
 <!-- gen:directory -->
 ## 1. Data layer: what the agent sees
 
 > What did the agent know, and when did it know it?
 
-**10 repos · 5 papers · 5 articles** · [Full layer page →](layers/data.md)
+**13 repos · 5 papers · 6 articles** · [Full layer page →](layers/data.md)
 
 ### Market and fundamental data
 
 - [OpenBB](https://github.com/OpenBB-finance/OpenBB) — Open data-integration platform serving market and economic data to Python and agents. ⚠️ Data access only; point-in-time correctness is up to you. 🟢 `Apache-2.0`
+- [AKShare](https://github.com/akfamily/akshare) — Public Chinese and global market, macro and news data into pandas, with an llms.txt for LLMs. ⚠️ Scraped endpoints break when sites change; current data, not point-in-time; no MCP server of its own. 🟢 `MIT` 🧰
 - [TradingView-API](https://github.com/Mathieu2301/TradingView-API) — Unofficial TypeScript client for TradingView candles, indicators, screener and replay, with a look-ahead-guarded backtest module. ⚠️ Unofficial, undocumented endpoints with Terms-of-Use risk; no root LICENSE file (package.json says ISC) 🟢 `no license file`
 
 ### Filings, news and text
 
+- [edgartools](https://github.com/dgunning/edgartools) — SEC EDGAR filings as typed Python objects and DataFrames, with an MCP server for agents. ⚠️ US SEC filers only; requests need a contact identity and respect SEC rate limits. 🟢 `MIT`
+- [FNSPID](https://github.com/Zdong104/FNSPID_Financial_News_Dataset) — Time-aligned financial news and prices for 4,775 S&P 500 companies, 1999-2023. ⚠️ Data ends in 2023; license file (CC BY-NC) conflicts with a README note; no longer maintained. ⚪ `CC-BY-NC-4.0`
 - [Agent-Reach](https://github.com/Panniantong/Agent-Reach) — CLI that gives a coding agent read access to X, Reddit, Xiaohongshu, Xueqiu, video subtitles and more. ⚠️ Reuses browser login cookies (use a secondary account); platform-terms risk; health check is not proof of correct data. 🟢 `MIT` 🧰
 - [OpenCLI](https://github.com/jackwener/OpenCLI) — Browser-automation CLI that turns websites into JSON commands for agents, through your logged-in Chrome. ⚠️ Runs with your logged-in account's privileges; adapters break when sites change; whitelist read-only commands. 🟢 `Apache-2.0` 🧰
 - [Trafilatura](https://github.com/adbar/trafilatura) — Extracts the main text and metadata (title, author, date) from news and filing pages. ⚠️ Extraction only: no login or JavaScript rendering; site terms still apply. 🟢 `Apache-2.0` 🧰
@@ -115,7 +132,7 @@ Key moments, each with the reason it matters. The full catalog is below, by laye
 
 > Given the signals, what is the call, and how is it argued?
 
-**8 repos · 22 papers · 0 articles** · [Full layer page →](layers/agent.md)
+**8 repos · 22 papers · 3 articles** · [Full layer page →](layers/agent.md)
 
 ### Finance LLMs and reasoning models
 
@@ -142,18 +159,23 @@ Key moments, each with the reason it matters. The full catalog is below, by laye
 - [FinMem: A Performance-Enhanced LLM Trading Agent with Layered Memory and Character Design](https://arxiv.org/abs/2311.13743) — Yangyang Yu et al., 2023. Single trading agent with three decaying memory tiers (news / 10-Q / 10-K) and risk-persona prompts. Tests five tickers over roughly six months.
 - [FinCon: A Synthesized LLM Multi-Agent System with Conceptual Verbal Reinforcement for Enhanced Financial Decision Making](https://arxiv.org/abs/2407.06567) — Yangyang Yu et al., 2024. Manager-analyst hierarchy plus a risk-control component whose episodic self-critique is fed back as 'conceptual verbal reinforcement'.
 - [TradingAgents: Multi-Agents LLM Financial Trading Framework](https://arxiv.org/abs/2412.20138) — Yijia Xiao et al., 2024. Role-based LLM 'trading firm': analysts, bull/bear debate, trader, risk debate, portfolio manager. Reports a Jan-Mar 2024 backtest on a few US tech stocks.
+- 🎤 [How Bridgewater's AIA Labs Built PAT: The AI Pocket Analyst Tool](https://www.bridgewater.com/aia-labs/how-bridgewaters-aia-labs-built-pat-the-ai-pocket-analyst-tool) — Brendan McManus, Michael Ran, Santi Weight (Bridgewater AIA Labs), 2026-05. A rare engineering talk from a large macro fund on combining codified investment knowledge with agentic LLM workflows and investor feedback loops.
 
 ## 3. Execution layer: how it acts
 
 > How does a decision become a fill, safely?
 
-**6 repos · 1 papers · 0 articles** · [Full layer page →](layers/execution.md)
+**10 repos · 1 papers · 6 articles** · [Full layer page →](layers/execution.md)
 
 ### Broker and venue tools for agents
 
-- [Alpaca MCP Server](https://github.com/alpacahq/alpaca-mcp-server) — MCP server letting LLM clients query market data and place Alpaca orders. ⚠️ Gives an agent order authority; run on a paper account first. 🟢 `MIT` ⚡
+- [CCXT (with ccxt-mcp)](https://github.com/ccxt/ccxt) — Unified API for 100+ crypto exchanges, now with an official MCP server built around guardrails. ⚠️ MCP server is early; trading tiers live in a local config that also holds API keys. 🟢 `MIT` ⚡
+- [AgentKit](https://github.com/coinbase/agentkit) — Gives an AI agent a crypto wallet and onchain actions: transfers, swaps, payments. ⚠️ No built-in approval, spend cap or allowlist: a prompt injection can move funds; add guardrails first. 🟢 `Apache-2.0` ⚡
+- [Alpaca MCP Server](https://github.com/alpacahq/alpaca-mcp-server) — MCP server letting LLM clients query market data and place Alpaca orders. ⚠️ Paper by default, but one flag switches to live orders; all toolsets on unless restricted. 🟢 `MIT` ⚡
 - [Polymarket MCP Server](https://github.com/caiovicentino/polymarket-mcp-server) — MCP server exposing 45 tools for Polymarket discovery, trading and monitoring. ⚠️ Grants an LLM client order authority over real funds; test on paper first. 🟢 `MIT` ⚡
 - [fintool](https://github.com/second-state/fintool) — Rust CLI suite giving agents per-venue trading binaries plus market data. ⚠️ Holds order authority on live venues; start with small size or testnet. 🟡 `MIT` ⚡
+- [Schwab MCP](https://github.com/jkoelker/schwab-mcp) — Community MCP server for Charles Schwab: quotes, option chains, positions and orders with human approval. ⚠️ Unofficial; real-account orders once approved; needs a Schwab developer app. 🟢 `MIT` ⚡
+- [tastytrade MCP](https://github.com/tastytrade/tastytrade-mcp) — tastytrade's official MCP server: quotes, option chains, positions and order entry. ⚠️ Defaults to production (real money); start in read-only or sandbox mode. 🟢 `MIT` ⚡
 
 ### Trading engines (same code in backtest and live)
 
@@ -167,12 +189,13 @@ Key moments, each with the reason it matters. The full catalog is below, by laye
 ### Essential reading
 
 - [FinRL-X: An AI-Native Modular Infrastructure for Quantitative Trading](https://arxiv.org/abs/2603.21330) — Hongyang Yang et al., 2026. FinRL-X: weight-centric pipeline (selection, allocation, timing, risk overlay) shared by backtest and broker execution; 2018-2025 backtest plus 4.5-month paper trading.
+- 📝 [Robinhood is Now Open to Agents](https://robinhood.com/newsroom/robinhood-is-now-open-to-agents/) — Robinhood, 2026-05. A large US retail broker gives third-party agents live trading through official MCP servers, using a ring-fenced agentic account, trade previews and kill switches: a reference design for order authority.
 
 ## 4. Harness layer: how you run, test and trust it
 
 > Is the result real, and would we notice if it stopped being real?
 
-**17 repos · 17 papers · 10 articles** · [Full layer page →](layers/harness.md)
+**18 repos · 18 papers · 15 articles** · [Full layer page →](layers/harness.md)
 
 ### Research and backtest environments
 
@@ -181,16 +204,17 @@ Key moments, each with the reason it matters. The full catalog is below, by laye
 
 ### Simulators and paper-trading gyms
 
+- [FinRL-Meta](https://github.com/AI4Finance-Foundation/FinRL-Meta) — Gym-style market environments and benchmarks for financial reinforcement learning. ⚠️ Built for RL, not LLM agents: bring your own adapter. 🟢 `MIT`
 - [StockAgent](https://github.com/MingyuJ666/Stockagent) — Simulated stock exchange where LLM investors trade under external factors. ⚠️ No LICENSE file in the repo, so reuse terms are unclear. 🟡 `no license file`
 - [polymarket-paper-trader](https://github.com/agent-next/polymarket-paper-trader) — Paper-trading gym for agents on live Polymarket order books with MCP server. ⚠️ Prediction markets only, not equities; fill-fidelity claim is the author's own. 🟢 `MIT` 📝
 
 ### Benchmarks, arenas and forward records
 
-- [AI-Trader](https://github.com/HKUDS/AI-Trader) — Agent-native trading platform and live leaderboard where outside AI agents trade. ⚠️ No LICENSE file at repo root; MIT stated only in README badge. 🟡 `MIT (README badge)`
+- [AI-Trader](https://github.com/HKUDS/AI-Trader) — Agent-native trading platform and live leaderboard where outside AI agents trade. ⚠️ No LICENSE file at repo root; MIT stated only in README badge. 🟡 `MIT (README badge)` 📝
 - [LLM Trading Lab](https://github.com/LuckyOne7777/LLM-Trading-Lab) — Logged six-month live experiment of ChatGPT managing a real-money micro-cap portfolio. ⚠️ Single six-month run with author-run evaluation; too short to prove skill. 🟡 `no license file`
 - [PIXIU / FinBen](https://github.com/The-FinAI/PIXIU) — Open financial LLM FinMA with instruction data and FinBen evaluation suite. ⚠️ High scores on these tasks say little about trading performance. 🟢 `MIT`
 - [DeepFund](https://github.com/HKUSTDial/DeepFund) — Live arena benchmarking LLM fund managers on post-cutoff market data. ⚠️ Arena results depend on a short live window. 🟡 `MIT`
-- [Live Trade Bench](https://github.com/ulab-uiuc/live-trade-bench) — FastAPI platform running and monitoring LLM trading agents live on stocks and Polymarket. ⚠️ Noncommercial license restricts reuse; check terms before adopting. 🟡 `PolyForm Noncommercial 1.0.0`
+- [Live Trade Bench](https://github.com/ulab-uiuc/live-trade-bench) — FastAPI platform running and monitoring LLM trading agents live on stocks and Polymarket. ⚠️ Simulated portfolios on live data, not real capital; noncommercial license. 🟡 `PolyForm Noncommercial 1.0.0`
 
 ### Robustness and bias control
 
@@ -211,17 +235,20 @@ Key moments, each with the reason it matters. The full catalog is below, by laye
 - [Can LLM-based Financial Investing Strategies Outperform the Market in Long Run?](https://arxiv.org/abs/2505.07078) — Weixian Waylon Li et al., 2025. FINSABER: bias-aware backtester (survivorship, look-ahead, data snooping) run over two decades and 100+ symbols; earlier LLM advantages shrink.
 - [Time Travel is Cheating: Going Live with DeepFund for Real-Time Fund Investment Benchmarking](https://arxiv.org/abs/2505.11065) — Changlun Li et al., 2025. DeepFund: live fund arena using only data published after each model's cutoff; reports that even strong models (DeepSeek-V3, Claude-3.7-Sonnet) lose money in its live run.
 - [Detecting Lookahead Bias in LLM Forecasts](https://arxiv.org/abs/2512.23847) — Zhenyu Gao et al., 2025. Lookahead Propensity (LAP): date-only recall query that estimates how much an LLM has memorized an outcome; used to test forecast contamination.
+- 𝕏 [Season 1 of Alpha Arena has officially ended](https://x.com/jay_azhang/status/1985481491078328621) — Jay A. Zhang (@jay_azhang, Nof1), 2025-11. Results post that names the design limits shaping the outcome: numeric time-series-only context, a narrow asset universe, a limited action space, persistent model "personalities". Two weeks of one run cannot separate skill from luck.
 - 📝 [Effective harnesses for long-running agents](https://www.anthropic.com/research/effective-harnesses-for-long-running-agents) — Justin Young (Anthropic), 2025-11. An initializer agent sets up the scaffolding; a worker agent does one unit per session, tests end to end, and leaves git history and progress notes for the next session. The same pattern fits multi-day research and strategy builds.
+- 📝 [Your LLM's Alpha Might Be Mere Memorization](https://hedgefundalpha.com/education/your-llms-alpha-might-be-mere-memorization/) — Greg Kapoustin (Hedge Fund Alpha), 2026-04. Practitioner essay: LLM backtest edges often vanish after the training cutoff, so point-in-time integrity has to cover the model as well as the data.
 - 📝 [Building agents: When to fold subagents into your main agent loop](https://claude.com/resources/articles/building-agents-when-to-fold-subagents-into-your-main-agent-loop) — Diane Sarkis (Anthropic), 2026-10. Many agents do better as one loop with skills loaded on demand than as a coordinator with many subagents. Keep subagents for context isolation, parallel independent work or conflicting instructions, and migrate under evals. Directly relevant to analyst/risk/trader agent teams.
 
 ## 5. Application layer: what you build with it
 
 > What end-to-end job does it do for a user?
 
-**11 repos · 8 papers · 2 articles** · [Full layer page →](layers/application.md)
+**12 repos · 8 papers · 10 articles** · [Full layer page →](layers/application.md)
 
 ### Research desks and reports
 
+- [Dexter](https://github.com/virattt/dexter) — Autonomous research agent that plans, calls financial-data tools, checks its own work and iterates. ⚠️ Research only; needs a paid data API; no LICENSE file although the README says MIT. 🟢 `no license file`
 - [FinRobot](https://github.com/AI4Finance-Foundation/FinRobot) — Equity-research agent platform where code computes figures and LLMs write narrative. ⚠️ Research workstation, not a trading system; no trading-performance claim to test. 🟢 `Apache-2.0` [🔬 deep dive](docs/teardowns/finrobot.md)
 - [OpenTerminalUI](https://github.com/Hitheshkaranth/OpenTerminalUI) — Self-hosted research terminal with an AI analyst that cites filings and labels where each number came from. ⚠️ Small single-maintainer project; free data may be delayed or synthetic (labelled); paper actions only. 🟢 `MIT` 📝
 
@@ -247,6 +274,7 @@ Key moments, each with the reason it matters. The full catalog is below, by laye
 
 - [FinRobot: An Open-Source AI Agent Platform for Financial Applications using Large Language Models](https://arxiv.org/abs/2405.14767) — Hongyang Yang et al., 2024. FinRobot whitepaper: layered platform for financial LLM agents (Smart Scheduler, financial chain-of-thought). Section 5 shows two applications with sample outputs, no return metrics.
 - [R&D-Agent-Quant: A Multi-Agent Framework for Data-Centric Factors and Model Joint Optimization](https://arxiv.org/abs/2505.15155) — Yuante Li et al., 2025. RD-Agent(Q): multi-agent loop that proposes, implements and evaluates factors and models for quant research.
+- 𝕏 [AI Hedge Fund 2.0 is now live](https://x.com/virattt/status/2075666117293658374) — Virat Singh (@virattt), 2026-07. The redesign of a popular repository: investor agents do the research, quant models make the trades, and every call is explained. A practitioner moving away from letting the LLM size or execute trades.
 <!-- /gen:directory -->
 
 ## Surveys

@@ -5,13 +5,13 @@ Every LLM or agentic trading system, however it is marketed, is some arrangement
 <!-- gen:layer-counts -->
 | Layer | Repos (primary) | Repos (any layer) | Papers | Articles |
 |---|---|---|---|---|
-| [1. Data layer](../layers/data.md) | 10 | 14 | 5 | 5 |
-| [2. Agent layer](../layers/agent.md) | 8 | 11 | 22 | 0 |
-| [3. Execution layer](../layers/execution.md) | 6 | 10 | 1 | 0 |
-| [4. Harness layer](../layers/harness.md) | 17 | 24 | 17 | 10 |
-| [5. Application layer](../layers/application.md) | 11 | 11 | 8 | 2 |
+| [1. Data layer](../layers/data.md) | 13 | 17 | 5 | 6 |
+| [2. Agent layer](../layers/agent.md) | 8 | 11 | 22 | 3 |
+| [3. Execution layer](../layers/execution.md) | 10 | 14 | 1 | 6 |
+| [4. Harness layer](../layers/harness.md) | 18 | 25 | 18 | 15 |
+| [5. Application layer](../layers/application.md) | 12 | 12 | 8 | 10 |
 | Surveys (span the stack) | | | 5 | |
-| **Total** | **52** | | **58** | **17** |
+| **Total** | **61** | | **59** | **40** |
 <!-- /gen:layer-counts -->
 
 ![The five layers](../assets/stack.svg)
