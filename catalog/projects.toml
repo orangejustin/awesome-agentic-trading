@@ -233,6 +233,10 @@ evidence = "L1"
 repro = "unverified"
 read = "readme"
 summary = "Quant research platform: data layer, ML model zoo, backtest and workflow tooling; the substrate many alpha-mining papers build on."
+caveat = "A general quant platform: the LLM agent layer is up to you. The official dataset is disabled for now; the README points to a community-built dataset or the Yahoo collector instead."
+sources = [
+  { what = "limit", url = "https://github.com/microsoft/qlib/blob/54355232463878d2eebb91fe0ee5fa7fa1f5976c/README.md?plain=1#L233" },
+]
 
 [[project]]
 id = "rd-agent"
@@ -527,8 +531,10 @@ evidence = "n/a"
 repro = "unverified"
 read = "readme"
 summary = "High-performance event-driven engine meant to run the same strategy code in backtest and live."
+caveat = "A general engine, not LLM-specific: agent integration is up to you. The docs cover v2, whose wheels are release candidates installed with --pre; the authors do not recommend them yet for live trading with real capital, and v1 receives only security backports."
 sources = [
   { what = "orders", url = "https://github.com/nautechsystems/nautilus_trader/blob/04f766b4d434d67fc8672026fefa25135bdc01be/README.md?plain=1#L61" },
+  { what = "limit", url = "https://github.com/nautechsystems/nautilus_trader/blob/04f766b4d434d67fc8672026fefa25135bdc01be/README.md?plain=1#L269-L280" },
 ]
 
 [[project]]
@@ -783,8 +789,11 @@ checked = "2026-10-26"
 evidence = "n/a"
 repro = "unverified"
 read = "readme"
-summary = "MCP server that gives an LLM client Yahoo Finance prices, financial statements, holders, option chains, news and analyst ratings without a paid key."
-caveat = "A wrapper over yfinance, which serves Yahoo's current data rather than a point-in-time archive: fine for exploration, wrong for a backtest."
+summary = "MCP server that gives an LLM client Yahoo Finance prices, financial statements, holders, option chains, news and analyst ratings; the documented setup passes no API key."
+caveat = "A wrapper over yfinance, which serves Yahoo's current data rather than a point-in-time archive: fine for exploration, wrong for a backtest. Requires Python 3.14.6 or newer."
+sources = [
+  { what = "limit", url = "https://github.com/Alex2Yang97/yahoo-finance-mcp/blob/b9c176547d3797b2196adeba0210ae67861ac589/README.md?plain=1#L76-L78" },
+]
 
 [[project]]
 id = "qwen-dianjin"
@@ -1252,7 +1261,10 @@ evidence = "n/a"
 repro = "n/a"
 read = "readme"
 summary = "CLI and library for declarative evaluation and red-teaming of prompts, agents and RAG pipelines across model providers, with CI integration."
-caveat = "Generic: trading-specific graders, market fixtures and P&L-aware metrics are yours to write."
+caveat = "Generic: trading-specific graders, market fixtures and P&L-aware metrics are yours to write. Promptfoo is now part of OpenAI and says it remains open source and MIT licensed."
+sources = [
+  { what = "notes", url = "https://github.com/promptfoo/promptfoo/blob/e48ed85e08ff8a1ca74fa7d0e41daf47cf155efb/README.md?plain=1#L23" },
+]
 
 [[project]]
 id = "langfuse"
@@ -1273,9 +1285,10 @@ evidence = "n/a"
 repro = "n/a"
 read = "readme"
 summary = "Open-source LLM observability and evals platform: tracing, prompt management, datasets and evaluations; self-hostable."
-caveat = "Mixed licensing: the ee/ directories use their own license. Self-hosting needs several services."
+caveat = "Mixed licensing: the ee/ directories use their own license. Self-hosting needs several services. Part of ClickHouse since January 2026."
 sources = [
   { what = "license", url = "https://github.com/langfuse/langfuse/blob/165b621fdf8fc7d34232df8d5a74a5ab36d3fc83/LICENSE#L1-L7" },
+  { what = "notes", url = "https://github.com/langfuse/langfuse/blob/165b621fdf8fc7d34232df8d5a74a5ab36d3fc83/README.md?plain=1#L69" },
 ]
 
 [[project]]

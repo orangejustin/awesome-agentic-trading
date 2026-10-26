@@ -3,7 +3,7 @@
 
 [← Home](../README.md) · [Component matrix](../docs/components.md)
 
-Every agentic trading system, however it is marketed, is some arrangement of five layers. A map by layer shows which jobs a project does, which it leaves to you, and which nobody does well yet. Each layer page lists the open-source repositories, papers, articles and posts for that layer, with the failure modes to watch and notes for builders.
+Every agentic trading system, however it is marketed, is some arrangement of five layers. A map by layer shows which jobs a project does, which it leaves to you, and which nobody does well yet. Each layer page lists the repositories (with their license status), papers, articles and posts for that layer, with the failure modes to watch and notes for builders.
 
 ![The five layers](../assets/stack.svg)
 

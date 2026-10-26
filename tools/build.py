@@ -38,7 +38,8 @@ ORDERS = {"live", "paper", "none"}
 LICENSE_STATUS = {"open", "mixed", "restricted", "declared", "none"}
 MAINTENANCE = {"archived", "deprecated", "unmaintained"}
 OFF_DIRECTORY = {"archived", "deprecated"}  # shown in the layer page's archive section, not in the directory
-SOURCE_WHAT = {"orders", "license", "maintenance", "limit", "data", "runtime", "install", "io", "keys"}
+SOURCE_WHAT = {"orders", "license", "maintenance", "limit", "data", "runtime", "install", "io", "keys",
+               "language", "interface", "integrations", "notes"}
 PROJECT_KINDS = {
     "framework", "platform", "infrastructure", "library", "model", "benchmark", "simulator",
     "backtester", "data", "execution", "experiment", "list", "tool",
@@ -176,11 +177,17 @@ def check_components(c: dict) -> list[str]:
         if m.get("verification") in ("install", "run") and not (m.get("verify_cmd") and m.get("verify_date")):
             errs.append(f"component {i}: install/run verification needs verify_cmd and verify_date")
         for s in m.get("sources", []):
-            if s.get("what") not in SOURCE_WHAT or not pinned(p, s.get("url", "")):
-                errs.append(f"component {i}: source {s.get('url')!r} must be pinned to the project's last_sha")
+            # its own repository, or another catalogued one (e.g. a dependency's license), at the checked commit
+            if s.get("what") not in SOURCE_WHAT or not any(pinned(q, s.get("url", "")) for q in c["projects"]):
+                errs.append(f"component {i}: source {s.get('url')!r} must be pinned to a catalogued project's last_sha")
+        if m.get("orders") is not None and m["orders"] != p.get("orders"):
+            errs.append(f"component {i}: orders {m['orders']!r} disagrees with the catalog's {p.get('orders')!r}")
         for g in m.get("integrations", []):
-            if g.get("with") not in by_id:
+            other = by_id.get(g.get("with"))
+            if not other:
                 errs.append(f"component {i}: integration with unknown project {g.get('with')!r}")
+            elif g.get("url") and not (pinned(p, g["url"]) or pinned(other, g["url"])):
+                errs.append(f"component {i}: integration link {g['url']!r} must be pinned to either project's last_sha")
     for r in c["recipes"]:
         i = r.get("id", "?")
         for k in ("title", "status", "steps", "why", "gaps"):
@@ -191,8 +198,11 @@ def check_components(c: dict) -> list[str]:
         if r.get("status") == "upstream" and not r.get("links"):
             errs.append(f"recipe {i}: an upstream-documented pairing needs links to that documentation")
         for st in r.get("steps", []):
-            if st.get("component") not in by_id:
+            p = by_id.get(st.get("component"))
+            if not p:
                 errs.append(f"recipe {i}: step uses unknown project {st.get('component')!r}")
+            elif st.get("layer") not in [p.get("layer"), *p.get("also", [])]:
+                errs.append(f"recipe {i}: {p['id']} does not work in the {st.get('layer')!r} layer")
     return errs
 
 
@@ -407,6 +417,12 @@ def status_badge(p: dict) -> str:
         url = source(p, "maintenance")
         return f"[{MAINT_ICON[mt]}]({url})" if url else MAINT_ICON[mt]
     return ACTIVITY[activity(p)]
+
+
+def slug(heading: str) -> str:
+    """GitHub's anchor for a heading: lower case, punctuation dropped, spaces to hyphens."""
+    h = re.sub(r"[^\w\- ]", "", heading.strip().lower())
+    return h.replace(" ", "-")
 
 
 def authors(p: dict) -> str:
@@ -700,7 +716,7 @@ def render_stack_page(c: dict) -> str:
         "",
         "Every agentic trading system, however it is marketed, is some arrangement of five layers. "
         "A map by layer shows which jobs a project does, which it leaves to you, and which nobody does well yet. "
-        "Each layer page lists the open-source repositories, papers, articles and posts for that layer, "
+        "Each layer page lists the repositories (with their license status), papers, articles and posts for that layer, "
         "with the failure modes to watch and notes for builders.",
         "",
         "![The five layers](../assets/stack.svg)",
@@ -752,17 +768,17 @@ def render_components(c: dict) -> str:
     for m in comps:
         p = by_id[m["id"]]
         lay = next(l for l in c["layers"] if l["id"] == p["layer"])
-        L.append(f"| [{esc(p['name'])}](#{m['id']}) | [{lay['title'].split()[0]}](../layers/{lay['id']}.md) | "
+        L.append(f"| [{esc(p['name'])}](#{slug(p['name'])}) | [{lay['title'].split()[0]}](../layers/{lay['id']}.md) | "
                  f"{esc(m['language'])} | {', '.join(m['interface'])} | {orders_cell(p)} | "
                  f"{license_cell(p)} | {esc(m['keys_cost'])} | {VERIFY_LABEL[m['verification']].split()[0]} |")
     L += ["", "## Details", ""]
     for m in comps:
         p = by_id[m["id"]]
         L += [f"### {p['name']}", "",
-              f"<a id=\"{m['id']}\"></a>[Repository]({gh(p)}) · [checked {p['checked']} at `{p['last_sha'][:7]}`]({tree_url(p)})", "",
+              f"[Repository]({gh(p)}) · [checked {p['checked']} at `{p['last_sha'][:7]}`]({tree_url(p)})", "",
               "| | |", "|---|---|",
               f"| Runtime | {esc(m['runtime'])} |",
-              f"| Install | `{esc(m['install'])}` |",
+              f"| Install | {esc(m['install'])} |",
               f"| Interface | {', '.join(m['interface'])} |",
               f"| In → out | {esc(m['inputs'])} → {esc(m['outputs'])} |",
               f"| Keys and cost | {esc(m['keys_cost'])} |",
@@ -777,7 +793,11 @@ def render_components(c: dict) -> str:
             ver += f": `{esc(m['verify_cmd'])}` on {m.get('verify_env', '')} ({m['verify_date']}): {esc(m.get('verify_result', ''))}"
         L.append(f"| Verified | {ver} |")
         if m.get("sources"):
-            L.append("| Sources | " + " · ".join(f"[{s['what']}]({s['url']})" for s in m["sources"]) + " |")
+            groups: dict[str, list[str]] = {}
+            for s_ in m["sources"]:
+                groups.setdefault(s_["what"], []).append(s_["url"])
+            cell = " · ".join(f"{w} " + " ".join(f"[{n}]({u})" for n, u in enumerate(us, 1)) for w, us in groups.items())
+            L.append(f"| Sources | {cell} |")
         if m.get("notes"):
             L.append(f"| Notes | {esc(m['notes'])} |")
         L.append("")

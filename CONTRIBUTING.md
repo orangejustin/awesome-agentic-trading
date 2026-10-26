@@ -10,6 +10,7 @@ Thank you for helping. Three things help most: a project, paper or post that bel
 - [Repositories](#repositories)
 - [Papers](#papers)
 - [Articles and posts](#articles-and-posts)
+- [Components and recipes](#components-and-recipes)
 - [Corrections and removals](#corrections-and-removals)
 - [Opening a pull request](#opening-a-pull-request)
 - [Maintenance](#maintenance)
@@ -127,6 +128,12 @@ checked = "2026-10-26"
 ```
 
 Not accepted: private workspace links (Slack, Notion, Feishu and the like), posts behind a login wall, posts whose substance is an unverifiable profit claim or a referral link, and copies of paywalled text. A post that only points to a repository is better submitted as the repository.
+
+## Components and recipes
+
+The [component matrix](docs/components.md) is generated from [`catalog/components.toml`](catalog/components.toml). A component must already be a catalogued repository; every field (runtime, install, interface, inputs and outputs, keys and cost) needs a source pinned to that repository's `last_sha`, and its `orders` must match the catalog. `verification` says how far you went: `docs` (read at the pinned commit), `install` (installed and imported; record `verify_cmd`, `verify_env`, `verify_date` and `verify_result`) or `run` (a documented example ran). Only list an integration that an upstream file documents.
+
+A recipe combines components across layers. Mark it `design` (your proposal, not run end to end), `upstream` (the pairing is documented by its authors; link the lines) or `run` (you ran it end to end; describe how). Say what a builder still has to add.
 
 ## Corrections and removals
 
