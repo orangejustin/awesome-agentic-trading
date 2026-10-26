@@ -16,7 +16,7 @@ python -m tools.extract run --max-usd 20 --yes     # paid: model claude-opus-5-5
 python -m tools.extract verify             # re-check every stored quote against its source
 python -m tools.extract render             # write docs/cards/*.md
 python -m tools.extract promote            # catalog: read = abstract -> card where the card passed
-python tools/atlas.py tables               # regenerate the catalog tables
+python tools/build.py tables               # regenerate the catalog tables
 ```
 
 `run` refuses to spend without `--yes` and stops starting new papers once `--max-usd` is reached. Rerunning skips papers that already have a card (`--redo` forces one).

@@ -24,9 +24,9 @@ import urllib.request
 import xml.etree.ElementTree as ET
 
 try:
-    from atlas import load
+    from build import load
 except ImportError:  # imported as tools.verify
-    from tools.atlas import load
+    from tools.build import load
 
 ATOM = {"a": "http://www.w3.org/2005/Atom"}
 API = "http://export.arxiv.org/api/query"
@@ -41,7 +41,7 @@ def fetch_arxiv(ids: list[str]) -> dict[str, dict]:
     for i in range(0, len(ids), 40):
         chunk = ids[i:i + 40]
         url = f"{API}?{urllib.parse.urlencode({'id_list': ','.join(chunk), 'max_results': len(chunk)})}"
-        req = urllib.request.Request(url, headers={"User-Agent": "agentic-trading-atlas-verify/1.0"})
+        req = urllib.request.Request(url, headers={"User-Agent": "awesome-agentic-trading-verify/1.0"})
         with urllib.request.urlopen(req, timeout=60) as r:
             root = ET.fromstring(r.read())
         for e in root.findall("a:entry", ATOM):

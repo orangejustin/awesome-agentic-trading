@@ -1,6 +1,6 @@
 # First principles
 
-Before comparing systems, strip the problem down to what has to be true for any trading system, with or without an LLM, to make money. Everything else in this atlas (the [map](01-domain-map.md), the [grades](02-evidence-ladder.md), the [evaluation design](04-fair-evaluation.md)) follows from the seven statements below.
+Before comparing systems, strip the problem down to what has to be true for any trading system, with or without an LLM, to make money. Everything else in this list (the [map](01-domain-map.md), the [grades](02-evidence-ladder.md), the [evaluation design](04-fair-evaluation.md)) follows from the seven statements below.
 
 ## 1. A trade is a bet that a price will differ from what it is priced at
 
@@ -70,4 +70,4 @@ Four of the five teardowns contain some form of the same mechanism, in different
 6. **Put limits in code.**
 7. **Report with an error bar**, and say how many things you tried.
 
-The rest of the atlas is the evidence for why each step is there, and the tools to do it: [`tools/evalkit`](../tools/evalkit/) turns the rating, budget, statistics and report-card steps into tested code.
+The rest of this list is the evidence for why each step is there, and the tools to do it: [`tools/evalkit`](../tools/evalkit/) turns the rating, budget, statistics and report-card steps into tested code.

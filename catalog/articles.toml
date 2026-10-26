@@ -1,0 +1,199 @@
+# Articles, docs, posts (including X) and podcasts. Source of truth for the "Articles and posts" sections.
+# An entry is listed for the idea a builder can use; performance claims made in it are not verified here.
+#   source   = x | blog | docs | news | newsletter | podcast | talk | paper | tool-page
+#   date     = publication date (YYYY-MM-DD, or YYYY-MM when only the month is shown); "" is not allowed, use the check date
+#              with date_note when the page shows none
+#   checked  = the date someone opened the link and confirmed title, author and date
+#   featured = true: also shown on the home page as essential reading (needs why_zh)
+# Not accepted: private workspace links (Slack, Notion, Feishu), paywalled copies, posts whose main content is
+# an unverifiable P&L claim or a referral link.
+
+# ---------------------------------------------------------------- 1. Data
+
+[[article]]
+title = "TradingView MCP Server: setup and tool reference"
+author = "TradingView"
+url = "https://www.tradingview.com/mcp/docs"
+source = "docs"
+date = "2026-10-26"
+date_note = "undated page; date is the check date"
+layer = "data"
+why = "Official hosted MCP server (beta, 35 tools: watchlists, OHLCV, screener, technicals, news, fundamentals, alerts). It has no order tools, and its write tools only change watchlists and alerts."
+checked = "2026-10-26"
+
+[[article]]
+title = "TradingView MCP Server FAQ"
+author = "TradingView"
+url = "https://www.tradingview.com/support/solutions/43000795700-mcp-server-faq/"
+source = "docs"
+date = "2026-10-26"
+date_note = "undated page; date is the check date"
+layer = "data"
+why = "Read before wiring it into an agent: data is delayed even with a real-time subscription, Pine and indicator alerts are not in the beta, and unattended or server-hosted use is out of scope. It suits interactive research, not an unattended data feed."
+why_zh = "接入前必读：即使订阅实时行情，MCP 数据仍有延迟；测试版不支持 Pine 与指标告警；无人值守或服务器托管不在使用范围内。适合交互式研究，不适合作为无人值守的数据源。"
+featured = true
+checked = "2026-10-26"
+
+[[article]]
+title = "NAAIM Exposure Index"
+author = "National Association of Active Investment Managers"
+url = "https://naaim.org/programs/naaim-exposure-index/"
+source = "tool-page"
+date = "2026-10-26"
+date_note = "undated page; date is the check date"
+layer = "data"
+why = "Primary source for a widely quoted positioning gauge. Public data carries a three-month delay, so a current reading quoted in a post usually cannot be checked from here."
+checked = "2026-10-26"
+
+[[article]]
+title = "sqzme monitor documentation (DIX and GEX)"
+author = "SqueezeMetrics"
+url = "https://squeezemetrics.com/monitor/docs"
+source = "docs"
+date = "2026-10-26"
+date_note = "undated page; date is the check date"
+layer = "data"
+why = "Primary definitions of dark-pool (DIX) and gamma-exposure (GEX) measures, with the vendor's own stated limitations. Check thresholds attributed to the vendor against this page."
+checked = "2026-10-26"
+
+[[article]]
+title = "A five-group checklist for judging a selloff: VIX term structure, put/call, dealer gamma, short interest, flows and sentiment"
+author = "@youngstockuser"
+url = "https://x.com/youngstockuser/status/2114326634547311060"
+source = "x"
+date = "2026-10-25"
+layer = "data"
+why = "A practitioner's map of where each risk gauge comes from and how it is read, in Chinese. Useful as a data-source checklist; it is a viewpoint, not a tested bottom signal, and one threshold it attributes to a vendor is not in the vendor's docs."
+checked = "2026-10-26"
+
+# ---------------------------------------------------------------- 4. Harness
+
+[[article]]
+title = "Effective harnesses for long-running agents"
+author = "Justin Young (Anthropic)"
+url = "https://www.anthropic.com/research/effective-harnesses-for-long-running-agents"
+source = "blog"
+date = "2025-11-26"
+layer = "harness"
+why = "An initializer agent sets up the scaffolding; a worker agent does one unit per session, tests end to end, and leaves git history and progress notes for the next session. The same pattern fits multi-day research and strategy builds."
+why_zh = "先由初始化智能体搭好脚手架，再由工作智能体每次只完成一个单元、端到端测试，并为下一次会话留下 git 历史和进度记录。同样适用于持续多天的投研与策略开发。"
+featured = true
+checked = "2026-10-26"
+
+[[article]]
+title = "Harness design for long-running application development"
+author = "Prithvi Rajasekaran (Anthropic)"
+url = "https://www.anthropic.com/research/harness-design-long-running-apps"
+source = "blog"
+date = "2026-03-24"
+layer = "harness"
+why = "Separate the generator from a skeptical evaluator, and revisit the harness with every new model to drop scaffolding it no longer needs. The case for an independent verifier, in practice."
+checked = "2026-10-26"
+
+[[article]]
+title = "Building agents: When to fold subagents into your main agent loop"
+author = "Diane Sarkis (Anthropic)"
+url = "https://claude.com/resources/articles/building-agents-when-to-fold-subagents-into-your-main-agent-loop"
+source = "blog"
+date = "2026-10-22"
+layer = "harness"
+why = "Many agents do better as one loop with skills loaded on demand than as a coordinator with many subagents. Keep subagents for context isolation, parallel independent work or conflicting instructions, and migrate under evals. Directly relevant to analyst/risk/trader agent teams."
+why_zh = "许多智能体用“单循环 + 按需加载技能”比“协调者 + 多个子智能体”效果更好；只在需要隔离上下文、并行独立任务或指令冲突时保留子智能体，并在评测下逐步迁移。直接适用于分析师/风控/交易员式的多智能体团队。"
+featured = true
+checked = "2026-10-26"
+
+[[article]]
+title = "Task verifiers"
+author = "Harbor Framework"
+url = "https://docs.harborframework.com/tasks/verifier"
+source = "docs"
+date = "2026-10-26"
+date_note = "undated page; date is the check date"
+layer = "harness"
+why = "How a container task's verifier runs after the agent finishes and writes a reward. A clean template for grading trading-agent tasks (build a backtest, reconcile a book) independently of the agent."
+checked = "2026-10-26"
+
+[[article]]
+title = "Pi Durable"
+author = "Earendil Engineering"
+url = "https://earendil.com/posts/pi-durable/"
+source = "blog"
+date = "2026-10-01"
+layer = "harness"
+why = "Every step of an agent run is a checkpointed task, so a new process can resume after a crash. Read alongside the execution rule: replaying a step is not the same as knowing whether its order reached the broker."
+checked = "2026-10-26"
+
+[[article]]
+title = "LangGraph persistence: checkpointers and stores"
+author = "LangChain"
+url = "https://docs.langchain.com/oss/python/langgraph/persistence"
+source = "docs"
+date = "2026-10-26"
+date_note = "undated page; date is the check date"
+layer = "harness"
+why = "Thread checkpoints give resume, human-in-the-loop approval and time travel; stores give cross-run memory. TradingAgents and several projects here are built on LangGraph."
+checked = "2026-10-26"
+
+[[article]]
+title = "Strategies (Pine Script v6 user manual)"
+author = "TradingView"
+url = "https://www.tradingview.com/pine-script-docs/concepts/strategies/"
+source = "docs"
+date = "2026-10-26"
+date_note = "undated page; date is the check date"
+layer = "harness"
+why = "The broker emulator's own realism caveats: intrabar paths inferred from OHLC unless the bar magnifier is on, unrealistic results on synthetic charts, and caps on bars and trades. Check these before trusting an agent-generated Pine backtest."
+checked = "2026-10-26"
+
+[[article]]
+title = "Harness Engineering: Anatomy, Architecture, and Evolution of Coding Agents (a source-code study of eleven systems)"
+author = "Paul Barbaste et al."
+url = "https://arxiv.org/abs/2609.00006"
+source = "paper"
+date = "2026-07-15"
+date_note = "arXiv lists v1 as submitted 2026-07-15 although the identifier is in the 2609 series"
+layer = "harness"
+why = "Maps seven subsystems and 29 design patterns across eleven coding-agent harnesses. A vocabulary for the harness around a trading agent; it is a study of coding agents, not a capability table for trading."
+checked = "2026-10-26"
+
+[[article]]
+title = "Dream-RSI: Recursive Self-Improvement through Evolving Worlds"
+author = "Tong Zheng et al."
+url = "https://arxiv.org/abs/2609.14858"
+source = "paper"
+date = "2026-09-14"
+layer = "harness"
+why = "Improves an agent's exploration policy offline by replaying its stored discovery history. An idea for budgeting strategy search; any trading use needs a held-out set that the improvement loop never sees."
+checked = "2026-10-26"
+
+[[article]]
+title = "Toward Recursive Self-Improvement: How GLM Built Its Own Inference Infrastructure"
+author = "Z.ai"
+url = "https://z.ai/blog/glm-built-its-inference-infrastructure"
+source = "blog"
+date = "2026-09-17"
+layer = "harness"
+why = "A company's account of an infrastructure agent driven by dense, verifiable feedback, with objectives and risk kept by people. The lesson transfers: verifiable feedback loops, not credit for every gain to the agent. Claims are the company's own."
+checked = "2026-10-26"
+
+# ---------------------------------------------------------------- 5. Application
+
+[[article]]
+title = "The 10 Lessons Part-Time Traders Need to Learn to Be Successful (with Linda Raschke)"
+author = "The TraderLion Podcast"
+url = "https://podcasts.apple.com/np/podcast/the-10-lessons-part-time-traders-need-to-learn-to-be/id1586336923?i=1000763578389"
+source = "podcast"
+date = "2026-04-25"
+layer = "application"
+why = "Process habits from a veteran trader: a written plan, volatility-based sizing, a journal, grading yourself on process. Each maps onto a step an agent workflow can enforce and log."
+checked = "2026-10-26"
+
+[[article]]
+title = "Ten rules for part-time traders, after Linda Raschke"
+author = "@OtherSideBJ"
+url = "https://x.com/OtherSideBJ/status/2114565357503709621"
+source = "x"
+date = "2026-10-26"
+layer = "application"
+why = "A Chinese summary of the same advice: pre-market preparation, written rules, a risk check, a journal. A secondhand summary with no source link; the podcast above is the closest primary source."
+checked = "2026-10-26"

@@ -1,7 +1,7 @@
 """Fetch a paper's text from arXiv and clean it for extraction. Standard library only.
 
 Order of attempts: arxiv.org/html (LaTeXML), ar5iv, then the PDF through `pdftotext` when it is installed.
-The cleaned text is cached under data/extract/sources/ (git-ignored: the atlas stores short quotes and
+The cleaned text is cached under data/extract/sources/ (git-ignored: this repository stores short quotes and
 hashes, never a redistributed copy of a paper).
 """
 from __future__ import annotations
@@ -19,7 +19,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent.parent
 CACHE = ROOT / "data" / "extract" / "sources"
-UA = "agentic-trading-atlas-extract/1.0 (research; contact via repository issues)"
+UA = "awesome-agentic-trading-extract/1.0 (research; contact via repository issues)"
 MAX_CHARS = 600_000  # a long paper is ~250k characters; beyond this we truncate and say so
 
 BLOCK = {"p", "div", "section", "article", "h1", "h2", "h3", "h4", "h5", "h6", "li", "ul", "ol", "tr",

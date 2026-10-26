@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: General quant tooling without an agent component
+    url: https://github.com/wilsonfreitas/awesome-quant
+    about: Libraries with no LLM or agent interface belong in awesome-quant.

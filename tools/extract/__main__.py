@@ -30,7 +30,7 @@ DATA = ROOT / "data" / "extract"
 MIN_VERIFIED = 5  # a card needs at least this many verified fields to count as a read
 OUT_TOKENS = (3_000, 9_000)  # assumed output tokens per paper, thinking included: an assumption, not a measurement
 sys.path.insert(0, str(ROOT / "tools"))
-from atlas import load  # noqa: E402
+from build import load  # noqa: E402
 
 
 def select(ids: list[str] | None, redo: bool) -> list[dict]:

@@ -4,7 +4,7 @@
 
 One Claude API call per project. The model sees only the catalog entry (and, for a teardown, its opening
 summary) and is told to add no facts. The output is a draft: catalog/briefs.toml is reviewed by hand before it
-is committed, and `tools/atlas.py check` requires an entry for every non-list project.
+is committed, and `tools/build.py check` requires an entry for every non-list project.
 """
 from __future__ import annotations
 
@@ -89,7 +89,7 @@ def main(argv=None) -> int:
         out.append((p["id"], d))
         print(f"{p['id']}: {d['tagline']}")
     lines = ["# Short home-page lines per project, drafted with tools/extract/briefs.py (Claude API) from the catalog",
-             "# entry only, then reviewed by hand. tools/atlas.py check requires one entry per non-list project.", ""]
+             "# entry only, then reviewed by hand. tools/build.py check requires one entry per non-list project.", ""]
     for pid, d in out:
         lines.append(f"[{pid}]")
         lines += [f"{f} = {toml_str(d[f])}" for f in FIELDS]

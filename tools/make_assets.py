@@ -14,19 +14,16 @@ from html import escape
 from pathlib import Path
 
 try:
-    from atlas import load
+    from build import counts, listed, load_all
 except ImportError:  # imported as tools.make_assets
-    from tools.atlas import load
+    from tools.build import counts, listed, load_all
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "assets"
 FONT = "Inter, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif"
 INK, PAPER, MUTED, LINE = "#0F172A", "#F8FAFC", "#475569", "#CBD5E1"
-# one colour per layer, in map order
-COLORS = {
-    "data": "#0E7490", "perception": "#0891B2", "decision": "#4F46E5", "alpha": "#7C3AED",
-    "portfolio": "#B45309", "execution": "#B91C1C", "evaluation": "#047857", "simulation": "#475569",
-}
+# one colour per layer, in stack order
+COLORS = {"data": "#0E7490", "agent": "#4F46E5", "execution": "#B91C1C", "harness": "#047857", "application": "#B45309"}
 TINT = {k: v + "1F" for k, v in COLORS.items()}  # 12% alpha fill
 
 
@@ -45,48 +42,58 @@ def arrow_defs(color=MUTED):
             f'<path d="M1 1 L9 5 L1 9" fill="none" stroke="{color}" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>')
 
 
-def box(x, y, w, h, key, num, title, lines):
-    c = COLORS[key]
-    out = [f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="12" fill="{TINT[key]}" stroke="{c}" stroke-width="1.5"/>',
-           f'<circle cx="{x+22}" cy="{y+24}" r="12" fill="{c}"/>',
-           t(x + 22, y + 29, str(num), 13, 700, "#FFFFFF", "middle"),
-           t(x + 42, y + 29, title, 14.5, 700, INK)]
-    for i, ln in enumerate(lines):
-        out.append(t(x + 14, y + 52 + i * 17, ln, 12.5, 400, MUTED))
-    return "\n".join(out)
+def stack(c: dict) -> str:
+    w, h = 960, 530
+    n = {l["id"]: counts(c, l["id"]) for l in c["layers"]}
 
+    def cnt(k):
+        r, p = n[k][0], n[k][1]
+        return f"{r} repo{'s' * (r != 1)} · {p} paper{'s' * (p != 1)}"
 
-def layers() -> str:
-    w, h = 960, 540
     b = [f'<rect width="{w}" height="{h}" rx="16" fill="{PAPER}"/>', arrow_defs(),
-         t(36, 44, "Eight jobs every LLM trading system does", 22, 700),
-         t(36, 66, "Information flows left to right in time; evaluation reads what execution did.", 13.5, 400, MUTED)]
-    y, bw, bh, xs = 176, 156, 98, [36, 216, 396, 576, 756]
-    b.append(box(xs[0], y, bw, bh, "data", 1, "Data", ["What did it know,", "and when?"]))
-    b.append(box(xs[1], y, bw, bh, "perception", 2, "Perception", ["Text and numbers", "into signals?"]))
-    b.append(box(xs[2], y, bw, bh, "decision", 3, "Decision", ["Given the signals,", "what is the call?"]))
-    b.append(box(xs[3], y, bw, bh, "portfolio", 5, "Portfolio & risk", ["How much, and when", "to stand down?"]))
-    b.append(box(xs[4], y, bw, bh, "execution", 6, "Execution", ["How does a decision", "become a safe fill?"]))
-    b.append(box(396, 84, bw, 70, "alpha", 4, "Alpha research", ["Find signals, not trades."]))
-    ymid = y + bh // 2
-    for a, c in zip(xs[:-1], xs[1:]):
-        b.append(f'<path d="M{a+bw+2} {ymid} L{c-4} {ymid}" stroke="{MUTED}" stroke-width="1.8" fill="none" marker-end="url(#a)"/>')
-    b.append(f'<path d="M{396+bw//2} 156 L{396+bw//2} {y-4}" stroke="{MUTED}" stroke-width="1.8" fill="none" marker-end="url(#a)"/>')
-    # evaluation reads execution; simulation feeds evaluation; feedback goes back to decision
-    ev_y = 328
-    b.append(box(576, ev_y, 336, 82, "evaluation", 7, "Evaluation", ["Is the result real? Baselines, bias control,", "uncertainty, a forward record."]))
-    b.append(box(576, 440, 336, 66, "simulation", 8, "Simulation", ["Study behavior without risking capital."]))
-    b.append(f'<path d="M{756+bw//2} {y+bh+2} L{756+bw//2} {ev_y-4}" stroke="{MUTED}" stroke-width="1.8" fill="none" marker-end="url(#a)"/>')
-    b.append(f'<path d="M744 440 L744 {ev_y+82+4}" stroke="{MUTED}" stroke-width="1.8" fill="none" marker-end="url(#a)" transform="translate(0 0)"/>')
-    b.append(f'<path d="M576 {ev_y+41} L474 {ev_y+41} L474 {y+bh+6}" stroke="{COLORS["evaluation"]}" stroke-width="1.8" stroke-dasharray="6 5" fill="none" marker-end="url(#a)"/>')
-    b.append(t(462, 296, "feedback: score decisions", 12, 600, COLORS["evaluation"], "end"))
-    b.append(t(462, 312, "against what happened", 12, 600, COLORS["evaluation"], "end"))
-    b.append(f'<rect x="36" y="328" width="404" height="178" rx="12" fill="none" stroke="{LINE}" stroke-width="1.2" stroke-dasharray="3 4"/>')
-    for i, ln in enumerate(["How to read it", "A project gets a layer when it ships working code for that job,",
-                            "not when its README mentions it. Read across a row of the", "catalog to see what a project leaves to you; read down a",
-                            "column to see how few cover risk and execution."]):
-        b.append(t(54, 358 + i * 21, ln, 14 if i == 0 else 12.5, 700 if i == 0 else 400, INK if i == 0 else MUTED))
-    return svg(w, h, "\n".join(b), "The eight layers of a trading system", "Data, perception, decision, alpha research, portfolio and risk, execution, evaluation and simulation, with the direction information flows.")
+         t(36, 44, "Five layers of an agentic trading stack", 22, 700),
+         t(36, 66, "See, think, act; a harness to run, test and trust all three; applications on top.", 13.5, 400, MUTED)]
+    # 5 Application
+    ax, ay, aw, ah = 36, 88, 888, 78
+    b.append(f'<rect x="{ax}" y="{ay}" width="{aw}" height="{ah}" rx="12" fill="{TINT["application"]}" stroke="{COLORS["application"]}" stroke-width="1.5"/>')
+    b.append(f'<circle cx="{ax+22}" cy="{ay+24}" r="12" fill="{COLORS["application"]}"/>')
+    b.append(t(ax + 22, ay + 29, "5", 13, 700, "#FFFFFF", "middle"))
+    b.append(t(ax + 42, ay + 29, "Application: what you build with it", 14.5, 700, INK))
+    b.append(t(ax + 14, ay + 54, "Research desks and reports · AI funds · alpha factories · prediction-market bots", 12.5, 400, MUTED))
+    b.append(t(ax + aw - 16, ay + 29, cnt("application"), 12.5, 600, COLORS["application"], "end"))
+    # 4 Harness frame
+    hx, hy, hw, hh = 36, 196, 888, 304
+    b.append(f'<path d="M{w//2} {hy-2} L{w//2} {ay+ah+4}" stroke="{MUTED}" stroke-width="1.8" fill="none" marker-end="url(#a)"/>')
+    b.append(f'<rect x="{hx}" y="{hy}" width="{hw}" height="{hh}" rx="14" fill="{TINT["harness"]}" stroke="{COLORS["harness"]}" stroke-width="1.5" stroke-dasharray="7 5"/>')
+    b.append(f'<circle cx="{hx+22}" cy="{hy+24}" r="12" fill="{COLORS["harness"]}"/>')
+    b.append(t(hx + 22, hy + 29, "4", 13, 700, "#FFFFFF", "middle"))
+    b.append(t(hx + 42, hy + 29, "Harness: how you run, test and trust it", 14.5, 700, INK))
+    b.append(t(hx + hw - 16, hy + 29, cnt("harness"), 12.5, 600, COLORS["harness"], "end"))
+    b.append(t(hx + 14, hy + hh - 18, "Backtest environments · simulators · benchmarks and live arenas · bias control · agent loops, evals, traces and state", 12.5, 400, MUTED))
+    # 1-3 pipeline
+    bw, bh, by = 264, 168, hy + 56
+    xs = [60, 348, 636]
+    spec = [("data", 1, "Data", "what the agent sees", ["Market, filing and news data", "MCP data servers, datasets", "Text into signals"]),
+            ("agent", 2, "Agent", "how it thinks", ["Finance LLMs and reasoners", "Memory, reflection, debate", "Learned (RL) policies"]),
+            ("execution", 3, "Execution", "how it acts", ["Broker and venue tools", "Engines: backtest = live", "Weights into orders"])]
+    for x, (k, num, title, sub, lines) in zip(xs, spec):
+        col = COLORS[k]
+        b.append(f'<rect x="{x}" y="{by}" width="{bw}" height="{bh}" rx="12" fill="#FFFFFF" stroke="{col}" stroke-width="1.5"/>')
+        b.append(f'<rect x="{x}" y="{by}" width="{bw}" height="{bh}" rx="12" fill="{TINT[k]}"/>')
+        b.append(f'<circle cx="{x+22}" cy="{by+24}" r="12" fill="{col}"/>')
+        b.append(t(x + 22, by + 29, str(num), 13, 700, "#FFFFFF", "middle"))
+        b.append(t(x + 42, by + 29, title, 15, 700, INK))
+        b.append(t(x + 42, by + 47, sub, 12, 400, MUTED))
+        for i, ln in enumerate(lines):
+            b.append(t(x + 16, by + 78 + i * 20, "· " + ln, 12.5, 400, INK))
+        b.append(t(x + 16, by + bh - 14, cnt(k), 12, 600, col))
+    for a_, c_ in zip(xs[:-1], xs[1:]):
+        b.append(f'<path d="M{a_+bw+2} {by+bh//2} L{c_-4} {by+bh//2}" stroke="{MUTED}" stroke-width="1.8" fill="none" marker-end="url(#a)"/>')
+    fy = by + bh + 26
+    b.append(f'<path d="M{xs[2]+bw//2} {by+bh+2} L{xs[2]+bw//2} {fy} L{xs[0]+bw//2} {fy} L{xs[0]+bw//2} {by+bh+6}" stroke="{COLORS["harness"]}" stroke-width="1.6" stroke-dasharray="6 5" fill="none" marker-end="url(#a)"/>')
+    b.append(t(w // 2, fy - 6, "fills and P&L are scored against what the agent knew, when", 12, 600, COLORS["harness"], "middle"))
+    return svg(w, h, "\n".join(b), "Five layers of an agentic trading stack",
+               "Data, Agent and Execution in a pipeline, wrapped by a Harness that runs, tests and verifies them, with Applications on top.")
 
 
 RUNGS = [
@@ -136,28 +143,27 @@ def ladder(projects: list[dict]) -> str:
     return svg(w, h, "\n".join(b), "The evidence ladder", "Five rungs from an unchecked claim to a forward record, with the number of catalogued projects at each rung.")
 
 
-def banner(papers: list[dict], projects: list[dict]) -> str:
+def banner(c: dict) -> str:
     w, h = 1280, 300
-    rows = [p for p in projects if p["kind"] != "list"]
-    teardowns = sum(1 for p in rows if p["read"] == "teardown")
+    rows = listed(c["projects"])
+    teardowns = sum(1 for p in c["projects"] if p["read"] == "teardown")
     keys = list(COLORS)
     b = [f'<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0B1220"/><stop offset="1" stop-color="#16294A"/></linearGradient></defs>',
          f'<rect width="{w}" height="{h}" rx="20" fill="url(#g)"/>',
-         t(64, 118, "Agentic Trading Atlas", 58, 800, "#FFFFFF"),
-         t(64, 166, "A verified, first-principles map of LLM and agentic trading.", 24, 400, "#B6C4D8"),
-         t(64, 204, "Domain map  ·  method teardowns  ·  same-budget evaluation", 17, 600, "#7DD3FC"),
-         t(64, 252, f"{len(papers)} papers  ·  {len(rows)} projects  ·  {teardowns} teardowns  ·  every link and number checked, dated, and graded", 15, 400, "#8EA2BD")]
-    # a rising path through eight layer nodes
-    pts = [(760 + i * 70, 215 - [0, 14, 8, 40, 32, 66, 58, 96][i]) for i in range(8)]
+         t(64, 118, "Awesome Agentic Trading", 58, 800, "#FFFFFF"),
+         t(64, 166, "Open-source repos, papers and writing on LLM agents that research, decide and trade.", 22, 400, "#B6C4D8"),
+         t(64, 204, "Data  ·  Agent  ·  Execution  ·  Harness  ·  Application", 17, 600, "#7DD3FC"),
+         t(64, 252, f"{len(rows)} repos  ·  {len(c['papers'])} papers  ·  {len(c['articles'])} articles  ·  {teardowns} deep dives  ·  every entry dated, checked and given its limit", 15, 400, "#8EA2BD")]
+    pts = [(1010 + i * 58, 236 - [0, 22, 14, 52, 92][i]) for i in range(5)]
     b.append('<polyline points="' + " ".join(f"{x},{y}" for x, y in pts) + '" fill="none" stroke="#3B4F72" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>')
     for (x, y), k in zip(pts, keys):
-        b.append(f'<circle cx="{x}" cy="{y}" r="11" fill="{COLORS[k]}" stroke="#0B1220" stroke-width="3"/>')
-    return svg(w, h, "\n".join(b), "Agentic Trading Atlas", "A verified, first-principles map of LLM and agentic trading.")
+        b.append(f'<circle cx="{x}" cy="{y}" r="12" fill="{COLORS[k]}" stroke="#0B1220" stroke-width="3"/>')
+    return svg(w, h, "\n".join(b), "Awesome Agentic Trading", "Open-source repos, papers and writing on LLM agents that research, decide and trade.")
 
 
 def render_all() -> dict[str, str]:
-    papers, projects = load()
-    return {"banner.svg": banner(papers, projects), "layers.svg": layers(), "ladder.svg": ladder(projects)}
+    c = load_all()
+    return {"banner.svg": banner(c), "stack.svg": stack(c), "ladder.svg": ladder(c["projects"])}
 
 
 def main(argv=None) -> int:
