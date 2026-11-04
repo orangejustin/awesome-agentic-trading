@@ -152,6 +152,8 @@ Open an issue with the page, the line and a source we can check (a commit, a fil
 
 3. Fill in the pull request template. CI runs the same checks plus a privacy lint.
 
+Commit messages carry no AI attribution trailers (`Co-Authored-By: Claude …`, `Claude-Session: …`). Run `git config core.hooksPath .githooks` once per clone and the `commit-msg` hook removes them; Claude Code sessions enable it automatically through `.claude/settings.json`. CI rejects any commit that still has one.
+
 ## Maintenance
 
 - **Weekly:** the [verify-sources](.github/workflows/verify.yml) workflow runs `python tools/verify.py all --report report` and publishes the report in the job summary and as an artifact: failures (unreachable or newly archived repositories, changed license files, retitled papers, dead links) turn the job red; repositories whose HEAD moved are listed with both commits and a diff link for re-checking.

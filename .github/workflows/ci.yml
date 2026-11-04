@@ -13,6 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -29,3 +31,11 @@ jobs:
         run: python -m unittest discover -s tests -t . -v
       - name: Privacy lint
         run: python tools/privacy_lint.py
+      - name: No AI attribution trailers in commit messages
+        run: |
+          if [ "${{ github.event_name }}" = pull_request ]; then
+            range="${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }}"
+          else
+            range=HEAD
+          fi
+          python tools/commit_trailers.py check "$range"
