@@ -1,5 +1,9 @@
 <p align="center"><img src="assets/banner.svg" alt="Awesome Agentic Trading" width="100%"></p>
 
+<h1 align="center">Awesome Agentic Trading</h1>
+
+<p align="center"><a href="README.md">English</a> | <b>简体中文</b></p>
+
 <p align="center">
   <a href="https://awesome.re"><img src="https://awesome.re/badge.svg" alt="Awesome"></a>
   <a href="https://github.com/orangejustin/awesome-agentic-trading/actions/workflows/ci.yml"><img src="https://github.com/orangejustin/awesome-agentic-trading/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
@@ -8,12 +12,17 @@
   <a href="CONTRIBUTING.md"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs welcome"></a>
 </p>
 
-<p align="center"><a href="README.md">English</a
-> 一份逐条核对过来源的指南，帮助你构建和评测**由 LLM 驱动的交易系统**：开源仓库、论文、文章与帖子，按系统的五层组织：**数据层 → Agent 层 → 执行层 → Harness 层 → 应用层**。
+> 一份逐条核对过来源的指南，帮助你构建和评测**由 LLM 驱动的交易系统**：公开仓库、论文、文章与帖子，按系统的五层组织：**数据层 → Agent 层 → 执行层 → Harness 层 → 应用层**。
 
 <!-- gen:headline -->70 个仓库（57 个开源 · 5 个混合或受限许可 · 8 个许可待确认）· 60 篇论文 · 41 篇文章与帖子 · 5 个深度拆解<!-- /gen:headline -->。每个仓库条目都写明做什么、能否下单、采用什么许可证，以及最关键的限制；每篇论文都标明我们实际读到了什么程度。
 
-**“核验”指什么。** 每个仓库都在一个确定的提交上读过：README、许可证文件，以及决定它能否下单的那几行。这是*来源核查*。安装项目、端到端跑通是更强的结论，只有页面明确写出时才成立（见[组件矩阵](docs/components.md)）。程序每周重新检查全部链接（[最新报告](https://github.com/orangejustin/awesome-agentic-trading/actions/workflows/verify.yml)）；条目上的核验日期是人最后一次读它的日期，程序不会改动。
+**“核验”指什么。** 每个仓库都在一个确定的提交上读过：README、许可证文件，以及决定它能否下单的那几行。这是*来源核查*：它说明仓库里有什么，不说明策略有效，也不说明任何收益属实。安装项目、端到端跑通是更强的结论，只有页面明确写出时才成立（见[组件矩阵](docs/components.md)，英文）。程序每周重新检查全部链接（[最新报告](https://github.com/orangejustin/awesome-agentic-trading/actions/workflows/verify.yml)）；条目上的核验日期是人最后一次读它的日期，程序不会改动。
+
+**三条入口：**
+
+- 🔎 **找工具：** 在[从这里开始](#从这里开始)按你要做的事来选，在[项目目录](#项目目录)浏览全部仓库及各自的限制，或用[组件矩阵](docs/components.md)（英文）挑选能配合使用的组件。
+- 🧭 **理解这个领域：** [五层结构](#五层结构)解释五层各自回答的问题，[近期里程碑](#近期里程碑)与[完整时间线](docs/milestones.zh-CN.md)说明它如何走到今天，[第一性原理](docs/00-first-principles.md)（英文）与[深度拆解](#指南与深度拆解)可以继续深入。
+- 🧪 **核验一项声明：** [证据告诉我们什么](#证据告诉我们什么)列出四条发现并附来源，[如何读回测](docs/06-reading-a-backtest.md)（英文）与[评测工具](#实验工具)让你自己检验一个数字，[论文与代码核对](docs/05-claim-audit.md)（英文）记录了论文与代码对不上的地方。
 
 > [!WARNING]
 > 仅供研究与学习，不构成任何投资建议。部分工具可以下真实订单（标记为 ⚡，链接到支持该结论的原文行）；请先用只读模式，或在有模拟盘时先用模拟账户。被收录不代表项目能盈利或可直接用于生产。
@@ -51,7 +60,7 @@
 
 ## 五层结构
 
-<p align="center"><img src="assets/stack.svg" alt="智能体交易系统的五层结构" width="100%"></p>
+<p align="center"><img src="assets/stack.zh-CN.svg" alt="智能体交易系统的五层结构" width="100%"></p>
 
 数据层、Agent 层、执行层构成主流程：看见、思考、行动。Harness 层包裹这三层，决定你如何运行、测试并信任它们；应用层位于最上方。每一层都有独立页面（英文），收录该层全部仓库、论文、文章与帖子、每个标记背后的证据，以及常见失败模式和构建建议。[条目如何归层 →](layers/README.md#how-entries-are-placed)
 
@@ -98,7 +107,7 @@
 
 #### 行情与基本面数据
 
-- [OpenBB](https://github.com/openbq-org/OpenBB) — 面向Python与AI智能体的开放金融数据集成平台。 ⚠️ 只管取数，时点正确性需自己保证。
+- [OpenBB](https://github.com/openbq-org/OpenBB) — 面向 Python 与 AI 智能体的开放金融数据集成平台。 ⚠️ 只管取数，时点正确性需自己保证。
 - [TradingView-API](https://github.com/Mathieu2301/TradingView-API) ❓ `ISC` — 非官方的 TradingView TypeScript 客户端，可取 K 线、指标、选股器与回放数据，附防前视的回测模块。 ⚠️ 非官方，依赖未公开接口，存在条款风险；根目录无 LICENSE 文件（package.json 声明 ISC）
 - [AKShare](https://github.com/akfamily/akshare) 🧰 — 把中国及全球公开行情、宏观与新闻数据取成 pandas，附面向 LLM 的 llms.txt。 ⚠️ 抓取型接口会随网站改版失效；为当前数据而非时点数据；MCP 与 HTTP 接口由独立的 AKTools 项目提供。
 
@@ -115,7 +124,7 @@
 - [TradingView MCP (screener and data)](https://github.com/atilaahmettaner/tradingview-mcp) — 无需 TradingView 账户的 MCP 服务：筛选器、技术指标解读与简单回测。 ⚠️ 依赖非官方公开接口且有限流；README 推广付费托管版；回测结果未经审计。
 - [Financial Datasets MCP Server](https://github.com/financial-datasets/mcp-server) ⚪ — 提供 Financial Datasets API 财务、价格与新闻的 MCP 服务器。 ⚠️ 需要 Financial Datasets API 密钥；最后提交于 2025-06-05。
 - [Massive MCP Server](https://github.com/massive-com/mcp_massive) — Massive（原 Polygon.io）行情 API 的官方 MCP 服务器。 ⚠️ 作者标注为实验性，且需要 API 密钥。
-- [Yahoo Finance MCP](https://github.com/Alex2Yang97/yahoo-finance-mcp) — 为LLM客户端提供Yahoo Finance数据的MCP服务器。 ⚠️ 基于yfinance当前数据而非时点存档，不适合回测。
+- [Yahoo Finance MCP](https://github.com/Alex2Yang97/yahoo-finance-mcp) — 为 LLM 客户端提供 Yahoo Finance 数据的 MCP 服务器。 ⚠️ 基于 yfinance 当前数据而非时点存档，不适合回测。
 - [TradingView MCP (Desktop)](https://github.com/tradesdontlie/tradingview-mcp) — 让智能体读取并操作本地 TradingView 桌面版的 MCP 服务：图表、指标、Pine 脚本、告警。 ⚠️ 经未公开接口操控桌面应用（有条款风险）；先只开只读工具；活跃分支见 iliaal/tradingview-mcp。
 
 #### 数据校验与证据记录
@@ -136,15 +145,15 @@
 
 #### 金融基础模型与推理模型
 
-- [FinGPT](https://github.com/AI4Finance-Foundation/FinGPT) — 开源金融LLM项目，含数据管道与LoRA微调方案。 ⚠️ 模型与数据项目，未核对交易表现。
+- [FinGPT](https://github.com/AI4Finance-Foundation/FinGPT) — 开源金融 LLM 项目，含数据管道与 LoRA 微调方案。 ⚠️ 模型与数据项目，未核对交易表现。
 - [Qwen DianJin](https://github.com/aliyun/qwen-dianjin) — 阿里云金融推理模型、数据与基准合集。 ⚠️ 属研究合集而非交易系统，各子项目文档与许可证独立。
 - [Kronos](https://github.com/shiyu-coder/Kronos) 🟡 — 面向 K 线（OHLCV）序列的基础模型，已发布权重与微调脚本。 ⚠️ 研究级预测；使用前须在样本外与简单基线、随机游走对比。
 
 #### 多智能体决策架构
 
 - [TradingAgents](https://github.com/TauricResearch/TradingAgents) [🔬](docs/teardowns/tradingagents.md) — 基于 LangGraph 的多智能体交易公司，输出五级评级。 ⚠️ 仅评估决策质量，无组合模拟、Sharpe 代码及论文评测框架。
-- [QuantAgent / QuantHarness](https://github.com/Y-Research-SBU/QuantHarness) — LangGraph多智能体短线技术分析系统。 ⚠️ 论文回测未重跑，短周期结果需长记录验证。
-- [ContestTrade](https://github.com/FinStep-AI/ContestTrade) 🟡 [🔬](docs/teardowns/contesttrade.md) — 多智能体竞赛框架，按预测Sharpe分配权重。 ⚠️ 仓库无回测代码，无法复现论文Table 1结果。
+- [QuantAgent / QuantHarness](https://github.com/Y-Research-SBU/QuantHarness) — LangGraph 多智能体短线技术分析系统。 ⚠️ 论文回测未重跑，短周期结果需长记录验证。
+- [ContestTrade](https://github.com/FinStep-AI/ContestTrade) 🟡 [🔬](docs/teardowns/contesttrade.md) — 多智能体竞赛框架，按预测 Sharpe 分配权重。 ⚠️ 仓库无回测代码，无法复现论文 Table 1 结果。
 
 #### 单智能体、记忆与反思
 
@@ -171,9 +180,9 @@
 
 - [CCXT (with ccxt-mcp)](https://github.com/ccxt/ccxt) [⚡](https://github.com/ccxt/ccxt/blob/e1579cb6bf5519fe588e249fd60fc42d5fff8f8c/mcp/README.md?plain=1#L16-L22) — 统一接入 100 多家加密货币交易所的 API，现附以安全护栏为设计核心的官方 MCP 服务。 ⚠️ MCP 服务尚早期；交易权限等级写在同时保存密钥的本地配置中。
 - [AgentKit](https://github.com/coinbase/agentkit) [⚡](https://github.com/coinbase/agentkit/blob/f2f3e8c11a91d56a17979a229a172ba6e61a85c2/README.md?plain=1#L200-L204) — 为 AI 智能体提供加密钱包与链上操作：转账、兑换、支付。 ⚠️ 默认无审批、限额与白名单：提示注入可能转走资金，须先加护栏。
-- [Alpaca MCP Server](https://github.com/alpacahq/alpaca-mcp-server) [⚡](https://github.com/alpacahq/alpaca-mcp-server/blob/63cc4278d87b31f3ed4efcfaa55624095c6d7be8/README.md?plain=1#L245-L258) — 让LLM客户端查询行情并通过Alpaca下单的MCP服务器。 ⚠️ 默认模拟盘，但一个开关即切到实盘；未限制时所有工具集均开启。
+- [Alpaca MCP Server](https://github.com/alpacahq/alpaca-mcp-server) [⚡](https://github.com/alpacahq/alpaca-mcp-server/blob/63cc4278d87b31f3ed4efcfaa55624095c6d7be8/README.md?plain=1#L245-L258) — 让 LLM 客户端查询行情并通过 Alpaca 下单的 MCP 服务器。 ⚠️ 默认模拟盘，但一个开关即切到实盘；未限制时所有工具集均开启。
 - [Kraken CLI](https://github.com/krakenfx/kraken-cli) [⚡](https://github.com/krakenfx/kraken-cli/blob/671cdd7f1483409f7b45554725f2a07ac5abd33f/README.md?plain=1#L314-L317) — Kraken 官方命令行与 MCP 服务：实盘下单、出入金，并内置按实时价格成交的模拟引擎。 ⚠️ 命令行实盘下单没有确认提示；MCP 的审批关卡取决于客户端，且可以关闭。
-- [Polymarket MCP Server](https://github.com/caiovicentino/polymarket-mcp-server) [⚡](https://github.com/caiovicentino/polymarket-mcp-server/blob/21f65f319ff0fc4250ea1e5094581761906839e1/README.md?plain=1#L184-L195) — 提供45个Polymarket交易与监控工具的MCP服务器。 ⚠️ 完整模式用钱包真实资金交易；DEMO 模式只读；Polymarket 没有模拟盘账户。
+- [Polymarket MCP Server](https://github.com/caiovicentino/polymarket-mcp-server) [⚡](https://github.com/caiovicentino/polymarket-mcp-server/blob/21f65f319ff0fc4250ea1e5094581761906839e1/README.md?plain=1#L184-L195) — 提供 45 个 Polymarket 交易与监控工具的 MCP 服务器。 ⚠️ 完整模式用钱包真实资金交易；DEMO 模式只读；Polymarket 没有模拟盘账户。
 - [OKX Agent Trade Kit](https://github.com/okx/agent-trade-kit) [⚡](https://github.com/okx/agent-trade-kit/blob/e5b60e4f0bc2afc75fab19c8360dafa6b84f3ed7/packages/core/src/tools/spot-trade.ts#L30-L36) — OKX 官方 MCP 服务与命令行：行情、下单、划转、理财和机器人都成为智能体工具。 ⚠️ 除非使用模拟盘配置或加 --read-only，写入工具直接作用于真实账户；没有内置确认步骤。
 - [fintool](https://github.com/second-state/fintool) [⚡](https://github.com/second-state/fintool/blob/177a9b8e3a09e507cdb2c8458f2be4b9574abaaf/README.md?plain=1#L86-L97) 🟡 ❓ `MIT` — 为智能体提供分交易所交易与行情的 Rust CLI 套件。 ⚠️ 可在真实交易所下单，建议先用小仓位或测试网。
 - [Condor](https://github.com/hummingbot/condor) [⚡](https://github.com/hummingbot/condor/blob/a817f6633a90afe41523377bfd360c0b9316d423/README.md?plain=1#L29-L31) — 通过 Hummingbot API 监控和交易的 Telegram 机器人与面板，内置 LLM 智能体。 ⚠️ 会下真实加密订单并保存交易所密钥；需部署 Hummingbot API；使用统计默认开启。
@@ -202,26 +211,26 @@
 
 #### 研究与回测环境
 
-- [Qlib](https://github.com/microsoft/qlib) — 含数据层、ML模型库与回测工具的量化研究平台。 ⚠️ 通用量化平台，LLM 智能体部分需自建。
-- [Agentic Trading Lab](https://github.com/Open-Finance-Lab/AgenticTrading) [⚡](https://github.com/Open-Finance-Lab/AgenticTrading/blob/e27b5eb141265df618a228a99aab41b3b97e9767/dashboard/backend/api/routers/robinhood_live.py#L1-L5) — 构建、回测与模拟交易LLM交易智能体的研究平台。 ⚠️ 自带的 Robinhood 实盘通道默认关闭；采用不常见的 OpenMDW-1.0 许可证。
+- [Qlib](https://github.com/microsoft/qlib) — 含数据层、ML 模型库与回测工具的量化研究平台。 ⚠️ 通用量化平台，LLM 智能体部分需自建。
+- [Agentic Trading Lab](https://github.com/Open-Finance-Lab/AgenticTrading) [⚡](https://github.com/Open-Finance-Lab/AgenticTrading/blob/e27b5eb141265df618a228a99aab41b3b97e9767/dashboard/backend/api/routers/robinhood_live.py#L1-L5) — 构建、回测与模拟交易 LLM 交易智能体的研究平台。 ⚠️ 自带的 Robinhood 实盘通道默认关闭；采用不常见的 OpenMDW-1.0 许可证。
 
 #### 模拟器与纸面交易环境
 
 - [FinRL-Meta](https://github.com/AI4Finance-Foundation/FinRL-Meta) [⚡](https://github.com/AI4Finance-Foundation/FinRL-Meta/blob/286fef6c828a02a2ccf807c05b292d8cb28f8e95/README.md?plain=1#L132) — 面向金融强化学习的 Gym 式市场环境与基准。 ⚠️ 为强化学习而建，非 LLM 智能体；模拟盘环境默认连接 Alpaca 模拟接口。
-- [StockAgent](https://github.com/MingyuJ666/Stockagent) 🟡 ❓ 无许可证 — LLM投资者在模拟股票交易所中交易。 ⚠️ 仓库中没有LICENSE文件，使用条款不明确。
+- [StockAgent](https://github.com/MingyuJ666/Stockagent) 🟡 ❓ 无许可证 — LLM 投资者在模拟股票交易所中交易。 ⚠️ 仓库中没有 LICENSE 文件，使用条款不明确。
 - [polymarket-paper-trader](https://github.com/agent-next/polymarket-paper-trader) [📝](https://github.com/agent-next/polymarket-paper-trader/blob/55bb35b7956815c71f5fb58292b2d1e859abff05/README.md?plain=1#L13) — 基于 Polymarket 实时订单簿的智能体模拟交易环境。 ⚠️ 仅限预测市场而非股票，成交逼真度为作者自述。
 
-#### 基准、竞技场与前向实盘记录
+#### 基准、竞技场与前向记录
 
-- [AI-Trader](https://github.com/HKUDS/AI-Trader) [📝](https://github.com/HKUDS/AI-Trader/blob/d03ff6c056b32ced735adf7c19ed8175adb1c8df/README.md?plain=1#L119) 🟡 ❓ `MIT` — 外部AI智能体注册交易的平台与实时排行榜。 ⚠️ 仓库根目录无LICENSE文件，仅README徽章标注MIT。
-- [LLM Trading Lab](https://github.com/LuckyOne7777/LLM-Trading-Lab) 🟡 ❓ 无许可证 — ChatGPT管理真实资金微盘股组合的六个月实盘记录。 ⚠️ 仅一次六个月运行且由作者自评；代码无券商接口；无许可证文件。
-- [PIXIU / FinBen](https://github.com/The-FinAI/PIXIU) — 开源金融LLM FinMA及FinBen评测套件。 ⚠️ 任务高分难以反映实际交易表现。
-- [DeepFund](https://github.com/HKUSTDial/DeepFund) 🟡 — 在截止日后数据上评测LLM基金经理的实时竞技场。 ⚠️ 不进行交易（在实时数据上为决策打分）；结果依赖较短的实时窗口。
-- [Live Trade Bench](https://github.com/ulab-uiuc/live-trade-bench) [📝](https://github.com/ulab-uiuc/live-trade-bench/blob/05fbfec8df76c2c309201e6b4b7c26aff7e6d0f9/README.md?plain=1#L64-L71) 🟡 🔒 `PolyForm-Noncommercial-1.0.0` — 在美股与Polymarket上实盘运行并监控LLM交易智能体。 ⚠️ 在实时数据上运行模拟组合，不涉及真实资金；非商业许可。
+- [AI-Trader](https://github.com/HKUDS/AI-Trader) [📝](https://github.com/HKUDS/AI-Trader/blob/d03ff6c056b32ced735adf7c19ed8175adb1c8df/README.md?plain=1#L119) 🟡 ❓ `MIT` — 外部 AI 智能体注册交易的平台与实时排行榜。 ⚠️ 仓库根目录无 LICENSE 文件，仅 README 徽章标注 MIT。
+- [LLM Trading Lab](https://github.com/LuckyOne7777/LLM-Trading-Lab) 🟡 ❓ 无许可证 — ChatGPT 管理真实资金微盘股组合的六个月实盘记录。 ⚠️ 仅一次六个月运行且由作者自评；代码无券商接口；无许可证文件。
+- [PIXIU / FinBen](https://github.com/The-FinAI/PIXIU) — 开源金融 LLM FinMA 及 FinBen 评测套件。 ⚠️ 任务高分难以反映实际交易表现。
+- [DeepFund](https://github.com/HKUSTDial/DeepFund) 🟡 — 在截止日后数据上评测 LLM 基金经理的实时竞技场。 ⚠️ 不进行交易（在实时数据上为决策打分）；结果依赖较短的实时窗口。
+- [Live Trade Bench](https://github.com/ulab-uiuc/live-trade-bench) [📝](https://github.com/ulab-uiuc/live-trade-bench/blob/05fbfec8df76c2c309201e6b4b7c26aff7e6d0f9/README.md?plain=1#L64-L71) 🟡 🔒 `PolyForm-Noncommercial-1.0.0` — 用美股与 Polymarket 的实时行情运行并监控 LLM 交易智能体（模拟组合） ⚠️ 只是实时行情上的模拟组合，不动用真实资金；非商业许可。
 
 #### 稳健性与偏差控制
 
-- [TradeTrap](https://github.com/Yanlewen/TradeTrap) 🟡 — 面向LLM交易智能体的故障注入测试工具。 ⚠️ 测的是鲁棒性，不是盈利能力。
+- [TradeTrap](https://github.com/Yanlewen/TradeTrap) 🟡 — 面向 LLM 交易智能体的故障注入测试工具。 ⚠️ 测的是鲁棒性，不是盈利能力。
 
 #### Agent Harness：循环、评测、追踪与状态
 
@@ -254,7 +263,7 @@
 - [daily_stock_analysis](https://github.com/ZhuLinsen/daily_stock_analysis) — 按计划为多市场自选股生成 LLM 分析报告，并推送到聊天工具或邮箱。 ⚠️ 只出报告、不下单；需要 LLM 密钥；免费数据源有限流；买卖点位没有前向记录。
 - [Claude for Financial Services](https://github.com/anthropics/financial-services) — Anthropic 官方参考实现：面向投研、投行和基金运营的智能体、技能与数据连接器。 ⚠️ 只起草分析材料供人工签核，不做交易；需要 Claude 及付费数据商订阅。
 - [Dexter](https://github.com/virattt/dexter) ❓ `MIT` — 自主投研智能体：拆解问题、调用金融数据工具、自查并迭代。 ⚠️ 仅限研究；依赖付费数据 API；README 称 MIT 但无 LICENSE 文件。
-- [FinRobot](https://github.com/AI4Finance-Foundation/FinRobot) [🔬](docs/teardowns/finrobot.md) — 代码算数、LLM写叙述的股票研究智能体平台。 ⚠️ 属于股票研究工作站而非交易系统，无可检验的交易业绩声明。
+- [FinRobot](https://github.com/AI4Finance-Foundation/FinRobot) [🔬](docs/teardowns/finrobot.md) — 代码算数、LLM 写叙述的股票研究智能体平台。 ⚠️ 属于股票研究工作站而非交易系统，无可检验的交易业绩声明。
 - [Claude Trading Skills](https://github.com/tradermonty/claude-trading-skills) — 一组 Claude Skills：市场环境检查、选股、仓位计算、交易日志与回测评审。 ⚠️ 仅辅助决策、不下单；多数选股需 FMP 密钥或付费 FINVIZ Elite；无业绩记录。
 - [Trading-R1](https://github.com/TauricResearch/Trading-R1) — 终端里的投研智能体：行情数据、网页检索与估值工具，可导出 PDF 报告并定时推送。 ⚠️ 数据工具需要 Tauric 密钥，会话默认同步到 Tauric；论文模型的权重、训练代码与回测均未发布。
 - [OpenTerminalUI](https://github.com/Hitheshkaranth/OpenTerminalUI) [📝](https://github.com/Hitheshkaranth/OpenTerminalUI/blob/48912fb420b1d16d6e412e9dec69871b242b93b2/README.md?plain=1#L187) — 可自托管的投研终端，AI 分析师会引用公告并标注每个数字的来源。 ⚠️ 单人维护的小项目；免费数据可能延迟或为合成数据（有标注）；仅支持模拟操作。
@@ -263,20 +272,20 @@
 
 - [AI Hedge Fund](https://github.com/virattt/ai-hedge-fund) [📝](https://github.com/virattt/ai-hedge-fund/blob/5c553b5222044f6a5527bd377b4104c50ee0ad28/README.md?plain=1#L57) — LLM 投资者智能体在真实交易日上运行模拟基金，并支持历史回测回放。 ⚠️ 作者声明仅供教学；只有模拟基金，不下真实订单；结果未经复现。
 - [Vibe-Trading](https://github.com/HKUDS/Vibe-Trading) [⚡](https://github.com/HKUDS/Vibe-Trading/blob/dbff8165f47401db4c3ec98acdf0577acdf87aa6/guides/capabilities.md?plain=1#L203-L205) — 个人交易智能体全栈（CLI、MCP、Web）：投研、带运行卡与验证的回测、模拟账户，以及会对账的实盘执行器。 ⚠️ 实盘券商连接有真实执行风险；未核对表现声明；注意冒名社群与诱导钱包签名的骗局。
-- [TradingAgents-CN](https://github.com/hsliuping/TradingAgents-CN) [📝](https://github.com/hsliuping/TradingAgents-CN/blob/51060a7682cf51810b4bc3a704829438d18cd8dc/README.md?plain=1#L23) 🧩 `Apache-2.0 + proprietary` — 面向A股的TradingAgents社区衍生框架。 ⚠️ 混合许可：应用层仅源码可见，并非开源。
+- [TradingAgents-CN](https://github.com/hsliuping/TradingAgents-CN) [📝](https://github.com/hsliuping/TradingAgents-CN/blob/51060a7682cf51810b4bc3a704829438d18cd8dc/README.md?plain=1#L23) 🧩 `Apache-2.0 + proprietary` — 面向 A 股的 TradingAgents 社区衍生框架。 ⚠️ 混合许可：应用层仅源码可见，并非开源。
 - [QuantDinger](https://github.com/OpenByteInc/QuantDinger) [⚡](https://github.com/OpenByteInc/QuantDinger/blob/9c5b23d835a161960a4e8d50d112bf1f23029ad5/README.md?plain=1#L125-L128) 🧩 `Apache-2.0 + source-available clients` — 自托管的 AI 研究、回测与实盘交易后端，带智能体网关和 MCP 服务。 ⚠️ 可下真实订单；智能体默认仅限模拟。网页和移动端为源码可见许可，并非 Apache-2.0。
 
 #### 因子工厂（量化研究自动化）
 
 - [RD-Agent](https://github.com/microsoft/RD-Agent) — 提出、实现并评估量化因子与模型的智能体循环。 ⚠️ 未核对头条结果，因子收益需留出样本检验。
-- [QuantaAlpha](https://github.com/QuantaAlpha/QuantaAlpha) 🟡 ❓ `MIT` — LLM驱动的进化式因子挖掘框架。 ⚠️ 无 LICENSE 文件；MIT 仅见于 README 徽章与 pyproject 分类器。
-- [AlphaGen](https://github.com/ICT-FinD-Lab/alphagen) 🟡 ❓ 无许可证 — 基于Qlib的强化学习公式化因子生成框架。 ⚠️ 仓库无LICENSE文件；核心为强化学习，LLM模块为后加。
+- [QuantaAlpha](https://github.com/QuantaAlpha/QuantaAlpha) 🟡 ❓ `MIT` — LLM 驱动的进化式因子挖掘框架。 ⚠️ 无 LICENSE 文件；MIT 仅见于 README 徽章与 pyproject 分类器。
+- [AlphaGen](https://github.com/ICT-FinD-Lab/alphagen) 🟡 ❓ 无许可证 — 基于 Qlib 的强化学习公式化因子生成框架。 ⚠️ 仓库无 LICENSE 文件；核心为强化学习，LLM 模块为后加。
 
 #### 预测市场
 
 - [Kalshi AI Trading Bot](https://github.com/ryanfrigo/kalshi-ai-trading-bot) [⚡](https://github.com/ryanfrigo/kalshi-ai-trading-bot/blob/5d7b70addcc61a1cc1f64f1025f3386888a210b7/README.md?plain=1#L212-L215) — 带边际审计、MCP server 与代理工具的 Kalshi 交易工具包。 ⚠️ 其自身 55 笔前向交易的结论为无可测边际，账户含人工交易。
-- [Oracle3](https://github.com/YichengYang-Ethan/oracle3-prediction-market-agent) [⚡](https://github.com/YichengYang-Ethan/oracle3-prediction-market-agent/blob/267fb7c48dae7c4ff8922c02a3a223443e51bf0b/README.md?plain=1#L24-L27) — Kalshi与Polymarket预测市场代理工具包。 ⚠️ 只有声明，没有公开回测或记录。
-- [Kalshi Trading Bot CLI](https://github.com/OctagonAI/kalshi-trading-bot-cli) [⚡](https://github.com/OctagonAI/kalshi-trading-bot-cli/blob/fcba2ff115de7cf736b51a0b5611ee7ef709142e/README.md?plain=1#L189-L191) — 估算Kalshi市场概率并以分数Kelly定仓的CLI。 ⚠️ 会在 Kalshi 下真实订单；先用自带模拟账本或 Kalshi 演示环境；未公布业绩记录。
+- [Oracle3](https://github.com/YichengYang-Ethan/oracle3-prediction-market-agent) [⚡](https://github.com/YichengYang-Ethan/oracle3-prediction-market-agent/blob/267fb7c48dae7c4ff8922c02a3a223443e51bf0b/README.md?plain=1#L24-L27) — Kalshi 与 Polymarket 预测市场代理工具包。 ⚠️ 只有声明，没有公开回测或记录。
+- [Kalshi Trading Bot CLI](https://github.com/OctagonAI/kalshi-trading-bot-cli) [⚡](https://github.com/OctagonAI/kalshi-trading-bot-cli/blob/fcba2ff115de7cf736b51a0b5611ee7ef709142e/README.md?plain=1#L189-L191) — 估算 Kalshi 市场概率并以分数 Kelly 定仓的 CLI。 ⚠️ 会在 Kalshi 下真实订单；先用自带模拟账本或 Kalshi 演示环境；未公布业绩记录。
 
 #### 必读
 
@@ -342,9 +351,9 @@ python tools/verify.py all                                  # 重新核对每个
 
 ## 收录原则
 
-- **边界清楚。** 收录：由 LLM 或智能体做研究、决策或交易的开源工作，以及这类系统所依赖的数据、执行与 Harness 基础设施。不收录：没有智能体接口的通用量化库（见 [awesome-quant](https://github.com/wilsonfreitas/awesome-quant)）、闭源产品、卖信号。
+- **边界清楚。** 收录：由 LLM 或智能体做研究、决策或交易的公开仓库与已发表的工作，以及这类系统所依赖的数据、执行与 Harness 基础设施。不收录：没有智能体接口的通用量化库（见 [awesome-quant](https://github.com/wilsonfreitas/awesome-quant)）、闭源产品、卖信号。
 - **准入门槛。** 仓库需要已发布代码、可读的 README 与独特用途。只有公告、尚无代码的仓库放在分层页的观察名单里；已归档或已弃用的移入归档区。
-- **许可证要分类，不能想当然。** 逐一阅读许可证文件原文，把每个仓库标为开源、混合（🧩）、受限（🔒）或待确认（❓）；首页分别计数，“仓库”不会被默认等同于“开源”。
+- **许可证要分类，不能想当然。** 逐一阅读许可证文件原文，把每个仓库标为开源、混合（🧩）、受限（🔒）或待确认（❓）；首页分别计数，本清单也从不把全部收录项目统称为开源：“仓库”只表示代码公开。
 - **每个条目都写限制。** 写出最可能改变你选择的那一点：环境要求、仅模拟、下单权限、缺数据、不常见的许可证。
 - **收集不等于读过。** 论文按阅读深度标记（📖 全文精读、🗂️ 方法卡片、🔖 仅摘要）；仓库同样标记（🔬 深度拆解，或 README 与代码浏览）。
 - **证据可点击。** 在分层页上，每个条目都链接到核验时的提交（🔍）。下单权限（⚡ 📝）、待确认或受限的许可证、维护声明都链接到该提交中的具体行；DEMO 或只读模式不会被称作模拟交易。

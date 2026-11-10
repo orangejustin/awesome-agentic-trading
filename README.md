@@ -1,5 +1,9 @@
 <p align="center"><img src="assets/banner.svg" alt="Awesome Agentic Trading" width="100%"></p>
 
+<h1 align="center">Awesome Agentic Trading</h1>
+
+<p align="center"><b>English</b> | <a href="README.zh-CN.md">简体中文</a></p>
+
 <p align="center">
   <a href="https://awesome.re"><img src="https://awesome.re/badge.svg" alt="Awesome"></a>
   <a href="https://github.com/orangejustin/awesome-agentic-trading/actions/workflows/ci.yml"><img src="https://github.com/orangejustin/awesome-agentic-trading/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
@@ -8,12 +12,17 @@
   <a href="CONTRIBUTING.md"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs welcome"></a>
 </p>
 
-<p align="center"><b>English</b
 > A curated, source-checked guide to building and evaluating **LLM-powered trading systems**: repositories, papers, articles and posts, organized by the five layers of the stack: **Data → Agent → Execution → Harness → Application**.
 
 <!-- gen:headline -->70 repositories (57 open source · 5 mixed or restricted license · 8 license unclear) · 60 papers · 41 articles and posts · 5 deep dives<!-- /gen:headline -->. Every repository entry says what it does, whether it can place orders, how it is licensed and its most important limit; every paper says how much of it we actually read.
 
-**What "checked" means.** Each repository was read at a named commit: its README, its license file and the lines that decide whether it can place orders. That is a *source check*. Installing a project and running it end to end are stronger claims, made only where a page says so ([component matrix](docs/components.md)). A program re-checks every link weekly ([latest report](https://github.com/orangejustin/awesome-agentic-trading/actions/workflows/verify.yml)); the check date on an entry is the day a person last read it, and no program moves it.
+**What "checked" means.** Each repository was read at a named commit: its README, its license file and the lines that decide whether it can place orders. That is a *source check*: it says what a repository contains, not that its strategy works or that any return is real. Installing a project and running it end to end are stronger claims, made only where a page says so ([component matrix](docs/components.md)). A program re-checks every link weekly ([latest report](https://github.com/orangejustin/awesome-agentic-trading/actions/workflows/verify.yml)); the check date on an entry is the day a person last read it, and no program moves it.
+
+**Three ways in:**
+
+- 🔎 **Find a tool:** [start here](#start-here) to pick by the job you have, browse the [directory](#directory) of every repository with its limit, or use the [component matrix](docs/components.md) to choose parts that fit together.
+- 🧭 **Understand the field:** [the stack](#the-stack) explains the five layers, [recent milestones](#recent-milestones) and the [full timeline](docs/milestones.md) show how it got here, and [first principles](docs/00-first-principles.md) and the [deep dives](#guides-and-deep-dives) go further.
+- 🧪 **Check a claim:** [what the evidence shows](#what-the-evidence-shows) lists four findings with sources, [reading a backtest](docs/06-reading-a-backtest.md) and the [evaluation kit](#lab) let you test a number yourself, and the [claim audit](docs/05-claim-audit.md) records where papers and code disagree.
 
 > [!WARNING]
 > Research and education only. Nothing here is financial advice. Several listed tools can place real orders (marked ⚡, linked to the lines that show it); start them read-only or on a paper account where one exists. Inclusion does not mean a project is profitable or production-ready.
@@ -165,7 +174,7 @@ Every listed repository, by layer. One line each: what it is, then ⚠️ the li
 
 > How does a decision become a fill, safely?
 
-**13 repos · 1 papers · 7 articles** · [Layer page: evidence links, check dates, every paper →](layers/execution.md)
+**13 repos · 1 paper · 7 articles** · [Layer page: evidence links, check dates, every paper →](layers/execution.md)
 
 #### Broker and venue tools for agents
 
@@ -217,7 +226,7 @@ Every listed repository, by layer. One line each: what it is, then ⚠️ the li
 - [LLM Trading Lab](https://github.com/LuckyOne7777/LLM-Trading-Lab) 🟡 ❓ no license — Logged six-month live experiment of ChatGPT managing a real-money micro-cap portfolio. ⚠️ One six-month run, author-evaluated; no broker integration in the code; no license file.
 - [PIXIU / FinBen](https://github.com/The-FinAI/PIXIU) — Open financial LLM FinMA with instruction data and FinBen evaluation suite. ⚠️ High scores on these tasks say little about trading performance.
 - [DeepFund](https://github.com/HKUSTDial/DeepFund) 🟡 — Live arena benchmarking LLM fund managers on post-cutoff market data. ⚠️ Does not trade (decisions are scored on live data); results depend on a short live window.
-- [Live Trade Bench](https://github.com/ulab-uiuc/live-trade-bench) [📝](https://github.com/ulab-uiuc/live-trade-bench/blob/05fbfec8df76c2c309201e6b4b7c26aff7e6d0f9/README.md?plain=1#L64-L71) 🟡 🔒 `PolyForm-Noncommercial-1.0.0` — FastAPI platform running and monitoring LLM trading agents live on stocks and Polymarket. ⚠️ Simulated portfolios on live data, not real capital; noncommercial license.
+- [Live Trade Bench](https://github.com/ulab-uiuc/live-trade-bench) [📝](https://github.com/ulab-uiuc/live-trade-bench/blob/05fbfec8df76c2c309201e6b4b7c26aff7e6d0f9/README.md?plain=1#L64-L71) 🟡 🔒 `PolyForm-Noncommercial-1.0.0` — FastAPI platform that runs and monitors LLM trading agents on live stock and Polymarket data, with simulated portfolios. ⚠️ Simulated portfolios on live data, not real capital; noncommercial license.
 
 #### Robustness and bias control
 
@@ -340,9 +349,9 @@ Lists this one was built from and compared against ([comparison](docs/03-lists-c
 
 ## How this list is curated
 
-- **Clear boundary.** In scope: open-source work where an LLM or agent researches, decides or trades, and the data, execution and harness infrastructure such systems are built on. Out of scope: general quant libraries with no agent interface (see [awesome-quant](https://github.com/wilsonfreitas/awesome-quant)), closed products, and signal-selling.
+- **Clear boundary.** In scope: public repositories and published work where an LLM or agent researches, decides or trades, and the data, execution and harness infrastructure such systems are built on. Out of scope: general quant libraries with no agent interface (see [awesome-quant](https://github.com/wilsonfreitas/awesome-quant)), closed products, and signal-selling.
 - **Admission.** A repository needs released code, a readable README and a distinct use. Announced-but-empty repositories wait on the layer page's watchlist; archived or deprecated ones move to an archive section.
-- **Licenses are classified, not assumed.** The license file is read as text and every repository is marked open, mixed (🧩), restricted (🔒) or unclear (❓); the headline counts them separately, so "repository" never silently means "open source".
+- **Licenses are classified, not assumed.** The license file is read as text and every repository is marked open, mixed (🧩), restricted (🔒) or unclear (❓); the headline counts them separately, and this list never calls the whole collection open source: "repository" means the code is public, nothing more.
 - **Every entry carries its limit.** The one line that would change your decision: setup needs, simulation-only behaviour, order authority, missing data, an unusual license.
 - **Collected is not read.** Papers are marked by read depth (📖 read in full, 🗂️ method card, 🔖 abstract only); repositories by read depth too (🔬 deep dive or README and code skim).
 - **Evidence you can click.** On the layer pages, each entry links the commit it was checked at (🔍). Order authority (⚡ 📝), unclear or restricted licenses and maintenance declarations link to the exact lines at that commit; DEMO or read-only modes are not called paper trading.

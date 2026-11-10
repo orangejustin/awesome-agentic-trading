@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 530" width="960" height="530" role="img" aria-labelledby="t d" font-family="Inter, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 530" width="960" height="530" role="img" aria-labelledby="t d" font-family="Inter, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif">
 <title id="t">Five layers of an agentic trading stack</title>
 <desc id="d">Data, Agent and Execution in a pipeline, wrapped by a Harness that runs, tests and verifies them, with Applications on top.</desc>
 <rect width="960" height="530" rx="16" fill="#F8FAFC"/>
