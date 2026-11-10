@@ -92,10 +92,10 @@ limit_zh = "仓库根目录无LICENSE文件，仅README徽章标注MIT"
 [vibe-trading]
 tagline = "Personal trading-agent stack (CLI, MCP, web): research, backtests with run cards and validation, paper accounts and a reconciling live runner"
 audience = "Developers who want an end-to-end reference for agentic trading, from research to orders"
-limit = "Live broker connectors carry real execution risk; no performance claim checked; beware impersonating tokens and accounts"
+limit = "Live broker connectors carry real execution risk; no performance claim checked; beware impostor community servers and wallet-signing scams"
 tagline_zh = "个人交易智能体全栈（CLI、MCP、Web）：投研、带运行卡与验证的回测、模拟账户，以及会对账的实盘执行器"
 audience_zh = "需要从投研到下单的端到端智能体交易参考实现的开发者"
-limit_zh = "实盘券商连接有真实执行风险；未核对表现声明；注意冒名的代币与账号"
+limit_zh = "实盘券商连接有真实执行风险；未核对表现声明；注意冒名社群与诱导钱包签名的骗局"
 
 [quantagent]
 tagline = "LangGraph multi-agent technical-analysis system for short-horizon trading with web UI"
@@ -138,12 +138,12 @@ audience_zh = "研究外部因素如何影响交易行为的研究者"
 limit_zh = "仓库中没有LICENSE文件，使用条款不明确"
 
 [trading-r1]
-tagline = "Reasoning model trained with SFT and RL to produce investment theses"
-audience = "Researchers who follow LLM reasoning models for investment decisions"
-limit = "Repo holds only a two-line README; no model or code released"
-tagline_zh = "经SFT与RL训练、生成投资论点的推理模型"
-audience_zh = "关注投资决策推理模型的研究者"
-limit_zh = "仓库仅有两行README，尚未发布模型或代码"
+tagline = "Terminal research agent with market-data, web and valuation tools, PDF reports and scheduled briefs"
+audience = "Analysts who want a finance research agent in the terminal"
+limit = "Data tools need a Tauric key and sessions sync to Tauric by default; no weights, training code or backtest for the paper's model"
+tagline_zh = "终端里的投研智能体：行情数据、网页检索与估值工具，可导出 PDF 报告并定时推送"
+audience_zh = "想在终端里使用金融研究智能体的分析人员"
+limit_zh = "数据工具需要 Tauric 密钥，会话默认同步到 Tauric；论文模型的权重、训练代码与回测均未发布"
 
 [tradetrap]
 tagline = "Fault-injection toolkit testing LLM trading agents against attacks and data manipulation"
@@ -444,10 +444,10 @@ limit_zh = "仅覆盖美国 SEC 申报主体；请求须带联系身份并遵守
 [akshare]
 tagline = "Public Chinese and global market, macro and news data into pandas, with an llms.txt for LLMs"
 audience = "Builders of A-share and Hong Kong agent projects who need free data"
-limit = "Scraped endpoints break when sites change; current data, not point-in-time; no MCP server of its own"
+limit = "Scraped endpoints break when sites change; current data, not point-in-time; MCP and HTTP access come from the separate AKTools project"
 tagline_zh = "把中国及全球公开行情、宏观与新闻数据取成 pandas，附面向 LLM 的 llms.txt"
 audience_zh = "需要免费数据的 A 股、港股智能体项目开发者"
-limit_zh = "抓取型接口会随网站改版失效；为当前数据而非时点数据；自身无 MCP 服务"
+limit_zh = "抓取型接口会随网站改版失效；为当前数据而非时点数据；MCP 与 HTTP 接口由独立的 AKTools 项目提供"
 
 [fnspid]
 tagline = "Time-aligned financial news and prices for 4,775 S&P 500 companies, 1999-2023"

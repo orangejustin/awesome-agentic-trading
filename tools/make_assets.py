@@ -100,7 +100,7 @@ RUNGS = [
     ("L0", "Claim", "Read it."),
     ("L1", "Runnable", "Run it and see decisions."),
     ("L2", "Disclosed backtest", "Read the protocol and table."),
-    ("L3", "Independent or out of sample", "Someone else reran it, or it holds after the cutoff."),
+    ("L3", "Replicated or out of sample", "Someone else reran it, or it holds after the cutoff."),
     ("L4", "Forward record", "Timestamped before the outcome."),
 ]
 
@@ -124,7 +124,7 @@ def ladder(projects: list[dict]) -> str:
         sub = "#E0E7FF" if dark else MUTED
         b.append(f'<rect x="{x}" y="{y}" width="{bw}" height="{hgt}" rx="10" fill="{shades[i]}"/>')
         b.append(t(x + 14, y + 30, rung, 22, 800, txt))
-        b.append(t(x + 14, y + 52, name if len(name) < 20 else "Independent / OOS", 13.5, 700, txt))
+        b.append(t(x + 14, y + 52, name if len(name) < 20 else "Replicated / OOS", 13.5, 700, txt))
         words, line, lines = what.split(), "", []
         for wd in words:
             if len(line) + len(wd) + 1 > 21:

@@ -28,16 +28,16 @@ license_status = "open"
 license_file = "LICENSE"
 stars = "112.4k"
 stars_asof = "2026-10-21"
-last_commit = "2026-10-16"
-last_sha = "e8f5503e9b86d5c2710b0c76b1f686703968c9df"
-checked = "2026-10-26"
+last_commit = "2026-11-04"
+last_sha = "9fa1196fffbcfd9de5146d2dd2869df84ab99838"
+checked = "2026-11-10"
 evidence = "L2"
 repro = "partial"
 read = "teardown"
 summary = "LangGraph 'trading firm': four analysts, bull/bear debate, research manager, trader, three-way risk debate, portfolio manager that emits a five-tier rating. Memory log settles each decision against later returns."
 caveat = "The repo evaluates decision quality only (its backtest module says it is not a portfolio simulator) and contains no Sharpe or drawdown code; the paper's Table 1 harness is not included."
 sources = [
-  { what = "orders", url = "https://github.com/TauricResearch/TradingAgents/blob/e8f5503e9b86d5c2710b0c76b1f686703968c9df/README.md?plain=1#L109" },
+  { what = "orders", url = "https://github.com/TauricResearch/TradingAgents/blob/9fa1196fffbcfd9de5146d2dd2869df84ab99838/README.md?plain=1#L106" },
 ]
 
 [[project]]
@@ -199,17 +199,17 @@ license_status = "open"
 license_file = "LICENSE"
 stars = "64.1k"
 stars_asof = "2026-10-21"
-last_commit = "2026-10-24"
-last_sha = "29b32f71861480e9bfd48b82cf0d3ca3e5680955"
-checked = "2026-10-26"
+last_commit = "2026-11-09"
+last_sha = "5c553b5222044f6a5527bd377b4104c50ee0ad28"
+checked = "2026-11-10"
 evidence = "L1"
 repro = "unverified"
 read = "readme"
 summary = "LLM 'hedge fund' proof of concept: investor agents run a fund mandate, paper funds track real market days with fake money, and a backtest replays history against a benchmark. The README states that it does not make real trades."
 caveat = "Educational only by the author's own disclaimer."
 sources = [
-  { what = "orders", url = "https://github.com/virattt/ai-hedge-fund/blob/29b32f71861480e9bfd48b82cf0d3ca3e5680955/README.md?plain=1#L57" },
-  { what = "orders", url = "https://github.com/virattt/ai-hedge-fund/blob/29b32f71861480e9bfd48b82cf0d3ca3e5680955/README.md?plain=1#L8" },
+  { what = "orders", url = "https://github.com/virattt/ai-hedge-fund/blob/5c553b5222044f6a5527bd377b4104c50ee0ad28/README.md?plain=1#L57" },
+  { what = "orders", url = "https://github.com/virattt/ai-hedge-fund/blob/5c553b5222044f6a5527bd377b4104c50ee0ad28/README.md?plain=1#L8" },
 ]
 
 [[project]]
@@ -302,16 +302,16 @@ license_status = "open"
 license_file = "LICENSE"
 stars = "36.1k"
 stars_asof = "2026-10-21"
-last_commit = "2026-10-26"
-last_sha = "3cbb167e9d7afab1682934685437efb96faacd43"
-checked = "2026-10-26"
+last_commit = "2026-11-09"
+last_sha = "dbff8165f47401db4c3ec98acdf0577acdf87aa6"
+checked = "2026-11-10"
 evidence = "L1"
 repro = "unverified"
 read = "readme"
-summary = "Personal trading-agent stack (CLI, MCP, web) covering research, factor libraries, backtests that emit a run card and validation report, daily paper accounts, and broker connectors with a live runner that reconciles state (agent/backtest/run_card.py, agent/backtest/validation.py, agent/src/live/runtime/reconcile.py, checked 2026-10-26)."
-caveat = "Fast-moving (many fixes a day); live trading through its broker connectors carries real execution risk, and the live path ships with a disclaimer, not production validation. The README warns that an X account, a Virtuals project and a token contract using its name are impersonations."
+summary = "Personal trading-agent stack (CLI, MCP, web) covering research, factor libraries, backtests that emit a run card and validation report, daily paper accounts, and broker connectors with a live runner that reconciles state (agent/backtest/run_card.py, agent/backtest/validation.py, agent/src/live/runtime/reconcile.py, checked 2026-11-10)."
+caveat = "Fast-moving (many fixes a day); live trading through its broker connectors carries real execution risk, and the live path ships with a disclaimer, not production validation. Its SECURITY.md warns about impostor community servers and wallet-signing scams using its name."
 sources = [
-  { what = "orders", url = "https://github.com/HKUDS/Vibe-Trading/blob/3cbb167e9d7afab1682934685437efb96faacd43/README.md?plain=1#L773-L775" },
+  { what = "orders", url = "https://github.com/HKUDS/Vibe-Trading/blob/dbff8165f47401db4c3ec98acdf0577acdf87aa6/guides/capabilities.md?plain=1#L203-L205" },
 ]
 
 [[project]]
@@ -441,24 +441,29 @@ id = "trading-r1"
 name = "Trading-R1"
 repo = "TauricResearch/Trading-R1"
 paper = "2509.11420"
-kind = "model"
-layer = "agent"
-category = "agent-models"
+kind = "platform"
+layer = "application"
+category = "app-research"
+also = ["agent"]
 orders = "none"
-watch = true
-license = ""
-license_status = "none"
-license_file = ""
+license = "Apache-2.0"
+license_status = "open"
+license_file = "LICENSE"
 stars = "507"
 stars_asof = "2026-10-21"
-last_commit = "2025-09-14"
-last_sha = "57810bfb4456ba1509a2a3c6d502d3085922bf83"
-checked = "2026-10-26"
-evidence = "L0"
+last_commit = "2026-11-08"
+last_sha = "b50c941c5833e6c46f36ee1b2277513725ee5367"
+checked = "2026-11-10"
+evidence = "L1"
 repro = "none"
 read = "readme"
-summary = "Reasoning model trained with supervised fine-tuning and RL for investment theses. The paper promises a 'Terminal' release at this repo."
-caveat = "At the snapshot the only file is a two-line README ('Releasing soon: Trading-R1 Terminal')."
+summary = "Terminal research agent (v0.1.1, released 2026-11): answers finance questions with market-data, web-research and compute tools (valuation, risk, fixed income, derivatives) and 17 workflow skills, exports PDF reports and runs scheduled briefs to email or Telegram. Runs on Tauric's hosted model, OpenAI, Anthropic, Gemini or a self-hosted vLLM server."
+caveat = "What shipped is the terminal, not the paper's model: the repository has no model weights, training code or backtest, so the paper's trading results cannot be regenerated from it. Every market-data tool calls Tauric's hosted API and needs a Tauric key, whichever model you choose; with that key, sessions (questions, model requests and responses, tool results) are copied to api.tauric.ai by default until sync is turned off. Places no orders."
+sources = [
+  { what = "data", url = "https://github.com/TauricResearch/Trading-R1/blob/b50c941c5833e6c46f36ee1b2277513725ee5367/trading_r1/tools/data/tauric.py?plain=1#L4-L6" },
+  { what = "limit", url = "https://github.com/TauricResearch/Trading-R1/blob/b50c941c5833e6c46f36ee1b2277513725ee5367/MANUAL.md?plain=1#L68-L72" },
+  { what = "runtime", url = "https://github.com/TauricResearch/Trading-R1/blob/b50c941c5833e6c46f36ee1b2277513725ee5367/README.md?plain=1#L61-L73" },
+]
 
 [[project]]
 id = "tradetrap"
@@ -499,15 +504,15 @@ license_status = "open"
 license_file = "LICENSE"
 stars = "22.1k"
 stars_asof = "2026-10-21"
-last_commit = "2026-10-26"
-last_sha = "22404ea28b8d3f3c9eb74d6ed9f0444426f8e417"
-checked = "2026-10-26"
+last_commit = "2026-11-09"
+last_sha = "3afb212b30eff5e73013b5130887a95bf9e4cb4b"
+checked = "2026-11-10"
 evidence = "n/a"
 repro = "unverified"
 read = "readme"
 summary = "Event-driven algorithmic trading engine used for research, backtesting and live trading across many brokers."
 sources = [
-  { what = "orders", url = "https://github.com/QuantConnect/Lean/blob/22404ea28b8d3f3c9eb74d6ed9f0444426f8e417/readme.md?plain=1#L97" },
+  { what = "orders", url = "https://github.com/QuantConnect/Lean/blob/3afb212b30eff5e73013b5130887a95bf9e4cb4b/readme.md?plain=1#L97" },
 ]
 
 [[project]]
@@ -524,17 +529,17 @@ license_status = "open"
 license_file = "LICENSE"
 stars = "30.4k"
 stars_asof = "2026-10-21"
-last_commit = "2026-10-26"
-last_sha = "04f766b4d434d67fc8672026fefa25135bdc01be"
-checked = "2026-10-26"
+last_commit = "2026-11-10"
+last_sha = "a8786259f83c9787293adc456444bfd38c361df6"
+checked = "2026-11-10"
 evidence = "n/a"
 repro = "unverified"
 read = "readme"
 summary = "High-performance event-driven engine meant to run the same strategy code in backtest and live."
 caveat = "A general engine, not LLM-specific: agent integration is up to you. The docs cover v2, whose wheels are release candidates installed with --pre; the authors do not recommend them yet for live trading with real capital, and v1 receives only security backports."
 sources = [
-  { what = "orders", url = "https://github.com/nautechsystems/nautilus_trader/blob/04f766b4d434d67fc8672026fefa25135bdc01be/README.md?plain=1#L61" },
-  { what = "limit", url = "https://github.com/nautechsystems/nautilus_trader/blob/04f766b4d434d67fc8672026fefa25135bdc01be/README.md?plain=1#L269-L280" },
+  { what = "orders", url = "https://github.com/nautechsystems/nautilus_trader/blob/a8786259f83c9787293adc456444bfd38c361df6/README.md?plain=1#L64" },
+  { what = "limit", url = "https://github.com/nautechsystems/nautilus_trader/blob/a8786259f83c9787293adc456444bfd38c361df6/README.md?plain=1#L273-L284" },
 ]
 
 [[project]]
@@ -550,9 +555,9 @@ license_status = "open"
 license_file = "LICENSE"
 stars = "74.5k"
 stars_asof = "2026-10-21"
-last_commit = "2026-10-24"
-last_sha = "7df7d0c5592bf25be88e87e130a05c71e243d2d8"
-checked = "2026-10-26"
+last_commit = "2026-11-10"
+last_sha = "ca1d11fe5c000d7c15939d744e004f84d8ba61e1"
+checked = "2026-11-10"
 evidence = "n/a"
 repro = "unverified"
 read = "readme"
@@ -572,16 +577,16 @@ license_status = "open"
 license_file = "LICENSE"
 stars = "1.0k"
 stars_asof = "2026-10-21"
-last_commit = "2026-10-26"
-last_sha = "d8dac43f3e17594e8879bac3b5b333196ea69aac"
-checked = "2026-10-26"
+last_commit = "2026-11-04"
+last_sha = "63cc4278d87b31f3ed4efcfaa55624095c6d7be8"
+checked = "2026-11-10"
 evidence = "n/a"
 repro = "unverified"
 read = "readme"
 summary = "MCP server that lets an LLM client query market data and place paper or live orders through Alpaca."
 caveat = "Paper trading is the default, but one environment flag switches to live orders on real funds, and every toolset is enabled unless restricted. Version 2 tool names and schemas break version 1 setups."
 sources = [
-  { what = "orders", url = "https://github.com/alpacahq/alpaca-mcp-server/blob/d8dac43f3e17594e8879bac3b5b333196ea69aac/README.md?plain=1#L245-L258" },
+  { what = "orders", url = "https://github.com/alpacahq/alpaca-mcp-server/blob/63cc4278d87b31f3ed4efcfaa55624095c6d7be8/README.md?plain=1#L245-L258" },
 ]
 
 [[project]]
@@ -809,9 +814,9 @@ license_status = "open"
 license_file = "LICENSE"
 stars = "632"
 stars_asof = "2026-10-21"
-last_commit = "2026-10-16"
-last_sha = "e109a7d2da9899de597b81bea015fbf1b056a74a"
-checked = "2026-10-26"
+last_commit = "2026-11-09"
+last_sha = "a626b083c1c3ff776a88c3c684ec0e186e622c62"
+checked = "2026-11-10"
 evidence = "n/a"
 repro = "unverified"
 read = "readme"
@@ -927,17 +932,17 @@ license_status = "open"
 license_file = "LICENSE"
 stars = "781"
 stars_asof = "2026-10-21"
-last_commit = "2026-10-22"
-last_sha = "59ac7f7cc98b28d9f73d65c506e615791b04b2a2"
-checked = "2026-10-26"
+last_commit = "2026-11-05"
+last_sha = "e27b5eb141265df618a228a99aab41b3b97e9767"
+checked = "2026-11-10"
 evidence = "L0"
 repro = "unverified"
 read = "readme"
 summary = "Open research platform for building LLM trading agents from templates, backtesting and paper-trading them and inspecting their reasoning logs; carries the FinAgent orchestration framework, with its own paper at a NeurIPS 2025 workshop."
 caveat = "OpenMDW-1.0 is not one of the common open-source licenses: read it before reuse. The documented use is simulated fills, but the code ships a real-money Robinhood path that is switched off by default."
 sources = [
-  { what = "orders", url = "https://github.com/Open-Finance-Lab/AgenticTrading/blob/59ac7f7cc98b28d9f73d65c506e615791b04b2a2/dashboard/backend/api/routers/robinhood_live.py#L1-L5" },
-  { what = "orders", url = "https://github.com/Open-Finance-Lab/AgenticTrading/blob/59ac7f7cc98b28d9f73d65c506e615791b04b2a2/README.md?plain=1#L59" },
+  { what = "orders", url = "https://github.com/Open-Finance-Lab/AgenticTrading/blob/e27b5eb141265df618a228a99aab41b3b97e9767/dashboard/backend/api/routers/robinhood_live.py#L1-L5" },
+  { what = "orders", url = "https://github.com/Open-Finance-Lab/AgenticTrading/blob/e27b5eb141265df618a228a99aab41b3b97e9767/README.md?plain=1#L59" },
 ]
 
 [[project]]
@@ -1004,16 +1009,16 @@ license_status = "open"
 license_file = "LICENSE"
 stars = "624"
 stars_asof = "2026-10-21"
-last_commit = "2026-10-02"
-last_sha = "7b9667bb7e7e7b263f14b54ab8647a05cbdd1383"
-checked = "2026-10-26"
+last_commit = "2026-11-08"
+last_sha = "5d7b70addcc61a1cc1f64f1025f3386888a210b7"
+checked = "2026-11-10"
 evidence = "L4"
 repro = "unverified"
 read = "readme"
 summary = "Kalshi toolkit built around an edge audit: it reconciles a decision journal with settlements and reports Brier score, log-loss and edge versus the book, and refuses a verdict below 10 forward-settled trades. Ships an MCP server and agent tools."
 caveat = "Its own published forward verdict (2026-10-02, 55 trades) is 'no measured edge'. The live account is also traded by hand, so account-level figures blend both."
 sources = [
-  { what = "orders", url = "https://github.com/ryanfrigo/kalshi-ai-trading-bot/blob/7b9667bb7e7e7b263f14b54ab8647a05cbdd1383/README.md?plain=1#L207-L210" },
+  { what = "orders", url = "https://github.com/ryanfrigo/kalshi-ai-trading-bot/blob/5d7b70addcc61a1cc1f64f1025f3386888a210b7/README.md?plain=1#L212-L215" },
 ]
 
 [[project]]
@@ -1104,17 +1109,17 @@ orders = "none"
 license = "ISC"
 license_status = "declared"
 license_file = ""
-last_commit = "2026-10-25"
-last_sha = "f04af705f24dfd883a730e92d18215222bdff272"
-checked = "2026-10-26"
+last_commit = "2026-11-03"
+last_sha = "eb17f570e4c74b9a635c475b4a07e9c92fba33c5"
+checked = "2026-11-10"
 evidence = "n/a"
 repro = "n/a"
 read = "readme"
 summary = "Unofficial TypeScript/Node client (v4) for TradingView candles, quotes, indicator values, screener and replay, with a backtest module (costs, pessimistic fills, in/out-of-sample split, random-entry baseline) and an agent quick start."
 caveat = "Not an official TradingView API: it relies on undocumented endpoints, so breakage and Terms-of-Use risk apply. No root LICENSE file; package.json declares ISC. The backtest docs say it makes no profitability claim and places no orders."
 sources = [
-  { what = "orders", url = "https://github.com/Mathieu2301/TradingView-API/blob/f04af705f24dfd883a730e92d18215222bdff272/docs/backtest.md?plain=1#L5" },
-  { what = "license", url = "https://github.com/Mathieu2301/TradingView-API/blob/f04af705f24dfd883a730e92d18215222bdff272/package.json#L78" },
+  { what = "orders", url = "https://github.com/Mathieu2301/TradingView-API/blob/eb17f570e4c74b9a635c475b4a07e9c92fba33c5/docs/backtest.md?plain=1#L5" },
+  { what = "license", url = "https://github.com/Mathieu2301/TradingView-API/blob/eb17f570e4c74b9a635c475b4a07e9c92fba33c5/package.json#L78" },
 ]
 
 [[project]]
@@ -1149,9 +1154,9 @@ general = true
 license = "MIT"
 license_status = "open"
 license_file = "LICENSE"
-last_commit = "2026-10-24"
-last_sha = "14c213405669414492bda0f8d52cc6531d062c45"
-checked = "2026-10-26"
+last_commit = "2026-11-08"
+last_sha = "c70ae6da5d39bc90e09ad2ae0575ccc89f31e284"
+checked = "2026-11-10"
 evidence = "n/a"
 repro = "n/a"
 read = "readme"
@@ -1170,9 +1175,9 @@ general = true
 license = "Apache-2.0"
 license_status = "open"
 license_file = "LICENSE"
-last_commit = "2026-10-26"
-last_sha = "97dc0cd5214b9602bcda78d7422f231ee8a803e9"
-checked = "2026-10-26"
+last_commit = "2026-11-08"
+last_sha = "9bc5f5ca132ec4d4e48d7ee517d4303bf159e8e8"
+checked = "2026-11-10"
 evidence = "n/a"
 repro = "n/a"
 read = "readme"
@@ -1191,9 +1196,9 @@ general = true
 license = "Apache-2.0"
 license_status = "open"
 license_file = "LICENSE"
-last_commit = "2026-10-26"
-last_sha = "399eeacb2856d383e119747f535faa943aab5201"
-checked = "2026-10-26"
+last_commit = "2026-11-09"
+last_sha = "754bc9f93343455b153b0807d2a3a3e2b81e227d"
+checked = "2026-11-10"
 evidence = "n/a"
 repro = "n/a"
 read = "readme"
@@ -1212,9 +1217,9 @@ general = true
 license = "MIT"
 license_status = "open"
 license_file = "LICENSE.txt"
-last_commit = "2026-10-25"
-last_sha = "d9474e1b1e4f9bf371c9d1df867b260774780b0e"
-checked = "2026-10-26"
+last_commit = "2026-11-09"
+last_sha = "2a5d1d6997a2c2faa0d6c8d936d3a8d656d0d741"
+checked = "2026-11-10"
 evidence = "n/a"
 repro = "n/a"
 read = "readme"
@@ -1254,16 +1259,16 @@ general = true
 license = "MIT"
 license_status = "open"
 license_file = "LICENSE"
-last_commit = "2026-10-26"
-last_sha = "e48ed85e08ff8a1ca74fa7d0e41daf47cf155efb"
-checked = "2026-10-26"
+last_commit = "2026-11-09"
+last_sha = "b3603fab85bb331da98a8b68ca442e1f4af7e368"
+checked = "2026-11-10"
 evidence = "n/a"
 repro = "n/a"
 read = "readme"
 summary = "CLI and library for declarative evaluation and red-teaming of prompts, agents and RAG pipelines across model providers, with CI integration."
 caveat = "Generic: trading-specific graders, market fixtures and P&L-aware metrics are yours to write. Promptfoo is now part of OpenAI and says it remains open source and MIT licensed."
 sources = [
-  { what = "notes", url = "https://github.com/promptfoo/promptfoo/blob/e48ed85e08ff8a1ca74fa7d0e41daf47cf155efb/README.md?plain=1#L23" },
+  { what = "notes", url = "https://github.com/promptfoo/promptfoo/blob/b3603fab85bb331da98a8b68ca442e1f4af7e368/README.md?plain=1#L23" },
 ]
 
 [[project]]
@@ -1278,17 +1283,17 @@ general = true
 license = "MIT + proprietary ee/"
 license_status = "mixed"
 license_file = "LICENSE"
-last_commit = "2026-10-26"
-last_sha = "165b621fdf8fc7d34232df8d5a74a5ab36d3fc83"
-checked = "2026-10-26"
+last_commit = "2026-11-10"
+last_sha = "f3542d48eaa3fdb1cdddd03dcf233769f169b3d7"
+checked = "2026-11-10"
 evidence = "n/a"
 repro = "n/a"
 read = "readme"
 summary = "Open-source LLM observability and evals platform: tracing, prompt management, datasets and evaluations; self-hostable."
 caveat = "Mixed licensing: the ee/ directories use their own license. Self-hosting needs several services. Part of ClickHouse since January 2026."
 sources = [
-  { what = "license", url = "https://github.com/langfuse/langfuse/blob/165b621fdf8fc7d34232df8d5a74a5ab36d3fc83/LICENSE#L1-L7" },
-  { what = "notes", url = "https://github.com/langfuse/langfuse/blob/165b621fdf8fc7d34232df8d5a74a5ab36d3fc83/README.md?plain=1#L69" },
+  { what = "license", url = "https://github.com/langfuse/langfuse/blob/f3542d48eaa3fdb1cdddd03dcf233769f169b3d7/LICENSE#L1-L7" },
+  { what = "notes", url = "https://github.com/langfuse/langfuse/blob/f3542d48eaa3fdb1cdddd03dcf233769f169b3d7/README.md?plain=1#L70" },
 ]
 
 [[project]]
@@ -1303,9 +1308,9 @@ general = true
 license = "Apache-2.0"
 license_status = "open"
 license_file = "LICENSE"
-last_commit = "2026-10-26"
-last_sha = "c080078c6b8a8a1db9a781380e15ed14189ad8d1"
-checked = "2026-10-26"
+last_commit = "2026-11-10"
+last_sha = "ec6618290a90aa4ba2cfd08bd91b2f8a1afa760a"
+checked = "2026-11-10"
 evidence = "n/a"
 repro = "n/a"
 read = "readme"
@@ -1324,9 +1329,9 @@ general = true
 license = "Apache-2.0"
 license_status = "open"
 license_file = "LICENSE"
-last_commit = "2026-10-13"
-last_sha = "1cfe254e8d25b15f37048c3730134686abe60335"
-checked = "2026-10-26"
+last_commit = "2026-11-01"
+last_sha = "6868817518876de8fd170c6a8354daca273b6191"
+checked = "2026-11-10"
 evidence = "n/a"
 repro = "n/a"
 read = "readme"
@@ -1345,9 +1350,9 @@ general = true
 license = "MIT"
 license_status = "open"
 license_file = "LICENSE"
-last_commit = "2026-10-26"
-last_sha = "6c384aa30f619d7b28963f2bab24d8dacbe73cb6"
-checked = "2026-10-26"
+last_commit = "2026-11-10"
+last_sha = "d9eff0a70c1b0ba552690f9ace9f43de7cd18577"
+checked = "2026-11-10"
 evidence = "n/a"
 repro = "n/a"
 read = "readme"
@@ -1391,9 +1396,9 @@ general = true
 license = "MIT"
 license_status = "open"
 license_file = "LICENSE"
-last_commit = "2026-09-28"
-last_sha = "ce8f9f186058939da54c9d6fead78dfb5d0fd6c3"
-checked = "2026-10-26"
+last_commit = "2026-10-27"
+last_sha = "7226f555d48900076eba126acf37c9ed5f002b5d"
+checked = "2026-11-10"
 evidence = "n/a"
 repro = "n/a"
 read = "readme"
@@ -1411,17 +1416,17 @@ orders = "paper"
 license = "MIT"
 license_status = "open"
 license_file = "LICENSE"
-last_commit = "2026-10-25"
-last_sha = "9776de7f3246913d4bbeb8f9901c030b3f05d5aa"
-checked = "2026-10-26"
+last_commit = "2026-11-06"
+last_sha = "48912fb420b1d16d6e412e9dec69871b242b93b2"
+checked = "2026-11-10"
 evidence = "n/a"
 repro = "n/a"
 read = "readme"
 summary = "Self-hosted Bloomberg-style research terminal for equities, F&O and crypto, with filings intelligence, research dossiers, backtesting and a tool-using AI analyst that cites evidence and labels data provenance."
 caveat = "Small single-maintainer project with strong India (NSE/BSE) coverage; portfolio actions are paper-only and need confirmation; free data sources may be delayed or synthetic (labelled by provenance). Marketing about replacing a paid terminal is not a reason to trust its numbers."
 sources = [
-  { what = "orders", url = "https://github.com/Hitheshkaranth/OpenTerminalUI/blob/9776de7f3246913d4bbeb8f9901c030b3f05d5aa/README.md?plain=1#L175" },
-  { what = "orders", url = "https://github.com/Hitheshkaranth/OpenTerminalUI/blob/9776de7f3246913d4bbeb8f9901c030b3f05d5aa/backend/adapters/alpaca.py#L14" },
+  { what = "orders", url = "https://github.com/Hitheshkaranth/OpenTerminalUI/blob/48912fb420b1d16d6e412e9dec69871b242b93b2/README.md?plain=1#L187" },
+  { what = "orders", url = "https://github.com/Hitheshkaranth/OpenTerminalUI/blob/48912fb420b1d16d6e412e9dec69871b242b93b2/backend/adapters/alpaca.py#L14" },
 ]
 
 [[project]]
@@ -1437,9 +1442,9 @@ license_status = "open"
 license_file = "LICENSE.txt"
 stars = "2.8k"
 stars_asof = "2026-10-26"
-last_commit = "2026-10-25"
-last_sha = "3931b22077eee1e0d2b77a8c5a61ab415d51ae0b"
-checked = "2026-10-26"
+last_commit = "2026-11-09"
+last_sha = "4e46d362b2fc9fa37501a0a0c67656bcf344b6ac"
+checked = "2026-11-10"
 evidence = "n/a"
 repro = "n/a"
 read = "readme"
@@ -1460,14 +1465,14 @@ license_status = "open"
 license_file = "LICENSE"
 stars = "23.1k"
 stars_asof = "2026-10-26"
-last_commit = "2026-10-23"
-last_sha = "2ea08ff44512a9b0c008cd4ff77463b940959c7e"
-checked = "2026-10-26"
+last_commit = "2026-11-10"
+last_sha = "1aef113ff143df4802a61e33ea2e3933839595e7"
+checked = "2026-11-10"
 evidence = "n/a"
 repro = "n/a"
 read = "readme"
 summary = "Python interface that pulls public financial and alternative data, mostly for China (A-shares, Hong Kong, futures, funds, bonds, macro, news) plus US stocks and crypto, into pandas DataFrames; ships an llms.txt describing the API for LLMs. Widely used by A-share agent projects."
-caveat = "Scrapes third-party public websites, so endpoints break when those sites change; documentation and column names are mostly Chinese; no MCP or agent interface of its own; current data, not point-in-time."
+caveat = "Scrapes third-party public websites, so endpoints break when those sites change; documentation and column names are mostly Chinese; the MCP server and HTTP API come from the separate AKTools project, not this library; current data, not point-in-time."
 
 [[project]]
 id = "fnspid"
@@ -1511,16 +1516,16 @@ license_status = "open"
 license_file = "LICENSE.txt"
 stars = "44.6k"
 stars_asof = "2026-10-26"
-last_commit = "2026-10-26"
-last_sha = "133fd945e5dabea9b08a3d6b1012cefe1ef9713b"
-checked = "2026-10-26"
+last_commit = "2026-11-10"
+last_sha = "e1579cb6bf5519fe588e249fd60fc42d5fff8f8c"
+checked = "2026-11-10"
 evidence = "n/a"
 repro = "n/a"
 read = "readme"
 summary = "Unified multi-language API for 100+ crypto exchanges; the repository now ships an official MCP server (mcp/, npm ccxt-mcp) for market data, balances and opt-in trading, with config-owned capability tiers, preview-then-confirm writes, notional caps, secret redaction and an append-only audit log."
 caveat = "ccxt-mcp is early (v0.1.3 at check). Trading, withdrawal and raw-endpoint tiers are enabled per account in a local config file that still holds the API keys, readable by any local agent with file access."
 sources = [
-  { what = "orders", url = "https://github.com/ccxt/ccxt/blob/133fd945e5dabea9b08a3d6b1012cefe1ef9713b/mcp/README.md?plain=1#L16-L22" },
+  { what = "orders", url = "https://github.com/ccxt/ccxt/blob/e1579cb6bf5519fe588e249fd60fc42d5fff8f8c/mcp/README.md?plain=1#L16-L22" },
 ]
 
 [[project]]
