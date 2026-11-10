@@ -114,7 +114,7 @@ class Catalog(unittest.TestCase):
             excluded = tomllib.load(f)["excluded"]
         repos = {p["repo"].lower() for p in self.c["projects"]}
         for e in excluded:
-            self.assertIn(e["reason"], {"general-list", "quant-library"})
+            self.assertIn(e["reason"], {"general-list", "quant-library", "token", "referral", "duplicate", "no-code"})
             self.assertNotIn(e["repo"].lower(), repos)
 
 

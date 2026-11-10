@@ -44,6 +44,8 @@ Stars, return claims and follower counts are never a reason to include something
 
 Disclose any affiliation with a project you suggest.
 
+**Declined candidates** are recorded too, in [`catalog/excluded.toml`](catalog/excluded.toml), with the commit read and the reason: a repository tied to its own token, referral or partner links in the default path, a job already covered by a listed entry, or snippets with no runnable code. That keeps a popular repository from being re-proposed without new facts.
+
 **Entry template.** Add a block to [`catalog/projects.toml`](catalog/projects.toml) and three short lines in both languages to [`catalog/briefs.toml`](catalog/briefs.toml). Layers and categories are listed in [`catalog/layers.toml`](catalog/layers.toml). Read the repository at one commit and record that commit: every fact in the entry is about it.
 
 ```toml
@@ -158,6 +160,7 @@ Commit messages carry no AI attribution trailers (`Co-Authored-By: Claude …`, 
 
 - **Weekly:** the [verify-sources](.github/workflows/verify.yml) workflow runs `python tools/verify.py all --report report` and publishes the report in the job summary and as an artifact: failures (unreachable or newly archived repositories, changed license files, retitled papers, dead links) turn the job red; repositories whose HEAD moved are listed with both commits and a diff link for re-checking.
 - **Each refresh:** a moved HEAD does not mean an entry is stale, and a green link does not mean it was re-read. Run `python tools/repin.py diff`: for every moved repository it reports whether the license file changed, writes the README diff to read, and says whether each cited line still reads the same at the new commit. Read the diffs, fix the summary, limit and any citation that changed, then `python tools/repin.py apply IDS --read YYYY-MM-DD` re-pins the links and sets `checked` to the day you read them. It refuses an entry that still has a changed citation. Never advance `checked` because a job passed. Activity (🟢 🟡 ⚪) is computed from those dates, so it never needs editing by hand, but it is only as fresh as the check date shown next to it.
+- **Stars and renames:** `GITHUB_TOKEN=... python tools/stars.py --write` refreshes the star counts and lists any repository that was renamed or transferred. The weekly check also fails on a rename, because the old address keeps redirecting and nothing else would notice.
 - **Neutral wording.** State what a source says and what you checked; separate quotation from inference; do not grade people.
 
 ## Never commit

@@ -799,3 +799,16 @@ category = "harness-robustness"
 kind = "study"
 read = "abstract"
 summary = "Shows that GPT sentiment backtests on news from inside the model's training period are contaminated by look-ahead and by a distraction effect from general knowledge of the company."
+
+[[paper]]
+arxiv = "2609.05663"
+title = "What LLM Trading Agents Actually Do in Production: A Six-Month, Population-Scale Record from Two Fleets"
+first_author = "T. J. Barton"
+n_authors = 7
+published = "2026-09-04"
+updated = "2026-09-04"
+layer = "harness"
+category = "harness-bench"
+kind = "study"
+read = "abstract"
+summary = "Operator-reported record of real-money LLM agents in two fleets run by the authors, in separate windows: about 3,500 user-funded vaults trading Base memecoins for 21 days, and 500 to 600 user-created agents on Hyperliquid perpetuals from June to August 2026. The abstract reports that platform controls shaped behaviour more than strategy text and that neither fleet showed a directional edge, with the perpetuals fleet unprofitable and behind a matched retail benchmark."

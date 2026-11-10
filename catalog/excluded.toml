@@ -51,3 +51,29 @@ reason = "quant-library"
 [[excluded]]
 repo = "stefan-jansen/zipline-reloaded"
 reason = "quant-library"
+
+# Candidates that were read at a commit and declined. Stars are never a reason to include; these are the reasons not to.
+#          token = the repository ties the product to its own token or contract address;
+#          referral = exchange referral or partner links, or a hard-coded broker id, in the default path;
+#          duplicate = the job is already covered by a listed entry; no-code = snippets or prose only, no license.
+
+[[excluded]]
+repo = "Fincept-Corporation/FinceptTerminal"
+reason = "token"
+note = "Checked 2026-11-10 at eec7ff7: docs hard-code the vendor's own token mint address and describe holder fee discounts and a buyback worker."
+
+[[excluded]]
+repo = "NoFxAiOS/nofx"
+reason = "referral"
+note = "Checked 2026-11-10 at 65e9037: nine exchange partner registration links and a referral code in the README, a hard-coded broker id on orders, a paid default model and data route, and telemetry that reports trade amounts by default."
+
+[[excluded]]
+repo = "mvanhorn/last30days-skill"
+reason = "duplicate"
+note = "Checked 2026-11-10 at c567827: general-purpose social and web research skill; the job is covered here by Agent-Reach and OpenCLI."
+
+[[excluded]]
+repo = "Polymarket/agent-skills"
+reason = "no-code"
+note = "Checked 2026-11-10 at 91ee44a: nine Markdown files with code snippets, no runnable package and no license. Neither it nor the archived Polymarket/agents names the other as predecessor or successor."
+

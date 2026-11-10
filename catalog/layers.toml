@@ -75,8 +75,8 @@ gaps = "Architecture comparisons rarely control for spend: a design that makes e
 
   [[layer.category]]
   id = "agent-models"
-  title = "Finance LLMs and reasoning models"
-  title_zh = "金融大模型与推理模型"
+  title = "Finance foundation and reasoning models"
+  title_zh = "金融基础模型与推理模型"
 
   [[layer.category]]
   id = "agent-multi"

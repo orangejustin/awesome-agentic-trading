@@ -520,3 +520,67 @@ limit = "Archived 2026-10-06; could place real crypto orders"
 tagline_zh = "让智能体驱动 Hummingbot 的 MCP 服务：账户、订单与做市机器人"
 audience_zh = "研究交易机器人框架如何向智能体开放下单的读者"
 limit_zh = "已于 2026-10-06 归档；可下真实加密订单"
+
+[daily-stock-analysis]
+tagline = "Scheduled LLM stock reports for a multi-market watchlist, pushed to chat or email"
+audience = "Individual investors and developers who want a self-hosted daily watchlist report"
+limit = "Report only, no orders; needs an LLM key; free data feeds are rate-limited; no forward record for its calls"
+tagline_zh = "按计划为多市场自选股生成 LLM 分析报告，并推送到聊天工具或邮箱"
+audience_zh = "想自建每日自选股报告的个人投资者和开发者"
+limit_zh = "只出报告、不下单；需要 LLM 密钥；免费数据源有限流；买卖点位没有前向记录"
+
+[claude-financial-services]
+tagline = "Anthropic's reference agents, skills and data connectors for research, banking and fund work"
+audience = "Teams on Claude Cowork, Claude Code or Managed Agents building analyst workflows"
+limit = "Drafts analyst work for human sign-off, no trading; needs Claude plus paid vendor data subscriptions"
+tagline_zh = "Anthropic 官方参考实现：面向投研、投行和基金运营的智能体、技能与数据连接器"
+audience_zh = "在 Claude Cowork、Claude Code 或 Managed Agents 上搭建分析师工作流的团队"
+limit_zh = "只起草分析材料供人工签核，不做交易；需要 Claude 及付费数据商订阅"
+
+[claude-trading-skills]
+tagline = "Claude Skills for market-regime checks, screening, position sizing, journaling and backtest review"
+audience = "Individual investors using Claude or Claude Code who want a structured trading process"
+limit = "Decision support, no orders; many screeners need an FMP key or paid FINVIZ Elite; no performance record"
+tagline_zh = "一组 Claude Skills：市场环境检查、选股、仓位计算、交易日志与回测评审"
+audience_zh = "使用 Claude 或 Claude Code、想把交易流程结构化的个人投资者"
+limit_zh = "仅辅助决策、不下单；多数选股需 FMP 密钥或付费 FINVIZ Elite；无业绩记录"
+
+[quantdinger]
+tagline = "Self-hosted AI research, backtest and live-trading backend with an agent gateway and MCP server"
+audience = "Builders who want a full self-hosted stack an agent can drive through scoped tokens"
+limit = "Can send real orders; agents are paper-only by default. Web and mobile clients are source-available, not Apache-2.0"
+tagline_zh = "自托管的 AI 研究、回测与实盘交易后端，带智能体网关和 MCP 服务"
+audience_zh = "想要一套可由智能体通过限权令牌驱动的完整自托管系统的开发者"
+limit_zh = "可下真实订单；智能体默认仅限模拟。网页和移动端为源码可见许可，并非 Apache-2.0"
+
+[okx-agent-trade-kit]
+tagline = "OKX's MCP server and CLI: market data, orders, transfers, earn and bots as agent tools"
+audience = "Builders giving an agent order authority on an OKX account, starting on a demo profile"
+limit = "Write tools hit the real account unless the profile is demo or --read-only is set; no built-in confirmation"
+tagline_zh = "OKX 官方 MCP 服务与命令行：行情、下单、划转、理财和机器人都成为智能体工具"
+audience_zh = "想让智能体在 OKX 账户上拥有下单权限、并先从模拟盘配置起步的开发者"
+limit_zh = "除非使用模拟盘配置或加 --read-only，写入工具直接作用于真实账户；没有内置确认步骤"
+
+[kraken-cli]
+tagline = "Kraken's CLI and MCP server: live orders, funding and a built-in paper engine at live prices"
+audience = "Builders wiring an agent to a Kraken account who want to rehearse on paper with the same commands"
+limit = "Live CLI orders have no confirmation prompt; the MCP approval gate depends on the client and can be switched off"
+tagline_zh = "Kraken 官方命令行与 MCP 服务：实盘下单、出入金，并内置按实时价格成交的模拟引擎"
+audience_zh = "想把智能体接入 Kraken 账户、并先用同一套命令做模拟演练的开发者"
+limit_zh = "命令行实盘下单没有确认提示；MCP 的审批关卡取决于客户端，且可以关闭"
+
+[tradingview-mcp-data]
+tagline = "Headless MCP server for screeners, indicator reads and simple backtests, no TradingView account needed"
+audience = "Assistant users who want quick multi-exchange screens and technical reads in chat"
+limit = "Unofficial public endpoints with rate limits; README promotes a paid hosted tier; backtests unaudited"
+tagline_zh = "无需 TradingView 账户的 MCP 服务：筛选器、技术指标解读与简单回测"
+audience_zh = "想在对话中快速做多交易所筛选和技术面解读的助手用户"
+limit_zh = "依赖非官方公开接口且有限流；README 推广付费托管版；回测结果未经审计"
+
+[condor]
+tagline = "Telegram bot and dashboard with LLM agents that monitor and trade through a Hummingbot API deployment"
+audience = "Hummingbot users who want chat and agent control of bots, orders and DEX positions"
+limit = "Places real crypto orders and stores exchange keys; needs Hummingbot API; usage telemetry on by default"
+tagline_zh = "通过 Hummingbot API 监控和交易的 Telegram 机器人与面板，内置 LLM 智能体"
+audience_zh = "想用聊天和智能体管理机器人、订单与 DEX 仓位的 Hummingbot 用户"
+limit_zh = "会下真实加密订单并保存交易所密钥；需部署 Hummingbot API；使用统计默认开启"
