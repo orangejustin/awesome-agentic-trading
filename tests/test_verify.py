@@ -105,3 +105,41 @@ class LinkTargets(unittest.TestCase):
             verify.check_pinned = real
         self.assertEqual(seen, {"o/r": {"README.md", "docs/y.md", "docs/z.md"}})
         self.assertEqual(sorted(f["kind"] for f in found), ["component", "integration", "recipe"])
+
+
+class Renames(unittest.TestCase):
+    P = {"id": "x", "repo": "old/name", "last_sha": "a" * 40, "last_commit": "2026-01-01", "license_file": ""}
+
+    def test_renamed_or_transferred_repository_fails(self):
+        api = {"archived": False, "spdx": "", "full_name": "new-org/name"}
+        found = verify.compare_project(self.P, "a" * 40, {}, api)
+        self.assertEqual([(f["level"], f["now"]) for f in found], [("fail", "new-org/name")])
+
+    def test_same_name_in_another_case_is_not_a_rename(self):
+        api = {"archived": False, "spdx": "", "full_name": "Old/Name"}
+        self.assertEqual(verify.compare_project(self.P, "a" * 40, {}, api), [])
+
+
+class ArxivOutage(unittest.TestCase):
+    def test_an_api_error_is_retried_then_reported_not_raised(self):
+        calls = []
+
+        def boom(req, timeout=0):
+            calls.append(1)
+            raise verify.urllib.error.HTTPError(req.full_url, 500, "Internal Server Error", None, None)
+
+        real = verify.urllib.request.urlopen
+        verify.urllib.request.urlopen = boom
+        try:
+            self.assertIsNone(verify.fetch_arxiv_chunk("https://example.org/api", tries=3, wait=0))
+            found = None
+            real_chunk = verify.fetch_arxiv_chunk
+            verify.fetch_arxiv_chunk = lambda url: None
+            try:
+                found = verify.verify_papers([{"arxiv": "2401.00001", "title": "t", "published": "2024-01-01", "updated": "2024-01-01"}])
+            finally:
+                verify.fetch_arxiv_chunk = real_chunk
+        finally:
+            verify.urllib.request.urlopen = real
+        self.assertEqual(len(calls), 3)
+        self.assertEqual([f["level"] for f in found], ["unverifiable"])

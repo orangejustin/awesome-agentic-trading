@@ -317,7 +317,7 @@ sources = [
 [[project]]
 id = "quantagent"
 name = "QuantAgent / QuantHarness"
-repo = "Y-Research-SBU/QuantAgent"
+repo = "Y-Research-SBU/QuantHarness"
 paper = "2509.09995"
 kind = "framework"
 layer = "agent"
@@ -335,7 +335,7 @@ evidence = "L2"
 repro = "unverified"
 read = "readme"
 summary = "LangGraph multi-agent technical-analysis system (indicator, pattern, trend, risk) for short-horizon trading with a web UI."
-caveat = "The repo README is titled QuantHarness while the repo and older lists use QuantAgent."
+caveat = "The repository is now named QuantHarness; the paper and older lists call it QuantAgent."
 
 [[project]]
 id = "fincon"
@@ -545,7 +545,7 @@ sources = [
 [[project]]
 id = "openbb"
 name = "OpenBB"
-repo = "OpenBB-finance/OpenBB"
+repo = "openbq-org/OpenBB"
 kind = "data"
 layer = "data"
 category = "data-platforms"
@@ -975,7 +975,7 @@ sources = [
 [[project]]
 id = "alphagen"
 name = "AlphaGen"
-repo = "RL-MLDM/alphagen"
+repo = "ICT-FinD-Lab/alphagen"
 paper = "2306.12964"
 kind = "framework"
 layer = "application"
@@ -1075,7 +1075,7 @@ caveat = "A high score on these tasks says little about trading performance."
 [[project]]
 id = "oracle3"
 name = "Oracle3"
-repo = "YichengYang-Ethan/oracle3"
+repo = "YichengYang-Ethan/oracle3-prediction-market-agent"
 kind = "framework"
 layer = "application"
 category = "app-prediction"
@@ -1095,7 +1095,7 @@ read = "readme"
 summary = "Prediction-market agent toolkit for Kalshi and Polymarket: 13 MCP tools, six reusable agent skills, cross-contract relationship checks that net out fees, a local paper ledger and a Python engine for paper and live execution."
 caveat = "The README now clones the longer name oracle3-prediction-market-agent; the short name the lists link still resolves."
 sources = [
-  { what = "orders", url = "https://github.com/YichengYang-Ethan/oracle3/blob/267fb7c48dae7c4ff8922c02a3a223443e51bf0b/README.md?plain=1#L24-L27" },
+  { what = "orders", url = "https://github.com/YichengYang-Ethan/oracle3-prediction-market-agent/blob/267fb7c48dae7c4ff8922c02a3a223443e51bf0b/README.md?plain=1#L24-L27" },
 ]
 
 [[project]]

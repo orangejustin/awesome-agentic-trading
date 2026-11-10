@@ -41,7 +41,7 @@
 | 研究会辩论个股的多智能体“交易公司” | [TradingAgents](https://github.com/TauricResearch/TradingAgents)、[ContestTrade](https://github.com/FinStep-AI/ContestTrade) | Agent 层 |
 | 在模拟基金里试验投资智能体 | [AI Hedge Fund](https://github.com/virattt/ai-hedge-fund) | 应用层 |
 | 自动化因子与模型研究 | 基于 [Qlib](https://github.com/microsoft/qlib) 的 [RD-Agent](https://github.com/microsoft/RD-Agent) | 应用层、Harness 层 |
-| 给智能体接入行情数据 | [OpenBB](https://github.com/OpenBB-finance/OpenBB)、[Yahoo Finance MCP](https://github.com/Alex2Yang97/yahoo-finance-mcp)、[Massive MCP Server](https://github.com/massive-com/mcp_massive) | 数据层 |
+| 给智能体接入行情数据 | [OpenBB](https://github.com/openbq-org/OpenBB)、[Yahoo Finance MCP](https://github.com/Alex2Yang97/yahoo-finance-mcp)、[Massive MCP Server](https://github.com/massive-com/mcp_massive) | 数据层 |
 | 让智能体下单，先确保安全 | [Alpaca MCP Server](https://github.com/alpacahq/alpaca-mcp-server)（默认模拟盘）、[tastytrade MCP](https://github.com/tastytrade/tastytrade-mcp)（只读或沙箱模式）、[CCXT](https://github.com/ccxt/ccxt)（ccxt-mcp：交易权限默认关闭，需手动开启） | 执行层 |
 | 为自己的系统挑选能配合的组件 | [组件矩阵](docs/components.md)（英文）：语言、运行环境、接口、输入输出、密钥与费用、下单权限 | 全部 |
 | 用成熟引擎回测与实盘 | [LEAN](https://github.com/QuantConnect/Lean)、[NautilusTrader](https://github.com/nautechsystems/nautilus_trader) | 执行层 |
@@ -87,7 +87,7 @@
 
 全部收录的仓库，按层排列。每个一行：先说它是什么，再用 ⚠️ 写出最可能改变你选择的限制。每个条目核验时的提交、核验日期和许可证证据都在对应的分层页上。
 
-**图例：** ⚡ 可下真实订单 · 📝 仅模拟交易（两者都链接到支持该结论的原文行）· 🟡 放缓 · ⚪ 停更：最近提交早于核验日 90 天以上，或一年以上 · 💤 作者声明不再维护 · 🧩 开源核心含专有部分 · 🔒 源码可见但受限 · ❓ 许可待确认 · 🧰 用于此环节的通用工具 · 🔬 我们的深度拆解。没有标记表示活跃且采用开源许可证。同一类别内按已记录的 GitHub Star 数排序：这是热度信号，不是质量评分。
+**图例：** ⚡ 可下真实订单 · 📝 仅模拟交易（两者都链接到支持该结论的原文行）· 🟡 放缓 · ⚪ 停更：最近提交早于核验日 90 天以上，或一年以上 · 💤 作者声明不再维护 · 🧩 开源核心含专有部分 · 🔒 源码可见但受限 · ❓ 许可待确认 · 🧰 用于此环节的通用工具 · 🔬 我们的深度拆解。没有标记表示活跃且采用开源许可证。同一类别内，金融专用项目在前，通用工具（🧰）在后；各自按已记录的 GitHub Star 数排序：这是热度信号，不是质量评分。
 
 <!-- gen:directory -->
 ### 1. 数据层：智能体看到什么
@@ -98,9 +98,9 @@
 
 #### 行情与基本面数据
 
-- [OpenBB](https://github.com/OpenBB-finance/OpenBB) — 面向Python与AI智能体的开放金融数据集成平台。 ⚠️ 只管取数，时点正确性需自己保证。
-- [AKShare](https://github.com/akfamily/akshare) 🧰 — 把中国及全球公开行情、宏观与新闻数据取成 pandas，附面向 LLM 的 llms.txt。 ⚠️ 抓取型接口会随网站改版失效；为当前数据而非时点数据；MCP 与 HTTP 接口由独立的 AKTools 项目提供。
+- [OpenBB](https://github.com/openbq-org/OpenBB) — 面向Python与AI智能体的开放金融数据集成平台。 ⚠️ 只管取数，时点正确性需自己保证。
 - [TradingView-API](https://github.com/Mathieu2301/TradingView-API) ❓ `ISC` — 非官方的 TradingView TypeScript 客户端，可取 K 线、指标、选股器与回放数据，附防前视的回测模块。 ⚠️ 非官方，依赖未公开接口，存在条款风险；根目录无 LICENSE 文件（package.json 声明 ISC）
+- [AKShare](https://github.com/akfamily/akshare) 🧰 — 把中国及全球公开行情、宏观与新闻数据取成 pandas，附面向 LLM 的 llms.txt。 ⚠️ 抓取型接口会随网站改版失效；为当前数据而非时点数据；MCP 与 HTTP 接口由独立的 AKTools 项目提供。
 
 #### 财报、新闻与文本
 
@@ -133,7 +133,7 @@
 
 **8 个仓库 · 22 篇论文 · 3 篇文章** · [分层页：证据链接、核验日期、全部论文（英文）→](layers/agent.md)
 
-#### 金融大模型与推理模型
+#### 金融基础模型与推理模型
 
 - [FinGPT](https://github.com/AI4Finance-Foundation/FinGPT) — 开源金融LLM项目，含数据管道与LoRA微调方案。 ⚠️ 模型与数据项目，未核对交易表现。
 - [Qwen DianJin](https://github.com/aliyun/qwen-dianjin) — 阿里云金融推理模型、数据与基准合集。 ⚠️ 属研究合集而非交易系统，各子项目文档与许可证独立。
@@ -142,7 +142,7 @@
 #### 多智能体决策架构
 
 - [TradingAgents](https://github.com/TauricResearch/TradingAgents) [🔬](docs/teardowns/tradingagents.md) — 基于 LangGraph 的多智能体交易公司，输出五级评级。 ⚠️ 仅评估决策质量，无组合模拟、Sharpe 代码及论文评测框架。
-- [QuantAgent / QuantHarness](https://github.com/Y-Research-SBU/QuantAgent) — LangGraph多智能体短线技术分析系统。 ⚠️ 论文回测未重跑，短周期结果需长记录验证。
+- [QuantAgent / QuantHarness](https://github.com/Y-Research-SBU/QuantHarness) — LangGraph多智能体短线技术分析系统。 ⚠️ 论文回测未重跑，短周期结果需长记录验证。
 - [ContestTrade](https://github.com/FinStep-AI/ContestTrade) 🟡 [🔬](docs/teardowns/contesttrade.md) — 多智能体竞赛框架，按预测Sharpe分配权重。 ⚠️ 仓库无回测代码，无法复现论文Table 1结果。
 
 #### 单智能体、记忆与反思
@@ -262,12 +262,12 @@
 
 - [RD-Agent](https://github.com/microsoft/RD-Agent) — 提出、实现并评估量化因子与模型的智能体循环。 ⚠️ 未核对头条结果，因子收益需留出样本检验。
 - [QuantaAlpha](https://github.com/QuantaAlpha/QuantaAlpha) 🟡 ❓ `MIT` — LLM驱动的进化式因子挖掘框架。 ⚠️ 无 LICENSE 文件；MIT 仅见于 README 徽章与 pyproject 分类器。
-- [AlphaGen](https://github.com/RL-MLDM/alphagen) 🟡 ❓ 无许可证 — 基于Qlib的强化学习公式化因子生成框架。 ⚠️ 仓库无LICENSE文件；核心为强化学习，LLM模块为后加。
+- [AlphaGen](https://github.com/ICT-FinD-Lab/alphagen) 🟡 ❓ 无许可证 — 基于Qlib的强化学习公式化因子生成框架。 ⚠️ 仓库无LICENSE文件；核心为强化学习，LLM模块为后加。
 
 #### 预测市场
 
 - [Kalshi AI Trading Bot](https://github.com/ryanfrigo/kalshi-ai-trading-bot) [⚡](https://github.com/ryanfrigo/kalshi-ai-trading-bot/blob/5d7b70addcc61a1cc1f64f1025f3386888a210b7/README.md?plain=1#L212-L215) — 带边际审计、MCP server 与代理工具的 Kalshi 交易工具包。 ⚠️ 其自身 55 笔前向交易的结论为无可测边际，账户含人工交易。
-- [Oracle3](https://github.com/YichengYang-Ethan/oracle3) [⚡](https://github.com/YichengYang-Ethan/oracle3/blob/267fb7c48dae7c4ff8922c02a3a223443e51bf0b/README.md?plain=1#L24-L27) — Kalshi与Polymarket预测市场代理工具包。 ⚠️ 只有声明，没有公开回测或记录。
+- [Oracle3](https://github.com/YichengYang-Ethan/oracle3-prediction-market-agent) [⚡](https://github.com/YichengYang-Ethan/oracle3-prediction-market-agent/blob/267fb7c48dae7c4ff8922c02a3a223443e51bf0b/README.md?plain=1#L24-L27) — Kalshi与Polymarket预测市场代理工具包。 ⚠️ 只有声明，没有公开回测或记录。
 - [Kalshi Trading Bot CLI](https://github.com/OctagonAI/kalshi-trading-bot-cli) [⚡](https://github.com/OctagonAI/kalshi-trading-bot-cli/blob/fcba2ff115de7cf736b51a0b5611ee7ef709142e/README.md?plain=1#L189-L191) — 估算Kalshi市场概率并以分数Kelly定仓的CLI。 ⚠️ 会在 Kalshi 下真实订单；先用自带模拟账本或 Kalshi 演示环境；未公布业绩记录。
 
 #### 必读

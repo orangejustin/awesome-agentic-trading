@@ -11,7 +11,8 @@ nothing changed in a way a program can see. The report lists everything that mov
 can re-check it:
 
 - **Failures** (exit code 1): a repository that cannot be reached, a repository newly archived
-  upstream, a license file that changed or disappeared since the checked commit, a paper whose
+  upstream, a repository renamed or transferred (the old address still redirects, so only the API shows
+  it), a license file that changed or disappeared since the checked commit, a paper whose
   title or first-version date changed, a link that returns 404 or 410.
 - **To re-check**: a repository whose HEAD moved since `last_sha` (with the new commit and its
   date), a paper with a newer version. Normal for active projects; `--strict` makes them fail.
@@ -65,14 +66,31 @@ def norm(s: str) -> str:
     return re.sub(r"\s+", " ", s).strip().lower()
 
 
-def fetch_arxiv(ids: list[str]) -> dict[str, dict]:
+def fetch_arxiv_chunk(url: str, tries: int = 4, wait: float = 5.0) -> ET.Element | None:
+    """One arXiv API request, retried with a growing pause. The API answers 500 or 503 often enough that a
+    single failure must not end the whole check; None means it never answered."""
+    for n in range(tries):
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": UA})
+            with urllib.request.urlopen(req, timeout=60) as r:
+                return ET.fromstring(r.read())
+        except (urllib.error.URLError, TimeoutError, ET.ParseError):
+            if n + 1 < tries:
+                time.sleep(wait * (n + 1))
+    return None
+
+
+def fetch_arxiv(ids: list[str], unreached: set[str] | None = None) -> dict[str, dict]:
+    """Metadata by arXiv id. Ids in a request that never got an answer are added to `unreached`."""
     out: dict[str, dict] = {}
     for i in range(0, len(ids), 40):
         chunk = ids[i:i + 40]
         url = f"{API}?{urllib.parse.urlencode({'id_list': ','.join(chunk), 'max_results': len(chunk)})}"
-        req = urllib.request.Request(url, headers={"User-Agent": UA})
-        with urllib.request.urlopen(req, timeout=60) as r:
-            root = ET.fromstring(r.read())
+        root = fetch_arxiv_chunk(url)
+        if root is None:
+            if unreached is not None:
+                unreached.update(chunk)
+            continue
         for e in root.findall("a:entry", ATOM):
             ident = e.findtext("a:id", "", ATOM).rsplit("/abs/", 1)[-1]
             ident = re.sub(r"v\d+$", "", ident)
@@ -100,9 +118,14 @@ def compare_paper(p: dict, got: dict | None) -> list[dict]:
 
 
 def verify_papers(papers: list[dict]) -> list[dict]:
-    live = fetch_arxiv([p["arxiv"] for p in papers])
+    unreached: set[str] = set()
+    live = fetch_arxiv([p["arxiv"] for p in papers], unreached)
     out: list[dict] = []
     for p in papers:
+        if p["arxiv"] in unreached:
+            out.append(finding("paper", p["arxiv"], "unverifiable", "arXiv did not answer",
+                               url=f"https://arxiv.org/abs/{p['arxiv']}", how="arXiv API: no answer after retries"))
+            continue
         out += compare_paper(p, live.get(p["arxiv"])) or [finding("paper", p["arxiv"], "ok", "unchanged")]
     return out
 
@@ -161,7 +184,8 @@ def github_api(repo: str, token: str) -> dict | None:
         with urllib.request.urlopen(req, timeout=30) as r:
             d = json.load(r)
         return {"archived": bool(d.get("archived")), "spdx": (d.get("license") or {}).get("spdx_id") or "",
-                "pushed_at": d.get("pushed_at", "")}
+                "pushed_at": d.get("pushed_at", ""), "full_name": d.get("full_name", ""),
+                "stars": d.get("stargazers_count")}
     except (urllib.error.URLError, TimeoutError, json.JSONDecodeError):
         return None
 
@@ -172,6 +196,10 @@ def compare_project(p: dict, head: str | None, facts: dict[str, dict], api: dict
     if head is None:
         return [finding("repo", pid, "fail", "not reachable", repo=p["repo"])]
     out: list[dict] = []
+    moved_to = (api or {}).get("full_name", "")
+    if moved_to and moved_to.lower() != p["repo"].lower():
+        # git and the website follow the redirect silently, so only the API shows a rename or transfer
+        out.append(finding("repo", pid, "fail", f"repository moved to {moved_to}", repo=p["repo"], now=moved_to))
     if api and api["archived"] and p.get("maintenance") != "archived":
         out.append(finding("repo", pid, "fail", "archived upstream but not marked archived in the catalog", repo=p["repo"]))
     lf = p.get("license_file", "")

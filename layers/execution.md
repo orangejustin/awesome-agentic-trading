@@ -54,7 +54,7 @@
 Listed in their primary layer; they also ship working code for this one.
 
 - [AI-Trader](https://github.com/HKUDS/AI-Trader) — Agent-native trading platform and live leaderboard where outside AI agents trade. *Primary: [Harness layer](harness.md).*
-- [Oracle3](https://github.com/YichengYang-Ethan/oracle3) — Prediction-market agent toolkit for Kalshi and Polymarket with paper and live execution. *Primary: [Application layer](application.md).*
+- [Oracle3](https://github.com/YichengYang-Ethan/oracle3-prediction-market-agent) — Prediction-market agent toolkit for Kalshi and Polymarket with paper and live execution. *Primary: [Application layer](application.md).*
 - [polymarket-paper-trader](https://github.com/agent-next/polymarket-paper-trader) — Paper-trading gym for agents on live Polymarket order books with MCP server. *Primary: [Harness layer](harness.md).*
 - [Vibe-Trading](https://github.com/HKUDS/Vibe-Trading) — Personal trading-agent stack (CLI, MCP, web): research, backtests with run cards and validation, paper accounts and a reconciling live runner. *Primary: [Application layer](application.md).*
 

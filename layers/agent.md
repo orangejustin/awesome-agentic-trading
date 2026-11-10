@@ -24,7 +24,7 @@
 
 ## Repositories
 
-### Finance LLMs and reasoning models
+### Finance foundation and reasoning models
 
 | Project | What it does | Suits | Activity | License | Orders | Checked | Key limit |
 |---|---|---|---|---|---|---|---|
@@ -37,7 +37,7 @@
 | Project | What it does | Suits | Activity | License | Orders | Checked | Key limit |
 |---|---|---|---|---|---|---|---|
 | [TradingAgents](https://github.com/TauricResearch/TradingAgents) · [🔬 deep dive](../docs/teardowns/tradingagents.md) | LangGraph multi-agent trading firm whose analyst and risk debates yield five-tier ratings | Developers building multi-agent LLM trading decision pipelines | 🟢 active, last commit 2026-11-04 | [`Apache-2.0`](https://github.com/TauricResearch/TradingAgents/blob/9fa1196fffbcfd9de5146d2dd2869df84ab99838/LICENSE) | none | [2026-11-10 @ `9fa1196`](https://github.com/TauricResearch/TradingAgents/tree/9fa1196fffbcfd9de5146d2dd2869df84ab99838) | Evaluates decision quality only; no portfolio simulator, Sharpe code or paper harness |
-| [QuantAgent / QuantHarness](https://github.com/Y-Research-SBU/QuantAgent) | LangGraph multi-agent technical-analysis system for short-horizon trading with web UI | Developers building multi-agent technical-analysis trading systems | 🟢 active, last commit 2026-08-18 | [`MIT`](https://github.com/Y-Research-SBU/QuantAgent/blob/2e64c7befa75a88d254a426f5f29fa61b0b56732/LICENSE) | none | [2026-10-26 @ `2e64c7b`](https://github.com/Y-Research-SBU/QuantAgent/tree/2e64c7befa75a88d254a426f5f29fa61b0b56732) | Paper backtest not rerun; short-horizon results need long records |
+| [QuantAgent / QuantHarness](https://github.com/Y-Research-SBU/QuantHarness) | LangGraph multi-agent technical-analysis system for short-horizon trading with web UI | Developers building multi-agent technical-analysis trading systems | 🟢 active, last commit 2026-08-18 | [`MIT`](https://github.com/Y-Research-SBU/QuantHarness/blob/2e64c7befa75a88d254a426f5f29fa61b0b56732/LICENSE) | none | [2026-10-26 @ `2e64c7b`](https://github.com/Y-Research-SBU/QuantHarness/tree/2e64c7befa75a88d254a426f5f29fa61b0b56732) | Paper backtest not rerun; short-horizon results need long records |
 | [ContestTrade](https://github.com/FinStep-AI/ContestTrade) · [🔬 deep dive](../docs/teardowns/contesttrade.md) | Multi-agent framework where competing teams build text factors and trades, weighted by predicted Sharpe | Researchers studying competitive multi-agent trading decision systems | 🟡 slowing, last commit 2025-12-22 | [`Apache-2.0`](https://github.com/FinStep-AI/ContestTrade/blob/22432f9bbba5f1d6862d3b6b5508d4d882b40b94/LICENSE) | none | [2026-10-26 @ `22432f9`](https://github.com/FinStep-AI/ContestTrade/tree/22432f9bbba5f1d6862d3b6b5508d4d882b40b94) | Repo lacks backtest code, so the paper's Table 1 cannot be regenerated |
 
 ### Single agents, memory and reflection
@@ -69,7 +69,7 @@ Repositories that exist and are often cited but do not yet hold the system's cod
 
 ## Papers
 
-### Finance LLMs and reasoning models
+### Finance foundation and reasoning models
 
 | Paper | Authors, year | Read | Takeaway |
 |---|---|---|---|

@@ -41,7 +41,7 @@
 | Study a multi-agent "trading firm" that debates a stock | [TradingAgents](https://github.com/TauricResearch/TradingAgents), [ContestTrade](https://github.com/FinStep-AI/ContestTrade) | Agent |
 | Experiment with investor agents in a simulated fund | [AI Hedge Fund](https://github.com/virattt/ai-hedge-fund) | Application |
 | Automate factor and model research | [RD-Agent](https://github.com/microsoft/RD-Agent) on [Qlib](https://github.com/microsoft/qlib) | Application, Harness |
-| Give an agent market data | [OpenBB](https://github.com/OpenBB-finance/OpenBB), [Yahoo Finance MCP](https://github.com/Alex2Yang97/yahoo-finance-mcp), [Massive MCP Server](https://github.com/massive-com/mcp_massive) | Data |
+| Give an agent market data | [OpenBB](https://github.com/openbq-org/OpenBB), [Yahoo Finance MCP](https://github.com/Alex2Yang97/yahoo-finance-mcp), [Massive MCP Server](https://github.com/massive-com/mcp_massive) | Data |
 | Let an agent place orders, safely first | [Alpaca MCP Server](https://github.com/alpacahq/alpaca-mcp-server) (paper by default), [tastytrade MCP](https://github.com/tastytrade/tastytrade-mcp) (read-only or sandbox mode), [CCXT](https://github.com/ccxt/ccxt) (ccxt-mcp: trading tiers off until you enable them) | Execution |
 | Pick parts that fit together for your own build | [Component matrix](docs/components.md): language, runtime, interface, inputs and outputs, keys and cost, order authority | All |
 | Backtest and trade with a mature engine | [LEAN](https://github.com/QuantConnect/Lean), [NautilusTrader](https://github.com/nautechsystems/nautilus_trader) | Execution |
@@ -87,7 +87,7 @@ Data, Agent and Execution are the pipeline: see, think, act. The Harness wraps a
 
 Every listed repository, by layer. One line each: what it is, then ⚠️ the limit most likely to change your decision. The commit we checked, the check date and the license evidence for each entry are on its layer page.
 
-**Legend:** ⚡ can place real orders · 📝 paper trading only (both link to the lines that show it) · 🟡 slowing · ⚪ dormant: last commit more than 90 days, or more than a year, before the check date · 💤 the authors say it is no longer maintained · 🧩 open core with proprietary parts · 🔒 source-available, restricted · ❓ license unclear · 🧰 general-purpose tool used for this job · 🔬 our deep dive. No mark means active and openly licensed. Within a category, repositories are ordered by GitHub stars where we recorded them: a popularity signal, not a quality score.
+**Legend:** ⚡ can place real orders · 📝 paper trading only (both link to the lines that show it) · 🟡 slowing · ⚪ dormant: last commit more than 90 days, or more than a year, before the check date · 💤 the authors say it is no longer maintained · 🧩 open core with proprietary parts · 🔒 source-available, restricted · ❓ license unclear · 🧰 general-purpose tool used for this job · 🔬 our deep dive. No mark means active and openly licensed. Within a category, finance-specific projects come first and general-purpose tools (🧰) last; each group is ordered by GitHub stars where we recorded them, a popularity signal, not a quality score.
 
 <!-- gen:directory -->
 ### 1. Data layer: what the agent sees
@@ -98,9 +98,9 @@ Every listed repository, by layer. One line each: what it is, then ⚠️ the li
 
 #### Market and fundamental data
 
-- [OpenBB](https://github.com/OpenBB-finance/OpenBB) — Open data-integration platform serving market and economic data to Python and agents. ⚠️ Data access only; point-in-time correctness is up to you.
-- [AKShare](https://github.com/akfamily/akshare) 🧰 — Public Chinese and global market, macro and news data into pandas, with an llms.txt for LLMs. ⚠️ Scraped endpoints break when sites change; current data, not point-in-time; MCP and HTTP access come from the separate AKTools project.
+- [OpenBB](https://github.com/openbq-org/OpenBB) — Open data-integration platform serving market and economic data to Python and agents. ⚠️ Data access only; point-in-time correctness is up to you.
 - [TradingView-API](https://github.com/Mathieu2301/TradingView-API) ❓ `ISC` — Unofficial TypeScript client for TradingView candles, indicators, screener and replay, with a look-ahead-guarded backtest module. ⚠️ Unofficial, undocumented endpoints with Terms-of-Use risk; no root LICENSE file (package.json says ISC)
+- [AKShare](https://github.com/akfamily/akshare) 🧰 — Public Chinese and global market, macro and news data into pandas, with an llms.txt for LLMs. ⚠️ Scraped endpoints break when sites change; current data, not point-in-time; MCP and HTTP access come from the separate AKTools project.
 
 #### Filings, news and text
 
@@ -133,7 +133,7 @@ Every listed repository, by layer. One line each: what it is, then ⚠️ the li
 
 **8 repos · 22 papers · 3 articles** · [Layer page: evidence links, check dates, every paper →](layers/agent.md)
 
-#### Finance LLMs and reasoning models
+#### Finance foundation and reasoning models
 
 - [FinGPT](https://github.com/AI4Finance-Foundation/FinGPT) — Open financial LLM project with data pipelines and LoRA fine-tuning recipes. ⚠️ A model and data project; no trading-performance claim checked.
 - [Qwen DianJin](https://github.com/aliyun/qwen-dianjin) — Alibaba Cloud hub for finance reasoning models, datasets and benchmarks. ⚠️ A research hub, not a trading system; sub-projects have separate READMEs and licenses.
@@ -142,7 +142,7 @@ Every listed repository, by layer. One line each: what it is, then ⚠️ the li
 #### Multi-agent decision architectures
 
 - [TradingAgents](https://github.com/TauricResearch/TradingAgents) [🔬](docs/teardowns/tradingagents.md) — LangGraph multi-agent trading firm whose analyst and risk debates yield five-tier ratings. ⚠️ Evaluates decision quality only; no portfolio simulator, Sharpe code or paper harness.
-- [QuantAgent / QuantHarness](https://github.com/Y-Research-SBU/QuantAgent) — LangGraph multi-agent technical-analysis system for short-horizon trading with web UI. ⚠️ Paper backtest not rerun; short-horizon results need long records.
+- [QuantAgent / QuantHarness](https://github.com/Y-Research-SBU/QuantHarness) — LangGraph multi-agent technical-analysis system for short-horizon trading with web UI. ⚠️ Paper backtest not rerun; short-horizon results need long records.
 - [ContestTrade](https://github.com/FinStep-AI/ContestTrade) 🟡 [🔬](docs/teardowns/contesttrade.md) — Multi-agent framework where competing teams build text factors and trades, weighted by predicted Sharpe. ⚠️ Repo lacks backtest code, so the paper's Table 1 cannot be regenerated.
 
 #### Single agents, memory and reflection
@@ -262,12 +262,12 @@ Every listed repository, by layer. One line each: what it is, then ⚠️ the li
 
 - [RD-Agent](https://github.com/microsoft/RD-Agent) — Agent loop that proposes, implements and evaluates quant factor and model ideas. ⚠️ No headline result checked; factor gains need held-out testing.
 - [QuantaAlpha](https://github.com/QuantaAlpha/QuantaAlpha) 🟡 ❓ `MIT` — LLM-driven evolutionary factor mining from research direction to backtested factors. ⚠️ No LICENSE file; MIT appears only on a README badge and a pyproject classifier.
-- [AlphaGen](https://github.com/RL-MLDM/alphagen) 🟡 ❓ no license — RL agent generating formulaic alpha factor sets on Qlib, with LLM module. ⚠️ No LICENSE file in the repository; reinforcement learning core, LLM module added later.
+- [AlphaGen](https://github.com/ICT-FinD-Lab/alphagen) 🟡 ❓ no license — RL agent generating formulaic alpha factor sets on Qlib, with LLM module. ⚠️ No LICENSE file in the repository; reinforcement learning core, LLM module added later.
 
 #### Prediction markets
 
 - [Kalshi AI Trading Bot](https://github.com/ryanfrigo/kalshi-ai-trading-bot) [⚡](https://github.com/ryanfrigo/kalshi-ai-trading-bot/blob/5d7b70addcc61a1cc1f64f1025f3386888a210b7/README.md?plain=1#L212-L215) — Kalshi trading toolkit with an edge audit, MCP server and agent tools. ⚠️ Own forward verdict over 55 trades reports no measured edge.
-- [Oracle3](https://github.com/YichengYang-Ethan/oracle3) [⚡](https://github.com/YichengYang-Ethan/oracle3/blob/267fb7c48dae7c4ff8922c02a3a223443e51bf0b/README.md?plain=1#L24-L27) — Prediction-market agent toolkit for Kalshi and Polymarket with paper and live execution. ⚠️ Claims only; no backtest or record disclosed.
+- [Oracle3](https://github.com/YichengYang-Ethan/oracle3-prediction-market-agent) [⚡](https://github.com/YichengYang-Ethan/oracle3-prediction-market-agent/blob/267fb7c48dae7c4ff8922c02a3a223443e51bf0b/README.md?plain=1#L24-L27) — Prediction-market agent toolkit for Kalshi and Polymarket with paper and live execution. ⚠️ Claims only; no backtest or record disclosed.
 - [Kalshi Trading Bot CLI](https://github.com/OctagonAI/kalshi-trading-bot-cli) [⚡](https://github.com/OctagonAI/kalshi-trading-bot-cli/blob/fcba2ff115de7cf736b51a0b5611ee7ef709142e/README.md?plain=1#L189-L191) — CLI that estimates Kalshi market probabilities and sizes trades with fractional Kelly. ⚠️ Places real Kalshi orders; start with its paper ledger or Kalshi's demo environment; no performance record.
 
 #### Essential reading

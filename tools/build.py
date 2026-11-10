@@ -541,7 +541,7 @@ def render_directory(c: dict, zh: bool = False) -> str:
             rows = [p for p in listed(c["projects"]) if p["category"] == cat["id"]]
             if not rows:
                 continue
-            rows.sort(key=lambda p: (-stars_num(p), p["name"].lower()))
+            rows.sort(key=lambda p: (bool(p.get("general")), -stars_num(p), p["name"].lower()))
             out += [f"#### {cat['title_zh'] if zh else cat['title']}", ""]
             out += [readme_entry(p, zh) for p in rows]
             out.append("")
@@ -706,7 +706,7 @@ def render_layer_page(c: dict, lay: dict) -> str:
         rows = [p for p in listed(rows_all) if p["category"] == cat["id"]]
         if not rows:
             continue
-        rows.sort(key=lambda p: (-stars_num(p), p["name"].lower()))
+        rows.sort(key=lambda p: (bool(p.get("general")), -stars_num(p), p["name"].lower()))
         L += [f"### {cat['title']}", "",
               "| Project | What it does | Suits | Activity | License | Orders | Checked | Key limit |",
               "|---|---|---|---|---|---|---|---|"]
