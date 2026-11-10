@@ -49,6 +49,11 @@ ARTICLE_SOURCES = {"x", "blog", "docs", "news", "newsletter", "podcast", "talk",
 INTERFACES = {"python-lib", "cli", "mcp", "rest-api", "web-ui", "docker-service", "desktop", "typescript-lib", "hosted"}
 VERIFICATION = {"docs", "install", "run"}
 RECIPE_STATUS = {"design", "upstream", "run"}
+# what a component entry must cite, and what "we installed it" or "we ran it" must record
+COMPONENT_MUST_CITE = {"language", "runtime", "install", "interface", "io", "keys", "orders"}
+VERIFY_PROOF = ("verify_cmd", "verify_date", "verify_env", "verify_result")
+RUN_PROOF = ("date", "env", "commits", "cmd", "result", "log")
+DATE = re.compile(r"\d{4}-\d{2}-\d{2}$")
 ARXIV = re.compile(r"^\d{4}\.\d{4,5}$")
 DATE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 DATE_OR_MONTH = re.compile(r"^\d{4}-\d{2}(-\d{2})?$")
@@ -114,6 +119,21 @@ def pinned(p: dict, url: str) -> bool:
     return url.startswith(f"https://github.com/{p['repo']}/blob/{p['last_sha']}/")
 
 
+def evidence_links(c: dict) -> list[tuple[str, str, str]]:
+    """Every evidence link the catalog cites, as (kind, where, url): project sources, component sources,
+    documented integrations and recipe links. The weekly source check and the schema check share this list,
+    so a link cannot be cited in one place and skipped in the other."""
+    out = [("source", f"{p['id']} ({s['what']})", s["url"]) for p in c["projects"] for s in p.get("sources", [])]
+    for m in c.get("components", []):
+        out += [("component", f"{m['id']} ({s['what']})", s["url"]) for s in m.get("sources", [])]
+        out += [("integration", f"{m['id']} with {g['with']}", g["url"]) for g in m.get("integrations", []) if g.get("url")]
+    for r in c.get("recipes", []):
+        out += [("recipe", f"{r['id']} ({x['label']})", x["url"]) for x in r.get("links", [])]
+        if r.get("run", {}).get("log"):
+            out.append(("recipe", f"{r['id']} (run log)", r["run"]["log"]))
+    return out
+
+
 def check_all(c: dict) -> list[str]:
     errs = check(c["papers"], c["projects"], c["layers"])
     layer_ids = {l["id"] for l in c["layers"]}
@@ -174,8 +194,15 @@ def check_components(c: dict) -> list[str]:
                 errs.append(f"component {i}: unknown interface {f!r}")
         if m.get("verification") not in VERIFICATION:
             errs.append(f"component {i}: unknown verification {m.get('verification')!r}")
-        if m.get("verification") in ("install", "run") and not (m.get("verify_cmd") and m.get("verify_date")):
-            errs.append(f"component {i}: install/run verification needs verify_cmd and verify_date")
+        if m.get("verification") in ("install", "run"):
+            for k in VERIFY_PROOF:
+                if not m.get(k):
+                    errs.append(f"component {i}: verification = {m['verification']} needs {k}")
+            if m.get("verify_date") and not DATE.match(m["verify_date"]):
+                errs.append(f"component {i}: verify_date must be YYYY-MM-DD")
+        cited = {s.get("what") for s in m.get("sources", [])}
+        for w in sorted(COMPONENT_MUST_CITE - cited):
+            errs.append(f"component {i}: no pinned source for {w}")
         for s in m.get("sources", []):
             # its own repository, or another catalogued one (e.g. a dependency's license), at the checked commit
             if s.get("what") not in SOURCE_WHAT or not any(pinned(q, s.get("url", "")) for q in c["projects"]):
@@ -197,6 +224,18 @@ def check_components(c: dict) -> list[str]:
             errs.append(f"recipe {i}: unknown status {r.get('status')!r}")
         if r.get("status") == "upstream" and not r.get("links"):
             errs.append(f"recipe {i}: an upstream-documented pairing needs links to that documentation")
+        if r.get("status") == "run":
+            run = r.get("run") or {}
+            for k in RUN_PROOF:
+                if not run.get(k):
+                    errs.append(f"recipe {i}: status = run needs run.{k}")
+            if run.get("date") and not DATE.match(run["date"]):
+                errs.append(f"recipe {i}: run.date must be YYYY-MM-DD")
+        elif r.get("run"):
+            errs.append(f"recipe {i}: a run record is only for status = run")
+        for x in r.get("links", []):
+            if not (x.get("label") and any(pinned(q, x.get("url", "")) for q in c["projects"])):
+                errs.append(f"recipe {i}: link {x.get('url')!r} needs a label and must be pinned to a catalogued project's last_sha")
         for st in r.get("steps", []):
             p = by_id.get(st.get("component"))
             if not p:
@@ -451,14 +490,25 @@ def article_date(a: dict, zh: bool = False, month: bool = False) -> str:
 # ---------------------------------------------------------------- README blocks
 
 def readme_entry(p: dict, zh: bool) -> str:
+    """One line on the home page: what it is, its limit, and only the marks that change a decision.
+    The commit, check date and license evidence are on the layer page."""
     b = p["brief"]
     tag = end_zh(b["tagline_zh"]) if zh else end(b["tagline"])
     lim = end_zh(b["limit_zh"]) if zh else end(b["limit"])
-    parts = [status_badge(p), license_badge(p, zh), orders_badge(p), "🧰" if p.get("general") else ""]
+    marks = [orders_badge(p)]
+    if p.get("maintenance") or activity(p) != "active":
+        marks.append(status_badge(p))
+    st = p["license_status"]
+    if st == "none":
+        marks.append(f"❓ {'无许可证' if zh else 'no license'}")
+    elif st != "open":
+        marks.append(f"{LICENSE_MARK[st]}`{p['license']}`")
+    if p.get("general"):
+        marks.append("🧰")
     if p["read"] == "teardown":
-        parts.append(f"[🔬 {'拆解' if zh else 'deep dive'}](docs/teardowns/{p['id']}.md)")
-    parts.append(f"[🔍 {p['checked']}]({tree_url(p)})")
-    return f"- [{p['name']}]({gh(p)}) — {tag} ⚠️ {lim} " + " ".join(x for x in parts if x)
+        marks.append(f"[🔬](docs/teardowns/{p['id']}.md)")
+    marks = " ".join(x for x in marks if x)
+    return f"- [{p['name']}]({gh(p)}){' ' + marks if marks else ''} — {tag} ⚠️ {lim}".rstrip()
 
 
 def readme_paper(p: dict, zh: bool) -> str:
@@ -480,26 +530,26 @@ def render_directory(c: dict, zh: bool = False) -> str:
         lid = lay["id"]
         nr, np_, na = counts(c, lid)
         if zh:
-            out += [f"## {lay['num']}. {lay['title_zh']}：{lay['tagline_zh']}", "",
+            out += [f"### {lay['num']}. {lay['title_zh']}：{lay['tagline_zh']}", "",
                     f"> {lay['question_zh']}", "",
-                    f"**{nr} 个仓库 · {np_} 篇论文 · {na} 篇文章** · [完整分层页（英文）→](layers/{lid}.md)", ""]
+                    f"**{nr} 个仓库 · {np_} 篇论文 · {na} 篇文章** · [分层页：证据链接、核验日期、全部论文（英文）→](layers/{lid}.md)", ""]
         else:
-            out += [f"## {lay['num']}. {lay['title']}: {lay['tagline']}", "",
+            out += [f"### {lay['num']}. {lay['title']}: {lay['tagline']}", "",
                     f"> {lay['question']}", "",
-                    f"**{nr} repos · {np_} papers · {na} articles** · [Full layer page →](layers/{lid}.md)", ""]
+                    f"**{nr} repos · {np_} papers · {na} articles** · [Layer page: evidence links, check dates, every paper →](layers/{lid}.md)", ""]
         for cat in lay["category"]:
             rows = [p for p in listed(c["projects"]) if p["category"] == cat["id"]]
             if not rows:
                 continue
             rows.sort(key=lambda p: (-stars_num(p), p["name"].lower()))
-            out += [f"### {cat['title_zh'] if zh else cat['title']}", ""]
+            out += [f"#### {cat['title_zh'] if zh else cat['title']}", ""]
             out += [readme_entry(p, zh) for p in rows]
             out.append("")
         ess = sorted((p for p in c["papers"] if p["layer"] == lid and p.get("essential")), key=lambda p: p["published"])
         feat = sorted((a for a in c["articles"] if a["layer"] == lid and a.get("featured")),
                       key=lambda a: a.get("date") or a["checked"])
         if ess or feat:
-            out += [f"### {'必读' if zh else 'Essential reading'}", ""]
+            out += [f"#### {'必读' if zh else 'Essential reading'}", ""]
             out += [readme_paper(p, zh) for p in ess]
             out += [readme_article(a, zh) for a in feat]
             out.append("")
@@ -534,6 +584,29 @@ def render_milestones(c: dict, zh: bool = False) -> str:
         why = m["why_zh"] if zh else m["why"]
         out.append(f"| {m['date'][:7]} | [{esc(title)}]({m['link']}) | {esc(why)} |")
     return "\n".join(out)
+
+
+def render_recent(c: dict, zh: bool = False, n: int = 4) -> str:
+    """The latest milestones, newest first, for the home page."""
+    out = []
+    for m in reversed(c["milestones"][-n:]):
+        title = m["title_zh"] if zh else m["title"]
+        why = m["why_zh"] if zh else m["why"]
+        out.append(f"- **{m['date'][:7]}** · [{title}]({m['link']}){'：' if zh else ': '}{why}")
+    return "\n".join(out)
+
+
+def render_milestones_page(c: dict, zh: bool = False) -> str:
+    if zh:
+        head = ["<!-- generated by tools/build.py from catalog/milestones.toml; do not edit by hand -->", "# 里程碑", "",
+                "[← 首页](../README.zh-CN.md) · [English](milestones.md)", "",
+                "智能体交易走到今天的关键节点，每条都写明为什么重要。链接指向一手来源；若只有行业媒体报道，会在条目中注明。", ""]
+    else:
+        head = ["<!-- generated by tools/build.py from catalog/milestones.toml; do not edit by hand -->", "# Milestones", "",
+                "[← Home](../README.md) · [简体中文](milestones.zh-CN.md)", "",
+                "The moments that shaped agentic trading, each with the reason it matters. Links go to the primary "
+                "source; where only trade press reported it, the entry says so.", ""]
+    return "\n".join(head) + render_milestones(c, zh)
 
 
 def render_stack(c: dict, zh: bool = False) -> str:
@@ -815,6 +888,10 @@ def render_components(c: dict) -> str:
             L += ["", f"**What you still have to build or check:** {r['gaps']}", ""]
             if r.get("links"):
                 L += ["**Upstream documentation:** " + " · ".join(f"[{x['label']}]({x['url']})" for x in r["links"]), ""]
+            if r.get("run"):
+                run = r["run"]
+                L += [f"**Run record:** {run['date']} on {esc(run['env'])}, at {esc(run['commits'])}: `{esc(run['cmd'])}` → "
+                      f"{esc(run['result'])} ([log]({run['log']}))", ""]
     return "\n".join(L)
 
 
@@ -930,8 +1007,8 @@ INJECTIONS = [
     ("README.zh-CN.md", "headline", lambda c: headline(c, zh=True)),
     ("README.md", "stack", lambda c: render_stack(c)),
     ("README.zh-CN.md", "stack", lambda c: render_stack(c, zh=True)),
-    ("README.md", "milestones", lambda c: render_milestones(c)),
-    ("README.zh-CN.md", "milestones", lambda c: render_milestones(c, zh=True)),
+    ("README.md", "recent", lambda c: render_recent(c)),
+    ("README.zh-CN.md", "recent", lambda c: render_recent(c, zh=True)),
     ("README.md", "directory", lambda c: render_directory(c)),
     ("README.zh-CN.md", "directory", lambda c: render_directory(c, zh=True)),
     ("README.md", "surveys", lambda c: render_surveys(c)),
@@ -972,6 +1049,8 @@ def generated_pages(c: dict) -> dict[Path, str]:
         OUT / "papers.md": render_papers(c["papers"], c["layers"]),
         OUT / "projects.md": render_projects(c["projects"], c["layers"]),
         LAYER_DIR / "README.md": render_stack_page(c),
+        ROOT / "docs" / "milestones.md": render_milestones_page(c),
+        ROOT / "docs" / "milestones.zh-CN.md": render_milestones_page(c, zh=True),
     }
     if c["components"]:
         pages[ROOT / "docs" / "components.md"] = render_components(c)

@@ -44,9 +44,9 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 
 try:
-    from build import load_all
+    from build import evidence_links, load_all
 except ImportError:  # imported as tools.verify
-    from tools.build import load_all
+    from tools.build import evidence_links, load_all
 
 ATOM = {"a": "http://www.w3.org/2005/Atom"}
 API = "http://export.arxiv.org/api/query"
@@ -273,11 +273,12 @@ def check_pinned(repo: str, sha: str, paths: set[str]) -> dict[str, str]:
 
 
 def verify_links(c: dict) -> list[dict]:
-    """Articles, milestones and every pinned evidence link. GitHub links pinned to a commit are checked with git
+    """Articles, milestones and every evidence link the catalog cites (project sources, component sources,
+    documented integrations, recipe links). GitHub links pinned to a commit are checked with git
     (does the commit exist, does the file exist at it); everything else over HTTP."""
     targets = [("article", a["url"], a["url"]) for a in c["articles"]]
     targets += [("milestone", m["title"], m["link"]) for m in c["milestones"]]
-    targets += [("source", f"{p['id']} ({s['what']})", s["url"]) for p in c["projects"] for s in p.get("sources", [])]
+    targets += evidence_links(c)
     out: list[dict] = []
     pinned: dict[tuple[str, str], list[tuple[str, str, str, str]]] = {}
     for kind, ident, url in targets:

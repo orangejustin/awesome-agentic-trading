@@ -10,7 +10,7 @@
 <text x="58" y="117" font-size="13" font-weight="700" fill="#FFFFFF" text-anchor="middle" >5</text>
 <text x="78" y="117" font-size="14.5" font-weight="700" fill="#0F172A" text-anchor="start" >Application: what you build with it</text>
 <text x="50" y="142" font-size="12.5" font-weight="400" fill="#475569" text-anchor="start" >Research desks and reports · AI funds · alpha factories · prediction-market bots</text>
-<text x="908" y="117" font-size="12.5" font-weight="600" fill="#B45309" text-anchor="end" >12 repos · 8 papers</text>
+<text x="908" y="117" font-size="12.5" font-weight="600" fill="#B45309" text-anchor="end" >13 repos · 8 papers</text>
 <path d="M480 194 L480 170" stroke="#475569" stroke-width="1.8" fill="none" marker-end="url(#a)"/>
 <rect x="36" y="196" width="888" height="304" rx="14" fill="#0478571F" stroke="#047857" stroke-width="1.5" stroke-dasharray="7 5"/>
 <circle cx="58" cy="220" r="12" fill="#047857"/>

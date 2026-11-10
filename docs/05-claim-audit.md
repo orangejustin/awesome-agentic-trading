@@ -26,7 +26,7 @@ Versions read: TradingAgents paper v7 (2025-06-03); FinRobot paper v2 (2024-05-2
 | 6 | ContestTrade | The repository has no backtest code, so Table 1 cannot be regenerated | Not reproducible from the repo |
 | 7 | ContestTrade | A curated list says one view is selected; the paper and code weight several | Description mismatch |
 | 8 | FinMem | The repository ships no market data | Not reproducible from the repo |
-| 9 | Trading-R1, FinCon | Listed beside runnable projects; at the snapshot neither repository contains the system | Not reproducible from the repo |
+| 9 | Trading-R1, FinCon | Listed beside runnable projects; neither repository contains the system its paper evaluates (Trading-R1 now ships a research terminal, without the model) | Not reproducible from the repo |
 | 10 | FinRobot | Counted as a trading agent in lists; its paper reports no trading performance | Description mismatch |
 | 11 | WallStreetPete/awesome-open-source-trading | Two arXiv papers are linked under titles the papers no longer carry | Description mismatch |
 
@@ -82,7 +82,7 @@ The data folders in the repository hold only placeholders, and the one sample ar
 
 ### 9. Trading-R1 and FinCon
 
-Both appear in lists next to runnable projects. At our snapshot the Trading-R1 repository contains one file, a two-line README ("Releasing soon: Trading-R1 Terminal"). The FinCon repository contains a license and a README that says the full system is not yet released because its data agent depends on commercial APIs, and points to the authors' single-agent projects instead.
+Both appear in lists next to runnable projects. At our first snapshot (2026-10-26) the Trading-R1 repository contained one file, a two-line README ("Releasing soon: Trading-R1 Terminal"). On 2026-11-10 it contains that terminal, an Apache-2.0 research agent at v0.1.1 ([`b50c941`](https://github.com/TauricResearch/Trading-R1/tree/b50c941c5833e6c46f36ee1b2277513725ee5367)): a client for hosted models and Tauric's data API, with no model weights, training code or backtest, so the paper's results still cannot be regenerated from it. The FinCon repository contains a license and a README that says the full system is not yet released because its data agent depends on commercial APIs, and points to the authors' single-agent projects instead.
 
 ### 10. FinRobot
 

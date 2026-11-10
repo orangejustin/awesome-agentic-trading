@@ -49,10 +49,11 @@ Each teardown carries a "what we checked" table so that a reader can see which s
 
 | Check | Command | Runs |
 |---|---|---|
-| Schema and cross-references in the catalog, including that every evidence link is pinned to the checked commit | `python tools/build.py check` | every push |
+| Schema and cross-references in the catalog, including that every evidence link is pinned to the checked commit, that each component cites its core facts, and that "installed" or "run" carries a dated record | `python tools/build.py check` | every push |
 | Generated pages, both READMEs and the figures are current | `python tools/build.py tables --check`, `python tools/make_assets.py --check` | every push |
 | Statistics code against simulation; the source checker's decisions against recorded observations | `python -m unittest discover -s tests -t .` | every push |
-| arXiv titles and dates; repositories reachable, HEAD moved, license file changed, archived upstream; articles, milestones and every pinned evidence link alive | `python tools/verify.py all --report DIR` | weekly, with the report in the job summary and as an artifact |
+| arXiv titles and dates; repositories reachable, HEAD moved, license file changed, archived upstream; articles, milestones and every evidence link alive: project sources, component-matrix sources, documented integrations and recipe links | `python tools/verify.py all --report DIR` | weekly, with the report in the job summary and as an artifact |
+| What changed in each repository whose HEAD moved: license file, README, every cited line | `python tools/repin.py diff` | by hand, before a refresh |
 | Catalog against the inclusion rule | `python tools/list_audit.py --src DIR --catalog` | by hand (needs the four clones) |
 | Method cards' quotes against the paper text | `python -m tools.extract verify` | by hand |
 

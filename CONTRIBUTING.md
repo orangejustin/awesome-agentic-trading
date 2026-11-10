@@ -131,9 +131,9 @@ Not accepted: private workspace links (Slack, Notion, Feishu and the like), post
 
 ## Components and recipes
 
-The [component matrix](docs/components.md) is generated from [`catalog/components.toml`](catalog/components.toml). A component must already be a catalogued repository; every field (runtime, install, interface, inputs and outputs, keys and cost) needs a source pinned to that repository's `last_sha`, and its `orders` must match the catalog. `verification` says how far you went: `docs` (read at the pinned commit), `install` (installed and imported; record `verify_cmd`, `verify_env`, `verify_date` and `verify_result`) or `run` (a documented example ran). Only list an integration that an upstream file documents.
+The [component matrix](docs/components.md) is generated from [`catalog/components.toml`](catalog/components.toml). A component must already be a catalogued repository; language, runtime, install, interface, inputs and outputs, keys and cost, and order authority each need a source pinned to that repository's `last_sha` (the check fails without one), and its `orders` must match the catalog. `verification` says how far you went: `docs` (read at the pinned commit), `install` (installed and imported) or `run` (a documented example ran); the last two are refused unless `verify_cmd`, `verify_env`, `verify_date` and `verify_result` are all recorded. Only list an integration that an upstream file documents.
 
-A recipe combines components across layers. Mark it `design` (your proposal, not run end to end), `upstream` (the pairing is documented by its authors; link the lines) or `run` (you ran it end to end; describe how). Say what a builder still has to add.
+A recipe combines components across layers. Mark it `design` (your proposal, not run end to end), `upstream` (the pairing is documented by its authors; link the lines) or `run` (you ran it end to end). A `run` recipe is refused without a `run` record: `date`, `env`, `commits` (the versions of each component), `cmd`, `result` and `log` (a link to the output). Recipe links are pinned like every other source. Say what a builder still has to add.
 
 ## Corrections and removals
 
@@ -157,7 +157,7 @@ Commit messages carry no AI attribution trailers (`Co-Authored-By: Claude …`, 
 ## Maintenance
 
 - **Weekly:** the [verify-sources](.github/workflows/verify.yml) workflow runs `python tools/verify.py all --report report` and publishes the report in the job summary and as an artifact: failures (unreachable or newly archived repositories, changed license files, retitled papers, dead links) turn the job red; repositories whose HEAD moved are listed with both commits and a diff link for re-checking.
-- **Each refresh:** for an entry whose HEAD moved, re-read the README and code for order authority, license and maintenance at the new commit, then update `last_commit`, `last_sha`, `checked` and the `sources` together. Activity (🟢 🟡 ⚪) is computed from those dates, so it never needs editing by hand, but it is only as fresh as the check date shown next to it.
+- **Each refresh:** a moved HEAD does not mean an entry is stale, and a green link does not mean it was re-read. Run `python tools/repin.py diff`: for every moved repository it reports whether the license file changed, writes the README diff to read, and says whether each cited line still reads the same at the new commit. Read the diffs, fix the summary, limit and any citation that changed, then `python tools/repin.py apply IDS --read YYYY-MM-DD` re-pins the links and sets `checked` to the day you read them. It refuses an entry that still has a changed citation. Never advance `checked` because a job passed. Activity (🟢 🟡 ⚪) is computed from those dates, so it never needs editing by hand, but it is only as fresh as the check date shown next to it.
 - **Neutral wording.** State what a source says and what you checked; separate quotation from inference; do not grade people.
 
 ## Never commit

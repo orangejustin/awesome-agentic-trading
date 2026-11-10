@@ -87,3 +87,21 @@ class Report(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class LinkTargets(unittest.TestCase):
+    def test_component_integration_and_recipe_links_are_checked(self):
+        sha = "a" * 40
+        c = {"articles": [], "milestones": [], "projects": [],
+             "components": [{"id": "x", "sources": [{"what": "install", "url": f"https://github.com/o/r/blob/{sha}/README.md#L1"}],
+                             "integrations": [{"with": "y", "url": f"https://github.com/o/r/blob/{sha}/docs/y.md#L2"}]}],
+             "recipes": [{"id": "z", "links": [{"label": "l", "url": f"https://github.com/o/r/blob/{sha}/docs/z.md#L3"}]}]}
+        seen = {}
+        real = verify.check_pinned
+        verify.check_pinned = lambda repo, s, paths: seen.update({repo: paths}) or {p: "ok" for p in paths}
+        try:
+            found = verify.verify_links(c)
+        finally:
+            verify.check_pinned = real
+        self.assertEqual(seen, {"o/r": {"README.md", "docs/y.md", "docs/z.md"}})
+        self.assertEqual(sorted(f["kind"] for f in found), ["component", "integration", "recipe"])
