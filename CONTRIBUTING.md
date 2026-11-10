@@ -44,6 +44,8 @@ Stars, return claims and follower counts are never a reason to include something
 
 Disclose any affiliation with a project you suggest.
 
+**Declined candidates** are recorded too, in [`catalog/excluded.toml`](catalog/excluded.toml), with the commit read and the reason: a repository tied to its own token, referral or partner links in the default path, a job already covered by a listed entry, or snippets with no runnable code. That keeps a popular repository from being re-proposed without new facts.
+
 **Entry template.** Add a block to [`catalog/projects.toml`](catalog/projects.toml) and three short lines in both languages to [`catalog/briefs.toml`](catalog/briefs.toml). Layers and categories are listed in [`catalog/layers.toml`](catalog/layers.toml). Read the repository at one commit and record that commit: every fact in the entry is about it.
 
 ```toml

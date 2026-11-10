@@ -11,7 +11,7 @@
 <p align="center"><a href="README.md">English</a
 > 一份逐条核对过来源的指南，帮助你构建和评测**由 LLM 驱动的交易系统**：开源仓库、论文、文章与帖子，按系统的五层组织：**数据层 → Agent 层 → 执行层 → Harness 层 → 应用层**。
 
-<!-- gen:headline -->62 个仓库（50 个开源 · 4 个混合或受限许可 · 8 个许可待确认）· 59 篇论文 · 41 篇文章与帖子 · 5 个深度拆解<!-- /gen:headline -->。每个仓库条目都写明做什么、能否下单、采用什么许可证，以及最关键的限制；每篇论文都标明我们实际读到了什么程度。
+<!-- gen:headline -->70 个仓库（57 个开源 · 5 个混合或受限许可 · 8 个许可待确认）· 60 篇论文 · 41 篇文章与帖子 · 5 个深度拆解<!-- /gen:headline -->。每个仓库条目都写明做什么、能否下单、采用什么许可证，以及最关键的限制；每篇论文都标明我们实际读到了什么程度。
 
 **“核验”指什么。** 每个仓库都在一个确定的提交上读过：README、许可证文件，以及决定它能否下单的那几行。这是*来源核查*。安装项目、端到端跑通是更强的结论，只有页面明确写出时才成立（见[组件矩阵](docs/components.md)）。程序每周重新检查全部链接（[最新报告](https://github.com/orangejustin/awesome-agentic-trading/actions/workflows/verify.yml)）；条目上的核验日期是人最后一次读它的日期，程序不会改动。
 
@@ -58,11 +58,11 @@
 <!-- gen:stack -->
 | 层 | 回答的问题 | 仓库 | 论文 | 文章 |
 |---|---|---|---|---|
-| [1. 数据层](layers/data.md) | 智能体知道什么？什么时候知道的？ | 13 | 5 | 6 |
+| [1. 数据层](layers/data.md) | 智能体知道什么？什么时候知道的？ | 14 | 5 | 6 |
 | [2. Agent 层](layers/agent.md) | 拿到信号之后，结论是什么？理由如何论证？ | 8 | 22 | 3 |
-| [3. 执行层](layers/execution.md) | 决策如何安全地变成成交？ | 10 | 1 | 7 |
-| [4. Harness 层](layers/harness.md) | 结果是真的吗？如果它不再成立，我们能及时发现吗？ | 18 | 18 | 15 |
-| [5. 应用层](layers/application.md) | 它为用户端到端完成什么工作？ | 13 | 8 | 10 |
+| [3. 执行层](layers/execution.md) | 决策如何安全地变成成交？ | 13 | 1 | 7 |
+| [4. Harness 层](layers/harness.md) | 结果是真的吗？如果它不再成立，我们能及时发现吗？ | 18 | 19 | 15 |
+| [5. 应用层](layers/application.md) | 它为用户端到端完成什么工作？ | 17 | 8 | 10 |
 <!-- /gen:stack -->
 
 ## 证据告诉我们什么
@@ -94,7 +94,7 @@
 
 > 智能体知道什么？什么时候知道的？
 
-**13 个仓库 · 5 篇论文 · 6 篇文章** · [分层页：证据链接、核验日期、全部论文（英文）→](layers/data.md)
+**14 个仓库 · 5 篇论文 · 6 篇文章** · [分层页：证据链接、核验日期、全部论文（英文）→](layers/data.md)
 
 #### 行情与基本面数据
 
@@ -112,6 +112,7 @@
 
 #### 面向智能体的数据服务（MCP）
 
+- [TradingView MCP (screener and data)](https://github.com/atilaahmettaner/tradingview-mcp) — 无需 TradingView 账户的 MCP 服务：筛选器、技术指标解读与简单回测。 ⚠️ 依赖非官方公开接口且有限流；README 推广付费托管版；回测结果未经审计。
 - [Financial Datasets MCP Server](https://github.com/financial-datasets/mcp-server) ⚪ — 提供 Financial Datasets API 财务、价格与新闻的 MCP 服务器。 ⚠️ 需要 Financial Datasets API 密钥；最后提交于 2025-06-05。
 - [Massive MCP Server](https://github.com/massive-com/mcp_massive) — Massive（原 Polygon.io）行情 API 的官方 MCP 服务器。 ⚠️ 作者标注为实验性，且需要 API 密钥。
 - [Yahoo Finance MCP](https://github.com/Alex2Yang97/yahoo-finance-mcp) — 为LLM客户端提供Yahoo Finance数据的MCP服务器。 ⚠️ 基于yfinance当前数据而非时点存档，不适合回测。
@@ -164,15 +165,18 @@
 
 > 决策如何安全地变成成交？
 
-**10 个仓库 · 1 篇论文 · 7 篇文章** · [分层页：证据链接、核验日期、全部论文（英文）→](layers/execution.md)
+**13 个仓库 · 1 篇论文 · 7 篇文章** · [分层页：证据链接、核验日期、全部论文（英文）→](layers/execution.md)
 
 #### 券商与交易场所工具
 
 - [CCXT (with ccxt-mcp)](https://github.com/ccxt/ccxt) [⚡](https://github.com/ccxt/ccxt/blob/e1579cb6bf5519fe588e249fd60fc42d5fff8f8c/mcp/README.md?plain=1#L16-L22) — 统一接入 100 多家加密货币交易所的 API，现附以安全护栏为设计核心的官方 MCP 服务。 ⚠️ MCP 服务尚早期；交易权限等级写在同时保存密钥的本地配置中。
 - [AgentKit](https://github.com/coinbase/agentkit) [⚡](https://github.com/coinbase/agentkit/blob/f2f3e8c11a91d56a17979a229a172ba6e61a85c2/README.md?plain=1#L200-L204) — 为 AI 智能体提供加密钱包与链上操作：转账、兑换、支付。 ⚠️ 默认无审批、限额与白名单：提示注入可能转走资金，须先加护栏。
 - [Alpaca MCP Server](https://github.com/alpacahq/alpaca-mcp-server) [⚡](https://github.com/alpacahq/alpaca-mcp-server/blob/63cc4278d87b31f3ed4efcfaa55624095c6d7be8/README.md?plain=1#L245-L258) — 让LLM客户端查询行情并通过Alpaca下单的MCP服务器。 ⚠️ 默认模拟盘，但一个开关即切到实盘；未限制时所有工具集均开启。
+- [Kraken CLI](https://github.com/krakenfx/kraken-cli) [⚡](https://github.com/krakenfx/kraken-cli/blob/671cdd7f1483409f7b45554725f2a07ac5abd33f/README.md?plain=1#L314-L317) — Kraken 官方命令行与 MCP 服务：实盘下单、出入金，并内置按实时价格成交的模拟引擎。 ⚠️ 命令行实盘下单没有确认提示；MCP 的审批关卡取决于客户端，且可以关闭。
 - [Polymarket MCP Server](https://github.com/caiovicentino/polymarket-mcp-server) [⚡](https://github.com/caiovicentino/polymarket-mcp-server/blob/21f65f319ff0fc4250ea1e5094581761906839e1/README.md?plain=1#L184-L195) — 提供45个Polymarket交易与监控工具的MCP服务器。 ⚠️ 完整模式用钱包真实资金交易；DEMO 模式只读；Polymarket 没有模拟盘账户。
+- [OKX Agent Trade Kit](https://github.com/okx/agent-trade-kit) [⚡](https://github.com/okx/agent-trade-kit/blob/e5b60e4f0bc2afc75fab19c8360dafa6b84f3ed7/packages/core/src/tools/spot-trade.ts#L30-L36) — OKX 官方 MCP 服务与命令行：行情、下单、划转、理财和机器人都成为智能体工具。 ⚠️ 除非使用模拟盘配置或加 --read-only，写入工具直接作用于真实账户；没有内置确认步骤。
 - [fintool](https://github.com/second-state/fintool) [⚡](https://github.com/second-state/fintool/blob/177a9b8e3a09e507cdb2c8458f2be4b9574abaaf/README.md?plain=1#L86-L97) 🟡 ❓ `MIT` — 为智能体提供分交易所交易与行情的 Rust CLI 套件。 ⚠️ 可在真实交易所下单，建议先用小仓位或测试网。
+- [Condor](https://github.com/hummingbot/condor) [⚡](https://github.com/hummingbot/condor/blob/a817f6633a90afe41523377bfd360c0b9316d423/README.md?plain=1#L29-L31) — 通过 Hummingbot API 监控和交易的 Telegram 机器人与面板，内置 LLM 智能体。 ⚠️ 会下真实加密订单并保存交易所密钥；需部署 Hummingbot API；使用统计默认开启。
 - [Schwab MCP](https://github.com/jkoelker/schwab-mcp) [⚡](https://github.com/jkoelker/schwab-mcp/blob/491960670d98dad9ed26f6631536b2db656f51be/README.md?plain=1#L133-L151) — 嘉信理财（Schwab）社区版 MCP 服务：行情、期权链、持仓与下单，下单前需人工审批。 ⚠️ 非官方；审批后即对真实账户下单；需申请 Schwab 开发者应用。
 - [tastytrade MCP](https://github.com/tastytrade/tastytrade-mcp) [⚡](https://github.com/tastytrade/tastytrade-mcp/blob/7f2bb636a8a1906fecc28f5da27ab382dd966941/README.md?plain=1#L10-L19) — tastytrade 官方 MCP 服务：行情、期权链、持仓与下单。 ⚠️ 默认连接生产环境（真实资金）；应先用只读或沙箱模式。
 
@@ -194,7 +198,7 @@
 
 > 结果是真的吗？如果它不再成立，我们能及时发现吗？
 
-**18 个仓库 · 18 篇论文 · 15 篇文章** · [分层页：证据链接、核验日期、全部论文（英文）→](layers/harness.md)
+**18 个仓库 · 19 篇论文 · 15 篇文章** · [分层页：证据链接、核验日期、全部论文（英文）→](layers/harness.md)
 
 #### 研究与回测环境
 
@@ -243,12 +247,15 @@
 
 > 它为用户端到端完成什么工作？
 
-**13 个仓库 · 8 篇论文 · 10 篇文章** · [分层页：证据链接、核验日期、全部论文（英文）→](layers/application.md)
+**17 个仓库 · 8 篇论文 · 10 篇文章** · [分层页：证据链接、核验日期、全部论文（英文）→](layers/application.md)
 
 #### 投研与报告
 
+- [daily_stock_analysis](https://github.com/ZhuLinsen/daily_stock_analysis) — 按计划为多市场自选股生成 LLM 分析报告，并推送到聊天工具或邮箱。 ⚠️ 只出报告、不下单；需要 LLM 密钥；免费数据源有限流；买卖点位没有前向记录。
+- [Claude for Financial Services](https://github.com/anthropics/financial-services) — Anthropic 官方参考实现：面向投研、投行和基金运营的智能体、技能与数据连接器。 ⚠️ 只起草分析材料供人工签核，不做交易；需要 Claude 及付费数据商订阅。
 - [Dexter](https://github.com/virattt/dexter) ❓ `MIT` — 自主投研智能体：拆解问题、调用金融数据工具、自查并迭代。 ⚠️ 仅限研究；依赖付费数据 API；README 称 MIT 但无 LICENSE 文件。
 - [FinRobot](https://github.com/AI4Finance-Foundation/FinRobot) [🔬](docs/teardowns/finrobot.md) — 代码算数、LLM写叙述的股票研究智能体平台。 ⚠️ 属于股票研究工作站而非交易系统，无可检验的交易业绩声明。
+- [Claude Trading Skills](https://github.com/tradermonty/claude-trading-skills) — 一组 Claude Skills：市场环境检查、选股、仓位计算、交易日志与回测评审。 ⚠️ 仅辅助决策、不下单；多数选股需 FMP 密钥或付费 FINVIZ Elite；无业绩记录。
 - [Trading-R1](https://github.com/TauricResearch/Trading-R1) — 终端里的投研智能体：行情数据、网页检索与估值工具，可导出 PDF 报告并定时推送。 ⚠️ 数据工具需要 Tauric 密钥，会话默认同步到 Tauric；论文模型的权重、训练代码与回测均未发布。
 - [OpenTerminalUI](https://github.com/Hitheshkaranth/OpenTerminalUI) [📝](https://github.com/Hitheshkaranth/OpenTerminalUI/blob/48912fb420b1d16d6e412e9dec69871b242b93b2/README.md?plain=1#L187) — 可自托管的投研终端，AI 分析师会引用公告并标注每个数字的来源。 ⚠️ 单人维护的小项目；免费数据可能延迟或为合成数据（有标注）；仅支持模拟操作。
 
@@ -257,6 +264,7 @@
 - [AI Hedge Fund](https://github.com/virattt/ai-hedge-fund) [📝](https://github.com/virattt/ai-hedge-fund/blob/5c553b5222044f6a5527bd377b4104c50ee0ad28/README.md?plain=1#L57) — LLM 投资者智能体在真实交易日上运行模拟基金，并支持历史回测回放。 ⚠️ 作者声明仅供教学；只有模拟基金，不下真实订单；结果未经复现。
 - [Vibe-Trading](https://github.com/HKUDS/Vibe-Trading) [⚡](https://github.com/HKUDS/Vibe-Trading/blob/dbff8165f47401db4c3ec98acdf0577acdf87aa6/guides/capabilities.md?plain=1#L203-L205) — 个人交易智能体全栈（CLI、MCP、Web）：投研、带运行卡与验证的回测、模拟账户，以及会对账的实盘执行器。 ⚠️ 实盘券商连接有真实执行风险；未核对表现声明；注意冒名社群与诱导钱包签名的骗局。
 - [TradingAgents-CN](https://github.com/hsliuping/TradingAgents-CN) [📝](https://github.com/hsliuping/TradingAgents-CN/blob/51060a7682cf51810b4bc3a704829438d18cd8dc/README.md?plain=1#L23) 🧩 `Apache-2.0 + proprietary` — 面向A股的TradingAgents社区衍生框架。 ⚠️ 混合许可：应用层仅源码可见，并非开源。
+- [QuantDinger](https://github.com/OpenByteInc/QuantDinger) [⚡](https://github.com/OpenByteInc/QuantDinger/blob/9c5b23d835a161960a4e8d50d112bf1f23029ad5/README.md?plain=1#L125-L128) 🧩 `Apache-2.0 + source-available clients` — 自托管的 AI 研究、回测与实盘交易后端，带智能体网关和 MCP 服务。 ⚠️ 可下真实订单；智能体默认仅限模拟。网页和移动端为源码可见许可，并非 Apache-2.0。
 
 #### 因子工厂（量化研究自动化）
 

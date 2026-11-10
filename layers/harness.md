@@ -11,7 +11,7 @@
 
 **Open gap.** No catalogued agentic system's headline trading table can be regenerated from its repository. Live arenas fix look-ahead but run for weeks, far too short to separate skill from luck.
 
-18 repos · 18 papers · 15 articles and posts. Legend: 🟢 active · 🟡 slowing · ⚪ dormant (last commit within 90 days, within a year, or older, counted from the check date) · 💤 declared unmaintained · ⚡ can place real orders · 📝 paper trading only · 🧩 open core with proprietary parts · 🔒 source-available, restricted · ❓ license unclear · 🧰 general-purpose tool applied here · 📖 read in full · 🗂️ machine-extracted [method card](../docs/cards/index.md) · 🔖 abstract only. Marks on a row link to the lines that support them, at the commit we checked.
+18 repos · 19 papers · 15 articles and posts. Legend: 🟢 active · 🟡 slowing · ⚪ dormant (last commit within 90 days, within a year, or older, counted from the check date) · 💤 declared unmaintained · ⚡ can place real orders · 📝 paper trading only · 🧩 open core with proprietary parts · 🔒 source-available, restricted · ❓ license unclear · 🧰 general-purpose tool applied here · 📖 read in full · 🗂️ machine-extracted [method card](../docs/cards/index.md) · 🔖 abstract only. Marks on a row link to the lines that support them, at the commit we checked.
 
 ## Contents
 
@@ -70,12 +70,16 @@
 
 Listed in their primary layer; they also ship working code for this one.
 
+- [Claude Trading Skills](https://github.com/tradermonty/claude-trading-skills) — Claude Skills for market-regime checks, screening, position sizing, journaling and backtest review. *Primary: [Application layer](application.md).*
 - [FinRL](https://github.com/AI4Finance-Foundation/FinRL) — Deep reinforcement learning library and tutorials for stock trading environments. *Primary: [Agent layer](agent.md).*
 - [FinRL-X (FinRL-Trading)](https://github.com/AI4Finance-Foundation/FinRL-Trading) — Weight-centric pipeline that backtests target weights and sends them to a broker. *Primary: [Execution layer](execution.md).*
 - [Kalshi AI Trading Bot](https://github.com/ryanfrigo/kalshi-ai-trading-bot) — Kalshi trading toolkit with an edge audit, MCP server and agent tools. *Primary: [Application layer](application.md).*
+- [Kraken CLI](https://github.com/krakenfx/kraken-cli) — Kraken's CLI and MCP server: live orders, funding and a built-in paper engine at live prices. *Primary: [Execution layer](execution.md).*
 - [LEAN](https://github.com/QuantConnect/Lean) — Event-driven algorithmic trading engine for research, backtesting and live trading. *Primary: [Execution layer](execution.md).*
 - [NautilusTrader](https://github.com/nautechsystems/nautilus_trader) — Event-driven engine running the same strategy code in backtest and live. *Primary: [Execution layer](execution.md).*
+- [QuantDinger](https://github.com/OpenByteInc/QuantDinger) — Self-hosted AI research, backtest and live-trading backend with an agent gateway and MCP server. *Primary: [Application layer](application.md).*
 - [Qwen DianJin](https://github.com/aliyun/qwen-dianjin) — Alibaba Cloud hub for finance reasoning models, datasets and benchmarks. *Primary: [Agent layer](agent.md).*
+- [TradingView MCP (screener and data)](https://github.com/atilaahmettaner/tradingview-mcp) — Headless MCP server for screeners, indicator reads and simple backtests, no TradingView account needed. *Primary: [Data layer](data.md).*
 - [Vibe-Trading](https://github.com/HKUDS/Vibe-Trading) — Personal trading-agent stack (CLI, MCP, web): research, backtests with run cards and validation, paper accounts and a reconciling live runner. *Primary: [Application layer](application.md).*
 
 ## Papers
@@ -101,6 +105,7 @@ Listed in their primary layer; they also ship working code for this one.
 | [AlphaForgeBench: Benchmarking End-to-End Trading Strategy Design with Large Language Models](https://arxiv.org/abs/2602.18481) | Wentao Zhang et al., 2026 | 🗂️ [card](../docs/cards/2602.18481.md) | AlphaForgeBench: shows large run-to-run variance and flip-flopping actions when LLMs trade directly, so it benchmarks LLMs as factor researchers with deterministic execution. |
 | [From Knowing to Doing: A Memory-Controlled Benchmark for LLM Trading Agents on Stock Markets](https://arxiv.org/abs/2605.28359) | Taojie Zhu et al., 2026 | 🗂️ [card](../docs/cards/2605.28359.md) | KTD-Fin: masks identifiers and dates, and attributes returns Barra-style to market, style and selection alpha; on CSI300 2024-2026 the leakage-controlled returns of ten LLM agents are largely passive exposure. |
 | [CLQT: A Closed-Loop, Cost-Aware, Strategy-Consistent Benchmark for Diagnostic Evaluation of LLM Portfolio-Management Agents](https://arxiv.org/abs/2606.29771) | Bo Qu et al., 2026 | 🗂️ [card](../docs/cards/2606.29771.md) | CLQT: closed-loop benchmark with a hard point-in-time gate, institutional costs, an audit chain and a five-axis scorecard; reports that the capability leader is not the Sharpe leader. |
+| [What LLM Trading Agents Actually Do in Production: A Six-Month, Population-Scale Record from Two Fleets](https://arxiv.org/abs/2609.05663) | T. J. Barton et al., 2026 | 🔖 abstract | Operator-reported record of real-money LLM agents in two fleets run by the authors, in separate windows: about 3,500 user-funded vaults trading Base memecoins for 21 days, and 500 to 600 user-created agents on Hyperliquid perpetuals from June to August 2026. The abstract reports that platform controls shaped behaviour more than strategy text and that neither fleet showed a directional edge, with the perpetuals fleet unprofitable and behind a matched retail benchmark. |
 
 ### Robustness and bias control
 

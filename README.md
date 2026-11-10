@@ -11,7 +11,7 @@
 <p align="center"><b>English</b
 > A curated, source-checked guide to building and evaluating **LLM-powered trading systems**: repositories, papers, articles and posts, organized by the five layers of the stack: **Data → Agent → Execution → Harness → Application**.
 
-<!-- gen:headline -->62 repositories (50 open source · 4 mixed or restricted license · 8 license unclear) · 59 papers · 41 articles and posts · 5 deep dives<!-- /gen:headline -->. Every repository entry says what it does, whether it can place orders, how it is licensed and its most important limit; every paper says how much of it we actually read.
+<!-- gen:headline -->70 repositories (57 open source · 5 mixed or restricted license · 8 license unclear) · 60 papers · 41 articles and posts · 5 deep dives<!-- /gen:headline -->. Every repository entry says what it does, whether it can place orders, how it is licensed and its most important limit; every paper says how much of it we actually read.
 
 **What "checked" means.** Each repository was read at a named commit: its README, its license file and the lines that decide whether it can place orders. That is a *source check*. Installing a project and running it end to end are stronger claims, made only where a page says so ([component matrix](docs/components.md)). A program re-checks every link weekly ([latest report](https://github.com/orangejustin/awesome-agentic-trading/actions/workflows/verify.yml)); the check date on an entry is the day a person last read it, and no program moves it.
 
@@ -58,11 +58,11 @@ Data, Agent and Execution are the pipeline: see, think, act. The Harness wraps a
 <!-- gen:stack -->
 | Layer | The question it answers | Repos | Papers | Articles |
 |---|---|---|---|---|
-| [1. Data layer](layers/data.md) | What did the agent know, and when did it know it? | 13 | 5 | 6 |
+| [1. Data layer](layers/data.md) | What did the agent know, and when did it know it? | 14 | 5 | 6 |
 | [2. Agent layer](layers/agent.md) | Given the signals, what is the call, and how is it argued? | 8 | 22 | 3 |
-| [3. Execution layer](layers/execution.md) | How does a decision become a fill, safely? | 10 | 1 | 7 |
-| [4. Harness layer](layers/harness.md) | Is the result real, and would we notice if it stopped being real? | 18 | 18 | 15 |
-| [5. Application layer](layers/application.md) | What end-to-end job does it do for a user? | 13 | 8 | 10 |
+| [3. Execution layer](layers/execution.md) | How does a decision become a fill, safely? | 13 | 1 | 7 |
+| [4. Harness layer](layers/harness.md) | Is the result real, and would we notice if it stopped being real? | 18 | 19 | 15 |
+| [5. Application layer](layers/application.md) | What end-to-end job does it do for a user? | 17 | 8 | 10 |
 <!-- /gen:stack -->
 
 ## What the evidence shows
@@ -94,7 +94,7 @@ Every listed repository, by layer. One line each: what it is, then ⚠️ the li
 
 > What did the agent know, and when did it know it?
 
-**13 repos · 5 papers · 6 articles** · [Layer page: evidence links, check dates, every paper →](layers/data.md)
+**14 repos · 5 papers · 6 articles** · [Layer page: evidence links, check dates, every paper →](layers/data.md)
 
 #### Market and fundamental data
 
@@ -112,6 +112,7 @@ Every listed repository, by layer. One line each: what it is, then ⚠️ the li
 
 #### Data servers for agents (MCP)
 
+- [TradingView MCP (screener and data)](https://github.com/atilaahmettaner/tradingview-mcp) — Headless MCP server for screeners, indicator reads and simple backtests, no TradingView account needed. ⚠️ Unofficial public endpoints with rate limits; README promotes a paid hosted tier; backtests unaudited.
 - [Financial Datasets MCP Server](https://github.com/financial-datasets/mcp-server) ⚪ — MCP server exposing Financial Datasets API financials, prices and company news. ⚠️ Requires a Financial Datasets API key; last commit 2025-06-05.
 - [Massive MCP Server](https://github.com/massive-com/mcp_massive) — First-party MCP server exposing the Massive (formerly Polygon.io) market-data API. ⚠️ Marked experimental by its authors and requires a Massive API key.
 - [Yahoo Finance MCP](https://github.com/Alex2Yang97/yahoo-finance-mcp) — MCP server giving LLM clients Yahoo Finance prices, statements, options and news. ⚠️ Wraps yfinance current data, not point-in-time; unsuitable for backtesting.
@@ -164,15 +165,18 @@ Every listed repository, by layer. One line each: what it is, then ⚠️ the li
 
 > How does a decision become a fill, safely?
 
-**10 repos · 1 papers · 7 articles** · [Layer page: evidence links, check dates, every paper →](layers/execution.md)
+**13 repos · 1 papers · 7 articles** · [Layer page: evidence links, check dates, every paper →](layers/execution.md)
 
 #### Broker and venue tools for agents
 
 - [CCXT (with ccxt-mcp)](https://github.com/ccxt/ccxt) [⚡](https://github.com/ccxt/ccxt/blob/e1579cb6bf5519fe588e249fd60fc42d5fff8f8c/mcp/README.md?plain=1#L16-L22) — Unified API for 100+ crypto exchanges, now with an official MCP server built around guardrails. ⚠️ MCP server is early; trading tiers live in a local config that also holds API keys.
 - [AgentKit](https://github.com/coinbase/agentkit) [⚡](https://github.com/coinbase/agentkit/blob/f2f3e8c11a91d56a17979a229a172ba6e61a85c2/README.md?plain=1#L200-L204) — Gives an AI agent a crypto wallet and onchain actions: transfers, swaps, payments. ⚠️ No built-in approval, spend cap or allowlist: a prompt injection can move funds; add guardrails first.
 - [Alpaca MCP Server](https://github.com/alpacahq/alpaca-mcp-server) [⚡](https://github.com/alpacahq/alpaca-mcp-server/blob/63cc4278d87b31f3ed4efcfaa55624095c6d7be8/README.md?plain=1#L245-L258) — MCP server letting LLM clients query market data and place Alpaca orders. ⚠️ Paper by default, but one flag switches to live orders; all toolsets on unless restricted.
+- [Kraken CLI](https://github.com/krakenfx/kraken-cli) [⚡](https://github.com/krakenfx/kraken-cli/blob/671cdd7f1483409f7b45554725f2a07ac5abd33f/README.md?plain=1#L314-L317) — Kraken's CLI and MCP server: live orders, funding and a built-in paper engine at live prices. ⚠️ Live CLI orders have no confirmation prompt; the MCP approval gate depends on the client and can be switched off.
 - [Polymarket MCP Server](https://github.com/caiovicentino/polymarket-mcp-server) [⚡](https://github.com/caiovicentino/polymarket-mcp-server/blob/21f65f319ff0fc4250ea1e5094581761906839e1/README.md?plain=1#L184-L195) — MCP server exposing 45 tools for Polymarket discovery, trading and monitoring. ⚠️ Full mode trades real funds from a wallet; DEMO mode is read-only; Polymarket has no paper account.
+- [OKX Agent Trade Kit](https://github.com/okx/agent-trade-kit) [⚡](https://github.com/okx/agent-trade-kit/blob/e5b60e4f0bc2afc75fab19c8360dafa6b84f3ed7/packages/core/src/tools/spot-trade.ts#L30-L36) — OKX's MCP server and CLI: market data, orders, transfers, earn and bots as agent tools. ⚠️ Write tools hit the real account unless the profile is demo or --read-only is set; no built-in confirmation.
 - [fintool](https://github.com/second-state/fintool) [⚡](https://github.com/second-state/fintool/blob/177a9b8e3a09e507cdb2c8458f2be4b9574abaaf/README.md?plain=1#L86-L97) 🟡 ❓ `MIT` — Rust CLI suite giving agents per-venue trading binaries plus market data. ⚠️ Holds order authority on live venues; start with small size or testnet.
+- [Condor](https://github.com/hummingbot/condor) [⚡](https://github.com/hummingbot/condor/blob/a817f6633a90afe41523377bfd360c0b9316d423/README.md?plain=1#L29-L31) — Telegram bot and dashboard with LLM agents that monitor and trade through a Hummingbot API deployment. ⚠️ Places real crypto orders and stores exchange keys; needs Hummingbot API; usage telemetry on by default.
 - [Schwab MCP](https://github.com/jkoelker/schwab-mcp) [⚡](https://github.com/jkoelker/schwab-mcp/blob/491960670d98dad9ed26f6631536b2db656f51be/README.md?plain=1#L133-L151) — Community MCP server for Charles Schwab: quotes, option chains, positions and orders with human approval. ⚠️ Unofficial; real-account orders once approved; needs a Schwab developer app.
 - [tastytrade MCP](https://github.com/tastytrade/tastytrade-mcp) [⚡](https://github.com/tastytrade/tastytrade-mcp/blob/7f2bb636a8a1906fecc28f5da27ab382dd966941/README.md?plain=1#L10-L19) — tastytrade's official MCP server: quotes, option chains, positions and order entry. ⚠️ Defaults to production (real money); start in read-only or sandbox mode.
 
@@ -194,7 +198,7 @@ Every listed repository, by layer. One line each: what it is, then ⚠️ the li
 
 > Is the result real, and would we notice if it stopped being real?
 
-**18 repos · 18 papers · 15 articles** · [Layer page: evidence links, check dates, every paper →](layers/harness.md)
+**18 repos · 19 papers · 15 articles** · [Layer page: evidence links, check dates, every paper →](layers/harness.md)
 
 #### Research and backtest environments
 
@@ -243,12 +247,15 @@ Every listed repository, by layer. One line each: what it is, then ⚠️ the li
 
 > What end-to-end job does it do for a user?
 
-**13 repos · 8 papers · 10 articles** · [Layer page: evidence links, check dates, every paper →](layers/application.md)
+**17 repos · 8 papers · 10 articles** · [Layer page: evidence links, check dates, every paper →](layers/application.md)
 
 #### Research desks and reports
 
+- [daily_stock_analysis](https://github.com/ZhuLinsen/daily_stock_analysis) — Scheduled LLM stock reports for a multi-market watchlist, pushed to chat or email. ⚠️ Report only, no orders; needs an LLM key; free data feeds are rate-limited; no forward record for its calls.
+- [Claude for Financial Services](https://github.com/anthropics/financial-services) — Anthropic's reference agents, skills and data connectors for research, banking and fund work. ⚠️ Drafts analyst work for human sign-off, no trading; needs Claude plus paid vendor data subscriptions.
 - [Dexter](https://github.com/virattt/dexter) ❓ `MIT` — Autonomous research agent that plans, calls financial-data tools, checks its own work and iterates. ⚠️ Research only; needs a paid data API; no LICENSE file although the README says MIT.
 - [FinRobot](https://github.com/AI4Finance-Foundation/FinRobot) [🔬](docs/teardowns/finrobot.md) — Equity-research agent platform where code computes figures and LLMs write narrative. ⚠️ Research workstation, not a trading system; no trading-performance claim to test.
+- [Claude Trading Skills](https://github.com/tradermonty/claude-trading-skills) — Claude Skills for market-regime checks, screening, position sizing, journaling and backtest review. ⚠️ Decision support, no orders; many screeners need an FMP key or paid FINVIZ Elite; no performance record.
 - [Trading-R1](https://github.com/TauricResearch/Trading-R1) — Terminal research agent with market-data, web and valuation tools, PDF reports and scheduled briefs. ⚠️ Data tools need a Tauric key and sessions sync to Tauric by default; no weights, training code or backtest for the paper's model.
 - [OpenTerminalUI](https://github.com/Hitheshkaranth/OpenTerminalUI) [📝](https://github.com/Hitheshkaranth/OpenTerminalUI/blob/48912fb420b1d16d6e412e9dec69871b242b93b2/README.md?plain=1#L187) — Self-hosted research terminal with an AI analyst that cites filings and labels where each number came from. ⚠️ Small single-maintainer project; free data may be delayed or synthetic (labelled); paper actions only.
 
@@ -257,6 +264,7 @@ Every listed repository, by layer. One line each: what it is, then ⚠️ the li
 - [AI Hedge Fund](https://github.com/virattt/ai-hedge-fund) [📝](https://github.com/virattt/ai-hedge-fund/blob/5c553b5222044f6a5527bd377b4104c50ee0ad28/README.md?plain=1#L57) — LLM investor agents run paper funds on real market days, with historical backtest replay. ⚠️ Educational per its own disclaimer; paper funds only, no real orders; results not rerun.
 - [Vibe-Trading](https://github.com/HKUDS/Vibe-Trading) [⚡](https://github.com/HKUDS/Vibe-Trading/blob/dbff8165f47401db4c3ec98acdf0577acdf87aa6/guides/capabilities.md?plain=1#L203-L205) — Personal trading-agent stack (CLI, MCP, web): research, backtests with run cards and validation, paper accounts and a reconciling live runner. ⚠️ Live broker connectors carry real execution risk; no performance claim checked; beware impostor community servers and wallet-signing scams.
 - [TradingAgents-CN](https://github.com/hsliuping/TradingAgents-CN) [📝](https://github.com/hsliuping/TradingAgents-CN/blob/51060a7682cf51810b4bc3a704829438d18cd8dc/README.md?plain=1#L23) 🧩 `Apache-2.0 + proprietary` — Chinese A-share derivative of TradingAgents with web app, screening and paper trading. ⚠️ Hybrid license: application layer is source-available, not open source.
+- [QuantDinger](https://github.com/OpenByteInc/QuantDinger) [⚡](https://github.com/OpenByteInc/QuantDinger/blob/9c5b23d835a161960a4e8d50d112bf1f23029ad5/README.md?plain=1#L125-L128) 🧩 `Apache-2.0 + source-available clients` — Self-hosted AI research, backtest and live-trading backend with an agent gateway and MCP server. ⚠️ Can send real orders; agents are paper-only by default. Web and mobile clients are source-available, not Apache-2.0.
 
 #### Alpha factories (automated quant research)
 

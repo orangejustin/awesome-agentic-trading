@@ -11,7 +11,7 @@
 
 **Open gap.** Almost no agent framework ships a point-in-time store. The MCP data servers listed here serve current data; none was checked for point-in-time guarantees, so none should feed a backtest unaudited.
 
-13 repos · 5 papers · 6 articles and posts. Legend: 🟢 active · 🟡 slowing · ⚪ dormant (last commit within 90 days, within a year, or older, counted from the check date) · 💤 declared unmaintained · ⚡ can place real orders · 📝 paper trading only · 🧩 open core with proprietary parts · 🔒 source-available, restricted · ❓ license unclear · 🧰 general-purpose tool applied here · 📖 read in full · 🗂️ machine-extracted [method card](../docs/cards/index.md) · 🔖 abstract only. Marks on a row link to the lines that support them, at the commit we checked.
+14 repos · 5 papers · 6 articles and posts. Legend: 🟢 active · 🟡 slowing · ⚪ dormant (last commit within 90 days, within a year, or older, counted from the check date) · 💤 declared unmaintained · ⚡ can place real orders · 📝 paper trading only · 🧩 open core with proprietary parts · 🔒 source-available, restricted · ❓ license unclear · 🧰 general-purpose tool applied here · 📖 read in full · 🗂️ machine-extracted [method card](../docs/cards/index.md) · 🔖 abstract only. Marks on a row link to the lines that support them, at the commit we checked.
 
 ## Contents
 
@@ -45,6 +45,7 @@
 
 | Project | What it does | Suits | Activity | License | Orders | Checked | Key limit |
 |---|---|---|---|---|---|---|---|
+| [TradingView MCP (screener and data)](https://github.com/atilaahmettaner/tradingview-mcp) | Headless MCP server for screeners, indicator reads and simple backtests, no TradingView account needed | Assistant users who want quick multi-exchange screens and technical reads in chat | 🟢 active, last commit 2026-11-10 | [`MIT`](https://github.com/atilaahmettaner/tradingview-mcp/blob/ab4681cdbdd18e5cafbf31695a07e1c146822e16/LICENSE) | none | [2026-11-10 @ `ab4681c`](https://github.com/atilaahmettaner/tradingview-mcp/tree/ab4681cdbdd18e5cafbf31695a07e1c146822e16) | Unofficial public endpoints with rate limits; README promotes a paid hosted tier; backtests unaudited |
 | [Financial Datasets MCP Server](https://github.com/financial-datasets/mcp-server) | MCP server exposing Financial Datasets API financials, prices and company news | Developers connecting LLM agents to financial statement and price data | ⚪ dormant, last commit 2025-06-05 | [`MIT`](https://github.com/financial-datasets/mcp-server/blob/08e7a3dbb949d3d99bbd6d6f3a22e5f02973ec58/LICENSE) | none | [2026-10-26 @ `08e7a3d`](https://github.com/financial-datasets/mcp-server/tree/08e7a3dbb949d3d99bbd6d6f3a22e5f02973ec58) | Requires a Financial Datasets API key; last commit 2025-06-05 |
 | [Massive MCP Server](https://github.com/massive-com/mcp_massive) | First-party MCP server exposing the Massive (formerly Polygon.io) market-data API | Developers connecting LLM agents to Massive market data | 🟢 active, last commit 2026-10-08 | [`MIT`](https://github.com/massive-com/mcp_massive/blob/1e161a8c50b69bd467b092e0721e30908ab94eb6/LICENSE) | none | [2026-10-26 @ `1e161a8`](https://github.com/massive-com/mcp_massive/tree/1e161a8c50b69bd467b092e0721e30908ab94eb6) | Marked experimental by its authors and requires a Massive API key |
 | [Yahoo Finance MCP](https://github.com/Alex2Yang97/yahoo-finance-mcp) | MCP server giving LLM clients Yahoo Finance prices, statements, options and news | Developers connecting LLM clients to free market data | 🟢 active, last commit 2026-09-19 | [`MIT`](https://github.com/Alex2Yang97/yahoo-finance-mcp/blob/b9c176547d3797b2196adeba0210ae67861ac589/LICENSE) | none | [2026-10-26 @ `b9c1765`](https://github.com/Alex2Yang97/yahoo-finance-mcp/tree/b9c176547d3797b2196adeba0210ae67861ac589) | Wraps yfinance current data, not point-in-time; unsuitable for backtesting |
@@ -61,8 +62,11 @@
 Listed in their primary layer; they also ship working code for this one.
 
 - [Alpaca MCP Server](https://github.com/alpacahq/alpaca-mcp-server) — MCP server letting LLM clients query market data and place Alpaca orders. *Primary: [Execution layer](execution.md).*
+- [Claude for Financial Services](https://github.com/anthropics/financial-services) — Anthropic's reference agents, skills and data connectors for research, banking and fund work. *Primary: [Application layer](application.md).*
+- [daily_stock_analysis](https://github.com/ZhuLinsen/daily_stock_analysis) — Scheduled LLM stock reports for a multi-market watchlist, pushed to chat or email. *Primary: [Application layer](application.md).*
 - [FinGPT](https://github.com/AI4Finance-Foundation/FinGPT) — Open financial LLM project with data pipelines and LoRA fine-tuning recipes. *Primary: [Agent layer](agent.md).*
 - [FinRobot](https://github.com/AI4Finance-Foundation/FinRobot) — Equity-research agent platform where code computes figures and LLMs write narrative. *Primary: [Application layer](application.md).*
+- [OKX Agent Trade Kit](https://github.com/okx/agent-trade-kit) — OKX's MCP server and CLI: market data, orders, transfers, earn and bots as agent tools. *Primary: [Execution layer](execution.md).*
 - [Qlib](https://github.com/microsoft/qlib) — Quant research platform with data layer, ML model zoo and backtest tooling. *Primary: [Harness layer](harness.md).*
 
 ## Papers

@@ -638,6 +638,252 @@ summary = "Record of a six-month live micro-cap experiment in which ChatGPT mana
 caveat = "Six months, one run, author-run evaluation: valuable as a transparent live log, too short to prove skill. The code has no broker integration (it processes portfolio CSVs and charts results), and the repository has no license file."
 
 [[project]]
+id = "daily-stock-analysis"
+name = "daily_stock_analysis"
+repo = "ZhuLinsen/daily_stock_analysis"
+kind = "platform"
+layer = "application"
+category = "app-research"
+also = ["data"]
+orders = "none"
+license = "MIT"
+license_status = "open"
+license_file = "LICENSE"
+stars = "69.5k"
+stars_asof = "2026-11-10"
+last_commit = "2026-11-10"
+last_sha = "ef44660f00e08ce66dcd4dc4d2e700836c45e833"
+checked = "2026-11-10"
+evidence = "L1"
+repro = "unverified"
+read = "readme"
+summary = "Python app that pulls quotes, technical indicators, news and fundamentals for a watchlist (A-share, Hong Kong, US, Japan, Korea, Taiwan), has an LLM write a per-stock decision report with score and buy/sell levels, and pushes it to WeCom, Feishu, Telegram, Discord, Slack or email. Ships a FastAPI/web workspace with history, a backtest view, holdings and an agent chat with built-in strategy prompts; runs on GitHub Actions, Docker or locally."
+caveat = "Report-only: it sends no orders (the Futu integration reads accounts and positions only). Needs an LLM API key; the default free data sources are described as rate-limited and not guaranteed stable, and the buy/sell levels are model output with no published forward record. The README recommends sponsor gateways through referral-coded links."
+sources = [
+  { what = "orders", url = "https://github.com/ZhuLinsen/daily_stock_analysis/blob/ef44660f00e08ce66dcd4dc4d2e700836c45e833/docs/decision-signals.md?plain=1#L7" },
+  { what = "orders", url = "https://github.com/ZhuLinsen/daily_stock_analysis/blob/ef44660f00e08ce66dcd4dc4d2e700836c45e833/docs/full-guide.md?plain=1#L428" },
+  { what = "license", url = "https://github.com/ZhuLinsen/daily_stock_analysis/blob/ef44660f00e08ce66dcd4dc4d2e700836c45e833/LICENSE#L1-L3" },
+  { what = "data", url = "https://github.com/ZhuLinsen/daily_stock_analysis/blob/ef44660f00e08ce66dcd4dc4d2e700836c45e833/README.md?plain=1#L66" },
+  { what = "limit", url = "https://github.com/ZhuLinsen/daily_stock_analysis/blob/ef44660f00e08ce66dcd4dc4d2e700836c45e833/README.md?plain=1#L89-L90" },
+  { what = "limit", url = "https://github.com/ZhuLinsen/daily_stock_analysis/blob/ef44660f00e08ce66dcd4dc4d2e700836c45e833/README.md?plain=1#L300-L302" },
+]
+
+[[project]]
+id = "claude-financial-services"
+name = "Claude for Financial Services"
+repo = "anthropics/financial-services"
+kind = "tool"
+layer = "application"
+category = "app-research"
+also = ["data"]
+orders = "none"
+license = "Apache-2.0"
+license_status = "open"
+license_file = "LICENSE"
+stars = "41.2k"
+stars_asof = "2026-11-10"
+last_commit = "2026-10-28"
+last_sha = "60565064557ca77b12f62aa7877f365d111c129d"
+checked = "2026-11-10"
+evidence = "n/a"
+repro = "n/a"
+read = "readme"
+summary = "Anthropic's reference plugins for financial-services work: ten named agents (pitch, market research, earnings review, model building, GL reconciliation, KYC and others), skills and slash commands for comps, DCF, LBO, earnings notes and IC memos, and an MCP config pointing at data vendors. Each agent installs as a Claude Cowork or Claude Code plugin or deploys through the Claude Managed Agents API; the repo is Markdown, YAML and JSON with a few helper scripts."
+caveat = "Not a trading system: the README says the agents draft analyst work for human sign-off and do not make recommendations or execute transactions. Runs only on Claude products, and most connectors (FactSet, S&P, Morningstar, PitchBook, LSEG and others) need the vendor's subscription or key."
+sources = [
+  { what = "orders", url = "https://github.com/anthropics/financial-services/blob/60565064557ca77b12f62aa7877f365d111c129d/README.md?plain=1#L7-L8" },
+  { what = "license", url = "https://github.com/anthropics/financial-services/blob/60565064557ca77b12f62aa7877f365d111c129d/LICENSE#L2-L4" },
+  { what = "data", url = "https://github.com/anthropics/financial-services/blob/60565064557ca77b12f62aa7877f365d111c129d/README.md?plain=1#L119-L136" },
+  { what = "runtime", url = "https://github.com/anthropics/financial-services/blob/60565064557ca77b12f62aa7877f365d111c129d/README.md?plain=1#L5" },
+  { what = "runtime", url = "https://github.com/anthropics/financial-services/blob/60565064557ca77b12f62aa7877f365d111c129d/README.md?plain=1#L99" },
+]
+
+[[project]]
+id = "claude-trading-skills"
+name = "Claude Trading Skills"
+repo = "tradermonty/claude-trading-skills"
+kind = "tool"
+layer = "application"
+category = "app-research"
+also = ["harness"]
+orders = "none"
+license = "MIT"
+license_status = "open"
+license_file = "LICENSE"
+stars = "3.7k"
+stars_asof = "2026-11-10"
+last_commit = "2026-11-08"
+last_sha = "163ceb48968c71a701dd9cc77d827258d9b5b348"
+checked = "2026-11-10"
+evidence = "n/a"
+repro = "n/a"
+read = "readme"
+summary = "A set of Claude Skills (74 skill folders at this commit) with Python helper scripts and YAML workflow manifests for individual investors: market breadth and regime checks, stock and dividend screeners, position sizing, a pre-trade discipline gate, a local trade journal, post-mortems and backtest review. Skills install into Claude's web app as packages or into Claude Code as folders."
+caveat = "Decision support only: the FAQ says it does not place orders, and Alpaca is read for holdings. Many screeners need an FMP key, some a paid FINVIZ Elite subscription, and all need a Claude plan with Skills. The screens encode named discretionary methods (O'Neil, Minervini and others) with no performance record offered."
+sources = [
+  { what = "orders", url = "https://github.com/tradermonty/claude-trading-skills/blob/163ceb48968c71a701dd9cc77d827258d9b5b348/docs/en/faq.md?plain=1#L76-L82" },
+  { what = "orders", url = "https://github.com/tradermonty/claude-trading-skills/blob/163ceb48968c71a701dd9cc77d827258d9b5b348/README.md?plain=1#L21-L23" },
+  { what = "license", url = "https://github.com/tradermonty/claude-trading-skills/blob/163ceb48968c71a701dd9cc77d827258d9b5b348/LICENSE#L1-L3" },
+  { what = "limit", url = "https://github.com/tradermonty/claude-trading-skills/blob/163ceb48968c71a701dd9cc77d827258d9b5b348/README.md?plain=1#L81-L84" },
+  { what = "limit", url = "https://github.com/tradermonty/claude-trading-skills/blob/163ceb48968c71a701dd9cc77d827258d9b5b348/README.md?plain=1#L9-L11" },
+  { what = "runtime", url = "https://github.com/tradermonty/claude-trading-skills/blob/163ceb48968c71a701dd9cc77d827258d9b5b348/README.md?plain=1#L116-L124" },
+]
+
+[[project]]
+id = "quantdinger"
+name = "QuantDinger"
+repo = "OpenByteInc/QuantDinger"
+kind = "platform"
+layer = "application"
+category = "app-funds"
+also = ["execution", "harness"]
+orders = "live"
+license = "Apache-2.0 + source-available clients"
+license_status = "mixed"
+license_file = "LICENSE"
+stars = "13.7k"
+stars_asof = "2026-11-10"
+last_commit = "2026-11-10"
+last_sha = "9c5b23d835a161960a4e8d50d112bf1f23029ad5"
+checked = "2026-11-10"
+evidence = "L1"
+repro = "unverified"
+read = "readme"
+summary = "Self-hosted Python backend (Flask API, workers, PostgreSQL, Kafka) for AI market research, strategy backtests, paper trading and live execution on crypto exchanges, IBKR and Alpaca, with an agent gateway and an MCP server."
+caveat = "Can send real orders. Agent tokens are paper-only by default and live agent trading needs a token flag plus two server switches; the web and mobile clients are separate source-available repositories pulled as prebuilt images, not Apache-2.0."
+sources = [
+  { what = "orders", url = "https://github.com/OpenByteInc/QuantDinger/blob/9c5b23d835a161960a4e8d50d112bf1f23029ad5/README.md?plain=1#L125-L128" },
+  { what = "orders", url = "https://github.com/OpenByteInc/QuantDinger/blob/9c5b23d835a161960a4e8d50d112bf1f23029ad5/backend_api_python/app/routes/agent_v1/quick_trade.py#L476-L482" },
+  { what = "limit", url = "https://github.com/OpenByteInc/QuantDinger/blob/9c5b23d835a161960a4e8d50d112bf1f23029ad5/README.md?plain=1#L525-L526" },
+  { what = "limit", url = "https://github.com/OpenByteInc/QuantDinger/blob/9c5b23d835a161960a4e8d50d112bf1f23029ad5/README.md?plain=1#L643-L648" },
+  { what = "license", url = "https://github.com/OpenByteInc/QuantDinger/blob/9c5b23d835a161960a4e8d50d112bf1f23029ad5/README.md?plain=1#L838-L850" },
+  { what = "runtime", url = "https://github.com/OpenByteInc/QuantDinger/blob/9c5b23d835a161960a4e8d50d112bf1f23029ad5/docker-compose.yml?plain=1#L9-L11" },
+]
+
+[[project]]
+id = "okx-agent-trade-kit"
+name = "OKX Agent Trade Kit"
+repo = "okx/agent-trade-kit"
+kind = "execution"
+layer = "execution"
+category = "exec-brokers"
+also = ["data"]
+orders = "live"
+license = "MIT"
+license_status = "open"
+license_file = "LICENSE"
+stars = "507"
+stars_asof = "2026-11-10"
+last_commit = "2026-10-28"
+last_sha = "e5b60e4f0bc2afc75fab19c8360dafa6b84f3ed7"
+checked = "2026-11-10"
+evidence = "n/a"
+repro = "n/a"
+read = "readme"
+summary = "TypeScript MCP server and CLI from OKX that expose market data, spot, swap, futures, option and event-contract orders, account transfers, earn products and grid/DCA bots to an agent, with skill files for agent frameworks. Runs locally with keys in a local config file."
+caveat = "Write tools place real orders and transfer funds on a live profile with no server-side confirmation step; safety is a --read-only flag, module filtering and a demo profile, which is live unless demo is set. The docs advise against granting withdraw permission."
+sources = [
+  { what = "orders", url = "https://github.com/okx/agent-trade-kit/blob/e5b60e4f0bc2afc75fab19c8360dafa6b84f3ed7/packages/core/src/tools/spot-trade.ts#L30-L36" },
+  { what = "orders", url = "https://github.com/okx/agent-trade-kit/blob/e5b60e4f0bc2afc75fab19c8360dafa6b84f3ed7/README.md?plain=1#L99-L101" },
+  { what = "limit", url = "https://github.com/okx/agent-trade-kit/blob/e5b60e4f0bc2afc75fab19c8360dafa6b84f3ed7/README.md?plain=1#L85-L89" },
+  { what = "limit", url = "https://github.com/okx/agent-trade-kit/blob/e5b60e4f0bc2afc75fab19c8360dafa6b84f3ed7/docs/configuration.md?plain=1#L62" },
+  { what = "limit", url = "https://github.com/okx/agent-trade-kit/blob/e5b60e4f0bc2afc75fab19c8360dafa6b84f3ed7/packages/core/src/config.ts#L200-L212" },
+  { what = "limit", url = "https://github.com/okx/agent-trade-kit/blob/e5b60e4f0bc2afc75fab19c8360dafa6b84f3ed7/packages/core/src/tools/account.ts#L43-L48" },
+]
+
+[[project]]
+id = "kraken-cli"
+name = "Kraken CLI"
+repo = "krakenfx/kraken-cli"
+kind = "execution"
+layer = "execution"
+category = "exec-brokers"
+also = ["harness"]
+orders = "live"
+license = "MIT"
+license_status = "open"
+license_file = "LICENSE"
+stars = "807"
+stars_asof = "2026-11-10"
+last_commit = "2026-10-29"
+last_sha = "671cdd7f1483409f7b45554725f2a07ac5abd33f"
+checked = "2026-11-10"
+evidence = "n/a"
+repro = "n/a"
+read = "readme"
+summary = "Rust CLI and MCP server from Kraken for spot crypto, tokenized stocks, forex and futures: market data, orders, funding and earn commands with JSON output, plus local spot and futures paper trading at live prices."
+caveat = "Live CLI orders go out with no confirmation prompt. The MCP server omits trade tools by default and gates dangerous calls behind approval, but on clients without elicitation the model can self-acknowledge, and --allow-dangerous removes the gate, including for withdrawals."
+sources = [
+  { what = "orders", url = "https://github.com/krakenfx/kraken-cli/blob/671cdd7f1483409f7b45554725f2a07ac5abd33f/README.md?plain=1#L314-L317" },
+  { what = "limit", url = "https://github.com/krakenfx/kraken-cli/blob/671cdd7f1483409f7b45554725f2a07ac5abd33f/README.md?plain=1#L1037-L1040" },
+  { what = "limit", url = "https://github.com/krakenfx/kraken-cli/blob/671cdd7f1483409f7b45554725f2a07ac5abd33f/README.md?plain=1#L1073-L1078" },
+  { what = "limit", url = "https://github.com/krakenfx/kraken-cli/blob/671cdd7f1483409f7b45554725f2a07ac5abd33f/README.md?plain=1#L353-L355" },
+]
+
+[[project]]
+id = "tradingview-mcp-data"
+name = "TradingView MCP (screener and data)"
+repo = "atilaahmettaner/tradingview-mcp"
+kind = "tool"
+layer = "data"
+category = "data-mcp"
+also = ["harness"]
+orders = "none"
+license = "MIT"
+license_status = "open"
+license_file = "LICENSE"
+stars = "5.3k"
+stars_asof = "2026-11-10"
+last_commit = "2026-11-10"
+last_sha = "ab4681cdbdd18e5cafbf31695a07e1c146822e16"
+checked = "2026-11-10"
+evidence = "n/a"
+repro = "n/a"
+read = "readme"
+summary = "Python MCP server that gives an assistant screeners, technical-indicator reads, multi-timeframe analysis, news and sentiment (through Marketaux, free key) and simple strategy backtests for crypto, stocks, forex and futures. It needs no TradingView account: data is fetched from public TradingView screener endpoints and Yahoo Finance."
+caveat = "Not a TradingView product and not the desktop-automation server of the same name. Data comes from public, unofficial endpoints that rate-limit and may be delayed, and using them within the source's terms is left to the user. The README promotes the author's paid hosted version (from $9/mo) and a sponsor referral link; self-hosting is free. Built-in backtest results are unaudited. No order path."
+sources = [
+  { what = "data", url = "https://github.com/atilaahmettaner/tradingview-mcp/blob/ab4681cdbdd18e5cafbf31695a07e1c146822e16/README.md?plain=1#L61" },
+  { what = "limit", url = "https://github.com/atilaahmettaner/tradingview-mcp/blob/ab4681cdbdd18e5cafbf31695a07e1c146822e16/README.md?plain=1#L15" },
+  { what = "limit", url = "https://github.com/atilaahmettaner/tradingview-mcp/blob/ab4681cdbdd18e5cafbf31695a07e1c146822e16/README.md?plain=1#L78" },
+  { what = "limit", url = "https://github.com/atilaahmettaner/tradingview-mcp/blob/ab4681cdbdd18e5cafbf31695a07e1c146822e16/README.md?plain=1#L582" },
+  { what = "license", url = "https://github.com/atilaahmettaner/tradingview-mcp/blob/ab4681cdbdd18e5cafbf31695a07e1c146822e16/LICENSE#L1-L3" },
+  { what = "runtime", url = "https://github.com/atilaahmettaner/tradingview-mcp/blob/ab4681cdbdd18e5cafbf31695a07e1c146822e16/pyproject.toml?plain=1#L51-L52" },
+]
+
+[[project]]
+id = "condor"
+name = "Condor"
+repo = "hummingbot/condor"
+kind = "platform"
+layer = "execution"
+category = "exec-brokers"
+also = ["application"]
+orders = "live"
+license = "MIT"
+license_status = "open"
+license_file = "LICENSE"
+stars = "257"
+stars_asof = "2026-11-10"
+last_commit = "2026-11-06"
+last_sha = "a817f6633a90afe41523377bfd360c0b9316d423"
+checked = "2026-11-10"
+evidence = "n/a"
+repro = "n/a"
+read = "readme"
+summary = "Hummingbot Foundation's Telegram bot and web dashboard for a Hummingbot API deployment: portfolio and bot monitoring, order entry on centralized exchanges, DEX swaps and liquidity positions, plus LLM agents that can be asked, delegated to or run on a loop. The repository bundles an MCP server for Hummingbot API."
+caveat = "Controls real trading: orders, balances, bots and stored exchange keys, through a separately running Hummingbot API (Docker). Agents can run their own tick strategy autonomously; dry-run is supported but live is one setting away. Local mode has no login. Anonymous usage telemetry is on by default once the admin has seen a notice (CONDOR_TELEMETRY=off disables it)."
+sources = [
+  { what = "orders", url = "https://github.com/hummingbot/condor/blob/a817f6633a90afe41523377bfd360c0b9316d423/README.md?plain=1#L29-L31" },
+  { what = "orders", url = "https://github.com/hummingbot/condor/blob/a817f6633a90afe41523377bfd360c0b9316d423/README.md?plain=1#L9" },
+  { what = "limit", url = "https://github.com/hummingbot/condor/blob/a817f6633a90afe41523377bfd360c0b9316d423/README.md?plain=1#L34" },
+  { what = "limit", url = "https://github.com/hummingbot/condor/blob/a817f6633a90afe41523377bfd360c0b9316d423/README.md?plain=1#L15-L23" },
+  { what = "limit", url = "https://github.com/hummingbot/condor/blob/a817f6633a90afe41523377bfd360c0b9316d423/README.md?plain=1#L112-L115" },
+  { what = "license", url = "https://github.com/hummingbot/condor/blob/a817f6633a90afe41523377bfd360c0b9316d423/LICENSE#L1-L3" },
+  { what = "runtime", url = "https://github.com/hummingbot/condor/blob/a817f6633a90afe41523377bfd360c0b9316d423/mcp_servers/hummingbot_api/server.py#L70" },
+]
+
+[[project]]
 id = "list-llmquant"
 name = "LLMQuant awesome-trading-agents"
 repo = "LLMQuant/awesome-trading-agents"
