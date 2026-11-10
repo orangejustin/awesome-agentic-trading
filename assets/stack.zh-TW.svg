@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 530" width="960" height="530" role="img" aria-labelledby="t d" font-family="Inter, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif">
+<title id="t">智慧體交易系統的五層結構</title>
+<desc id="d">資料層、Agent 層、執行層構成主流程，由負責執行、測試與核驗的 Harness 層包裹，應用層位於最上方。</desc>
+<rect width="960" height="530" rx="16" fill="#F8FAFC"/>
+<defs><marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#475569" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+<text x="36" y="44" font-size="22" font-weight="700" fill="#0F172A" text-anchor="start" >智慧體交易系統的五層結構</text>
+<text x="36" y="66" font-size="13.5" font-weight="400" fill="#475569" text-anchor="start" >看見、思考、行動；Harness 負責執行、測試並建立信任；應用位於最上層。</text>
+<rect x="36" y="88" width="888" height="78" rx="12" fill="#B453091F" stroke="#B45309" stroke-width="1.5"/>
+<circle cx="58" cy="112" r="12" fill="#B45309"/>
+<text x="58" y="117" font-size="13" font-weight="700" fill="#FFFFFF" text-anchor="middle" >5</text>
+<text x="78" y="117" font-size="14.5" font-weight="700" fill="#0F172A" text-anchor="start" >應用層：用它做出什麼</text>
+<text x="50" y="142" font-size="12.5" font-weight="400" fill="#475569" text-anchor="start" >投研與研報 · AI 基金 · Alpha 工廠 · 預測市場機器人</text>
+<text x="908" y="117" font-size="12.5" font-weight="600" fill="#B45309" text-anchor="end" >17 個倉庫 · 8 篇論文</text>
+<path d="M480 194 L480 170" stroke="#475569" stroke-width="1.8" fill="none" marker-end="url(#a)"/>
+<rect x="36" y="196" width="888" height="304" rx="14" fill="#0478571F" stroke="#047857" stroke-width="1.5" stroke-dasharray="7 5"/>
+<circle cx="58" cy="220" r="12" fill="#047857"/>
+<text x="58" y="225" font-size="13" font-weight="700" fill="#FFFFFF" text-anchor="middle" >4</text>
+<text x="78" y="225" font-size="14.5" font-weight="700" fill="#0F172A" text-anchor="start" >Harness 層：如何執行、測試並信任它</text>
+<text x="908" y="225" font-size="12.5" font-weight="600" fill="#047857" text-anchor="end" >18 個倉庫 · 19 篇論文</text>
+<text x="50" y="482" font-size="12.5" font-weight="400" fill="#475569" text-anchor="start" >回測環境 · 模擬器 · 基準與實時競技場 · 偏差控制 · 智慧體迴圈、評測、追蹤與狀態</text>
+<rect x="60" y="252" width="264" height="168" rx="12" fill="#FFFFFF" stroke="#0E7490" stroke-width="1.5"/>
+<rect x="60" y="252" width="264" height="168" rx="12" fill="#0E74901F"/>
+<circle cx="82" cy="276" r="12" fill="#0E7490"/>
+<text x="82" y="281" font-size="13" font-weight="700" fill="#FFFFFF" text-anchor="middle" >1</text>
+<text x="102" y="281" font-size="15" font-weight="700" fill="#0F172A" text-anchor="start" >資料層</text>
+<text x="102" y="299" font-size="12" font-weight="400" fill="#475569" text-anchor="start" >智慧體看到什麼</text>
+<text x="76" y="330" font-size="12.5" font-weight="400" fill="#0F172A" text-anchor="start" >· 行情、公告與新聞資料</text>
+<text x="76" y="350" font-size="12.5" font-weight="400" fill="#0F172A" text-anchor="start" >· MCP 資料服務、資料集</text>
+<text x="76" y="370" font-size="12.5" font-weight="400" fill="#0F172A" text-anchor="start" >· 把文字變成訊號</text>
+<text x="76" y="406" font-size="12" font-weight="600" fill="#0E7490" text-anchor="start" >14 個倉庫 · 5 篇論文</text>
+<rect x="348" y="252" width="264" height="168" rx="12" fill="#FFFFFF" stroke="#4F46E5" stroke-width="1.5"/>
+<rect x="348" y="252" width="264" height="168" rx="12" fill="#4F46E51F"/>
+<circle cx="370" cy="276" r="12" fill="#4F46E5"/>
+<text x="370" y="281" font-size="13" font-weight="700" fill="#FFFFFF" text-anchor="middle" >2</text>
+<text x="390" y="281" font-size="15" font-weight="700" fill="#0F172A" text-anchor="start" >Agent 層</text>
+<text x="390" y="299" font-size="12" font-weight="400" fill="#475569" text-anchor="start" >智慧體如何思考</text>
+<text x="364" y="330" font-size="12.5" font-weight="400" fill="#0F172A" text-anchor="start" >· 金融基礎模型與推理模型</text>
+<text x="364" y="350" font-size="12.5" font-weight="400" fill="#0F172A" text-anchor="start" >· 記憶、反思、辯論</text>
+<text x="364" y="370" font-size="12.5" font-weight="400" fill="#0F172A" text-anchor="start" >· 學習得到的（RL）策略</text>
+<text x="364" y="406" font-size="12" font-weight="600" fill="#4F46E5" text-anchor="start" >8 個倉庫 · 22 篇論文</text>
+<rect x="636" y="252" width="264" height="168" rx="12" fill="#FFFFFF" stroke="#B91C1C" stroke-width="1.5"/>
+<rect x="636" y="252" width="264" height="168" rx="12" fill="#B91C1C1F"/>
+<circle cx="658" cy="276" r="12" fill="#B91C1C"/>
+<text x="658" y="281" font-size="13" font-weight="700" fill="#FFFFFF" text-anchor="middle" >3</text>
+<text x="678" y="281" font-size="15" font-weight="700" fill="#0F172A" text-anchor="start" >執行層</text>
+<text x="678" y="299" font-size="12" font-weight="400" fill="#475569" text-anchor="start" >智慧體如何下單</text>
+<text x="652" y="330" font-size="12.5" font-weight="400" fill="#0F172A" text-anchor="start" >· 券商與交易所工具</text>
+<text x="652" y="350" font-size="12.5" font-weight="400" fill="#0F172A" text-anchor="start" >· 引擎：回測與實盤同一套程式碼</text>
+<text x="652" y="370" font-size="12.5" font-weight="400" fill="#0F172A" text-anchor="start" >· 把目標權重變成訂單</text>
+<text x="652" y="406" font-size="12" font-weight="600" fill="#B91C1C" text-anchor="start" >13 個倉庫 · 1 篇論文</text>
+<path d="M326 336 L344 336" stroke="#475569" stroke-width="1.8" fill="none" marker-end="url(#a)"/>
+<path d="M614 336 L632 336" stroke="#475569" stroke-width="1.8" fill="none" marker-end="url(#a)"/>
+<path d="M768 422 L768 446 L192 446 L192 426" stroke="#047857" stroke-width="1.6" stroke-dasharray="6 5" fill="none" marker-end="url(#a)"/>
+<text x="480" y="440" font-size="12" font-weight="600" fill="#047857" text-anchor="middle" >成交與盈虧，要對照智慧體當時知道什麼來評分</text>
+</svg>

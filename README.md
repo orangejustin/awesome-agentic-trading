@@ -2,7 +2,7 @@
 
 <h1 align="center">Awesome Agentic Trading</h1>
 
-<p align="center"><b>English</b> | <a href="README.zh-CN.md">简体中文</a></p>
+<p align="center"><b>English</b> | <a href="README.zh-CN.md">简体中文</a> | <a href="README.zh-TW.md">繁體中文</a></p>
 
 <p align="center">
   <a href="https://awesome.re"><img src="https://awesome.re/badge.svg" alt="Awesome"></a>

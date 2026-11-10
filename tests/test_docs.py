@@ -136,13 +136,19 @@ class Bilingual(unittest.TestCase):
     def setUp(self):
         self.en = (ROOT / "README.md").read_text()
         self.zh = (ROOT / "README.zh-CN.md").read_text()
+        self.tw = (ROOT / "README.zh-TW.md").read_text()
 
     def test_each_home_page_links_to_the_other_near_the_top(self):
-        self.assertIn('<a href="README.zh-CN.md">简体中文</a>', "\n".join(self.en.splitlines()[:8]))
-        self.assertIn('<a href="README.md">English</a>', "\n".join(self.zh.splitlines()[:8]))
+        pages = {"README.md": ("English", self.en), "README.zh-CN.md": ("简体中文", self.zh), "README.zh-TW.md": ("繁體中文", self.tw)}
+        for name, (label, text) in pages.items():
+            top = "\n".join(text.splitlines()[:8])
+            self.assertIn(f"<b>{label}</b>", top, name)  # the page you are on is shown, not linked
+            for other, (other_label, _) in pages.items():
+                if other != name:
+                    self.assertIn(f'<a href="{other}">{other_label}</a>', top, f"{name} -> {other}")
 
     def test_both_have_a_text_title_not_only_the_banner_image(self):
-        for text in (self.en, self.zh):
+        for text in (self.en, self.zh, self.tw):
             self.assertRegex(text, r"<h1[^>]*>Awesome Agentic Trading</h1>")
 
     def test_same_structure(self):
@@ -159,12 +165,22 @@ class Bilingual(unittest.TestCase):
         self.assertEqual(shape(self.en), shape(self.zh))
         self.assertEqual(blocks(self.en), blocks(self.zh))
         self.assertEqual(rows(self.en), rows(self.zh))
+        self.assertEqual((shape(self.zh), blocks(self.zh), rows(self.zh)), (shape(self.tw), blocks(self.tw), rows(self.tw)))
 
     def test_same_counts_in_the_headline(self):
         def numbers(text):
             return re.findall(r"\d+", re.search(r"<!-- gen:headline -->(.*?)<!-- /gen:headline -->", text, re.S).group(1))
 
         self.assertEqual(numbers(self.en), numbers(self.zh))
+        self.assertEqual(numbers(self.en), numbers(self.tw))
+
+    def test_traditional_page_has_no_simplified_text_left(self):
+        body = self.tw.replace('<a href="README.zh-CN.md">简体中文</a>', "")
+        for ch in "这个仓库论文许可证实盘数据层执行应用开验":
+            if ch in "个仓库论许证实盘数据层执应开验" and ch in body:
+                self.fail(f"simplified character {ch!r} left in README.zh-TW.md")
+        self.assertIn("assets/stack.zh-TW.svg", self.tw)
+        self.assertIn("docs/milestones.zh-TW.md", self.tw)
 
     def test_neither_page_calls_the_whole_list_open_source(self):
         intro_en = self.en.split("## Contents")[0]

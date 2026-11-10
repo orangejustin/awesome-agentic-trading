@@ -14,9 +14,9 @@ from html import escape
 from pathlib import Path
 
 try:
-    from build import counts, listed, load_all, num
+    from build import counts, listed, load_all, num, to_tw
 except ImportError:  # imported as tools.make_assets
-    from tools.build import counts, listed, load_all, num
+    from tools.build import counts, listed, load_all, num, to_tw
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "assets"
@@ -167,7 +167,7 @@ def banner(c: dict) -> str:
 
 def render_all() -> dict[str, str]:
     c = load_all()
-    return {"banner.svg": banner(c), "stack.svg": stack(c), "stack.zh-CN.svg": stack(c, zh=True), "ladder.svg": ladder(c["projects"])}
+    return {"banner.svg": banner(c), "stack.svg": stack(c), "stack.zh-CN.svg": stack(c, zh=True), "stack.zh-TW.svg": to_tw(stack(c, zh=True)), "ladder.svg": ladder(c["projects"])}
 
 
 def main(argv=None) -> int:

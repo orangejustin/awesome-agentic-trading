@@ -18,8 +18,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Install the one optional dependency (card extraction tests)
-        run: pip install -r tools/extract/requirements.txt
+      - name: Install dependencies (card extraction tests, Traditional Chinese conversion)
+        run: pip install -r tools/extract/requirements.txt -r tools/requirements.txt
       - name: Catalog is valid
         run: python tools/build.py check
       - name: Generated pages, READMEs (both languages) and figures are current
