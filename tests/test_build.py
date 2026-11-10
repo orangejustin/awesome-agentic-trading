@@ -173,3 +173,24 @@ class Evidence(unittest.TestCase):
             cited |= {x["url"] for x in r.get("links", [])}
         self.assertEqual(urls, cited)
         self.assertEqual({k for k, _, _ in links}, {"source", "component", "integration", "recipe"})
+
+
+class Wording(unittest.TestCase):
+    def test_counts_agree_with_their_noun(self):
+        self.assertEqual([build.num(n, "paper") for n in (0, 1, 2)], ["0 papers", "1 paper", "2 papers"])
+        self.assertEqual([build.num(n, "repository", "repositories") for n in (0, 1, 2)],
+                         ["0 repositories", "1 repository", "2 repositories"])
+
+    def test_no_generated_page_says_one_of_a_plural(self):
+        c = build.load_all()
+        pages = dict(build.generated_pages(c))
+        texts = [t for t in pages.values()] + [(ROOT / "README.md").read_text()]
+        for text in texts:
+            self.assertNotRegex(text, r"(?<![\d.,])\b1 (papers|repos|repositories|articles|deep dives|components)\b")
+
+    def test_chinese_house_style(self):
+        self.assertEqual(build.zh_style("在美股与Polymarket上运行LLM智能体"), "在美股与 Polymarket 上运行 LLM 智能体")
+        self.assertEqual(build.zh_style("仅模拟,不下单;见说明(英文)"), "仅模拟，不下单；见说明（英文）")
+        self.assertEqual(build.zh_style("见[组件矩阵](docs/components.md)和 `pip install x`"), "见[组件矩阵](docs/components.md)和 `pip install x`")
+        ok = "个人交易智能体全栈（CLI、MCP、Web）：投研与回测"
+        self.assertEqual(build.zh_style(ok), ok)

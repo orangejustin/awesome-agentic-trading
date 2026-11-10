@@ -18,7 +18,7 @@ Thank you for helping. Three things help most: a project, paper or post that bel
 
 ## What belongs here
 
-In scope: open-source work where an LLM or agent researches, decides or trades, and the data, execution and harness infrastructure such systems are built on. Every entry has one primary layer:
+In scope: public repositories and published work where an LLM or agent researches, decides or trades, and the data, execution and harness infrastructure such systems are built on. Every entry has one primary layer:
 
 | Layer | Belongs here when its main job is… |
 |---|---|

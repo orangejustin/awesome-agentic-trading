@@ -11,7 +11,7 @@
 
 **Open gap.** No catalogued paper is about execution for LLM agents. Most agent projects stop at a decision; the order path, limits and reconciliation are left to you.
 
-13 repos · 1 papers · 7 articles and posts. Legend: 🟢 active · 🟡 slowing · ⚪ dormant (last commit within 90 days, within a year, or older, counted from the check date) · 💤 declared unmaintained · ⚡ can place real orders · 📝 paper trading only · 🧩 open core with proprietary parts · 🔒 source-available, restricted · ❓ license unclear · 🧰 general-purpose tool applied here · 📖 read in full · 🗂️ machine-extracted [method card](../docs/cards/index.md) · 🔖 abstract only. Marks on a row link to the lines that support them, at the commit we checked.
+13 repos · 1 paper · 7 articles and posts. Legend: 🟢 active · 🟡 slowing · ⚪ dormant (last commit within 90 days, within a year, or older, counted from the check date) · 💤 declared unmaintained · ⚡ can place real orders · 📝 paper trading only · 🧩 open core with proprietary parts · 🔒 source-available, restricted · ❓ license unclear · 🧰 general-purpose tool applied here · 📖 read in full · 🗂️ machine-extracted [method card](../docs/cards/index.md) · 🔖 abstract only. Marks on a row link to the lines that support them, at the commit we checked.
 
 ## Contents
 

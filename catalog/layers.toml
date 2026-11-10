@@ -163,7 +163,7 @@ gaps = "No catalogued agentic system's headline trading table can be regenerated
   [[layer.category]]
   id = "harness-bench"
   title = "Benchmarks, arenas and forward records"
-  title_zh = "基准、竞技场与前向实盘记录"
+  title_zh = "基准、竞技场与前向记录"
 
   [[layer.category]]
   id = "harness-robustness"
