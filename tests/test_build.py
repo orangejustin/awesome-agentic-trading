@@ -19,6 +19,11 @@ class Catalog(unittest.TestCase):
             self.assertTrue(path.exists(), f"{path} missing; run python tools/build.py tables")
             self.assertEqual(path.read_text(), text.rstrip("\n") + "\n", f"{path.name} is stale")
 
+    def test_traditional_chinese_pages_are_current(self):
+        for path, text in build.derived_pages(self.c).items():
+            self.assertTrue(path.exists(), f"{path} missing; run python tools/build.py tables")
+            self.assertEqual(path.read_text(), text.rstrip("\n") + "\n", f"{path.name} is stale")
+
     def test_injected_blocks_are_current(self):
         self.assertTrue(build.apply_injections(self.c, only_check=True),
                         "a generated block is stale; run python tools/build.py tables")

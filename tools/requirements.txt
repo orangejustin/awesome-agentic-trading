@@ -1,0 +1,2 @@
+# Needed by tools/build.py and tools/make_assets.py for the Traditional Chinese pages (pure Python).
+opencc-python-reimplemented==0.1.7

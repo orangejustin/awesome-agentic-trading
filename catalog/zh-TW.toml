@@ -1,0 +1,11 @@
+# Traditional Chinese (Taiwan) pages are derived from the Simplified Chinese ones: OpenCC's s2twp conversion
+# (characters plus Taiwan phrasing), then the replacements below, applied in order. Add a pair here when the
+# converter picks a word a Taiwan reader would not use; never edit README.zh-TW.md by hand.
+replace = [
+  ["許可證", "授權條款"],
+  ["許可", "授權"],
+  ["賬戶", "帳戶"],
+  ["賬本", "帳本"],
+  ["只讀", "唯讀"],
+  ["帖子", "貼文"],
+]
