@@ -14,7 +14,7 @@
 
 > 一份逐条核对过来源的指南，帮助你构建和评测**由 LLM 驱动的交易系统**：公开仓库、论文、文章与帖子，按系统的五层组织：**数据层 → Agent 层 → 执行层 → Harness 层 → 应用层**。
 
-<!-- gen:headline -->70 个仓库（57 个开源 · 5 个混合或受限许可 · 8 个许可待确认）· 60 篇论文 · 41 篇文章与帖子 · 5 个深度拆解<!-- /gen:headline -->。每个仓库条目都写明做什么、能否下单、采用什么许可证，以及最关键的限制；每篇论文都标明我们实际读到了什么程度。
+<!-- gen:headline -->71 个仓库（58 个开源 · 5 个混合或受限许可 · 8 个许可待确认）· 60 篇论文 · 41 篇文章与帖子 · 5 个深度拆解<!-- /gen:headline -->。每个仓库条目都写明做什么、能否下单、采用什么许可证，以及最关键的限制；每篇论文都标明我们实际读到了什么程度。
 
 **“核验”指什么。** 每个仓库都在一个确定的提交上读过：README、许可证文件，以及决定它能否下单的那几行。这是*来源核查*：它说明仓库里有什么，不说明策略有效，也不说明任何收益属实。安装项目、端到端跑通是更强的结论，只有页面明确写出时才成立（见[组件矩阵](docs/components.md)，英文）。程序每周重新检查全部链接（[最新报告](https://github.com/orangejustin/awesome-agentic-trading/actions/workflows/verify.yml)）；条目上的核验日期是人最后一次读它的日期，程序不会改动。
 
@@ -70,7 +70,7 @@
 | [1. 数据层](layers/data.md) | 智能体知道什么？什么时候知道的？ | 14 | 5 | 6 |
 | [2. Agent 层](layers/agent.md) | 拿到信号之后，结论是什么？理由如何论证？ | 8 | 22 | 3 |
 | [3. 执行层](layers/execution.md) | 决策如何安全地变成成交？ | 13 | 1 | 7 |
-| [4. Harness 层](layers/harness.md) | 结果是真的吗？如果它不再成立，我们能及时发现吗？ | 18 | 19 | 15 |
+| [4. Harness 层](layers/harness.md) | 结果是真的吗？如果它不再成立，我们能及时发现吗？ | 19 | 19 | 15 |
 | [5. 应用层](layers/application.md) | 它为用户端到端完成什么工作？ | 17 | 8 | 10 |
 <!-- /gen:stack -->
 
@@ -207,7 +207,7 @@
 
 > 结果是真的吗？如果它不再成立，我们能及时发现吗？
 
-**18 个仓库 · 19 篇论文 · 15 篇文章** · [分层页：证据链接、核验日期、全部论文（英文）→](layers/harness.md)
+**19 个仓库 · 19 篇论文 · 15 篇文章** · [分层页：证据链接、核验日期、全部论文（英文）→](layers/harness.md)
 
 #### 研究与回测环境
 
@@ -219,6 +219,7 @@
 - [FinRL-Meta](https://github.com/AI4Finance-Foundation/FinRL-Meta) [⚡](https://github.com/AI4Finance-Foundation/FinRL-Meta/blob/286fef6c828a02a2ccf807c05b292d8cb28f8e95/README.md?plain=1#L132) — 面向金融强化学习的 Gym 式市场环境与基准。 ⚠️ 为强化学习而建，非 LLM 智能体；模拟盘环境默认连接 Alpaca 模拟接口。
 - [StockAgent](https://github.com/MingyuJ666/Stockagent) 🟡 ❓ 无许可证 — LLM 投资者在模拟股票交易所中交易。 ⚠️ 仓库中没有 LICENSE 文件，使用条款不明确。
 - [polymarket-paper-trader](https://github.com/agent-next/polymarket-paper-trader) [📝](https://github.com/agent-next/polymarket-paper-trader/blob/55bb35b7956815c71f5fb58292b2d1e859abff05/README.md?plain=1#L13) — 基于 Polymarket 实时订单簿的智能体模拟交易环境。 ⚠️ 仅限预测市场而非股票，成交逼真度为作者自述。
+- [seduma-trade-agent-demo](https://github.com/Quantum-Karate/seduma-trade-agent-demo) — 仅练习用循环：将 LLM 交易智能体的决策经确认后做模拟成交。 ⚠️ 只对本地价格 CSV 做模拟成交，无券商接口，也无网络请求。
 
 #### 基准、竞技场与前向记录
 

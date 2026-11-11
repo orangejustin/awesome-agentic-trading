@@ -15,7 +15,7 @@
 
 > 一份逐條核對過來源的指南，幫助你構建和評測**由 LLM 驅動的交易系統**：公開倉庫、論文、文章與貼文，按系統的五層組織：**資料層 → Agent 層 → 執行層 → Harness 層 → 應用層**。
 
-<!-- gen:headline -->70 個倉庫（57 個開源 · 5 個混合或受限授權 · 8 個授權待確認）· 60 篇論文 · 41 篇文章與貼文 · 5 個深度拆解<!-- /gen:headline -->。每個倉庫條目都寫明做什麼、能否下單、採用什麼授權條款，以及最關鍵的限制；每篇論文都標明我們實際讀到了什麼程度。
+<!-- gen:headline -->71 個倉庫（58 個開源 · 5 個混合或受限授權 · 8 個授權待確認）· 60 篇論文 · 41 篇文章與貼文 · 5 個深度拆解<!-- /gen:headline -->。每個倉庫條目都寫明做什麼、能否下單、採用什麼授權條款，以及最關鍵的限制；每篇論文都標明我們實際讀到了什麼程度。
 
 **“核驗”指什麼。** 每個倉庫都在一個確定的提交上讀過：README、授權條款檔案，以及決定它能否下單的那幾行。這是*來源核查*：它說明倉庫裡有什麼，不說明策略有效，也不說明任何收益屬實。安裝專案、端到端跑通是更強的結論，只有頁面明確寫出時才成立（見[元件矩陣](docs/components.md)，英文）。程式每週重新檢查全部連結（[最新報告](https://github.com/orangejustin/awesome-agentic-trading/actions/workflows/verify.yml)）；條目上的核驗日期是人最後一次讀它的日期，程式不會改動。
 
@@ -71,7 +71,7 @@
 | [1. 資料層](layers/data.md) | 智慧體知道什麼？什麼時候知道的？ | 14 | 5 | 6 |
 | [2. Agent 層](layers/agent.md) | 拿到訊號之後，結論是什麼？理由如何論證？ | 8 | 22 | 3 |
 | [3. 執行層](layers/execution.md) | 決策如何安全地變成成交？ | 13 | 1 | 7 |
-| [4. Harness 層](layers/harness.md) | 結果是真的嗎？如果它不再成立，我們能及時發現嗎？ | 18 | 19 | 15 |
+| [4. Harness 層](layers/harness.md) | 結果是真的嗎？如果它不再成立，我們能及時發現嗎？ | 19 | 19 | 15 |
 | [5. 應用層](layers/application.md) | 它為使用者端到端完成什麼工作？ | 17 | 8 | 10 |
 <!-- /gen:stack -->
 
@@ -208,7 +208,7 @@
 
 > 結果是真的嗎？如果它不再成立，我們能及時發現嗎？
 
-**18 個倉庫 · 19 篇論文 · 15 篇文章** · [分層頁：證據連結、核驗日期、全部論文（英文）→](layers/harness.md)
+**19 個倉庫 · 19 篇論文 · 15 篇文章** · [分層頁：證據連結、核驗日期、全部論文（英文）→](layers/harness.md)
 
 #### 研究與回測環境
 
@@ -220,6 +220,7 @@
 - [FinRL-Meta](https://github.com/AI4Finance-Foundation/FinRL-Meta) [⚡](https://github.com/AI4Finance-Foundation/FinRL-Meta/blob/286fef6c828a02a2ccf807c05b292d8cb28f8e95/README.md?plain=1#L132) — 面向金融強化學習的 Gym 式市場環境與基準。 ⚠️ 為強化學習而建，非 LLM 智慧體；模擬盤環境預設連線 Alpaca 模擬介面。
 - [StockAgent](https://github.com/MingyuJ666/Stockagent) 🟡 ❓ 無授權條款 — LLM 投資者在模擬股票交易所中交易。 ⚠️ 倉庫中沒有 LICENSE 檔案，使用條款不明確。
 - [polymarket-paper-trader](https://github.com/agent-next/polymarket-paper-trader) [📝](https://github.com/agent-next/polymarket-paper-trader/blob/55bb35b7956815c71f5fb58292b2d1e859abff05/README.md?plain=1#L13) — 基於 Polymarket 實時訂單簿的智慧體模擬交易環境。 ⚠️ 僅限預測市場而非股票，成交逼真度為作者自述。
+- [seduma-trade-agent-demo](https://github.com/Quantum-Karate/seduma-trade-agent-demo) — 僅練習用迴圈：將 LLM 交易智慧體的決策經確認後做模擬成交。 ⚠️ 只對本地價格 CSV 做模擬成交，無券商介面，也無網路請求。
 
 #### 基準、競技場與前向記錄
 
