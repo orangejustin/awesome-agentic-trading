@@ -154,7 +154,7 @@ Open an issue with the page, the line and a source we can check (a commit, a fil
 
 3. Fill in the pull request template. CI runs the same checks plus a privacy lint.
 
-Commit messages carry no AI attribution trailers (`Co-Authored-By: Claude …`, `Claude-Session: …`). Run `git config core.hooksPath .githooks` once per clone and the `commit-msg` hook removes them; Claude Code sessions enable it automatically through `.claude/settings.json`. CI rejects any commit that still has one.
+Commit messages carry no AI attribution trailers (`Co-Authored-By: Claude …`, `Claude-Session: …`). Run `git config core.hooksPath .githooks` once per clone and the `commit-msg` hook removes them. CI rejects any commit that still has one.
 
 ## Maintenance
 
