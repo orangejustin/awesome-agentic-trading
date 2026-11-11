@@ -14,7 +14,7 @@
 
 > A curated, source-checked guide to building and evaluating **LLM-powered trading systems**: repositories, papers, articles and posts, organized by the five layers of the stack: **Data → Agent → Execution → Harness → Application**.
 
-<!-- gen:headline -->70 repositories (57 open source · 5 mixed or restricted license · 8 license unclear) · 60 papers · 41 articles and posts · 5 deep dives<!-- /gen:headline -->. Every repository entry says what it does, whether it can place orders, how it is licensed and its most important limit; every paper says how much of it we actually read.
+<!-- gen:headline -->71 repositories (58 open source · 5 mixed or restricted license · 8 license unclear) · 60 papers · 41 articles and posts · 5 deep dives<!-- /gen:headline -->. Every repository entry says what it does, whether it can place orders, how it is licensed and its most important limit; every paper says how much of it we actually read.
 
 **What "checked" means.** Each repository was read at a named commit: its README, its license file and the lines that decide whether it can place orders. That is a *source check*: it says what a repository contains, not that its strategy works or that any return is real. Installing a project and running it end to end are stronger claims, made only where a page says so ([component matrix](docs/components.md)). A program re-checks every link weekly ([latest report](https://github.com/orangejustin/awesome-agentic-trading/actions/workflows/verify.yml)); the check date on an entry is the day a person last read it, and no program moves it.
 
@@ -70,7 +70,7 @@ Data, Agent and Execution are the pipeline: see, think, act. The Harness wraps a
 | [1. Data layer](layers/data.md) | What did the agent know, and when did it know it? | 14 | 5 | 6 |
 | [2. Agent layer](layers/agent.md) | Given the signals, what is the call, and how is it argued? | 8 | 22 | 3 |
 | [3. Execution layer](layers/execution.md) | How does a decision become a fill, safely? | 13 | 1 | 7 |
-| [4. Harness layer](layers/harness.md) | Is the result real, and would we notice if it stopped being real? | 18 | 19 | 15 |
+| [4. Harness layer](layers/harness.md) | Is the result real, and would we notice if it stopped being real? | 19 | 19 | 15 |
 | [5. Application layer](layers/application.md) | What end-to-end job does it do for a user? | 17 | 8 | 10 |
 <!-- /gen:stack -->
 
@@ -207,7 +207,7 @@ Every listed repository, by layer. One line each: what it is, then ⚠️ the li
 
 > Is the result real, and would we notice if it stopped being real?
 
-**18 repos · 19 papers · 15 articles** · [Layer page: evidence links, check dates, every paper →](layers/harness.md)
+**19 repos · 19 papers · 15 articles** · [Layer page: evidence links, check dates, every paper →](layers/harness.md)
 
 #### Research and backtest environments
 
@@ -219,6 +219,7 @@ Every listed repository, by layer. One line each: what it is, then ⚠️ the li
 - [FinRL-Meta](https://github.com/AI4Finance-Foundation/FinRL-Meta) [⚡](https://github.com/AI4Finance-Foundation/FinRL-Meta/blob/286fef6c828a02a2ccf807c05b292d8cb28f8e95/README.md?plain=1#L132) — Gym-style market environments and benchmarks for financial reinforcement learning. ⚠️ Built for RL, not LLM agents; paper-trading envs hit Alpaca's paper endpoint by default.
 - [StockAgent](https://github.com/MingyuJ666/Stockagent) 🟡 ❓ no license — Simulated stock exchange where LLM investors trade under external factors. ⚠️ No LICENSE file in the repo, so reuse terms are unclear.
 - [polymarket-paper-trader](https://github.com/agent-next/polymarket-paper-trader) [📝](https://github.com/agent-next/polymarket-paper-trader/blob/55bb35b7956815c71f5fb58292b2d1e859abff05/README.md?plain=1#L13) — Paper-trading gym for agents on live Polymarket order books with MCP server. ⚠️ Prediction markets only, not equities; fill-fidelity claim is the author's own.
+- [seduma-trade-agent-demo](https://github.com/Quantum-Karate/seduma-trade-agent-demo) — Practice-only loop that confirm-gates LLM trading-agent decisions into simulated fills. ⚠️ Simulated fills against a local CSV only; no broker or network calls.
 
 #### Benchmarks, arenas and forward records
 

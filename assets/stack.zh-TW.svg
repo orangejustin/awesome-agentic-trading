@@ -16,7 +16,7 @@
 <circle cx="58" cy="220" r="12" fill="#047857"/>
 <text x="58" y="225" font-size="13" font-weight="700" fill="#FFFFFF" text-anchor="middle" >4</text>
 <text x="78" y="225" font-size="14.5" font-weight="700" fill="#0F172A" text-anchor="start" >Harness 層：如何執行、測試並信任它</text>
-<text x="908" y="225" font-size="12.5" font-weight="600" fill="#047857" text-anchor="end" >18 個倉庫 · 19 篇論文</text>
+<text x="908" y="225" font-size="12.5" font-weight="600" fill="#047857" text-anchor="end" >19 個倉庫 · 19 篇論文</text>
 <text x="50" y="482" font-size="12.5" font-weight="400" fill="#475569" text-anchor="start" >回測環境 · 模擬器 · 基準與實時競技場 · 偏差控制 · 智慧體迴圈、評測、追蹤與狀態</text>
 <rect x="60" y="252" width="264" height="168" rx="12" fill="#FFFFFF" stroke="#0E7490" stroke-width="1.5"/>
 <rect x="60" y="252" width="264" height="168" rx="12" fill="#0E74901F"/>

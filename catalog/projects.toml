@@ -1953,3 +1953,30 @@ caveat = "Archived by its owner on 2026-10-06 with no successor named. Needed a 
 sources = [
   { what = "orders", url = "https://github.com/hummingbot/mcp/blob/836f9351d48e5c293eaad3ffa16b55fa7bad1a98/README.md?plain=1#L332-L335" },
 ]
+
+[[project]]
+id = "seduma-trade-agent-demo"
+name = "seduma-trade-agent-demo"
+repo = "Quantum-Karate/seduma-trade-agent-demo"
+kind = "simulator"
+layer = "harness"
+category = "harness-sim"
+orders = "none"
+license = "MIT"
+license_status = "open"
+license_file = "LICENSE"
+stars = "0"
+stars_asof = "2026-11-11"
+last_commit = "2026-11-11"
+last_sha = "1c7560e374c1abd32406fbdca751acdc9bae6bce"
+checked = "2026-11-11"
+evidence = "n/a"
+repro = "n/a"
+read = "readme"
+summary = "Practice-only CLI that turns TradingAgents-style, ai-hedge-fund-style, or generic JSON decisions into a y/n confirm step and simulated fills against a local price CSV. It does not call a model, download prices, or connect to a broker."
+caveat = "Fills are simulated against an illustrative local CSV only. There is no broker path, no network calls, and no live trading; the README says this is not a backtester."
+sources = [
+  { what = "orders", url = "https://github.com/Quantum-Karate/seduma-trade-agent-demo/blob/1c7560e374c1abd32406fbdca751acdc9bae6bce/README.md?plain=1#L5" },
+  { what = "orders", url = "https://github.com/Quantum-Karate/seduma-trade-agent-demo/blob/1c7560e374c1abd32406fbdca751acdc9bae6bce/README.md?plain=1#L206-L209" },
+  { what = "limit", url = "https://github.com/Quantum-Karate/seduma-trade-agent-demo/blob/1c7560e374c1abd32406fbdca751acdc9bae6bce/README.md?plain=1#L206-L209" },
+]

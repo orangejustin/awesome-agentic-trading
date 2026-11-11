@@ -584,3 +584,11 @@ limit = "Places real crypto orders and stores exchange keys; needs Hummingbot AP
 tagline_zh = "通过 Hummingbot API 监控和交易的 Telegram 机器人与面板，内置 LLM 智能体"
 audience_zh = "想用聊天和智能体管理机器人、订单与 DEX 仓位的 Hummingbot 用户"
 limit_zh = "会下真实加密订单并保存交易所密钥；需部署 Hummingbot API；使用统计默认开启"
+
+[seduma-trade-agent-demo]
+tagline = "Practice-only loop that confirm-gates LLM trading-agent decisions into simulated fills"
+audience = "Builders of LLM trading agents who want a local confirm-and-simulate loop"
+limit = "Simulated fills against a local CSV only; no broker or network calls"
+tagline_zh = "仅练习用循环：将 LLM 交易智能体的决策经确认后做模拟成交"
+audience_zh = "希望在本地对智能体决策做确认并模拟成交的开发者"
+limit_zh = "只对本地价格 CSV 做模拟成交，无券商接口，也无网络请求"
