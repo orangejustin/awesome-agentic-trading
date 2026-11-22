@@ -812,3 +812,211 @@ category = "harness-bench"
 kind = "study"
 read = "abstract"
 summary = "Operator-reported record of real-money LLM agents in two fleets run by the authors, in separate windows: about 3,500 user-funded vaults trading Base memecoins for 21 days, and 500 to 600 user-created agents on Hyperliquid perpetuals from June to August 2026. The abstract reports that platform controls shaped behaviour more than strategy text and that neither fleet showed a directional edge, with the perpetuals fleet unprofitable and behind a matched retail benchmark."
+
+[[paper]]
+arxiv = "2611.18934"
+title = "Short Windows, Unmodelled Costs, Unknown Cutoffs: A Pre-Registered Evidence Audit of 91 LLM Trading Papers"
+first_author = "Henry Zhang"
+n_authors = 1
+published = "2026-11-13"
+updated = "2026-11-13"
+layer = "harness"
+category = "harness-robustness"
+kind = "study"
+read = "abstract"
+summary = "Pre-registered audit of 91 LLM trading and alpha-mining papers against a ten-field rubric, with every code backed by a script-checked verbatim quote. Of 75 papers with a trading test, 51% deduct no costs and the median test window is 12 months. Limit: Three of five pre-registered hypotheses failed: links between headline Sharpe and window length or costs were not detectable in the 13 papers that state a headline Sharpe."
+
+[[paper]]
+arxiv = "2611.19530"
+title = "LLM Trading Agents Earn Beta, Not Alpha: A Look-Ahead-Free Benchmark"
+first_author = "Jackson Wang"
+n_authors = 1
+published = "2026-11-14"
+updated = "2026-11-14"
+layer = "harness"
+category = "harness-bench"
+kind = "benchmark"
+read = "abstract"
+summary = "rta-bench-1: a backtest over three US market regimes that shows each headline only after its publication minute and splits returns into factor exposure and alpha. In 91 runs of six models from four vendors, no alpha was significant. Limit: Market and style exposure accounted for a median 78% of return, and decisions did no better than random stocks of the same sector; two same-model runs differing only in seed ended 5.2 points apart on average."
+
+[[paper]]
+arxiv = "2608.27734"
+title = "What survives honest evaluation? Leakage-safe, search-aware assessment of LLM-driven trading strategy discovery"
+first_author = "Eray Gençay"
+n_authors = 1
+published = "2026-08-27"
+updated = "2026-08-27"
+layer = "harness"
+category = "harness-robustness"
+kind = "study"
+read = "abstract"
+summary = "Strategy-discovery system in which the agent acts only through registry-validated tools that exclude look-ahead by construction, and every evaluation is counted so reported performance is deflated by the trial count. Tested on a 453-stock point-in-time US universe and 39 ETFs with transaction, impact and borrow costs. Limit: Honest evaluation rejected every LLM-discovered strategy; a deliberately leaky oracle with a Sharpe ratio of 35 passed Deflated Sharpe and PBO tests, so statistical correction does not replace a look-ahead guard."
+
+[[paper]]
+arxiv = "2610.24289"
+title = "Unbounded Losses, Unchecked Inputs: Measuring the Safeguards of LLM Options-Trading Agents"
+first_author = "Mengxiao Wang"
+n_authors = 2
+published = "2026-10-16"
+updated = "2026-10-16"
+layer = "execution"
+category = "exec-brokers"
+kind = "study"
+read = "abstract"
+summary = "Measurement of 26 options-trading agent systems (8 broker-native agent interfaces plus open-source projects with at least 20 stars) on seven robustness and eleven security safeguards, scored with cell-level evidence and by the worst loss their documented order paths can reach. Limit: Of the 26 systems, 17 can execute with no mandatory human step and 13 can reach unbounded loss, including 6 of the 8 broker interfaces; none authenticate text sources or cross-check market data."
+
+[[paper]]
+arxiv = "2610.26438"
+title = "Fake News, Real Crashes: Information Injection Attacks on LLM Financial Trading Agents"
+first_author = "Mengxiao Wang"
+n_authors = 2
+published = "2026-10-19"
+updated = "2026-10-19"
+layer = "harness"
+category = "harness-robustness"
+kind = "benchmark"
+read = "abstract"
+summary = "Attack benchmark for information injection against LLM trading agents: five injection vectors and seven event categories over about 10,000 decisions on 15 US stocks. Prompt injection reached 14% attack success while fabricated news reached 62%. Limit: Most attacks evade standard defenses: model scaling stops shallow vectors but not fact poisoning, peer debate fails, and only hierarchical aggregation reduces attack success."
+
+[[paper]]
+arxiv = "2610.21846"
+title = "Where Backtests and Live Trading Part Ways: Six Defects from One Intraday System"
+first_author = "Alex Vidovich"
+n_authors = 2
+published = "2026-10-15"
+updated = "2026-10-15"
+layer = "execution"
+category = "exec-engines"
+kind = "study"
+read = "abstract"
+summary = "Report of six defects found by running one intraday US equity system live and comparing live days with their backtest replay: three from data, two from code and one from configuration. For each it gives the symptom, error size, cause and the test or control that now guards against it, plus a ten-point checklist. Limit: One system only, and the drift never showed in summary statistics; the authors make no claim about whether the system is profitable."
+
+[[paper]]
+arxiv = "2609.34510"
+title = "Can AI Make Money in Crypto? Measuring the Gap from Backtests to Real Markets"
+first_author = "Xingtong Yu"
+n_authors = 15
+published = "2026-09-28"
+updated = "2026-09-28"
+layer = "harness"
+category = "harness-bench"
+kind = "benchmark"
+read = "abstract"
+summary = "Unified benchmark that runs machine-learning, reinforcement-learning, LLM and agent trading methods in crypto markets through three stages: historical backtest, prospective exchange paper trading and real-money live trading, to quantify the backtest-to-realization gap. Ships an open-source system and a continuously updated public platform. Limit: The abstract reports no numbers: gap sizes, live capital and live window length are not stated there, so the strength of the real-money evidence must be checked in the paper."
+
+[[paper]]
+arxiv = "2610.03080"
+title = "MintEval: Do LLMs Implement the Trading Strategy You Asked For? A Behavioural-Equivalence Benchmark for Natural-Language-to-Strategy Code"
+first_author = "Siyu Wang"
+n_authors = 3
+published = "2026-10-02"
+updated = "2026-10-02"
+layer = "harness"
+category = "harness-bench"
+kind = "benchmark"
+read = "abstract"
+summary = "MintEval: 800 tasks on BTCUSDT 15-minute data where a model re-implements a programmatically generated reference strategy from colloquial trader instructions; generated and reference programs are compared bar by bar on actions, not on profit or code similarity. Limit: A frontier model still fails silently on 0.275 of tasks, and an LLM judge from a recent strategy-generation benchmark accepted every one of the silent failures."
+
+[[paper]]
+arxiv = "2611.12966"
+title = "BuySideFlow: A Point-in-Time Benchmark for LLM Agents in Investment Research"
+first_author = "Dong Bo"
+n_authors = 10
+published = "2026-11-07"
+updated = "2026-11-07"
+layer = "data"
+category = "data-quality"
+kind = "benchmark"
+read = "abstract"
+summary = "BuySideFlow: 408 practitioner-derived Chinese-language investment-research tasks over a fixed snapshot of a licensed production database, with executable references, a taxonomy of temporal errors and expert audits of the executed SQL and Python workflows. Limit: Result accuracy ranged from 16.2% to 36.8%, and an audit confirmed point-in-time violations in 193 of 380 runs that passed result checks (50.8%)."
+
+[[paper]]
+arxiv = "2611.06607"
+title = "Hard to Fool: A Bounded LLM Research Loop for Quantitative Finance, and What Two Dozen Campaigns Found"
+first_author = "Henry Zhang"
+n_authors = 1
+published = "2026-11-04"
+updated = "2026-11-04"
+layer = "harness"
+category = "harness-research"
+kind = "system"
+read = "abstract"
+summary = "Autonomous Quant Researcher: an open-source research loop where the model proposes strict declarative JSON over a fixed vocabulary and only trusted code decides, with chronological discovery, validation and a holdout that can be opened once, absolute acceptance gates and a hash-chained append-only ledger. Reports every campaign run to date. Limit: Most hypotheses fail; a language-model survivor that passed discovery and validation with Sharpe ratios near 3 fell to 0.26 on its single holdout use."
+
+[[paper]]
+arxiv = "2610.26662"
+title = "AllPath: Layered Verification for a Deployed, Self-Revising LLM Trading Agent under Human-Gated and Autonomous Regimes"
+first_author = "Tian Zhang"
+n_authors = 2
+published = "2026-10-19"
+updated = "2026-10-19"
+layer = "harness"
+category = "harness-runtime"
+kind = "system"
+read = "abstract"
+summary = "AllPath: report on a personal LLM trading agent deployed against a live paper-brokerage account that reviews its own day nightly and proposes strategy revisions, verified in three layers (deterministic code gates, bounded self-review, human approval). Compares two and a half weeks of human-gated self-revision with five weeks of auto-applied revisions. Limit: The code gates rejected no proposal, the human later removed 11 of the 19 rules the agent had added on its own, and the most instructive incidents passed every gate and were found by hand."
+
+[[paper]]
+arxiv = "2611.03985"
+title = "Thinking Fast, Trading Late: System One Decision Models vs the Market"
+first_author = "Amir Dehkordi"
+n_authors = 6
+published = "2026-11-02"
+updated = "2026-11-02"
+layer = "harness"
+category = "harness-robustness"
+kind = "study"
+read = "abstract"
+summary = "OLIVIA: a test protocol with point-in-time inputs, masked company identities, validation-only selection, a hash-frozen analysis plan and a test period unblinded once. Applied to a fine-tuned open-weights decision model and three commercial models reading S&P 500 news. Limit: The fine-tuned model's daily IC fell from 0.055 and 0.065 on validation to 0.020 on the blinded January to July 2026 test; no pre-registered strategy survives costs and a deflated Sharpe ratio, and commercial models identified masked companies in 62% to 74% of cases."
+
+[[paper]]
+arxiv = "2611.22177"
+title = "The Only Edge Was Memorized in Training: LLM Trading Agents Around Earnings and Bad News"
+first_author = "Jackson Wang"
+n_authors = 1
+published = "2026-11-17"
+updated = "2026-11-17"
+layer = "harness"
+category = "harness-robustness"
+kind = "study"
+read = "abstract"
+summary = "Tests LLM agents before 598 earnings announcements and after 409 bad-news drops of large US stocks on a look-ahead-free benchmark, comparing staged agents with single calls, simple rules and a logistic regression, with and without the stock's name. Limit: Across five models from four vendors no agent beat the simple bets; given only ticker and dates, a GPT-based model called direction on 59.2% of announcements before its training cutoff and 53.3% after it."
+
+[[paper]]
+arxiv = "2609.19705"
+title = "Trading Agents or Market Crashers? Dissecting Robustness and Security Failures in Academic Financial LLM Trading Schemes"
+first_author = "Mengxiao Wang"
+n_authors = 2
+published = "2026-09-17"
+updated = "2026-10-25"
+layer = "harness"
+category = "harness-robustness"
+kind = "study"
+read = "abstract"
+summary = "FARSIGHT: a systematization that rates 15 academic LLM trading schemes on robustness to market stress and on security against source manipulation and agent compromise, checking the ratings against the 7 released codebases, then simulates markets driven by the agents' decisions. Limit: No paper describes a halt that skips LLM inference, and the 7 code releases enforce no stop-loss or position limit outside the LLM; the market-crash results come from a simulation with 400 agents."
+
+[[paper]]
+arxiv = "2608.31041"
+title = "Agentic Quantitative Trading: A Survey of Workflows, Systems, and Evaluation"
+first_author = "Fengrui Hua"
+n_authors = 8
+published = "2026-08-31"
+updated = "2026-08-31"
+layer = "survey"
+category = "survey"
+kind = "survey"
+read = "abstract"
+summary = "Survey of agentic quantitative trading across five stages (factor mining, signal discovery, portfolio construction, order execution, risk management), covering system architecture, coordination and adaptation, and comparing benchmarks for strategy construction, offline trading, live evaluation and reliability. Limit: Finds that systems remain concentrated on signal discovery, and that strong model or forecasting capability does not reliably translate into trading performance under live conditions and reliability controls."
+
+[[paper]]
+arxiv = "2609.04917"
+title = "Artificial Intelligence in Equity and Crypto Markets: Progress, Profitability Evidence, and the Limits of Automated Investing"
+first_author = "Linsen Zhu"
+n_authors = 2
+published = "2026-09-04"
+updated = "2026-09-04"
+layer = "survey"
+category = "survey"
+kind = "survey"
+read = "abstract"
+summary = "Critical review of public research through 31 August 2026 on AI in listed equities, ETFs and crypto markets, organized as an alpha-translation chain from point-in-time information to risk-adjusted returns after costs. Limit: Concludes that within the public evidence examined, no general AI architecture is shown to deliver persistent, cross-regime, capacity-aware net alpha, and that audited live-capital records are few."

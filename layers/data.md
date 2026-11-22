@@ -11,7 +11,7 @@
 
 **Open gap.** Almost no agent framework ships a point-in-time store. The MCP data servers listed here serve current data; none was checked for point-in-time guarantees, so none should feed a backtest unaudited.
 
-16 repos · 5 papers · 6 articles and posts. Legend: 🟢 active · 🟡 slowing · ⚪ dormant (last commit within 90 days, within a year, or older, counted from the check date) · 💤 declared unmaintained · ⚡ can place real orders · 📝 paper trading only · 🧩 open core with proprietary parts · 🔒 source-available, restricted · ❓ license unclear · 🧰 general-purpose tool applied here · 📖 read in full · 🗂️ machine-extracted [method card](../docs/cards/index.md) · 🔖 abstract only. Marks on a row link to the lines that support them, at the commit we checked.
+16 repos · 6 papers · 6 articles and posts. Legend: 🟢 active · 🟡 slowing · ⚪ dormant (last commit within 90 days, within a year, or older, counted from the check date) · 💤 declared unmaintained · ⚡ can place real orders · 📝 paper trading only · 🧩 open core with proprietary parts · 🔒 source-available, restricted · ❓ license unclear · 🧰 general-purpose tool applied here · 📖 read in full · 🗂️ machine-extracted [method card](../docs/cards/index.md) · 🔖 abstract only. Marks on a row link to the lines that support them, at the commit we checked.
 
 ## Contents
 
@@ -90,6 +90,12 @@ Listed in their primary layer; they also ship working code for this one.
 | [Financial Statement Analysis with Large Language Models](https://arxiv.org/abs/2407.17866) | Alex Kim et al., 2024 | 🗂️ [card](../docs/cards/2407.17866.md) | GPT-4 reads anonymized financial statements and predicts the direction of future earnings, reported to beat human analysts. |
 | [Sentiment trading with large language models](https://arxiv.org/abs/2412.19245) | Kemal Kirtac et al., 2024 | 🗂️ [card](../docs/cards/2412.19245.md) | Compares LLM sentiment scores of 965,375 US news articles (2010-2023) against subsequent daily returns. |
 | [Exploring the Synergy of Quantitative Factors and Newsflow Representations from Large Language Models for Stock Return Prediction](https://arxiv.org/abs/2510.15691) | Tian Guo et al., 2025 | 🗂️ [card](../docs/cards/2510.15691.md) | Fuses quantitative factors with LLM-derived newsflow representations for return prediction and stock selection, comparing three fusion architectures and a mixture model. |
+
+### Data validation and evidence records
+
+| Paper | Authors, year | Read | Takeaway |
+|---|---|---|---|
+| [BuySideFlow: A Point-in-Time Benchmark for LLM Agents in Investment Research](https://arxiv.org/abs/2611.12966) | Dong Bo et al., 2026 | 🔖 abstract | BuySideFlow: 408 practitioner-derived Chinese-language investment-research tasks over a fixed snapshot of a licensed production database, with executable references, a taxonomy of temporal errors and expert audits of the executed SQL and Python workflows. Limit: Result accuracy ranged from 16.2% to 36.8%, and an audit confirmed point-in-time violations in 193 of 380 runs that passed result checks (50.8%). |
 
 ## Articles and posts
 

@@ -11,7 +11,7 @@
 
 **Open gap.** No catalogued paper is about execution for LLM agents. Most agent projects stop at a decision; the order path, limits and reconciliation are left to you.
 
-15 repos · 1 paper · 7 articles and posts. Legend: 🟢 active · 🟡 slowing · ⚪ dormant (last commit within 90 days, within a year, or older, counted from the check date) · 💤 declared unmaintained · ⚡ can place real orders · 📝 paper trading only · 🧩 open core with proprietary parts · 🔒 source-available, restricted · ❓ license unclear · 🧰 general-purpose tool applied here · 📖 read in full · 🗂️ machine-extracted [method card](../docs/cards/index.md) · 🔖 abstract only. Marks on a row link to the lines that support them, at the commit we checked.
+15 repos · 3 papers · 10 articles and posts. Legend: 🟢 active · 🟡 slowing · ⚪ dormant (last commit within 90 days, within a year, or older, counted from the check date) · 💤 declared unmaintained · ⚡ can place real orders · 📝 paper trading only · 🧩 open core with proprietary parts · 🔒 source-available, restricted · ❓ license unclear · 🧰 general-purpose tool applied here · 📖 read in full · 🗂️ machine-extracted [method card](../docs/cards/index.md) · 🔖 abstract only. Marks on a row link to the lines that support them, at the commit we checked.
 
 ## Contents
 
@@ -73,6 +73,18 @@ Kept for reference because they are cited or show a useful design; their authors
 
 ## Papers
 
+### Broker and venue tools for agents
+
+| Paper | Authors, year | Read | Takeaway |
+|---|---|---|---|
+| [Unbounded Losses, Unchecked Inputs: Measuring the Safeguards of LLM Options-Trading Agents](https://arxiv.org/abs/2610.24289) | Mengxiao Wang et al., 2026 | 🔖 abstract | Measurement of 26 options-trading agent systems (8 broker-native agent interfaces plus open-source projects with at least 20 stars) on seven robustness and eleven security safeguards, scored with cell-level evidence and by the worst loss their documented order paths can reach. Limit: Of the 26 systems, 17 can execute with no mandatory human step and 13 can reach unbounded loss, including 6 of the 8 broker interfaces; none authenticate text sources or cross-check market data. |
+
+### Trading engines (same code in backtest and live)
+
+| Paper | Authors, year | Read | Takeaway |
+|---|---|---|---|
+| [Where Backtests and Live Trading Part Ways: Six Defects from One Intraday System](https://arxiv.org/abs/2610.21846) | Alex Vidovich et al., 2026 | 🔖 abstract | Report of six defects found by running one intraday US equity system live and comparing live days with their backtest replay: three from data, two from code and one from configuration. For each it gives the symptom, error size, cause and the test or control that now guards against it, plus a ten-point checklist. Limit: One system only, and the drift never showed in summary statistics; the authors make no claim about whether the system is profitable. |
+
 ### From target weights to orders
 
 | Paper | Authors, year | Read | Takeaway |
@@ -83,6 +95,9 @@ Kept for reference because they are cited or show a useful design; their authors
 
 Newest first. Icons: 𝕏 post · 📝 blog · 📘 docs · 📰 news · 🎧 podcast · 🎤 talk · 📄 paper or report. A post is listed for the idea it carries; its own performance claims are not verified here. Undated pages show the date we checked them.
 
+- 📰 [As AI agents enter trading, CME's Vrabel warns ignorance is no defence](https://www.fia.org/marketvoice/articles/ai-agents-enter-trading-cmes-vrabel-warns-ignorance-no-defence) — Kirsten Hyde, 2026-11-16. Exchange-side view from a FIA Expo panel: the person issuing instructions stays liable for an agent's orders, and a system should be able to log every trading decision so it can be reconstructed. Panel report, not a rule text.
+- 📝 [Paper Trading and Live Portfolio Monitoring Now Available in Claude with Alpaca](https://alpaca.markets/blog/alpaca-launches-claude-connectors-for-trading-api/) — Chiranjeev Shah, 2026-11-12. Broker announcement that splits authority by connector: the paper connector can place simulated trades, the live connector is read-only for monitoring. A concrete example of starting an agent without live order authority.
+- 🎤 [Remarks at Frontier Forum on Super Intelligence](https://www.cftc.gov/PressRoom/SpeechesTestimony/opaselig14) — Michael S. Selig (CFTC Chairman), 2026-10-28. Primary text of the CFTC chairman's opening remarks at the agency's first forum with a panel on agentic trading. It lists the open questions a builder should expect rules on: developer registration, liability when an agent goes rogue, and identifying who an agent trades for. It poses questions and announces no rule.
 - 📘 [QuantConnect Remote MCP Server](https://github.com/QuantConnect/mcp-server/blob/ddb05ab0b0c2e4d1f4f680e96e8cce28a7ab9abc/README.md) — QuantConnect, undated (checked 2026-10-26). QuantConnect replaced its self-hosted MCP server (the repository now holds only this README) with a hosted endpoint that can create and edit LEAN projects, run backtests, optimize and deploy to paper trading. It needs a paid agent node.
 - 📝 [Paper Trading and Live Portfolio Monitoring Now Available in ChatGPT with Alpaca](https://alpaca.markets/blog/paper-trading-and-live-portfolio-monitoring-now-available-in-chatgpt-with-alpaca/) — Luke West (Alpaca), 2026-10-12. A clean permission split for a chat surface: simulated orders in paper mode, read-only live accounts, and a live plugin that cannot submit, modify or cancel orders.
 - 📰 [Interactive Brokers enables traders to connect their accounts to any MCP-compatible AI application](https://fxnewsgroup.com/forex-news/retail-forex/interactive-brokers-enables-traders-to-connect-their-accounts-to-any-mcp-compatible-ai-application/) — Maria Nikolova (FX News Group), 2026-07-17. IBKR opens its remote MCP server to any MCP client with OAuth consent and revocation, beyond its official assistant connectors. Trade-press report; IBKR's own page was not reachable at check time.

@@ -14,7 +14,7 @@
 
 > A curated, source-checked guide to building and evaluating **LLM-powered trading systems**: repositories, papers, articles and posts, organized by the five layers of the stack: **Data → Agent → Execution → Harness → Application**.
 
-<!-- gen:headline -->77 repositories (64 open source · 5 mixed or restricted license · 8 license unclear) · 60 papers · 41 articles and posts · 5 deep dives<!-- /gen:headline -->. Every repository entry says what it does, whether it can place orders, how it is licensed and its most important limit; every paper says how much of it we actually read.
+<!-- gen:headline -->77 repositories (64 open source · 5 mixed or restricted license · 8 license unclear) · 76 papers · 45 articles and posts · 5 deep dives<!-- /gen:headline -->. Every repository entry says what it does, whether it can place orders, how it is licensed and its most important limit; every paper says how much of it we actually read.
 
 **What "checked" means.** Each repository was read at a named commit: its README, its license file and the lines that decide whether it can place orders. That is a *source check*: it says what a repository contains, not that its strategy works or that any return is real. Installing a project and running it end to end are stronger claims, made only where a page says so ([component matrix](docs/components.md)). A program re-checks every link weekly ([latest report](https://github.com/orangejustin/awesome-agentic-trading/actions/workflows/verify.yml)); the check date on an entry is the day a person last read it, and no program moves it.
 
@@ -67,10 +67,10 @@ Data, Agent and Execution are the pipeline: see, think, act. The Harness wraps a
 <!-- gen:stack -->
 | Layer | The question it answers | Repos | Papers | Articles |
 |---|---|---|---|---|
-| [1. Data layer](layers/data.md) | What did the agent know, and when did it know it? | 16 | 5 | 6 |
+| [1. Data layer](layers/data.md) | What did the agent know, and when did it know it? | 16 | 6 | 6 |
 | [2. Agent layer](layers/agent.md) | Given the signals, what is the call, and how is it argued? | 8 | 22 | 3 |
-| [3. Execution layer](layers/execution.md) | How does a decision become a fill, safely? | 15 | 1 | 7 |
-| [4. Harness layer](layers/harness.md) | Is the result real, and would we notice if it stopped being real? | 20 | 19 | 15 |
+| [3. Execution layer](layers/execution.md) | How does a decision become a fill, safely? | 15 | 3 | 10 |
+| [4. Harness layer](layers/harness.md) | Is the result real, and would we notice if it stopped being real? | 20 | 30 | 16 |
 | [5. Application layer](layers/application.md) | What end-to-end job does it do for a user? | 18 | 8 | 10 |
 <!-- /gen:stack -->
 
@@ -103,7 +103,7 @@ Every listed repository, by layer. One line each: what it is, then ⚠️ the li
 
 > What did the agent know, and when did it know it?
 
-**16 repos · 5 papers · 6 articles** · [Layer page: evidence links, check dates, every paper →](layers/data.md)
+**16 repos · 6 papers · 6 articles** · [Layer page: evidence links, check dates, every paper →](layers/data.md)
 
 #### Market and fundamental data
 
@@ -176,7 +176,7 @@ Every listed repository, by layer. One line each: what it is, then ⚠️ the li
 
 > How does a decision become a fill, safely?
 
-**15 repos · 1 paper · 7 articles** · [Layer page: evidence links, check dates, every paper →](layers/execution.md)
+**15 repos · 3 papers · 10 articles** · [Layer page: evidence links, check dates, every paper →](layers/execution.md)
 
 #### Broker and venue tools for agents
 
@@ -211,7 +211,7 @@ Every listed repository, by layer. One line each: what it is, then ⚠️ the li
 
 > Is the result real, and would we notice if it stopped being real?
 
-**20 repos · 19 papers · 15 articles** · [Layer page: evidence links, check dates, every paper →](layers/harness.md)
+**20 repos · 30 papers · 16 articles** · [Layer page: evidence links, check dates, every paper →](layers/harness.md)
 
 #### Research and backtest environments
 
@@ -309,6 +309,8 @@ Every listed repository, by layer. One line each: what it is, then ⚠️ the li
 - [From Deep Learning to LLMs: A survey of AI in Quantitative Investment](https://arxiv.org/abs/2503.21422) — Bokai Cao et al., 2025 · 🔖 abstract only. Survey of AI in quantitative investment from hand-crafted features through deep learning to LLM agents, using alpha strategies as the running example.
 - [The New Quant: A Survey of Large Language Models in Financial Prediction and Trading](https://arxiv.org/abs/2510.05533) — Weilong Fu, 2025 · 🔖 abstract only. Task-centered taxonomy of LLMs for return prediction and trading, built on 50+ primary studies.
 - [Agentic Trading: When LLM Agents Meet Financial Markets](https://arxiv.org/abs/2605.19337) — Yihan Xia et al., 2026 · 🗂️ method card. Survey organizing agentic trading by architecture, capability and adaptation.
+- [Agentic Quantitative Trading: A Survey of Workflows, Systems, and Evaluation](https://arxiv.org/abs/2608.31041) — Fengrui Hua et al., 2026 · 🔖 abstract only. Survey of agentic quantitative trading across five stages (factor mining, signal discovery, portfolio construction, order execution, risk management), covering system architecture, coordination and adaptation, and comparing benchmarks for strategy construction, offline trading, live evaluation and reliability. Limit: Finds that systems remain concentrated on signal discovery, and that strong model or forecasting capability does not reliably translate into trading performance under live conditions and reliability controls.
+- [Artificial Intelligence in Equity and Crypto Markets: Progress, Profitability Evidence, and the Limits of Automated Investing](https://arxiv.org/abs/2609.04917) — Linsen Zhu et al., 2026 · 🔖 abstract only. Critical review of public research through 31 August 2026 on AI in listed equities, ETFs and crypto markets, organized as an alpha-translation chain from point-in-time information to risk-adjusted returns after costs. Limit: Concludes that within the public evidence examined, no general AI architecture is shown to deliver persistent, cross-regime, capacity-aware net alpha, and that audited live-capital records are few.
 <!-- /gen:surveys -->
 
 ## Guides and deep dives

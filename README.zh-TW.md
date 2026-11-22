@@ -15,7 +15,7 @@
 
 > 一份逐條核對過來源的指南，幫助你構建和評測**由 LLM 驅動的交易系統**：公開倉庫、論文、文章與貼文，按系統的五層組織：**資料層 → Agent 層 → 執行層 → Harness 層 → 應用層**。
 
-<!-- gen:headline -->77 個倉庫（64 個開源 · 5 個混合或受限授權 · 8 個授權待確認）· 60 篇論文 · 41 篇文章與貼文 · 5 個深度拆解<!-- /gen:headline -->。每個倉庫條目都寫明做什麼、能否下單、採用什麼授權條款，以及最關鍵的限制；每篇論文都標明我們實際讀到了什麼程度。
+<!-- gen:headline -->77 個倉庫（64 個開源 · 5 個混合或受限授權 · 8 個授權待確認）· 76 篇論文 · 45 篇文章與貼文 · 5 個深度拆解<!-- /gen:headline -->。每個倉庫條目都寫明做什麼、能否下單、採用什麼授權條款，以及最關鍵的限制；每篇論文都標明我們實際讀到了什麼程度。
 
 **“核驗”指什麼。** 每個倉庫都在一個確定的提交上讀過：README、授權條款檔案，以及決定它能否下單的那幾行。這是*來源核查*：它說明倉庫裡有什麼，不說明策略有效，也不說明任何收益屬實。安裝專案、端到端跑通是更強的結論，只有頁面明確寫出時才成立（見[元件矩陣](docs/components.md)，英文）。程式每週重新檢查全部連結（[最新報告](https://github.com/orangejustin/awesome-agentic-trading/actions/workflows/verify.yml)）；條目上的核驗日期是人最後一次讀它的日期，程式不會改動。
 
@@ -68,10 +68,10 @@
 <!-- gen:stack -->
 | 層 | 回答的問題 | 倉庫 | 論文 | 文章 |
 |---|---|---|---|---|
-| [1. 資料層](layers/data.md) | 智慧體知道什麼？什麼時候知道的？ | 16 | 5 | 6 |
+| [1. 資料層](layers/data.md) | 智慧體知道什麼？什麼時候知道的？ | 16 | 6 | 6 |
 | [2. Agent 層](layers/agent.md) | 拿到訊號之後，結論是什麼？理由如何論證？ | 8 | 22 | 3 |
-| [3. 執行層](layers/execution.md) | 決策如何安全地變成成交？ | 15 | 1 | 7 |
-| [4. Harness 層](layers/harness.md) | 結果是真的嗎？如果它不再成立，我們能及時發現嗎？ | 20 | 19 | 15 |
+| [3. 執行層](layers/execution.md) | 決策如何安全地變成成交？ | 15 | 3 | 10 |
+| [4. Harness 層](layers/harness.md) | 結果是真的嗎？如果它不再成立，我們能及時發現嗎？ | 20 | 30 | 16 |
 | [5. 應用層](layers/application.md) | 它為使用者端到端完成什麼工作？ | 18 | 8 | 10 |
 <!-- /gen:stack -->
 
@@ -104,7 +104,7 @@
 
 > 智慧體知道什麼？什麼時候知道的？
 
-**16 個倉庫 · 5 篇論文 · 6 篇文章** · [分層頁：證據連結、核驗日期、全部論文（英文）→](layers/data.md)
+**16 個倉庫 · 6 篇論文 · 6 篇文章** · [分層頁：證據連結、核驗日期、全部論文（英文）→](layers/data.md)
 
 #### 行情與基本面資料
 
@@ -177,7 +177,7 @@
 
 > 決策如何安全地變成成交？
 
-**15 個倉庫 · 1 篇論文 · 7 篇文章** · [分層頁：證據連結、核驗日期、全部論文（英文）→](layers/execution.md)
+**15 個倉庫 · 3 篇論文 · 10 篇文章** · [分層頁：證據連結、核驗日期、全部論文（英文）→](layers/execution.md)
 
 #### 券商與交易場所工具
 
@@ -212,7 +212,7 @@
 
 > 結果是真的嗎？如果它不再成立，我們能及時發現嗎？
 
-**20 個倉庫 · 19 篇論文 · 15 篇文章** · [分層頁：證據連結、核驗日期、全部論文（英文）→](layers/harness.md)
+**20 個倉庫 · 30 篇論文 · 16 篇文章** · [分層頁：證據連結、核驗日期、全部論文（英文）→](layers/harness.md)
 
 #### 研究與回測環境
 
@@ -310,6 +310,8 @@
 - [From Deep Learning to LLMs: A survey of AI in Quantitative Investment](https://arxiv.org/abs/2503.21422) — Bokai Cao et al., 2025 · 🔖 僅讀摘要. 量化投資中的 AI 綜述：從手工特徵、深度學習到 LLM 智慧體，以 alpha 策略貫穿。
 - [The New Quant: A Survey of Large Language Models in Financial Prediction and Trading](https://arxiv.org/abs/2510.05533) — Weilong Fu, 2025 · 🔖 僅讀摘要. 以任務為中心的 LLM 收益預測與交易分類體系，基於 50 餘篇一手研究。
 - [Agentic Trading: When LLM Agents Meet Financial Markets](https://arxiv.org/abs/2605.19337) — Yihan Xia et al., 2026 · 🗂️ 方法卡片. 按架構、能力與適應方式梳理智慧體交易的綜述。
+- [Agentic Quantitative Trading: A Survey of Workflows, Systems, and Evaluation](https://arxiv.org/abs/2608.31041) — Fengrui Hua et al., 2026 · 🔖 僅讀摘要. Survey of agentic quantitative trading across five stages (factor mining, signal discovery, portfolio construction, order execution, risk management), covering system architecture, coordination and adaptation, and comparing benchmarks for strategy construction, offline trading, live evaluation and reliability. Limit: Finds that systems remain concentrated on signal discovery, and that strong model or forecasting capability does not reliably translate into trading performance under live conditions and reliability controls.
+- [Artificial Intelligence in Equity and Crypto Markets: Progress, Profitability Evidence, and the Limits of Automated Investing](https://arxiv.org/abs/2609.04917) — Linsen Zhu et al., 2026 · 🔖 僅讀摘要. Critical review of public research through 31 August 2026 on AI in listed equities, ETFs and crypto markets, organized as an alpha-translation chain from point-in-time information to risk-adjusted returns after costs. Limit: Concludes that within the public evidence examined, no general AI architecture is shown to deliver persistent, cross-regime, capacity-aware net alpha, and that audited live-capital records are few.
 <!-- /gen:surveys -->
 
 ## 指南與深度拆解
