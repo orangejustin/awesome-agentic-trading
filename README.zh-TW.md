@@ -15,7 +15,7 @@
 
 > 一份逐條核對過來源的指南，幫助你構建和評測**由 LLM 驅動的交易系統**：公開倉庫、論文、文章與貼文，按系統的五層組織：**資料層 → Agent 層 → 執行層 → Harness 層 → 應用層**。
 
-<!-- gen:headline -->70 個倉庫（57 個開源 · 5 個混合或受限授權 · 8 個授權待確認）· 60 篇論文 · 41 篇文章與貼文 · 5 個深度拆解<!-- /gen:headline -->。每個倉庫條目都寫明做什麼、能否下單、採用什麼授權條款，以及最關鍵的限制；每篇論文都標明我們實際讀到了什麼程度。
+<!-- gen:headline -->77 個倉庫（64 個開源 · 5 個混合或受限授權 · 8 個授權待確認）· 60 篇論文 · 41 篇文章與貼文 · 5 個深度拆解<!-- /gen:headline -->。每個倉庫條目都寫明做什麼、能否下單、採用什麼授權條款，以及最關鍵的限制；每篇論文都標明我們實際讀到了什麼程度。
 
 **“核驗”指什麼。** 每個倉庫都在一個確定的提交上讀過：README、授權條款檔案，以及決定它能否下單的那幾行。這是*來源核查*：它說明倉庫裡有什麼，不說明策略有效，也不說明任何收益屬實。安裝專案、端到端跑通是更強的結論，只有頁面明確寫出時才成立（見[元件矩陣](docs/components.md)，英文）。程式每週重新檢查全部連結（[最新報告](https://github.com/orangejustin/awesome-agentic-trading/actions/workflows/verify.yml)）；條目上的核驗日期是人最後一次讀它的日期，程式不會改動。
 
@@ -68,11 +68,11 @@
 <!-- gen:stack -->
 | 層 | 回答的問題 | 倉庫 | 論文 | 文章 |
 |---|---|---|---|---|
-| [1. 資料層](layers/data.md) | 智慧體知道什麼？什麼時候知道的？ | 14 | 5 | 6 |
+| [1. 資料層](layers/data.md) | 智慧體知道什麼？什麼時候知道的？ | 16 | 5 | 6 |
 | [2. Agent 層](layers/agent.md) | 拿到訊號之後，結論是什麼？理由如何論證？ | 8 | 22 | 3 |
-| [3. 執行層](layers/execution.md) | 決策如何安全地變成成交？ | 13 | 1 | 7 |
-| [4. Harness 層](layers/harness.md) | 結果是真的嗎？如果它不再成立，我們能及時發現嗎？ | 18 | 19 | 15 |
-| [5. 應用層](layers/application.md) | 它為使用者端到端完成什麼工作？ | 17 | 8 | 10 |
+| [3. 執行層](layers/execution.md) | 決策如何安全地變成成交？ | 15 | 1 | 7 |
+| [4. Harness 層](layers/harness.md) | 結果是真的嗎？如果它不再成立，我們能及時發現嗎？ | 20 | 19 | 15 |
+| [5. 應用層](layers/application.md) | 它為使用者端到端完成什麼工作？ | 18 | 8 | 10 |
 <!-- /gen:stack -->
 
 ## 證據告訴我們什麼
@@ -104,7 +104,7 @@
 
 > 智慧體知道什麼？什麼時候知道的？
 
-**14 個倉庫 · 5 篇論文 · 6 篇文章** · [分層頁：證據連結、核驗日期、全部論文（英文）→](layers/data.md)
+**16 個倉庫 · 5 篇論文 · 6 篇文章** · [分層頁：證據連結、核驗日期、全部論文（英文）→](layers/data.md)
 
 #### 行情與基本面資料
 
@@ -126,6 +126,8 @@
 - [Financial Datasets MCP Server](https://github.com/financial-datasets/mcp-server) ⚪ — 提供 Financial Datasets API 財務、價格與新聞的 MCP 伺服器。 ⚠️ 需要 Financial Datasets API 金鑰；最後提交於 2025-06-05。
 - [Massive MCP Server](https://github.com/massive-com/mcp_massive) — Massive（原 Polygon.io）行情 API 的官方 MCP 伺服器。 ⚠️ 作者標註為實驗性，且需要 API 金鑰。
 - [Yahoo Finance MCP](https://github.com/Alex2Yang97/yahoo-finance-mcp) — 為 LLM 客戶端提供 Yahoo Finance 資料的 MCP 伺服器。 ⚠️ 基於 yfinance 當前資料而非時點存檔，不適合回測。
+- [EODHD MCP Server](https://github.com/EodHistoricalData/EODHD-MCP-Server) — EODHD 的 MCP 服務：88 個工具，覆蓋全球日線、分鐘線與逐筆行情、基本面、新聞和宏觀。 ⚠️ 需要 EODHD 金鑰；許多工具要求特定付費套餐；有三個工具會觸發郵件報告。
+- [Alpha Vantage MCP Server](https://github.com/alphavantage/alpha_vantage_mcp) — Alpha Vantage 官方 MCP 服務：把行情、基本面、宏觀和技術指標介面變成智慧體工具。 ⚠️ 需要 API 金鑰；免費金鑰限速嚴格，部分功能需付費；不保證時點資料。
 - [TradingView MCP (Desktop)](https://github.com/tradesdontlie/tradingview-mcp) — 讓智慧體讀取並操作本地 TradingView 桌面版的 MCP 服務：圖表、指標、Pine 指令碼、告警。 ⚠️ 經未公開介面操控桌面應用（有條款風險）；先只開唯讀工具；活躍分支見 iliaal/tradingview-mcp。
 
 #### 資料校驗與證據記錄
@@ -175,7 +177,7 @@
 
 > 決策如何安全地變成成交？
 
-**13 個倉庫 · 1 篇論文 · 7 篇文章** · [分層頁：證據連結、核驗日期、全部論文（英文）→](layers/execution.md)
+**15 個倉庫 · 1 篇論文 · 7 篇文章** · [分層頁：證據連結、核驗日期、全部論文（英文）→](layers/execution.md)
 
 #### 券商與交易場所工具
 
@@ -188,7 +190,9 @@
 - [fintool](https://github.com/second-state/fintool) [⚡](https://github.com/second-state/fintool/blob/177a9b8e3a09e507cdb2c8458f2be4b9574abaaf/README.md?plain=1#L86-L97) 🟡 ❓ `MIT` — 為智慧體提供分交易所交易與行情的 Rust CLI 套件。 ⚠️ 可在真實交易所下單，建議先用小倉位或測試網。
 - [Condor](https://github.com/hummingbot/condor) [⚡](https://github.com/hummingbot/condor/blob/a817f6633a90afe41523377bfd360c0b9316d423/README.md?plain=1#L29-L31) — 透過 Hummingbot API 監控和交易的 Telegram 機器人與面板，內建 LLM 智慧體。 ⚠️ 會下真實加密訂單並儲存交易所金鑰；需部署 Hummingbot API；使用統計預設開啟。
 - [Schwab MCP](https://github.com/jkoelker/schwab-mcp) [⚡](https://github.com/jkoelker/schwab-mcp/blob/491960670d98dad9ed26f6631536b2db656f51be/README.md?plain=1#L133-L151) — 嘉信理財（Schwab）社群版 MCP 服務：行情、期權鏈、持倉與下單，下單前需人工審批。 ⚠️ 非官方；審批後即對真實帳戶下單；需申請 Schwab 開發者應用。
+- [Bybit MCP Server](https://github.com/bybit-exchange/trading-mcp) [⚡](https://github.com/bybit-exchange/trading-mcp/blob/7349c916816aeb42bcc4f9f6cd5798d35b9e5e4b/src/tools/trade/createOrder.ts#L46-L51) — Bybit 官方 MCP 服務：約 400 個 V5 介面工具，覆蓋行情、下單、借貸和理財。 ⚠️ 不設 BYBIT_TESTNET=true 即為主網；高風險工具要求客戶端能彈出確認表單；沒有隻讀開關。
 - [tastytrade MCP](https://github.com/tastytrade/tastytrade-mcp) [⚡](https://github.com/tastytrade/tastytrade-mcp/blob/7f2bb636a8a1906fecc28f5da27ab382dd966941/README.md?plain=1#L10-L19) — tastytrade 官方 MCP 服務：行情、期權鏈、持倉與下單。 ⚠️ 預設連線生產環境（真實資金）；應先用唯讀或沙箱模式。
+- [Longbridge MCP Server](https://github.com/longbridge/longbridge-mcp) [⚡](https://github.com/longbridge/longbridge-mcp/blob/3a2323253dcd4be2e0b28576ad693a30233a7933/README.md?plain=1#L139) — 長橋官方 MCP 服務：164 個工具，覆蓋美股港股行情、研究、下單、定投與網格。 ⚠️ 預設作用於真實帳戶；下單須引用預演返回的確認碼；模擬盤需手動開啟；需要長橋帳戶登入。
 
 #### 交易引擎（回測與實盤同一套程式碼）
 
@@ -208,7 +212,7 @@
 
 > 結果是真的嗎？如果它不再成立，我們能及時發現嗎？
 
-**18 個倉庫 · 19 篇論文 · 15 篇文章** · [分層頁：證據連結、核驗日期、全部論文（英文）→](layers/harness.md)
+**20 個倉庫 · 19 篇論文 · 15 篇文章** · [分層頁：證據連結、核驗日期、全部論文（英文）→](layers/harness.md)
 
 #### 研究與回測環境
 
@@ -227,6 +231,8 @@
 - [LLM Trading Lab](https://github.com/LuckyOne7777/LLM-Trading-Lab) 🟡 ❓ 無授權條款 — ChatGPT 管理真實資金微盤股組合的六個月實盤記錄。 ⚠️ 僅一次六個月執行且由作者自評；程式碼無券商介面；無授權條款檔案。
 - [PIXIU / FinBen](https://github.com/The-FinAI/PIXIU) — 開源金融 LLM FinMA 及 FinBen 評測套件。 ⚠️ 任務高分難以反映實際交易表現。
 - [DeepFund](https://github.com/HKUSTDial/DeepFund) 🟡 — 在截止日後資料上評測 LLM 基金經理的實時競技場。 ⚠️ 不進行交易（在實時資料上為決策打分）；結果依賴較短的實時視窗。
+- [StockBench](https://github.com/ChenYXxxx/stockbench) ⚪ — 回測基準：LLM 智慧體用 2024 年之後的資料連續數月管理 20 只道指成分股組合。 ⚠️ 僅 20 只股票、預設四個月視窗；只做回測；較新的模型可能已見過測試區間。
+- [Vals Finance Agent benchmark harness](https://github.com/vals-ai/finance-agent) — Vals AI 金融智慧體基準的執行框架：讓會用工具的 LLM 回答基於 SEC 檔案的研究問題。 ⚠️ 完整題集需獲批訪問受限的 Vals 平臺；公開題僅 50 道；搜尋介面需付費金鑰。
 - [Live Trade Bench](https://github.com/ulab-uiuc/live-trade-bench) [📝](https://github.com/ulab-uiuc/live-trade-bench/blob/05fbfec8df76c2c309201e6b4b7c26aff7e6d0f9/README.md?plain=1#L64-L71) 🟡 🔒 `PolyForm-Noncommercial-1.0.0` — 用美股與 Polymarket 的實時行情執行並監控 LLM 交易智慧體（模擬組合） ⚠️ 只是實時行情上的模擬組合，不動用真實資金；非商業授權。
 
 #### 穩健性與偏差控制
@@ -257,7 +263,7 @@
 
 > 它為使用者端到端完成什麼工作？
 
-**17 個倉庫 · 8 篇論文 · 10 篇文章** · [分層頁：證據連結、核驗日期、全部論文（英文）→](layers/application.md)
+**18 個倉庫 · 8 篇論文 · 10 篇文章** · [分層頁：證據連結、核驗日期、全部論文（英文）→](layers/application.md)
 
 #### 投研與報告
 
@@ -265,6 +271,7 @@
 - [Claude for Financial Services](https://github.com/anthropics/financial-services) — Anthropic 官方參考實現：面向投研、投行和基金運營的智慧體、技能與資料聯結器。 ⚠️ 只起草分析材料供人工籤核，不做交易；需要 Claude 及付費資料商訂閱。
 - [Dexter](https://github.com/virattt/dexter) ❓ `MIT` — 自主投研智慧體：拆解問題、呼叫金融資料工具、自查並迭代。 ⚠️ 僅限研究；依賴付費資料 API；README 稱 MIT 但無 LICENSE 檔案。
 - [FinRobot](https://github.com/AI4Finance-Foundation/FinRobot) [🔬](docs/teardowns/finrobot.md) — 程式碼算數、LLM 寫敘述的股票研究智慧體平臺。 ⚠️ 屬於股票研究工作站而非交易系統，無可檢驗的交易業績宣告。
+- [OpenAlice](https://github.com/TraderAlice/OpenAlice) [⚡](https://github.com/TraderAlice/OpenAlice/blob/c3e42f3e291ae1c9418c08aa0a6086a191eaca21/README.md?plain=1#L98-L101) — 本地工作臺：讓 Claude Code、Codex 等智慧體用上行情工具和需人工批准的下單流程。 ⚠️ 交易執行仍是測試版，啟用後可觸達真實帳戶；AGPL-3.0；需自備智慧體和模型額度。
 - [Claude Trading Skills](https://github.com/tradermonty/claude-trading-skills) — 一組 Claude Skills：市場環境檢查、選股、倉位計算、交易日誌與回測評審。 ⚠️ 僅輔助決策、不下單；多數選股需 FMP 金鑰或付費 FINVIZ Elite；無業績記錄。
 - [Trading-R1](https://github.com/TauricResearch/Trading-R1) — 終端裡的投研智慧體：行情資料、網頁檢索與估值工具，可匯出 PDF 報告並定時推送。 ⚠️ 資料工具需要 Tauric 金鑰，會話預設同步到 Tauric；論文模型的權重、訓練程式碼與回測均未釋出。
 - [OpenTerminalUI](https://github.com/Hitheshkaranth/OpenTerminalUI) [📝](https://github.com/Hitheshkaranth/OpenTerminalUI/blob/48912fb420b1d16d6e412e9dec69871b242b93b2/README.md?plain=1#L187) — 可自託管的投研終端，AI 分析師會引用公告並標註每個數字的來源。 ⚠️ 單人維護的小專案；免費資料可能延遲或為合成資料（有標註）；僅支援模擬操作。
