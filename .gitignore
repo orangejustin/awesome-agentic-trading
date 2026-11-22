@@ -12,3 +12,6 @@ data/
 tools/extract/local.toml
 repin/
 report/
+
+# local agent settings
+.claude/

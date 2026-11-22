@@ -434,3 +434,43 @@ source = "docs"
 layer = "execution"
 why = "QuantConnect replaced its self-hosted MCP server (the repository now holds only this README) with a hosted endpoint that can create and edit LEAN projects, run backtests, optimize and deploy to paper trading. It needs a paid agent node."
 checked = "2026-10-26"
+
+[[article]]
+title = "AI in financial services: good practice and areas for improvement"
+author = "Financial Conduct Authority"
+url = "https://www.fca.org.uk/publications/good-poor-practice/ai-financial-services"
+source = "docs"
+date = "2026-10-19"
+layer = "harness"
+why = "UK regulator's examples of good and poor practice for machine learning, generative and agentic AI. Useful as a control checklist: a central inventory of agents with owner, access and controls, and logs of prompts, outputs, model versions and escalations. It creates no new requirements."
+checked = "2026-11-22"
+
+[[article]]
+title = "Remarks at Frontier Forum on Super Intelligence"
+author = "Michael S. Selig (CFTC Chairman)"
+url = "https://www.cftc.gov/PressRoom/SpeechesTestimony/opaselig14"
+source = "talk"
+date = "2026-10-28"
+layer = "execution"
+why = "Primary text of the CFTC chairman's opening remarks at the agency's first forum with a panel on agentic trading. It lists the open questions a builder should expect rules on: developer registration, liability when an agent goes rogue, and identifying who an agent trades for. It poses questions and announces no rule."
+checked = "2026-11-22"
+
+[[article]]
+title = "As AI agents enter trading, CME's Vrabel warns ignorance is no defence"
+author = "Kirsten Hyde"
+url = "https://www.fia.org/marketvoice/articles/ai-agents-enter-trading-cmes-vrabel-warns-ignorance-no-defence"
+source = "news"
+date = "2026-11-16"
+layer = "execution"
+why = "Exchange-side view from a FIA Expo panel: the person issuing instructions stays liable for an agent's orders, and a system should be able to log every trading decision so it can be reconstructed. Panel report, not a rule text."
+checked = "2026-11-22"
+
+[[article]]
+title = "Paper Trading and Live Portfolio Monitoring Now Available in Claude with Alpaca"
+author = "Chiranjeev Shah"
+url = "https://alpaca.markets/blog/alpaca-launches-claude-connectors-for-trading-api/"
+source = "blog"
+date = "2026-11-12"
+layer = "execution"
+why = "Broker announcement that splits authority by connector: the paper connector can place simulated trades, the live connector is read-only for monitoring. A concrete example of starting an agent without live order authority."
+checked = "2026-11-22"

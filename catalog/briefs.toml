@@ -584,3 +584,59 @@ limit = "Places real crypto orders and stores exchange keys; needs Hummingbot AP
 tagline_zh = "通过 Hummingbot API 监控和交易的 Telegram 机器人与面板，内置 LLM 智能体"
 audience_zh = "想用聊天和智能体管理机器人、订单与 DEX 仓位的 Hummingbot 用户"
 limit_zh = "会下真实加密订单并保存交易所密钥；需部署 Hummingbot API；使用统计默认开启"
+
+[bybit-trading-mcp]
+tagline = "Bybit's own MCP server: about 400 V5 API tools from market data to orders, loans and earn"
+audience = "Builders giving an agent order authority on a Bybit account, starting on testnet"
+limit = "Mainnet unless BYBIT_TESTNET=true; high-risk tools need a client that can show an approval form; no read-only flag"
+tagline_zh = "Bybit 官方 MCP 服务：约 400 个 V5 接口工具，覆盖行情、下单、借贷和理财"
+audience_zh = "想让智能体在 Bybit 账户上拥有下单权限、并先在测试网验证的开发者"
+limit_zh = "不设 BYBIT_TESTNET=true 即为主网；高风险工具要求客户端能弹出确认表单；没有只读开关"
+
+[longbridge-mcp]
+tagline = "Longbridge's official MCP server: 164 tools for US and HK quotes, research, orders, DCA and grid trading"
+audience = "Builders who hold a Longbridge account and want an agent to research and place US or HK orders"
+limit = "Real account by default; orders need a confirmation code from a dry run; paper mode is opt-in; needs a Longbridge login"
+tagline_zh = "长桥官方 MCP 服务：164 个工具，覆盖美股港股行情、研究、下单、定投与网格"
+audience_zh = "持有长桥账户、想让智能体做研究并下美股或港股订单的开发者"
+limit_zh = "默认作用于真实账户；下单须引用预演返回的确认码；模拟盘需手动开启；需要长桥账户登录"
+
+[openalice]
+tagline = "Local workspace that gives Claude Code, Codex and other agents market tools and an approved order path"
+audience = "Individual traders who already use a coding agent and want research, schedules and brokers in one local app"
+limit = "Trading execution is beta and can reach real accounts once enabled; AGPL-3.0; needs your own agent and model access"
+tagline_zh = "本地工作台：让 Claude Code、Codex 等智能体用上行情工具和需人工批准的下单流程"
+audience_zh = "已在用编程智能体、想把研究、定时任务和券商账户放进同一个本地应用的个人交易者"
+limit_zh = "交易执行仍是测试版，启用后可触达真实账户；AGPL-3.0；需自备智能体和模型额度"
+
+[stockbench]
+tagline = "Backtest benchmark: an LLM agent runs a 20-stock Dow portfolio for months on post-2024 data"
+audience = "Researchers comparing LLMs as portfolio decision makers on one fixed, reproducible task"
+limit = "20 stocks and a four-month default window; backtest only; newer models may have seen the test period"
+tagline_zh = "回测基准：LLM 智能体用 2024 年之后的数据连续数月管理 20 只道指成分股组合"
+audience_zh = "想在同一固定、可复现任务上比较 LLM 组合决策能力的研究者"
+limit_zh = "仅 20 只股票、默认四个月窗口；只做回测；较新的模型可能已见过测试区间"
+
+[vals-finance-agent]
+tagline = "Harness for Vals AI's Finance Agent benchmark: tool-using LLMs answer SEC filing research questions"
+audience = "Teams evaluating a model or agent harness on filing-based financial research before trusting it"
+limit = "Full suites need approved access to the gated Vals platform; only 50 public questions; paid search keys"
+tagline_zh = "Vals AI 金融智能体基准的运行框架：让会用工具的 LLM 回答基于 SEC 文件的研究问题"
+audience_zh = "想在信任模型或智能体框架之前，先评测其财报研究能力的团队"
+limit_zh = "完整题集需获批访问受限的 Vals 平台；公开题仅 50 道；搜索接口需付费密钥"
+
+[alpha-vantage-mcp]
+tagline = "Alpha Vantage's official MCP server: its market, fundamental, macro and indicator APIs as agent tools"
+audience = "Builders who want one keyed vendor feed for prices, fundamentals and macro series in an MCP client"
+limit = "API key required; free keys are tightly rate limited and some functions are premium; not point-in-time"
+tagline_zh = "Alpha Vantage 官方 MCP 服务：把行情、基本面、宏观和技术指标接口变成智能体工具"
+audience_zh = "想在 MCP 客户端里用一个带密钥的数据源获取价格、基本面和宏观序列的开发者"
+limit_zh = "需要 API 密钥；免费密钥限速严格，部分功能需付费；不保证时点数据"
+
+[eodhd-mcp]
+tagline = "EODHD's MCP server: 88 tools for global EOD, intraday and tick prices, fundamentals, news and macro"
+audience = "Builders who need broad non-US and historical coverage from one paid vendor inside an MCP client"
+limit = "Needs an EODHD key; many tools require a specific paid plan; three tools trigger emailed reports"
+tagline_zh = "EODHD 的 MCP 服务：88 个工具，覆盖全球日线、分钟线与逐笔行情、基本面、新闻和宏观"
+audience_zh = "需要在 MCP 客户端里从一家付费数据商获得广泛非美和历史数据的开发者"
+limit_zh = "需要 EODHD 密钥；许多工具要求特定付费套餐；有三个工具会触发邮件报告"

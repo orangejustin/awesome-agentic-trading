@@ -11,7 +11,7 @@
 
 **Open gap.** Almost no agent framework ships a point-in-time store. The MCP data servers listed here serve current data; none was checked for point-in-time guarantees, so none should feed a backtest unaudited.
 
-14 repos · 5 papers · 6 articles and posts. Legend: 🟢 active · 🟡 slowing · ⚪ dormant (last commit within 90 days, within a year, or older, counted from the check date) · 💤 declared unmaintained · ⚡ can place real orders · 📝 paper trading only · 🧩 open core with proprietary parts · 🔒 source-available, restricted · ❓ license unclear · 🧰 general-purpose tool applied here · 📖 read in full · 🗂️ machine-extracted [method card](../docs/cards/index.md) · 🔖 abstract only. Marks on a row link to the lines that support them, at the commit we checked.
+16 repos · 6 papers · 6 articles and posts. Legend: 🟢 active · 🟡 slowing · ⚪ dormant (last commit within 90 days, within a year, or older, counted from the check date) · 💤 declared unmaintained · ⚡ can place real orders · 📝 paper trading only · 🧩 open core with proprietary parts · 🔒 source-available, restricted · ❓ license unclear · 🧰 general-purpose tool applied here · 📖 read in full · 🗂️ machine-extracted [method card](../docs/cards/index.md) · 🔖 abstract only. Marks on a row link to the lines that support them, at the commit we checked.
 
 ## Contents
 
@@ -49,6 +49,8 @@
 | [Financial Datasets MCP Server](https://github.com/financial-datasets/mcp-server) | MCP server exposing Financial Datasets API financials, prices and company news | Developers connecting LLM agents to financial statement and price data | ⚪ dormant, last commit 2025-06-05 | [`MIT`](https://github.com/financial-datasets/mcp-server/blob/08e7a3dbb949d3d99bbd6d6f3a22e5f02973ec58/LICENSE) | none | [2026-10-26 @ `08e7a3d`](https://github.com/financial-datasets/mcp-server/tree/08e7a3dbb949d3d99bbd6d6f3a22e5f02973ec58) | Requires a Financial Datasets API key; last commit 2025-06-05 |
 | [Massive MCP Server](https://github.com/massive-com/mcp_massive) | First-party MCP server exposing the Massive (formerly Polygon.io) market-data API | Developers connecting LLM agents to Massive market data | 🟢 active, last commit 2026-10-08 | [`MIT`](https://github.com/massive-com/mcp_massive/blob/1e161a8c50b69bd467b092e0721e30908ab94eb6/LICENSE) | none | [2026-10-26 @ `1e161a8`](https://github.com/massive-com/mcp_massive/tree/1e161a8c50b69bd467b092e0721e30908ab94eb6) | Marked experimental by its authors and requires a Massive API key |
 | [Yahoo Finance MCP](https://github.com/Alex2Yang97/yahoo-finance-mcp) | MCP server giving LLM clients Yahoo Finance prices, statements, options and news | Developers connecting LLM clients to free market data | 🟢 active, last commit 2026-09-19 | [`MIT`](https://github.com/Alex2Yang97/yahoo-finance-mcp/blob/b9c176547d3797b2196adeba0210ae67861ac589/LICENSE) | none | [2026-10-26 @ `b9c1765`](https://github.com/Alex2Yang97/yahoo-finance-mcp/tree/b9c176547d3797b2196adeba0210ae67861ac589) | Wraps yfinance current data, not point-in-time; unsuitable for backtesting |
+| [EODHD MCP Server](https://github.com/EodHistoricalData/EODHD-MCP-Server) | EODHD's MCP server: 88 tools for global EOD, intraday and tick prices, fundamentals, news and macro | Builders who need broad non-US and historical coverage from one paid vendor inside an MCP client | 🟢 active, last commit 2026-10-15 | [`MIT`](https://github.com/EodHistoricalData/EODHD-MCP-Server/blob/60faa78c5970cca56bff767c222991137564c0df/LICENSE) | none | [2026-11-22 @ `60faa78`](https://github.com/EodHistoricalData/EODHD-MCP-Server/tree/60faa78c5970cca56bff767c222991137564c0df) | Needs an EODHD key; many tools require a specific paid plan; three tools trigger emailed reports |
+| [Alpha Vantage MCP Server](https://github.com/alphavantage/alpha_vantage_mcp) | Alpha Vantage's official MCP server: its market, fundamental, macro and indicator APIs as agent tools | Builders who want one keyed vendor feed for prices, fundamentals and macro series in an MCP client | 🟢 active, last commit 2026-10-03 | [`MIT`](https://github.com/alphavantage/alpha_vantage_mcp/blob/3ed9b05db06d16476d326a12441d68ad071b261a/LICENSE) | none | [2026-11-22 @ `3ed9b05`](https://github.com/alphavantage/alpha_vantage_mcp/tree/3ed9b05db06d16476d326a12441d68ad071b261a) | API key required; free keys are tightly rate limited and some functions are premium; not point-in-time |
 | [TradingView MCP (Desktop)](https://github.com/tradesdontlie/tradingview-mcp) | MCP server that lets an agent read and drive your local TradingView Desktop: charts, indicators, Pine Script, alerts | Traders who want an agent to inspect their own charts and iterate on Pine strategies | 🟢 active, last commit 2026-07-28 | [`MIT`](https://github.com/tradesdontlie/tradingview-mcp/blob/c05b8f5755ed8e64ea242de88ddbf46aa24d56a4/LICENSE) | none | [2026-10-26 @ `c05b8f5`](https://github.com/tradesdontlie/tradingview-mcp/tree/c05b8f5755ed8e64ea242de88ddbf46aa24d56a4) | Drives the desktop app through undocumented APIs (ToS risk); start read-only; maintained fork: iliaal/tradingview-mcp |
 
 ### Data validation and evidence records
@@ -62,11 +64,14 @@
 Listed in their primary layer; they also ship working code for this one.
 
 - [Alpaca MCP Server](https://github.com/alpacahq/alpaca-mcp-server) — MCP server letting LLM clients query market data and place Alpaca orders. *Primary: [Execution layer](execution.md).*
+- [Bybit MCP Server](https://github.com/bybit-exchange/trading-mcp) — Bybit's own MCP server: about 400 V5 API tools from market data to orders, loans and earn. *Primary: [Execution layer](execution.md).*
 - [Claude for Financial Services](https://github.com/anthropics/financial-services) — Anthropic's reference agents, skills and data connectors for research, banking and fund work. *Primary: [Application layer](application.md).*
 - [daily_stock_analysis](https://github.com/ZhuLinsen/daily_stock_analysis) — Scheduled LLM stock reports for a multi-market watchlist, pushed to chat or email. *Primary: [Application layer](application.md).*
 - [FinGPT](https://github.com/AI4Finance-Foundation/FinGPT) — Open financial LLM project with data pipelines and LoRA fine-tuning recipes. *Primary: [Agent layer](agent.md).*
 - [FinRobot](https://github.com/AI4Finance-Foundation/FinRobot) — Equity-research agent platform where code computes figures and LLMs write narrative. *Primary: [Application layer](application.md).*
+- [Longbridge MCP Server](https://github.com/longbridge/longbridge-mcp) — Longbridge's official MCP server: 164 tools for US and HK quotes, research, orders, DCA and grid trading. *Primary: [Execution layer](execution.md).*
 - [OKX Agent Trade Kit](https://github.com/okx/agent-trade-kit) — OKX's MCP server and CLI: market data, orders, transfers, earn and bots as agent tools. *Primary: [Execution layer](execution.md).*
+- [OpenAlice](https://github.com/TraderAlice/OpenAlice) — Local workspace that gives Claude Code, Codex and other agents market tools and an approved order path. *Primary: [Application layer](application.md).*
 - [Qlib](https://github.com/microsoft/qlib) — Quant research platform with data layer, ML model zoo and backtest tooling. *Primary: [Harness layer](harness.md).*
 
 ## Papers
@@ -85,6 +90,12 @@ Listed in their primary layer; they also ship working code for this one.
 | [Financial Statement Analysis with Large Language Models](https://arxiv.org/abs/2407.17866) | Alex Kim et al., 2024 | 🗂️ [card](../docs/cards/2407.17866.md) | GPT-4 reads anonymized financial statements and predicts the direction of future earnings, reported to beat human analysts. |
 | [Sentiment trading with large language models](https://arxiv.org/abs/2412.19245) | Kemal Kirtac et al., 2024 | 🗂️ [card](../docs/cards/2412.19245.md) | Compares LLM sentiment scores of 965,375 US news articles (2010-2023) against subsequent daily returns. |
 | [Exploring the Synergy of Quantitative Factors and Newsflow Representations from Large Language Models for Stock Return Prediction](https://arxiv.org/abs/2510.15691) | Tian Guo et al., 2025 | 🗂️ [card](../docs/cards/2510.15691.md) | Fuses quantitative factors with LLM-derived newsflow representations for return prediction and stock selection, comparing three fusion architectures and a mixture model. |
+
+### Data validation and evidence records
+
+| Paper | Authors, year | Read | Takeaway |
+|---|---|---|---|
+| [BuySideFlow: A Point-in-Time Benchmark for LLM Agents in Investment Research](https://arxiv.org/abs/2611.12966) | Dong Bo et al., 2026 | 🔖 abstract | BuySideFlow: 408 practitioner-derived Chinese-language investment-research tasks over a fixed snapshot of a licensed production database, with executable references, a taxonomy of temporal errors and expert audits of the executed SQL and Python workflows. Limit: Result accuracy ranged from 16.2% to 36.8%, and an audit confirmed point-in-time violations in 193 of 380 runs that passed result checks (50.8%). |
 
 ## Articles and posts
 
